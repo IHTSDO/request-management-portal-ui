@@ -1,0 +1,17 @@
+<div class="row rounded form-panel mb-5">
+    <div class="col-12 p-3 bg-slate-grey rounded-top header-block">
+        <h2 class="text-white mb-0" i18n>AUTHENTICATION</h2>
+    </div>
+    <div class="col-12 py-3">
+        <div class="row rounded form-panel">
+            <div class="offset-1 col-5 p-3 mb-0 form-group">
+                <label for="username" i18n>Username</label>
+                <input type="email" class="form-control" id="username" required [(ngModel)]="user.username" name="username" (ngModelChange)="updateUser()">
+            </div>
+            <div class="col-5 p-3 mb-0 form-group">
+                <label for="password" i18n>Password</label>
+                <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" (ngModelChange)="updateUser()">
+            </div>
+        </div>
+    </div>
+</div>

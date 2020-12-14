@@ -1,0 +1,22 @@
+@import '~src/variables.scss';
+
+label {
+    font-size: 1.4rem;
+}
+
+input {
+    font-size: 1.8rem;
+}
+
+div.form-panel {
+    background-color: lighten($ghost-grey, 10%);
+
+    mat-radio-button.mat-radio-button {
+        font-family: inherit;
+        color: $river-bed;
+
+        div.mat-radio-label-content {
+            font-weight: 400;
+        }
+    }
+}

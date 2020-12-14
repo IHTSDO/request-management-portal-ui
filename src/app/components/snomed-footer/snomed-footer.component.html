@@ -1,0 +1,6 @@
+<footer class="footer bg-dark">
+    <a class="px-3 text-ghost-grey" href="http://www.snomed.org/" target="_blank" i18n>Copyright © {{year}} SNOMED International</a>
+    <a *ngIf="configuration?.extension?.userGuideUrl" class="px-3 text-ghost-grey" [href]="configuration.extension.userGuideUrl" target="_blank" i18n>User Guide</a>
+    <a *ngIf="configuration?.extension?.contactUsUrl" class="px-3 text-ghost-grey" [href]="configuration.extension.contactUsUrl" target="_blank" i18n>Contact Us</a>
+    <a *ngIf="configuration?.version" class="px-3 float-right text-ghost-grey">{{configuration.version}}</a>
+</footer>

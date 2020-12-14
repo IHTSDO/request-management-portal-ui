@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en-US" datatype="plaintext" original="ng2.template">
+        <body>
+            <trans-unit id="ngb.alert.close" datatype="html">
+                <source>Close</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts
+                    </context>
+                    <context context-type="linenumber">3</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.carousel.previous" datatype="html">
+                <source>Previous</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts
+                    </context>
+                    <context context-type="linenumber">13</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.carousel.next" datatype="html">
+                <source>Next</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts
+                    </context>
+                    <context context-type="linenumber">17</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.datepicker.previous-month" datatype="html">
+                <source>Previous month</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts
+                    </context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts
+                    </context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.datepicker.next-month" datatype="html">
+                <source>Next month</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts
+                    </context>
+                    <context context-type="linenumber">26</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts
+                    </context>
+                    <context context-type="linenumber">27</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.datepicker.select-month" datatype="html">
+                <source>Select month</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts
+                    </context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts
+                    </context>
+                    <context context-type="linenumber">6</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.datepicker.select-year" datatype="html">
+                <source>Select year</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts
+                    </context>
+                    <context context-type="linenumber">13</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts
+                    </context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.first" datatype="html">
+                <source>««</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">2</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.previous" datatype="html">
+                <source>«</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">3</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.next" datatype="html">
+                <source>»</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.last" datatype="html">
+                <source>»»</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.first-aria" datatype="html">
+                <source>First</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.previous-aria" datatype="html">
+                <source>Previous</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">24</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.next-aria" datatype="html">
+                <source>Next</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">44</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.pagination.last-aria" datatype="html">
+                <source>Last</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
+                    </context>
+                    <context context-type="linenumber">53</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.progressbar.value" datatype="html">
+                <source>
+                    <x id="INTERPOLATION" equiv-text="{{getValue() / max | percent}}"/>
+                </source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts
+                    </context>
+                    <context context-type="linenumber">7</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
+                <source>Increment hours</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">9</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.HH" datatype="html">
+                <source>HH</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">13</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.hours" datatype="html">
+                <source>Hours</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">15</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
+                <source>Decrement hours</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">23</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
+                <source>Increment minutes</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">32</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.MM" datatype="html">
+                <source>MM</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">35</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.minutes" datatype="html">
+                <source>Minutes</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">37</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.decrement-minutes" datatype="html">
+                <source>Decrement minutes</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">45</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
+                <source>Increment seconds</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">54</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.SS" datatype="html">
+                <source>SS</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">57</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.seconds" datatype="html">
+                <source>Seconds</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">59</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.decrement-seconds" datatype="html">
+                <source>Decrement seconds</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">67</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.PM" datatype="html">
+                <source>
+                    <x id="INTERPOLATION" equiv-text="{{ i18n.getAfternoonPeriod() }}"/>
+                </source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">76</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.timepicker.AM" datatype="html">
+                <source>
+                    <x id="INTERPOLATION" equiv-text="{{ i18n.getMorningPeriod() }}"/>
+                </source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
+                    </context>
+                    <context context-type="linenumber">77</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ngb.toast.close-aria" datatype="html">
+                <source>Close</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts
+                    </context>
+                    <context context-type="linenumber">8</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
+                <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/app.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="727da5f68a15139fe2be6521abdc20b90a7983ec" datatype="html">
+                <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
+                    select the type of request you require from the options below.
+                </source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/app.component.html</context>
+                    <context context-type="linenumber">6</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="5fb0d40b6c834d9118e5303348467ecaae12dd63" datatype="html">
+                <source>SNOMED CT Request Management Portal</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/snomed-navbar/snomed-navbar.component.html
+                    </context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="5b39cebb9605eb6fcd45c6b5480c347df3762351" datatype="html">
+                <source>Copyright ©
+                    <x id="INTERPOLATION" equiv-text="{{year}}"/>
+                    SNOMED International
+                </source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
+                    </context>
+                    <context context-type="linenumber">2</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="f03a65dc29188cd55e01deba3d62c77533cc8ad2" datatype="html">
+                <source>User Guide</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
+                    </context>
+                    <context context-type="linenumber">3</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="02e9e69ddcbf93de9fd38bc4d0f312142658610d" datatype="html">
+                <source>Contact Us</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
+                    </context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="54754035562ab4913f9d63832d092fcb2edfe3d4" datatype="html">
+                <source>REQUEST DETAILS</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">3</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="dc6d2274470f202ab0b38dc00e19eb20982ca30e" datatype="html">
+                <source>ADD CONCEPT</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">8</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="f7e794a17a8c47e7b5d8b4bd7401fb654f533f80" datatype="html">
+                <source>ADD DESCRIPTION</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">11</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="b9dda2946dfe192ec1232cfc5e9bea2a2b884cf7" datatype="html">
+                <source>ADD RELATIONSHIP</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="ecc1389c44884f2a8d5fd61e3c7dc63eb7d4308c" datatype="html">
+                <source>CHANGE DESCRIPTION</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">17</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9ac3606141d3357b5449869468dbf8cb43c14a49" datatype="html">
+                <source>CHANGE RELATIONSHIP</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="791564a40c97f143fe581e7e7b2952ca77996e23" datatype="html">
+                <source>INACTIVATE DESCRIPTION</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">23</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="b0b7562962d7754a977cc2c222fa7b8ec7e0c5d4" datatype="html">
+                <source>INACTIVATE RELATIONSHIP</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">26</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="67f36c68fca0e32bcbb03b1e4b55c3e1d9e6cc9a" datatype="html">
+                <source>OTHER</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
+                    <context context-type="linenumber">29</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+                <source>Name</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="5b752f143ab30faa45a2679b5e7a28bbf3fb246d" datatype="html">
+                <source>Name is required</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">6</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+                <source>Email</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">9</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9b2fd2a81342b5821f47ce0e6f2383b1403fd659" datatype="html">
+                <source>Email is required</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">11</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="6ef0619a37140118b9e640c6cc36ee4e9fb4372a" datatype="html">
+                <source>Company</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="20d9489fdbfc121f7c504271b36691515d02f632" datatype="html">
+                <source>Job Title</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">18</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
+                <source>Summary</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="79f8a3a55d3a26c0bf24de3d4b800b563b5b9f5e" datatype="html">
+                <source>Summary is required</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">27</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="e3c82437ecafdd4027ebba1c9b76ebc38bd61f4f" datatype="html">
+                <source>New FSN</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">33</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9e8e2679dbdfa1260b06322004b220a249235f09" datatype="html">
+                <source>New FSN is required</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">35</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3e9a08fd241e9d7b8b9e17dcef7571c0b67c6cf2" datatype="html">
+                <source>New Preferred Term</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">38</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="38eb71069b880a4f7a53f935f359baa5cf5bf78e" datatype="html">
+                <source>New Preferred Term is required</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">40</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3e7c5d65f1ad69450bd9059cbf31611617d7f54d" datatype="html">
+                <source>New Synonyms</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">43</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4f75015f3eeca855faa8fc7af929710016c6612a" datatype="html">
+                <source>Parent Concept</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">47</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="445854d01fe4f31391b290458801130f74b488e6" datatype="html">
+                <source>Parent Concept is required</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">49</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="05e961e18ee86f6749782ba837b81b5f0a94b103" datatype="html">
+                <source>Justification</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">55</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="7529307ff5a8475ecd0755abb1b8a91ae24c1d52" datatype="html">
+                <source>Reference</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">59</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="2592796fd63a0440c66ced0d9c06909ff18d8bdb" datatype="html">
+                <source>Attachment</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">63</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9134801552b7509c4816e75d9fa002898b7b63c3" datatype="html">
+                <source>RESET</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">68</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/add-description-form/add-description-form.component.html
+                    </context>
+                    <context context-type="linenumber">68</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/add-relationship-form/add-relationship-form.component.html
+                    </context>
+                    <context context-type="linenumber">73</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/change-description-form/change-description-form.component.html
+                    </context>
+                    <context context-type="linenumber">73</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/change-relationship-form/change-relationship-form.component.html
+                    </context>
+                    <context context-type="linenumber">78</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/inactivate-description-form/inactivate-description-form.component.html
+                    </context>
+                    <context context-type="linenumber">68</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/inactivate-relationship-form/inactivate-relationship-form.component.html
+                    </context>
+                    <context context-type="linenumber">68</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/other-form/other-form.component.html</context>
+                    <context context-type="linenumber">46</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="eff550208c514f5c350e6381df99fcb99c5920ea" datatype="html">
+                <source>SUBMIT</source>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
+                    </context>
+                    <context context-type="linenumber">69</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/add-description-form/add-description-form.component.html
+                    </context>
+                    <context context-type="linenumber">69</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/add-relationship-form/add-relationship-form.component.html
+                    </context>
+                    <context context-type="linenumber">74</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/change-description-form/change-description-form.component.html
+                    </context>
+                    <context context-type="linenumber">74</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/change-relationship-form/change-relationship-form.component.html
+                    </context>
+                    <context context-type="linenumber">79</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/inactivate-description-form/inactivate-description-form.component.html
+                    </context>
+                    <context context-type="linenumber">69</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">
+                        app/components/inactivate-relationship-form/inactivate-relationship-form.component.html
+                    </context>
+                    <context context-type="linenumber">69</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/other-form/other-form.component.html</context>
+                    <context context-type="linenumber">47</context>
+                </context-group>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
