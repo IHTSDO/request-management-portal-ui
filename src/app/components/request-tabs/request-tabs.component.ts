@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-request-form',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core'
 })
 export class RequestTabsComponent implements OnInit {
 
-    requestType: string = 'addConcept';
+    requestType = 'addConcept';
 
     constructor() {
     }

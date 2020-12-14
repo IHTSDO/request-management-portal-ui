@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthoringService } from "../../services/authoring/authoring.service";
-import { Configuration } from "../../models/configuration";
-import { Subscription } from "rxjs";
+import { AuthoringService } from '../../services/authoring/authoring.service';
+import { Configuration } from '../../models/configuration';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-snomed-footer',

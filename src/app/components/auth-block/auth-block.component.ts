@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from "rxjs";
-import { AuthenticationService } from "../../services/authentication/authentication.service";
-import { User } from "../../models/user";
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'app-auth-block',

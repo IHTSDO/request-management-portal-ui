@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { User } from '../../models/user';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { JiraService } from "../../services/jira/jira.service";
+import { JiraService } from '../../services/jira/jira.service';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -13,7 +11,7 @@ export class SnomedNavbarComponent implements OnInit {
 
     environment: string;
 
-    siteLanguage: string = 'en';
+    siteLanguage = 'en';
     siteLocale: string;
     languageList = [
         { code: 'en', label: 'English' },

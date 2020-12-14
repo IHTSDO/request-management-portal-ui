@@ -5,8 +5,8 @@ import { AuthoringService } from '../authoring/authoring.service';
 import { BranchingService } from '../branching/branching.service';
 import { map } from 'rxjs/operators';
 import { SnomedUtilityService } from '../snomedUtility/snomed-utility.service';
-import { SnomedResponseObject } from "../../models/snomedResponseObject";
-import { Configuration } from "../../models/configuration";
+import { SnomedResponseObject } from '../../models/snomedResponseObject';
+import { Configuration } from '../../models/configuration';
 
 @Injectable({
     providedIn: 'root'

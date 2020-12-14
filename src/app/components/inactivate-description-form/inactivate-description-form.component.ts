@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Request } from "../../models/request";
-import { SnomedUtilityService } from "../../services/snomedUtility/snomed-utility.service";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
-import { TerminologyServerService } from "../../services/terminologyServer/terminology-server.service";
-import { JiraService } from "../../services/jira/jira.service";
-import { ToastrService } from "ngx-toastr";
-import { AuthenticationService } from "../../services/authentication/authentication.service";
+import { Request } from '../../models/request';
+import { SnomedUtilityService } from '../../services/snomedUtility/snomed-utility.service';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { TerminologyServerService } from '../../services/terminologyServer/terminology-server.service';
+import { JiraService } from '../../services/jira/jira.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
     selector: 'app-inactivate-description-form',

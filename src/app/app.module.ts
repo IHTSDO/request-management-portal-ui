@@ -20,7 +20,7 @@ import { ChangeRelationshipFormComponent } from './components/change-relationshi
 import { InactivateDescriptionFormComponent } from './components/inactivate-description-form/inactivate-description-form.component';
 import { InactivateRelationshipFormComponent } from './components/inactivate-relationship-form/inactivate-relationship-form.component';
 import { OtherFormComponent } from './components/other-form/other-form.component';
-import { MatRadioModule } from "@angular/material/radio";
+import { MatRadioModule } from '@angular/material/radio';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthBlockComponent } from './components/auth-block/auth-block.component';
 

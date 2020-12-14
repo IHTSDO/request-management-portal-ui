@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscription } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { AuthoringService } from "../authoring/authoring.service";
-import { BranchingService } from "../branching/branching.service";
-import { Request } from "../../models/request";
-import { Configuration } from "../../models/configuration";
+import { Observable, Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { AuthoringService } from '../authoring/authoring.service';
+import { BranchingService } from '../branching/branching.service';
+import { Request } from '../../models/request';
+import { Configuration } from '../../models/configuration';
 
 @Injectable({
     providedIn: 'root'
@@ -26,15 +26,15 @@ export class JiraService {
     }
 
     postJiraIssue(request: Request, requestType: string): Observable<object> {
-        let params = this.createRequestObject(request, requestType);
+        const params = this.createRequestObject(request, requestType);
         return this.http.post<object>('/jira/issue', params);
     }
 
     createRequestObject(request: Request, requestType: string) {
-        let requestObject = {
-            "fields": {
-                "project": {"key": this.configuration.extension.projectKey},
-                "issuetype": {"id": requestType}
+        const requestObject = {
+            'fields': {
+                'project': {'key': this.configuration.extension.projectKey},
+                'issuetype': {'id': requestType}
             }
         };
 
@@ -75,7 +75,7 @@ export class JiraService {
         }
 
         if (request.relationshipType) {
-            requestObject.fields['customfield_14216'] = { "value": request.relationshipType };
+            requestObject.fields['customfield_14216'] = { 'value': request.relationshipType };
         }
 
         if (request.newDescription) {

@@ -3,12 +3,10 @@ import 'jquery';
 import { Title } from '@angular/platform-browser';
 import { AuthoringService } from './services/authoring/authoring.service';
 import { BranchingService } from './services/branching/branching.service';
-import { Request } from "./models/request";
-import { TerminologyServerService } from "./services/terminologyServer/terminology-server.service";
-import { Configuration } from "./models/configuration";
-import { AuthenticationService } from "./services/authentication/authentication.service";
-import { User } from "./models/user";
-import { Subscription } from "rxjs";
+import { TerminologyServerService } from './services/terminologyServer/terminology-server.service';
+import { Configuration } from './models/configuration';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -40,7 +38,7 @@ export class AppComponent implements OnInit {
         });
 
         this.authoringService.getConfigurationJSON().subscribe(config => {
-            let configuration: Configuration = config;
+            const configuration: Configuration = config;
 
             configuration.extension = config.extensions.find(item => {
                 return item.key.toLowerCase() === this.environment;
