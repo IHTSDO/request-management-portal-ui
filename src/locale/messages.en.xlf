@@ -660,6 +660,30 @@
                     <context context-type="linenumber">71</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="b68dccd4a64e24b561ac3eecd4e0311981ffa2a6" datatype="html">
+                <source>AUTHENTICATION</source>
+                <target>AUTHENTICATION</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
+                    <context context-type="linenumber">3</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
+                <source>Username</source>
+                <target>Username</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
+                    <context context-type="linenumber">8</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+                <source>Password</source>
+                <target>Password</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
+                    <context context-type="linenumber">12</context>
+                </context-group>
+            </trans-unit>
         </body>
     </file>
 </xliff>

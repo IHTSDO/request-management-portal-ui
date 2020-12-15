@@ -33,10 +33,6 @@ export class AppComponent implements OnInit {
         this.titleService.setTitle('SNOMED CT Request Management Portal');
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
 
-        this.authoringService.getVersions().subscribe(versions => {
-            this.versions = versions;
-        });
-
         this.authoringService.getConfigurationJSON().subscribe(config => {
             const configuration: Configuration = config;
 

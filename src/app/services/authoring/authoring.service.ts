@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Versions } from '../../models/versions';
 import { Configuration } from '../../models/configuration';
 
 @Injectable({
@@ -26,10 +25,6 @@ export class AuthoringService {
     }
 
     getConfigurationJSON(): Observable<Configuration> {
-        return this.http.get<Configuration>('/assets/configuration.json');
-    }
-
-    getVersions(): Observable<Versions> {
-        return this.http.get<Versions>('/config/versions.json');
+        return this.http.get<Configuration>('./assets/configuration.json');
     }
 }

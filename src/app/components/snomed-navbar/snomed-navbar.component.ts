@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { JiraService } from '../../services/jira/jira.service';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -11,19 +9,27 @@ export class SnomedNavbarComponent implements OnInit {
 
     environment: string;
 
-    siteLanguage = 'en';
-    siteLocale: string;
+    siteLocale = 'en';
+    siteFlag: string;
     languageList = [
-        { code: 'en', label: 'English' },
-        { code: 'fr', label: 'Français' }
+        {
+            code: 'en',
+            flag: 'gb',
+            label: 'English'
+        },
+        {
+            code: 'fr',
+            flag: 'fr',
+            label: 'Français'
+        }
     ];
 
-    constructor(private authenticationService: AuthenticationService, private jiraService: JiraService) {
+    constructor() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
     }
 
     ngOnInit() {
         this.siteLocale = window.location.pathname.split('/')[1];
-        this.siteLanguage = this.languageList.find(f => f.code === this.siteLocale).code;
+        this.siteFlag = this.languageList.find(f => f.code === this.siteLocale).flag;
     }
 }
