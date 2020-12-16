@@ -1203,7 +1203,7 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="555be81f6c3e996557a9b0245d5cf355ed7dc213" datatype="html">
-                <source>Exisiting Description</source>
+                <source>Existing Description</source>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -1218,7 +1218,7 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="43a87a47e837e921b5e0ba2807c4e4108cd35931" datatype="html">
-                <source>Exisiting Description is required</source>
+                <source>Existing Description is required</source>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -1233,7 +1233,7 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="97715b1e469485a611774767c31d807aa3686da7" datatype="html">
-                <source>Exisiting Relationship</source>
+                <source>Existing Relationship</source>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
@@ -1248,7 +1248,7 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="8f296cdfcea28d5173349d41dcc3a374a92d7993" datatype="html">
-                <source>Exisiting Relationship is required</source>
+                <source>Existing Relationship is required</source>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html

@@ -23,9 +23,9 @@
             <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger" i18n>Concept Name is required</div>
         </div>
         <div class="offset-1 col-10 p-3 mb-3 form-group">
-            <label for="existingRelationship" i18n>Exisiting Relationship</label>
+            <label for="existingRelationship" i18n>Existing Relationship</label>
             <input type="text" class="form-control" id="existingRelationship" required [(ngModel)]="request.existingRelationship" name="existingRelationship" #existingRelationship="ngModel">
-            <div [hidden]="existingRelationship.valid || existingRelationship.pristine" class="alert alert-danger" i18n>Exisiting Relationship is required</div>
+            <div [hidden]="existingRelationship.valid || existingRelationship.pristine" class="alert alert-danger" i18n>Existing Relationship is required</div>
         </div>
     </div>
     <div class="form-break mb-2"></div>

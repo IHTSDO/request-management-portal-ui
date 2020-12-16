@@ -23,9 +23,9 @@
             <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger" i18n>Concept Name is required</div>
         </div>
         <div class="offset-1 col-10 p-3 mb-3 form-group">
-            <label for="existingDescription" i18n>Exisiting Description</label>
+            <label for="existingDescription" i18n>Existing Description</label>
             <input type="text" class="form-control" id="existingDescription" required [(ngModel)]="request.existingDescription" name="existingDescription" #existingDescription="ngModel">
-            <div [hidden]="existingDescription.valid || existingDescription.pristine" class="alert alert-danger" i18n>Exisiting Description is required</div>
+            <div [hidden]="existingDescription.valid || existingDescription.pristine" class="alert alert-danger" i18n>Existing Description is required</div>
         </div>
     </div>
     <div class="form-break mb-2"></div>
