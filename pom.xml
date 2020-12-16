@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.ihtsdo.otf</groupId>
     <artifactId>request-management-portal-ui</artifactId>
-    <version>0.0.8</version>
+    <version>0.0.9</version>
     <properties>
         <packageName>${project.artifactId}</packageName>
     </properties>
