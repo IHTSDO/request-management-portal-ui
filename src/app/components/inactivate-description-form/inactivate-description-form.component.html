@@ -1,41 +1,41 @@
 <form (ngSubmit)="submitRequest()" #requestForm="ngForm">
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
-            <label for="summary">Summary</label>
+            <label for="summary" i18n>Summary</label>
             <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel">
-            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">Summary is required</div>
+            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger" i18n>Summary is required</div>
         </div>
     </div>
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="concept">Concept</label>
-            <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Search for Concepts...">
+            <label for="concept" i18n>Concept</label>
+            <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Search for Concepts..." i18n-placeholder>
         </div>
         <div class="offset-1 col-5 p-3 mb-3 form-group">
-            <label for="conceptId">Concept ID</label>
+            <label for="conceptId" i18n>Concept ID</label>
             <input type="text" class="form-control" id="conceptId" required [(ngModel)]="request.conceptId" name="conceptId" #conceptId="ngModel">
-            <div [hidden]="conceptId.valid || conceptId.pristine" class="alert alert-danger">Concept ID is required</div>
+            <div [hidden]="conceptId.valid || conceptId.pristine" class="alert alert-danger" i18n>Concept ID is required</div>
         </div>
         <div class="col-5 p-3 mb-3 form-group">
-            <label for="conceptName">Concept Name</label>
+            <label for="conceptName" i18n>Concept Name</label>
             <input type="text" class="form-control" id="conceptName" required [(ngModel)]="request.conceptName" name="conceptName" #conceptName="ngModel">
-            <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger">Concept Name is required</div>
+            <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger" i18n>Concept Name is required</div>
         </div>
         <div class="offset-1 col-10 p-3 mb-3 form-group">
-            <label for="existingDescription">Exisiting Description</label>
+            <label for="existingDescription" i18n>Exisiting Description</label>
             <input type="text" class="form-control" id="existingDescription" required [(ngModel)]="request.existingDescription" name="existingDescription" #existingDescription="ngModel">
-            <div [hidden]="existingDescription.valid || existingDescription.pristine" class="alert alert-danger">Exisiting Description is required</div>
+            <div [hidden]="existingDescription.valid || existingDescription.pristine" class="alert alert-danger" i18n>Exisiting Description is required</div>
         </div>
     </div>
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="justification">Justification</label>
+            <label for="justification" i18n>Justification</label>
             <input type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification">
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="reference">Reference</label>
+            <label for="reference" i18n>Reference</label>
             <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference">
         </div>
     </div>

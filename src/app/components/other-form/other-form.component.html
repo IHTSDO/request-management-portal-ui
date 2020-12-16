@@ -1,19 +1,19 @@
 <form (ngSubmit)="submitRequest()" #requestForm="ngForm">
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
-            <label for="summary">Summary</label>
+            <label for="summary" i18n>Summary</label>
             <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel">
-            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">Summary is required</div>
+            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger" i18n>Summary is required</div>
         </div>
     </div>
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="justification">Justification</label>
+            <label for="justification" i18n>Justification</label>
             <input type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification">
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="reference">Reference</label>
+            <label for="reference" i18n>Reference</label>
             <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference">
         </div>
     </div>

@@ -1,49 +1,49 @@
 <form (ngSubmit)="submitRequest()" #requestForm="ngForm">
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
-            <label for="summary">Summary</label>
+            <label for="summary" i18n>Summary</label>
             <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel">
-            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">Summary is required</div>
+            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger" i18n>Summary is required</div>
         </div>
     </div>
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="concept">Concept</label>
-            <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Search for Concepts...">
+            <label for="concept" i18n>Concept</label>
+            <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Search for Concepts..."  i18n-placeholder>
         </div>
         <div class="offset-1 col-5 p-3 mb-3 form-group">
-            <label for="conceptId">Concept ID</label>
+            <label for="conceptId" i18n>Concept ID</label>
             <input type="text" class="form-control" id="conceptId" required [(ngModel)]="request.conceptId" name="conceptId" #conceptId="ngModel">
-            <div [hidden]="conceptId.valid || conceptId.pristine" class="alert alert-danger">Concept ID is required</div>
+            <div [hidden]="conceptId.valid || conceptId.pristine" class="alert alert-danger" i18n>Concept ID is required</div>
         </div>
         <div class="col-5 p-3 mb-3 form-group">
-            <label for="conceptName">Concept Name</label>
+            <label for="conceptName" i18n>Concept Name</label>
             <input type="text" class="form-control" id="conceptName" required [(ngModel)]="request.conceptName" name="conceptName" #conceptName="ngModel">
-            <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger">Concept Name is required</div>
+            <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger" i18n>Concept Name is required</div>
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="existingRelationship">Exisiting Relationship</label>
+            <label for="existingRelationship" i18n>Exisiting Relationship</label>
             <input type="text" class="form-control" id="existingRelationship" required [(ngModel)]="request.existingRelationship" name="existingRelationship" #existingRelationship="ngModel">
-            <div [hidden]="existingRelationship.valid || existingRelationship.pristine" class="alert alert-danger">Exisiting Relationship is required</div>
+            <div [hidden]="existingRelationship.valid || existingRelationship.pristine" class="alert alert-danger" i18n>Exisiting Relationship is required</div>
         </div>
         <div class="offset-1 col-5 p-3 mb-3 form-group">
-            <label for="relationshipType">Relationship Type</label>
+            <label for="relationshipType" i18n>Relationship Type</label>
             <select class="form-control" id="relationshipType" required [(ngModel)]="request.relationshipType" name="relationshipType" #relationshipType="ngModel">
-                <option value="None">None</option>
-                <option value="Is a">Is a</option>
-                <option value="Associated Morphology">Associated Morphology</option>
-                <option value="Finding Site">Finding Site</option>
-                <option value="Procedure Site">Procedure Site</option>
-                <option value="Unknown">Unknown</option>
-                <option value="Other">Other</option>
+                <option value="None" i18n>None</option>
+                <option value="Is a" i18n>Is a</option>
+                <option value="Associated Morphology" i18n>Associated Morphology</option>
+                <option value="Finding Site" i18n>Finding Site</option>
+                <option value="Procedure Site" i18n>Procedure Site</option>
+                <option value="Unknown" i18n>Unknown</option>
+                <option value="Other" i18n>Other</option>
             </select>
-            <div [hidden]="relationshipType.valid || relationshipType.pristine" class="alert alert-danger">Relationship Type is required</div>
+            <div [hidden]="relationshipType.valid || relationshipType.pristine" class="alert alert-danger" i18n>Relationship Type is required</div>
         </div>
         <div class="col-5 p-3 mb-0 form-group">
-            <label for="newRelationship">Relationship Target</label>
-            <input type="text" class="form-control" id="newRelationship" required [(ngModel)]="request.newRelationship" name="newRelationship" [ngbTypeahead]="search" #newRelationship="ngModel" placeholder="Search for Concepts...">
-            <div [hidden]="newRelationship.valid || newRelationship.pristine" class="alert alert-danger">Relationship Target is required</div>
+            <label for="newRelationship" i18n>Relationship Target</label>
+            <input type="text" class="form-control" id="newRelationship" required [(ngModel)]="request.newRelationship" name="newRelationship" [ngbTypeahead]="search" #newRelationship="ngModel" placeholder="Search for Concepts..." i18n-placeholder>
+            <div [hidden]="newRelationship.valid || newRelationship.pristine" class="alert alert-danger" i18n>Relationship Target is required</div>
         </div>
 <!--        <div class="offset-1 col-5 p-3 mb-3 form-group">-->
 <!--            <label for="destinationConcept">Destination Concept</label>-->
@@ -59,11 +59,11 @@
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="justification">Justification</label>
+            <label for="justification" i18n>Justification</label>
             <input type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification">
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
-            <label for="reference">Reference</label>
+            <label for="reference" i18n>Reference</label>
             <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference">
         </div>
     </div>
