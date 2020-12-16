@@ -339,7 +339,7 @@
             </trans-unit>
             <trans-unit id="ngb.toast.close-aria" datatype="html">
                 <source>Close</source>
-                <target>Close</target>
+                <target>Tæt</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts
                     </context>
@@ -839,6 +839,7 @@
             </trans-unit>
             <trans-unit id="66b48c6eef7c427a6ada2f0dd994daa8d83b1c57" datatype="html">
                 <source>Concept</source>
+                <target>Begrebs</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -878,6 +879,7 @@
             </trans-unit>
             <trans-unit id="fafb056d4c2698fc95ae62ac2293b3451939a35f" datatype="html">
                 <source>Search for Concepts...</source>
+                <target>Søg efter Begrebs...</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -923,6 +925,7 @@
             </trans-unit>
             <trans-unit id="3cd009f3c119059a2fd23437eb0a0599267a2bcc" datatype="html">
                 <source>Concept ID</source>
+                <target>Begrebs ID</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -962,6 +965,7 @@
             </trans-unit>
             <trans-unit id="4076f2544452d175d34fd52f927472d8625fe770" datatype="html">
                 <source>Concept ID is required</source>
+                <target>Begrebs ID er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1001,6 +1005,7 @@
             </trans-unit>
             <trans-unit id="f08e82b5db4500aa35128af7afeef1ca0f600d62" datatype="html">
                 <source>Concept Name</source>
+                <target>Begreb</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1040,6 +1045,7 @@
             </trans-unit>
             <trans-unit id="ddca5be793d5c85894bf44142502e2b4ef1eecb8" datatype="html">
                 <source>Concept Name is required</source>
+                <target>Begreb er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1079,6 +1085,7 @@
             </trans-unit>
             <trans-unit id="c904df6e44a0211212755de38fb4b3030726f0f8" datatype="html">
                 <source>New Description</source>
+                <target>Ny Term</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1094,6 +1101,7 @@
             </trans-unit>
             <trans-unit id="a6abbf232018d923ca1aeca2e5aff3e53e6bcd75" datatype="html">
                 <source>New Description is required</source>
+                <target>Ny Term er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1109,6 +1117,7 @@
             </trans-unit>
             <trans-unit id="49dd0ba362aa1693dbd648386674ad087647211b" datatype="html">
                 <source>Relationship Type</source>
+                <target>Relationstype</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1124,6 +1133,7 @@
             </trans-unit>
             <trans-unit id="a2f14a73f7a6e94479f67423cc51102da8d6f524" datatype="html">
                 <source>None</source>
+                <target>None</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1139,6 +1149,7 @@
             </trans-unit>
             <trans-unit id="6c73c9ceefdd42e93a9361dece5055ffa191171f" datatype="html">
                 <source>Is a</source>
+                <target>Is a</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1154,6 +1165,7 @@
             </trans-unit>
             <trans-unit id="6e67bc66c21d5b18c61355f709df4c6bb8a2d50a" datatype="html">
                 <source>Associated Morphology</source>
+                <target>Associated Morphology</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1169,6 +1181,7 @@
             </trans-unit>
             <trans-unit id="07252896174ce0e12461895768a833d5f2c7e143" datatype="html">
                 <source>Finding Site</source>
+                <target>Finding Site</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1184,6 +1197,7 @@
             </trans-unit>
             <trans-unit id="2d830653ec4c8482060aa6d248b4a70b8289b2a0" datatype="html">
                 <source>Procedure Site</source>
+                <target>Procedure Site</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1199,6 +1213,7 @@
             </trans-unit>
             <trans-unit id="e5d8bb389c702588877f039d72178f219453a72d" datatype="html">
                 <source>Unknown</source>
+                <target>Unknown</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1214,6 +1229,7 @@
             </trans-unit>
             <trans-unit id="c2a9de3714f5767b174d0424bc8abe2dc37acc41" datatype="html">
                 <source>Other</source>
+                <target>Other</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1229,6 +1245,7 @@
             </trans-unit>
             <trans-unit id="75254ec3804182b7db620e6cf56861b5bbd4325c" datatype="html">
                 <source>Relationship Type is required</source>
+                <target>Relationstype er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1244,6 +1261,7 @@
             </trans-unit>
             <trans-unit id="094279c938c58b7cdc9af7e15a88eacfbcb61bf6" datatype="html">
                 <source>Relationship Target</source>
+                <target>Relationsmål</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1259,6 +1277,7 @@
             </trans-unit>
             <trans-unit id="420ee653d0bec0cc1372c5442c9892ee126dd0b0" datatype="html">
                 <source>Relationship Target is required</source>
+                <target>Relationsmål er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1274,6 +1293,7 @@
             </trans-unit>
             <trans-unit id="555be81f6c3e996557a9b0245d5cf355ed7dc213" datatype="html">
                 <source>Exisiting Description</source>
+                <target>Eksisterende term</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -1289,6 +1309,7 @@
             </trans-unit>
             <trans-unit id="43a87a47e837e921b5e0ba2807c4e4108cd35931" datatype="html">
                 <source>Exisiting Description is required</source>
+                <target>Eksisterende term er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -1304,6 +1325,7 @@
             </trans-unit>
             <trans-unit id="97715b1e469485a611774767c31d807aa3686da7" datatype="html">
                 <source>Exisiting Relationship</source>
+                <target>Eksisterende Relation</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
@@ -1319,6 +1341,7 @@
             </trans-unit>
             <trans-unit id="8f296cdfcea28d5173349d41dcc3a374a92d7993" datatype="html">
                 <source>Exisiting Relationship is required</source>
+                <target>Eksisterende Relation er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
