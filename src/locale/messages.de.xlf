@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="ngb.alert.close" datatype="html">
                 <source>Close</source>
-                <target>Tæt</target>
+                <target>Schließen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts
                     </context>
@@ -13,7 +13,7 @@
             </trans-unit>
             <trans-unit id="ngb.carousel.previous" datatype="html">
                 <source>Previous</source>
-                <target>Tidligere</target>
+                <target>Zurück</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts
@@ -23,7 +23,7 @@
             </trans-unit>
             <trans-unit id="ngb.carousel.next" datatype="html">
                 <source>Next</source>
-                <target>Næste</target>
+                <target>Weiter</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts
@@ -33,7 +33,7 @@
             </trans-unit>
             <trans-unit id="ngb.datepicker.previous-month" datatype="html">
                 <source>Previous month</source>
-                <target>Forrige måned</target>
+                <target>Vorheriger Monat</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts
@@ -49,7 +49,7 @@
             </trans-unit>
             <trans-unit id="ngb.datepicker.next-month" datatype="html">
                 <source>Next month</source>
-                <target>Næste måned</target>
+                <target>Nächster Monat</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts
@@ -65,7 +65,7 @@
             </trans-unit>
             <trans-unit id="ngb.datepicker.select-month" datatype="html">
                 <source>Select month</source>
-                <target>Vælg måned</target>
+                <target>Monat auswählen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts
@@ -81,7 +81,7 @@
             </trans-unit>
             <trans-unit id="ngb.datepicker.select-year" datatype="html">
                 <source>Select year</source>
-                <target>Vælg år</target>
+                <target>Jahr auswählen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts
@@ -137,7 +137,7 @@
             </trans-unit>
             <trans-unit id="ngb.pagination.first-aria" datatype="html">
                 <source>First</source>
-                <target>Først</target>
+                <target>Erster</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
@@ -147,7 +147,7 @@
             </trans-unit>
             <trans-unit id="ngb.pagination.previous-aria" datatype="html">
                 <source>Previous</source>
-                <target>Tidligere</target>
+                <target>Vorheriger</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
@@ -157,7 +157,7 @@
             </trans-unit>
             <trans-unit id="ngb.pagination.next-aria" datatype="html">
                 <source>Next</source>
-                <target>Næste</target>
+                <target>Nächster</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
@@ -167,7 +167,7 @@
             </trans-unit>
             <trans-unit id="ngb.pagination.last-aria" datatype="html">
                 <source>Last</source>
-                <target>Sidst</target>
+                <target>Letzter</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts
@@ -191,7 +191,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
                 <source>Increment hours</source>
-                <target>Forøg timerne</target>
+                <target>Stunden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -211,7 +211,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.hours" datatype="html">
                 <source>Hours</source>
-                <target>Hours</target>
+                <target>Stunden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -221,7 +221,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
                 <source>Decrement hours</source>
-                <target>Sænk timen</target>
+                <target>Stunden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -231,7 +231,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
                 <source>Increment minutes</source>
-                <target>Forøg minutter</target>
+                <target>Minuten</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -251,7 +251,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.minutes" datatype="html">
                 <source>Minutes</source>
-                <target>Minutter</target>
+                <target>Minuten</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -261,7 +261,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.decrement-minutes" datatype="html">
                 <source>Decrement minutes</source>
-                <target>Sænk minutter</target>
+                <target>Minuten</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -271,7 +271,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
                 <source>Increment seconds</source>
-                <target>Increment seconds</target>
+                <target>Sekunden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -291,7 +291,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.seconds" datatype="html">
                 <source>Seconds</source>
-                <target>Seconds</target>
+                <target>Sekunden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -301,7 +301,7 @@
             </trans-unit>
             <trans-unit id="ngb.timepicker.decrement-seconds" datatype="html">
                 <source>Decrement seconds</source>
-                <target>Decrement seconds</target>
+                <target>Sekunden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         ../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts
@@ -339,7 +339,7 @@
             </trans-unit>
             <trans-unit id="ngb.toast.close-aria" datatype="html">
                 <source>Close</source>
-                <target>Close</target>
+                <target>Schließen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts
                     </context>
@@ -348,7 +348,7 @@
             </trans-unit>
             <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
                 <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
-                <target>SNOMED ANMODNINGSSTYRINGSPORTAL</target>
+                <target>SNOMED CT REQUEST MANAGEMENT PORTAL</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -358,8 +358,7 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>Denne anmodningsportal er til at indsende anmodninger om at tilføje, opdatere eller ændre SNOMED-indhold. Vær venlig
-                    vælg den type anmodning, du har brug for, fra nedenstående muligheder.
+                <target>Über das SNOMED CT Request Management Portal können neue Inhalte angefragt bzw. Änderungsvorschläge für bestehende Inhalte gemacht werden. Bitte wählen Sie die Art der Anfrage aus den unten stehenden Optionen aus.
                 </target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
@@ -368,7 +367,7 @@
             </trans-unit>
             <trans-unit id="5fb0d40b6c834d9118e5303348467ecaae12dd63" datatype="html">
                 <source>SNOMED CT Request Management Portal</source>
-                <target>SNOMED CT Anmodningsadministrationsportal</target>
+                <target>SNOMED CT Request Management Portal</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-navbar/snomed-navbar.component.html
                     </context>
@@ -392,7 +391,7 @@
             </trans-unit>
             <trans-unit id="f03a65dc29188cd55e01deba3d62c77533cc8ad2" datatype="html">
                 <source>User Guide</source>
-                <target>Brugervejledning</target>
+                <target>Benutzerhandbuch</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
                     </context>
@@ -401,7 +400,7 @@
             </trans-unit>
             <trans-unit id="02e9e69ddcbf93de9fd38bc4d0f312142658610d" datatype="html">
                 <source>Contact Us</source>
-                <target>Kontakt os</target>
+                <target>Kontakt</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
                     </context>
@@ -410,7 +409,7 @@
             </trans-unit>
             <trans-unit id="54754035562ab4913f9d63832d092fcb2edfe3d4" datatype="html">
                 <source>REQUEST DETAILS</source>
-                <target>ANMOD OM DETALJER</target>
+                <target>ANFRAGE DETAILS</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">3</context>
@@ -418,7 +417,7 @@
             </trans-unit>
             <trans-unit id="dc6d2274470f202ab0b38dc00e19eb20982ca30e" datatype="html">
                 <source>ADD CONCEPT</source>
-                <target>TILFØJ BEGREB</target>
+                <target>KONZEPT HINZUFÜGEN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">8</context>
@@ -426,7 +425,7 @@
             </trans-unit>
             <trans-unit id="f7e794a17a8c47e7b5d8b4bd7401fb654f533f80" datatype="html">
                 <source>ADD DESCRIPTION</source>
-                <target>TILFØJ TERM</target>
+                <target>TERM HINZUFÜGEN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">11</context>
@@ -434,7 +433,7 @@
             </trans-unit>
             <trans-unit id="b9dda2946dfe192ec1232cfc5e9bea2a2b884cf7" datatype="html">
                 <source>ADD RELATIONSHIP</source>
-                <target>TILFØJ RELATION</target>
+                <target>RELATIONSHIP HINZUFÜGEN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">14</context>
@@ -442,7 +441,7 @@
             </trans-unit>
             <trans-unit id="ecc1389c44884f2a8d5fd61e3c7dc63eb7d4308c" datatype="html">
                 <source>CHANGE DESCRIPTION</source>
-                <target>ÆNDRING AF TERM</target>
+                <target>TERM ÄNDERN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">17</context>
@@ -450,7 +449,7 @@
             </trans-unit>
             <trans-unit id="9ac3606141d3357b5449869468dbf8cb43c14a49" datatype="html">
                 <source>CHANGE RELATIONSHIP</source>
-                <target>ÆNDRING AF RELATION</target>
+                <target>RELATIONSHIP ÄNDERN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">20</context>
@@ -458,7 +457,7 @@
             </trans-unit>
             <trans-unit id="791564a40c97f143fe581e7e7b2952ca77996e23" datatype="html">
                 <source>INACTIVATE DESCRIPTION</source>
-                <target>INAKTIVER TERM</target>
+                <target>TERM INAKTIVIEREN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">23</context>
@@ -466,7 +465,7 @@
             </trans-unit>
             <trans-unit id="b0b7562962d7754a977cc2c222fa7b8ec7e0c5d4" datatype="html">
                 <source>INACTIVATE RELATIONSHIP</source>
-                <target>INAKTIVER RELATION</target>
+                <target>RELATIONSHIP INAKTIVIEREN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">26</context>
@@ -482,7 +481,7 @@
             </trans-unit>
             <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
                 <source>Summary</source>
-                <target>Resumé</target>
+                <target>Zusammenfassung</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -531,7 +530,7 @@
             </trans-unit>
             <trans-unit id="79f8a3a55d3a26c0bf24de3d4b800b563b5b9f5e" datatype="html">
                 <source>Summary is required</source>
-                <target>Resumé er påkrævet</target>
+                <target>Bitte Zusammenfassung eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -580,7 +579,7 @@
             </trans-unit>
             <trans-unit id="e3c82437ecafdd4027ebba1c9b76ebc38bd61f4f" datatype="html">
                 <source>New FSN</source>
-                <target>Ny FSN</target>
+                <target>Neuer FSN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -589,7 +588,7 @@
             </trans-unit>
             <trans-unit id="9e8e2679dbdfa1260b06322004b220a249235f09" datatype="html">
                 <source>New FSN is required</source>
-                <target>Ny FSN er påkrævet</target>
+                <target>Bitte neuen FSN eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -598,7 +597,7 @@
             </trans-unit>
             <trans-unit id="3e9a08fd241e9d7b8b9e17dcef7571c0b67c6cf2" datatype="html">
                 <source>New Preferred Term</source>
-                <target>Ny foretrukken term</target>
+                <target>Neuer Preferred Term</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -607,7 +606,7 @@
             </trans-unit>
             <trans-unit id="38eb71069b880a4f7a53f935f359baa5cf5bf78e" datatype="html">
                 <source>New Preferred Term is required</source>
-                <target>Ny foretrukken term er påkrævet</target>
+                <target>Bitte neuen Preferred Term eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -616,7 +615,7 @@
             </trans-unit>
             <trans-unit id="3e7c5d65f1ad69450bd9059cbf31611617d7f54d" datatype="html">
                 <source>New Synonyms</source>
-                <target>Ny Synonymer</target>
+                <target>Neues Synonym</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -625,7 +624,7 @@
             </trans-unit>
             <trans-unit id="4f75015f3eeca855faa8fc7af929710016c6612a" datatype="html">
                 <source>Parent Concept</source>
-                <target>Overbegreb</target>
+                <target>Übergeordnetes Konzept</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -634,7 +633,7 @@
             </trans-unit>
             <trans-unit id="445854d01fe4f31391b290458801130f74b488e6" datatype="html">
                 <source>Parent Concept is required</source>
-                <target>Overbegreb er påkrævet</target>
+                <target>Bitte übergeordnetes Konzept eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -643,7 +642,7 @@
             </trans-unit>
             <trans-unit id="05e961e18ee86f6749782ba837b81b5f0a94b103" datatype="html">
                 <source>Justification</source>
-                <target>Begrundelse</target>
+                <target>Begründung</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -692,7 +691,7 @@
             </trans-unit>
             <trans-unit id="7529307ff5a8475ecd0755abb1b8a91ae24c1d52" datatype="html">
                 <source>Reference</source>
-                <target>Reference</target>
+                <target>Verweise</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -741,7 +740,7 @@
             </trans-unit>
             <trans-unit id="9134801552b7509c4816e75d9fa002898b7b63c3" datatype="html">
                 <source>RESET</source>
-                <target>HVILE</target>
+                <target>ZURÜCKSETZEN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -790,7 +789,7 @@
             </trans-unit>
             <trans-unit id="eff550208c514f5c350e6381df99fcb99c5920ea" datatype="html">
                 <source>SUBMIT</source>
-                <target>INDSEND</target>
+                <target>ANTRAG EINREICHEN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -879,7 +878,7 @@
             </trans-unit>
             <trans-unit id="fafb056d4c2698fc95ae62ac2293b3451939a35f" datatype="html">
                 <source>Search for Concepts...</source>
-                <target></target>
+                <target>Suche...</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1005,7 +1004,7 @@
             </trans-unit>
             <trans-unit id="f08e82b5db4500aa35128af7afeef1ca0f600d62" datatype="html">
                 <source>Concept Name</source>
-                <target></target>
+                <target>Name des Konzepts</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1259,7 +1258,7 @@
             </trans-unit>
             <trans-unit id="094279c938c58b7cdc9af7e15a88eacfbcb61bf6" datatype="html">
                 <source>Relationship Target</source>
-                <target></target>
+                <target>Relationship Target</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1275,7 +1274,7 @@
             </trans-unit>
             <trans-unit id="420ee653d0bec0cc1372c5442c9892ee126dd0b0" datatype="html">
                 <source>Relationship Target is required</source>
-                <target></target>
+                <target>Bitte Relationship Target eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1291,7 +1290,7 @@
             </trans-unit>
             <trans-unit id="1430597e14daa7eae64856e671275820ac6977c3" datatype="html">
                 <source>Existing Description</source>
-                <target></target>
+                <target>Bestehender Term</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -1307,7 +1306,7 @@
             </trans-unit>
             <trans-unit id="e6a5a8dee9fb07fc87acdf5f3101e2280edf0155" datatype="html">
                 <source>Existing Description is required</source>
-                <target></target>
+                <target>Bitte bestehenden Term eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -1323,7 +1322,7 @@
             </trans-unit>
             <trans-unit id="9a627f671f1eeb43f65dc7dbead2f7d4816406c3" datatype="html">
                 <source>Existing Relationship</source>
-                <target></target>
+                <target>Bestehende Relationship</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
@@ -1339,7 +1338,7 @@
             </trans-unit>
             <trans-unit id="09000735869d285eea0a79ac27c53800282e5d43" datatype="html">
                 <source>Existing Relationship is required</source>
-                <target></target>
+                <target>Bitte bestehende Relationship eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
@@ -1355,7 +1354,7 @@
             </trans-unit>
             <trans-unit id="b68dccd4a64e24b561ac3eecd4e0311981ffa2a6" datatype="html">
                 <source>AUTHENTICATION</source>
-                <target>GODKENDELSE</target>
+                <target>ANMELDUNG</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">3</context>
@@ -1363,7 +1362,7 @@
             </trans-unit>
             <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
                 <source>Username</source>
-                <target>Brugernavn</target>
+                <target>Benutzername</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">8</context>
@@ -1371,7 +1370,7 @@
             </trans-unit>
             <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
                 <source>Password</source>
-                <target>Adgangskode</target>
+                <target>Passwort</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">12</context>
