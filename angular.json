@@ -23,6 +23,10 @@
                     "dk": {
                         "baseHref": "/dk/",
                         "translation": "src/locale/messages.dk.xlf"
+                    },
+                    "de": {
+                        "baseHref": "/de/",
+                        "translation": "src/locale/messages.de.xlf"
                     }
                 }
             },
@@ -87,6 +91,9 @@
                         },
                         "dk": {
                             "localize": ["dk"]
+                        },
+                        "de": {
+                            "localize": ["de"]
                         }
                     }
                 },
@@ -106,6 +113,9 @@
                         },
                         "dk": {
                             "browserTarget": "request-management-portal-ui:build:dk"
+                        },
+                        "de": {
+                            "browserTarget": "request-management-portal-ui:build:de"
                         }
                     }
                 },
