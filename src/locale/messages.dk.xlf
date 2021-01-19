@@ -348,7 +348,7 @@
             </trans-unit>
             <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
                 <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
-                <target>SNOMED ANMODNINGSSTYRINGSPORTAL</target>
+                <target>SNOMED CT FORESPØRGSELSPORTAL</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -358,8 +358,7 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>Denne anmodningsportal er til at indsende anmodninger om at tilføje, opdatere eller ændre SNOMED-indhold. Vær venlig
-                    vælg den type anmodning, du har brug for, fra nedenstående muligheder.
+                <target>Her kan du indsende anmodning om at få tilføjet eller ændret indhold i SNOMED CT. Vælg venligst den type forespørgsel du vil indsende blandt nedenstående muligheder.
                 </target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
@@ -368,7 +367,7 @@
             </trans-unit>
             <trans-unit id="5fb0d40b6c834d9118e5303348467ecaae12dd63" datatype="html">
                 <source>SNOMED CT Request Management Portal</source>
-                <target>SNOMED CT Anmodningsadministrationsportal</target>
+                <target>SNOMED CT Forespørgselsportal</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-navbar/snomed-navbar.component.html
                     </context>
@@ -410,7 +409,7 @@
             </trans-unit>
             <trans-unit id="54754035562ab4913f9d63832d092fcb2edfe3d4" datatype="html">
                 <source>REQUEST DETAILS</source>
-                <target>ANMOD OM DETALJER</target>
+                <target>FORESPØRGSEL</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">3</context>
@@ -616,7 +615,7 @@
             </trans-unit>
             <trans-unit id="3e7c5d65f1ad69450bd9059cbf31611617d7f54d" datatype="html">
                 <source>New Synonyms</source>
-                <target>Ny Synonymer</target>
+                <target>Synonymer</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -741,7 +740,7 @@
             </trans-unit>
             <trans-unit id="9134801552b7509c4816e75d9fa002898b7b63c3" datatype="html">
                 <source>RESET</source>
-                <target>HVILE</target>
+                <target>SLET ALT</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -931,7 +930,7 @@
             </trans-unit>
             <trans-unit id="3cd009f3c119059a2fd23437eb0a0599267a2bcc" datatype="html">
                 <source>Concept ID</source>
-                <target>Begrebs ID</target>
+                <target>Begrebs-ID</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -971,7 +970,7 @@
             </trans-unit>
             <trans-unit id="4076f2544452d175d34fd52f927472d8625fe770" datatype="html">
                 <source>Concept ID is required</source>
-                <target>Begrebs ID er påkrævet</target>
+                <target>Begrebs-ID er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1091,7 +1090,7 @@
             </trans-unit>
             <trans-unit id="c904df6e44a0211212755de38fb4b3030726f0f8" datatype="html">
                 <source>New Description</source>
-                <target>Ny Term</target>
+                <target>Forslag til ny term</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1107,7 +1106,7 @@
             </trans-unit>
             <trans-unit id="a6abbf232018d923ca1aeca2e5aff3e53e6bcd75" datatype="html">
                 <source>New Description is required</source>
-                <target>Ny Term er påkrævet</target>
+                <target>Forslag til ny term er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -1267,7 +1266,7 @@
             </trans-unit>
             <trans-unit id="094279c938c58b7cdc9af7e15a88eacfbcb61bf6" datatype="html">
                 <source>Relationship Target</source>
-                <target>Relationsmål</target>
+                <target>Relations målbegreb</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1283,7 +1282,7 @@
             </trans-unit>
             <trans-unit id="420ee653d0bec0cc1372c5442c9892ee126dd0b0" datatype="html">
                 <source>Relationship Target is required</source>
-                <target>Relationsmål er påkrævet</target>
+                <target>Relations målbegreb er påkrævet</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -1363,7 +1362,7 @@
             </trans-unit>
             <trans-unit id="b68dccd4a64e24b561ac3eecd4e0311981ffa2a6" datatype="html">
                 <source>AUTHENTICATION</source>
-                <target>GODKENDELSE</target>
+                <target>LOGIN-OPLYSNINGER</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">3</context>
