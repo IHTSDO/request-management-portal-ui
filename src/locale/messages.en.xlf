@@ -879,7 +879,7 @@
             </trans-unit>
             <trans-unit id="fafb056d4c2698fc95ae62ac2293b3451939a35f" datatype="html">
                 <source>Search for Concepts...</source>
-                <target>Search for Concepts...</target>
+                <target>Search for Concept...</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
