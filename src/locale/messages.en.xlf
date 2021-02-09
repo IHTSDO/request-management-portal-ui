@@ -358,7 +358,7 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
+                <target>This Request Portal is for submitting requests to add, update or change SNOMED content for a National Extension. Please
                     select the type of request you require from the options below.
                 </target>
                 <context-group purpose="location">
