@@ -1370,7 +1370,7 @@
             </trans-unit>
             <trans-unit id="03c9827790e249b944ea6f08bf8b24ed0e0ebff5" datatype="html">
                 <source>If you do not have an account you can apply for one <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HERE<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-                <target>If you do not have an account you can apply for one <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HERE<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+                <target>Wenn Sie noch nicht über ein Benutzerkonto verfügen, können Sie <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HIER<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> eines einrichten.</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">6</context>
