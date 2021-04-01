@@ -9,6 +9,7 @@ export class SnomedNavbarComponent implements OnInit {
 
     environment: string;
     siteFlag: string;
+    siteFlagLabel: string;
     defaultlanguageList = [
         {
             code: 'en',
@@ -40,8 +41,10 @@ export class SnomedNavbarComponent implements OnInit {
     ngOnInit() {
         if (window.location.pathname === '/') {
             this.siteFlag = this.defaultlanguageList.find(f => f.code === this.environment).flag;
+            this.siteFlagLabel = this.defaultlanguageList.find(f => f.code === this.environment).label;
         } else {
             this.siteFlag = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/\/(.*)\//).pop()).flag;
+            this.siteFlagLabel = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/\/(.*)\//).pop()).label;
         }
     }
 }
