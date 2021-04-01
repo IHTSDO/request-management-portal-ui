@@ -10,7 +10,10 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="concept" i18n>Concept</label>
-            <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Search for Concepts..."  i18n-placeholder>
+            <div class="input-group">
+                <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Type to Search..."  i18n-placeholder>
+                <div class="input-group-append"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
+            </div>
         </div>
         <div class="offset-1 col-5 p-3 mb-3 form-group">
             <label for="conceptId" i18n>Concept ID</label>
@@ -41,8 +44,11 @@
         </div>
         <div class="col-5 p-3 mb-0 form-group">
             <label for="newRelationship" i18n>Relationship Target</label>
-            <input type="text" class="form-control" id="newRelationship" required [(ngModel)]="request.newRelationship" name="newRelationship" [ngbTypeahead]="search" #newRelationship="ngModel" placeholder="Search for Concepts..." i18n-placeholder>
-            <div [hidden]="newRelationship.valid || newRelationship.pristine" class="alert alert-danger" i18n>Relationship Target is required</div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="newRelationship" required [(ngModel)]="request.newRelationship" name="newRelationship" [ngbTypeahead]="search" #newRelationship="ngModel" placeholder="Type to Search..." i18n-placeholder>
+                <div [hidden]="newRelationship.valid || newRelationship.pristine" class="alert alert-danger" i18n>Relationship Target is required</div>
+                <div class="input-group-append"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
+            </div>
         </div>
 <!--        <div class="offset-1 col-5 p-3 mb-3 form-group">-->
 <!--            <label for="destinationConcept">Destination Concept</label>-->

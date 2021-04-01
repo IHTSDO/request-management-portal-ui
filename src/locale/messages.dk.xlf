@@ -876,9 +876,9 @@
                     <context context-type="linenumber">12</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="fafb056d4c2698fc95ae62ac2293b3451939a35f" datatype="html">
-                <source>Search for Concepts...</source>
-                <target>Søg Begreb...</target>
+            <trans-unit id="d4373fa2a597f9e7458c387f3bf16f4bccc7f32d" datatype="html">
+                <source>Type to Search...</source>
+                <target>Type to Search...</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html

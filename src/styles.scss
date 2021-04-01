@@ -93,6 +93,12 @@ div, p, a, select, label {
     &.form-control {
         font-size: 1.8rem;
     }
+
+    span.input-group-text {
+        padding: 4px 8px 4px 8px;
+        font-size: 2rem;
+        color: $slate-grey;
+    }
 }
 
 label {
