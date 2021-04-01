@@ -8,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class SnomedNavbarComponent implements OnInit {
 
     environment: string;
-
-    siteLocale = 'en';
     siteFlag: string;
-    languageList = [
+    defaultlanguageList = [
         {
             code: 'en',
             flag: 'gb',
@@ -26,15 +24,24 @@ export class SnomedNavbarComponent implements OnInit {
             code: 'de',
             flag: 'de',
             label: 'Deutsche'
+        },
+        {
+            code: 'local',
+            flag: 'gb',
+            label: 'Localhost'
         }
     ];
 
     constructor() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+
     }
 
     ngOnInit() {
-        this.siteLocale = window.location.pathname.split('/')[1];
-        this.siteFlag = this.languageList.find(f => f.code === this.siteLocale).flag;
+        if (window.location.pathname === '/') {
+            this.siteFlag = this.defaultlanguageList.find(f => f.code === this.environment).flag;
+        } else {
+            this.siteFlag = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/\/(.*)\//).pop()).flag;
+        }
     }
 }
