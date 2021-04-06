@@ -1,7 +1,9 @@
 <nav class="navbar sticky-top navbar-dark bg-dark p-2 pr-2">
     <a class="logo" routerLink="/">
         <img class="logo mr-2 p-0" src="./assets/small_logo.png" alt="Logo">
-        <span class="title text-ghost-grey" i18n>SNOMED CT Request Management Portal</span>
+        <span class="title text-ghost-grey" i18n>SNOMED CT {{environmentName}} Extension
+            <img class="flag" src="./assets/flags/{{environment}}.png" alt="{{environment}}">
+        </span>
     </a>
 
     <ng-container [ngSwitch]="environment">
