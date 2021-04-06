@@ -528,6 +528,42 @@
                     <context context-type="linenumber">4</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="33ac391cd7434a68f36d88a99b95238f21c653b1" datatype="html">
+                <source>The content of the request in one sentence</source>
+                <target>Forespørgslens indhold i en enkelt sætning</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/other-form/other-form.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="79f8a3a55d3a26c0bf24de3d4b800b563b5b9f5e" datatype="html">
                 <source>Summary is required</source>
                 <target>Resumé er påkrævet</target>
@@ -586,6 +622,14 @@
                     <context context-type="linenumber">33</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="54efe939444b3998d7bfeb92309f53c6f0eb691c" datatype="html">
+                <source>The FSN must be in English</source>
+                <target>Den fuldt specificerede term (FSN) skal være på engelsk</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">13</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="9e8e2679dbdfa1260b06322004b220a249235f09" datatype="html">
                 <source>New FSN is required</source>
                 <target>Ny FSN er påkrævet</target>
@@ -602,6 +646,14 @@
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
                     <context context-type="linenumber">38</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="33a3c226498d85aac0f659f17086a8f75fb47998" datatype="html">
+                <source>This is the PT in the extension language</source>
+                <target>Dette skal være den foretrukne term på dansk</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">18</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="38eb71069b880a4f7a53f935f359baa5cf5bf78e" datatype="html">
@@ -622,6 +674,14 @@
                     <context context-type="linenumber">43</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="eaa5aba0deb75f62caaadbd1cd6d1be15b685abe" datatype="html">
+                <source>Please enter synonyms separated by comma</source>
+                <target>Skriv venligst synonymer adskilt af komma</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">23</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="4f75015f3eeca855faa8fc7af929710016c6612a" datatype="html">
                 <source>Parent Concept</source>
                 <target>Overbegreb</target>
@@ -629,6 +689,14 @@
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
                     <context context-type="linenumber">47</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9039222311aee4a273cbff552d1c0171ec622d07" datatype="html">
+                <source>Please add SCT ID if known</source>
+                <target>Tilføj venligst SCT ID, hvis du kender det</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">27</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="445854d01fe4f31391b290458801130f74b488e6" datatype="html">
@@ -689,6 +757,42 @@
                     <context context-type="linenumber">12</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="ea34cfb5707022f10c7887b33da09806c478d567" datatype="html">
+                <source>Detailed description of clinical or administrative need for the request</source>
+                <target>Detaljeret beskrivelse af den kliniske- eller administrative situation ønsket vedrører</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">35</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">39</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">53</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">43</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">68</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">38</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">38</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/other-form/other-form.component.html</context>
+                    <context context-type="linenumber">13</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="7529307ff5a8475ecd0755abb1b8a91ae24c1d52" datatype="html">
                 <source>Reference</source>
                 <target>Reference</target>
@@ -736,6 +840,42 @@
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/other-form/other-form.component.html</context>
                     <context context-type="linenumber">16</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="5a2b27ba744aae1c9e072c52f53f18c9636bfefe" datatype="html">
+                <source>Add one or more sources where the concept is described</source>
+                <target>Tilføj en eller flere kilder hvor begrebet er beskrevet</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
+                    <context context-type="linenumber">39</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">43</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">57</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">47</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">72</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">42</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">42</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/other-form/other-form.component.html</context>
+                    <context context-type="linenumber">17</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="9134801552b7509c4816e75d9fa002898b7b63c3" datatype="html">
@@ -928,6 +1068,42 @@
                     <context context-type="linenumber">13</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="ad0d6778647c68b4723b0441e9d0f5d4fbaf5b65" datatype="html">
+                <source>Search for concepts</source>
+                <target>Søg begreb...</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">43</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">48</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="3cd009f3c119059a2fd23437eb0a0599267a2bcc" datatype="html">
                 <source>Concept ID</source>
                 <target>Begreb ID</target>
@@ -966,6 +1142,58 @@
                         app/components/inactivate-relationship-form/inactivate-relationship-form.component.html
                     </context>
                     <context context-type="linenumber">16</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="b1b62c9ee96a794619d86f7bc977d91d3c4b874a" datatype="html">
+                <source>Is auto filled when searched</source>
+                <target>Auto-udfyldes ved søgningen</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">21</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">26</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">25</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="4076f2544452d175d34fd52f927472d8625fe770" datatype="html">
@@ -1102,6 +1330,18 @@
                         app/components/change-description-form/change-description-form.component.html
                     </context>
                     <context context-type="linenumber">31</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9e627b5db3fb614a04046881c4b61dc8ca47a3ce" datatype="html">
+                <source>The new description in the extension language</source>
+                <target>Den nye term skal være på dansk</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
+                    <context context-type="linenumber">31</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">35</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="a6abbf232018d923ca1aeca2e5aff3e53e6bcd75" datatype="html">
@@ -1248,6 +1488,18 @@
                     <context context-type="linenumber">39</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="9ac17c4fd8aa403b3b144e8fa6441d1c1ac1817a" datatype="html">
+                <source>If ‘Other’ please explain in Justification below</source>
+                <target>Hvis ’anden’, så skriv venligst hvilken i begrundelse neden for.</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
+                    <context context-type="linenumber">30</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">35</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="75254ec3804182b7db620e6cf56861b5bbd4325c" datatype="html">
                 <source>Relationship Type is required</source>
                 <target>Relationstype er påkrævet</target>
@@ -1312,6 +1564,18 @@
                     <context context-type="linenumber">26</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="1345caafc529ba3223def8a01c96fda735e6bc2f" datatype="html">
+                <source>The description to be changed</source>
+                <target>Den term der skal ændres</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
+                    <context context-type="linenumber">30</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-description-form/inactivate-description-form.component.html</context>
+                    <context context-type="linenumber">30</context>
+                </context-group>
+            </trans-unit>
             <trans-unit id="e6a5a8dee9fb07fc87acdf5f3101e2280edf0155" datatype="html">
                 <source>Existing Description is required</source>
                 <target>Eksisterende term er påkrævet</target>
@@ -1342,6 +1606,18 @@
                         app/components/inactivate-relationship-form/inactivate-relationship-form.component.html
                     </context>
                     <context context-type="linenumber">26</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="544526d803c6c743a1e236296f36a341f9304cd9" datatype="html">
+                <source>The relationship to be changed</source>
+                <target>Den relation der skal ændres </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
+                    <context context-type="linenumber">30</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/inactivate-relationship-form/inactivate-relationship-form.component.html</context>
+                    <context context-type="linenumber">30</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="09000735869d285eea0a79ac27c53800282e5d43" datatype="html">

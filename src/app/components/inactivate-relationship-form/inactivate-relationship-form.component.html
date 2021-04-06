@@ -2,7 +2,7 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
             <label for="summary" i18n>Summary</label>
-            <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel">
+            <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="The content of the request in one sentence" i18n-matTooltip>
             <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger" i18n>Summary is required</div>
         </div>
     </div>
@@ -11,23 +11,23 @@
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="concept" i18n>Concept</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Type to Search..." i18n-placeholder>
+                <input type="text" class="form-control" id="concept" [(ngModel)]="request.concept" name="concept" [ngbTypeahead]="search" (selectItem)="populateConceptFields($event)" placeholder="Type to Search..." i18n-placeholder matTooltip="Search for concepts" i18n-matTooltip>
                 <div class="input-group-append"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
             </div>
         </div>
         <div class="offset-1 col-5 p-3 mb-3 form-group">
             <label for="conceptId" i18n>Concept ID</label>
-            <input type="text" class="form-control" id="conceptId" required [(ngModel)]="request.conceptId" name="conceptId" #conceptId="ngModel">
+            <input type="text" class="form-control" id="conceptId" required [(ngModel)]="request.conceptId" name="conceptId" #conceptId="ngModel" matTooltip="Is auto filled when searched" i18n-matTooltip>
             <div [hidden]="conceptId.valid || conceptId.pristine" class="alert alert-danger" i18n>Concept ID is required</div>
         </div>
         <div class="col-5 p-3 mb-3 form-group">
             <label for="conceptName" i18n>Concept Name</label>
-            <input type="text" class="form-control" id="conceptName" required [(ngModel)]="request.conceptName" name="conceptName" #conceptName="ngModel">
+            <input type="text" class="form-control" id="conceptName" required [(ngModel)]="request.conceptName" name="conceptName" #conceptName="ngModel" matTooltip="Is auto filled when searched" i18n-matTooltip>
             <div [hidden]="conceptName.valid || conceptName.pristine" class="alert alert-danger" i18n>Concept Name is required</div>
         </div>
         <div class="offset-1 col-10 p-3 mb-3 form-group">
             <label for="existingRelationship" i18n>Existing Relationship</label>
-            <input type="text" class="form-control" id="existingRelationship" required [(ngModel)]="request.existingRelationship" name="existingRelationship" #existingRelationship="ngModel">
+            <input type="text" class="form-control" id="existingRelationship" required [(ngModel)]="request.existingRelationship" name="existingRelationship" #existingRelationship="ngModel" matTooltip="The relationship to be changed" i18n-matTooltip>
             <div [hidden]="existingRelationship.valid || existingRelationship.pristine" class="alert alert-danger" i18n>Existing Relationship is required</div>
         </div>
     </div>
@@ -35,11 +35,11 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="justification" i18n>Justification</label>
-            <input type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification">
+            <input type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification" matTooltip="Detailed description of clinical or administrative need for the request" i18n-matTooltip>
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="reference" i18n>Reference</label>
-            <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference">
+            <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference" matTooltip="Add one or more sources where the concept is described" i18n-matTooltip>
         </div>
     </div>
     <div class="text-right">
