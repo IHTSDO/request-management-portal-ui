@@ -15,6 +15,8 @@ export class Request {
         public newDescription?: string,
         public existingRelationship?: string,
         public destinationConcept?: string,
-        public existingDescription?: string) {
+        public existingDescription?: string,
+        public language?: string,
+        public context?: string) {
     }
 }

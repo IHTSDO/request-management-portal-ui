@@ -42,6 +42,14 @@ export class JiraService {
             requestObject.fields['summary'] = request.summary;
         }
 
+        if (request.language) {
+            requestObject.fields['customfield_15000'] = { 'value': request.language };
+        }
+
+        if (request.context) {
+            requestObject.fields['customfield_15001'] = { 'value': request.context };
+        }
+
         if (request.justification) {
             requestObject.fields['customfield_14205'] = request.justification;
         }

@@ -6,6 +6,44 @@
             <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger" i18n>Summary is required</div>
         </div>
     </div>
+    <div class="row">
+        <div class="offset-1 col-5 p-3 mb-3 form-group">
+            <label for="language" i18n>Language Refset</label>
+            <select class="form-control" id="language" [(ngModel)]="request.language" name="language" #language="ngModel" matTooltip="Select the language the request is for" i18n-matTooltip>
+                <option value="None" i18n>None</option>
+                <option value="Belgian Dutch" i18n>Belgian Dutch</option>
+                <option value="Belgian French" i18n>Belgian French</option>
+                <option value="Danish" i18n>Danish</option>
+                <option value="Estonian" i18n>Estonian</option>
+                <option value="IE English" i18n>IE English</option>
+                <option value="GB English" i18n>GB English</option>
+                <option value="Maori" i18n>Maori</option>
+                <option value="Norwegian Bokmal" i18n>Norwegian Bokmal</option>
+                <option value="Norwegian Nyorsk" i18n>Norwegian Nyorsk</option>
+                <option value="NZ English" i18n>NZ English</option>
+                <option value="Swedish" i18n>Swedish</option>
+                <option value="Swiss German" i18n>Swiss German</option>
+                <option value="Swiss Italian" i18n>Swiss Italian</option>
+                <option value="Swiss French" i18n>Swiss French</option>
+                <option value="US English" i18n>US English</option>
+            </select>
+        </div>
+        <div class="col-5 p-3 mb-3 form-group">
+            <label for="context" i18n>Context Refset</label>
+            <select class="form-control" id="context" [(ngModel)]="request.context" name="context" #context="ngModel" matTooltip="Select the context the request is for" i18n-matTooltip>
+                <option value="None" i18n>None</option>
+                <option value="BE GP - Dutch" i18n>BE GP - Dutch</option>
+                <option value="BE GP - French" i18n>BE GP - French</option>
+                <option value="NZ Patient Friendly - English" i18n>NZ Patient Friendly - English</option>
+                <option value="SE Chief Complaints" i18n>SE Chief Complaints</option>
+                <option value="SE Dose Unit Abbr." i18n>SE Dose Unit Abbr.</option>
+                <option value="SE Lab Medicine" i18n>SE Lab Medicine</option>
+                <option value="SE Dose Unit Plural" i18n>SE Dose Unit Plural</option>
+                <option value="SE Medication Prof." i18n>SE Medication Prof.</option>
+                <option value="SE Medication Common" i18n>SE Medication Common</option>
+            </select>
+        </div>
+    </div>
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
