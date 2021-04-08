@@ -1259,7 +1259,7 @@
             </trans-unit>
             <trans-unit id="9e02ed032d230a4fe81a56a5afab710f39e56910" datatype="html">
                 <source>Select the language the request is for</source>
-                <target>Select the language the request is for</target>
+                <target>Sprache auswählen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">12</context>
@@ -1655,7 +1655,7 @@
             </trans-unit>
             <trans-unit id="93d25609b007c2e803b191f0ccfa7abfb820a8ba" datatype="html">
                 <source>Select the context the request is for</source>
-                <target>Select the context the request is for</target>
+                <target>Kontext auswählen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">33</context>
@@ -2094,7 +2094,7 @@
             </trans-unit>
             <trans-unit id="d4373fa2a597f9e7458c387f3bf16f4bccc7f32d" datatype="html">
                 <source>Type to Search...</source>
-                <target>Type to Search...</target>
+                <target>Suche...</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
