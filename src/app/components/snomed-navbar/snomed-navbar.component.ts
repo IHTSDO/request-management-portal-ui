@@ -19,6 +19,12 @@ export class SnomedNavbarComponent implements OnInit {
             title: 'English'
         },
         {
+            code: 'ie',
+            flag: 'ie',
+            label: 'English',
+            title: 'Irish'
+        },
+        {
             code: 'dk',
             flag: 'dk',
             label: 'Dansk',
