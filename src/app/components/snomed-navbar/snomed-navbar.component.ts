@@ -22,7 +22,7 @@ export class SnomedNavbarComponent implements OnInit {
             code: 'dk',
             flag: 'dk',
             label: 'Dansk',
-            title: 'Dutch'
+            title: 'Danish'
         },
         {
             code: 'de',
