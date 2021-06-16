@@ -358,8 +358,8 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>Dit portaal dient om aanvragen te beheren om SNOMED CT-inhoud toe te voegen, bij te werken of te 
-                wijzigen. Selecteer uit de onderstaande opties het soort aanvraag dat u wenst te doen.
+                <target>Via dit portaal kunt u een aanvraag indienen om SNOMED CT-inhoud toe te voegen, bij te werken of te wijzigen.
+                 Selecteer uit de onderstaande opties het soort aanvraag dat u wenst te doen.
                 </target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
@@ -410,7 +410,7 @@
             </trans-unit>
             <trans-unit id="54754035562ab4913f9d63832d092fcb2edfe3d4" datatype="html">
                 <source>REQUEST DETAILS</source>
-                <target>VRAAG DETAILS AAN</target>
+                <target>TYPE AANVRAAG</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">3</context>
@@ -482,7 +482,7 @@
             </trans-unit>
             <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
                 <source>Summary</source>
-                <target>Samenvatting</target>
+                <target>Omschrijving</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -567,7 +567,7 @@
             </trans-unit>
             <trans-unit id="79f8a3a55d3a26c0bf24de3d4b800b563b5b9f5e" datatype="html">
                 <source>Summary is required</source>
-                <target>Samenvatting is vereist</target>
+                <target>Omschrijving is vereist</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -652,7 +652,7 @@
             </trans-unit>
             <trans-unit id="a2f14a73f7a6e94479f67423cc51102da8d6f524" datatype="html">
                 <source>None</source>
-                <target>Geen</target>
+                <target>Geen specifieke refset</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">13</context>
@@ -2723,7 +2723,7 @@
             </trans-unit>
             <trans-unit id="03c9827790e249b944ea6f08bf8b24ed0e0ebff5" datatype="html">
                 <source>If you do not have an account you can apply for one <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HERE<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-                <target>Als u nog geen account heeft, kunt u er <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HIER<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> één aanvragen</target>
+                <target>Als u nog geen account heeft, kunt u dit <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HIER<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> aanvragen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">6</context>

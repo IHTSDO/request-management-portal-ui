@@ -33,7 +33,7 @@ export class SnomedNavbarComponent implements OnInit {
         {
             code: 'de',
             flag: 'de',
-            label: 'Deutsche',
+            label: 'Deutsch',
             title: 'German'
         },
         {
