@@ -1,12 +1,13 @@
 <app-snomed-navbar></app-snomed-navbar>
-<main class="container footer-margin pb-5">
-    <div class="row mb-5">
-        <div class="col">
-            <h1 class="text-center text-river-bed p-5" i18n>SNOMED CT REQUEST MANAGEMENT PORTAL</h1>
-            <h3 class="text-center text-river-bed" i18n>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</h3>
-        </div>
-    </div>
-    <app-auth-block [hidden]="authenticated"></app-auth-block>
-    <app-request-form></app-request-form>
-</main>
+<!--<main class="container footer-margin pb-5">-->
+<!--    <div class="row mb-5">-->
+<!--        <div class="col">-->
+<!--            <h1 class="text-center text-river-bed p-5" i18n>SNOMED CT REQUEST MANAGEMENT PORTAL</h1>-->
+<!--            <h3 class="text-center text-river-bed" i18n>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</h3>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <app-auth-block [hidden]="authenticated"></app-auth-block>-->
+<!--    <app-request-form></app-request-form>-->
+<!--</main>-->
+<router-outlet></router-outlet>
 <app-snomed-footer></app-snomed-footer>

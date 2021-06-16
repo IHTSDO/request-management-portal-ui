@@ -1,5 +1,5 @@
 <nav class="navbar sticky-top navbar-dark bg-dark p-2 pr-2">
-    <a class="logo" routerLink="/">
+    <a class="logo" routerLink="/dashboard">
         <img class="logo mr-2 p-0" src="./assets/small_logo.png" alt="Logo">
         <span class="title text-ghost-grey">SNOMED CT {{environmentName}} Extension
             <img src="./assets/flags/{{environment}}.png" alt="{{environment}}">
@@ -23,13 +23,24 @@
                 <a class="nav-link px-3 rounded text-ghost-grey dropdown-toggle" href="#" data-target="#navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="pb-1 pr-1" src="./assets/flags/{{siteFlag}}.png" alt="{{siteFlag}}">
                 </a>
-                <div id="navbarDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-ghost-grey" href="/en/">English<img class="p-2" src="./assets/flags/gb.png" alt="English"></a>
-                    <a class="dropdown-item text-ghost-grey" href="/dk/">Dansk<img class="p-2" src="./assets/flags/dk.png" alt="Dansk"></a>
-                    <a class="dropdown-item text-ghost-grey" href="/de/">Deutsche<img class="p-2" src="./assets/flags/de.png" alt="Deutsche"></a>
-                    <a class="dropdown-item text-ghost-grey" href="/nl/">Nederlands<img class="p-2" src="./assets/flags/nl.png" alt="Nederlands"></a>
-                    <a class="dropdown-item text-ghost-grey" href="/fr/">Français<img class="p-2" src="./assets/flags/fr.png" alt="Français"></a>
-                </div>
+                <ng-container *ngIf="isDashboard()">
+                    <div id="navbarDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-ghost-grey" href="/dashboard/en">English<img class="p-2" src="./assets/flags/gb.png" alt="English"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/dashboard/dk">Dansk<img class="p-2" src="./assets/flags/dk.png" alt="Dansk"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/dashboard/de">Deutsche<img class="p-2" src="./assets/flags/de.png" alt="Deutsche"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/dashboard/nl">Nederlands<img class="p-2" src="./assets/flags/nl.png" alt="Nederlands"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/dashboard/fr">Français<img class="p-2" src="./assets/flags/fr.png" alt="Français"></a>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!isDashboard()">
+                    <div id="navbarDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-ghost-grey" href="/en">English<img class="p-2" src="./assets/flags/gb.png" alt="English"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/dk">Dansk<img class="p-2" src="./assets/flags/dk.png" alt="Dansk"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/de">Deutsche<img class="p-2" src="./assets/flags/de.png" alt="Deutsche"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/nl">Nederlands<img class="p-2" src="./assets/flags/nl.png" alt="Nederlands"></a>
+                        <a class="dropdown-item text-ghost-grey" href="/fr">Français<img class="p-2" src="./assets/flags/fr.png" alt="Français"></a>
+                    </div>
+                </ng-container>
             </li>
         </ul>
     </span>

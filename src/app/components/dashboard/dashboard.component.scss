@@ -1,0 +1,24 @@
+@import '~src/variables.scss';
+
+div.card {
+    cursor: pointer;
+
+    img {
+        max-height: 8rem;
+        object-fit: cover;
+
+        &.card-img-top {
+            filter: sepia(var(--value, 40%));
+        }
+    }
+
+    &:hover {
+        background-color: darken(white, 5%);
+
+        & > .card-body > .card-text {
+            color: darken($cerulean, 20%);
+        }
+    }
+}
+
+
