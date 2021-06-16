@@ -2745,6 +2745,86 @@
                     <context context-type="linenumber">12</context>
                 </context-group>
             </trans-unit>
+            <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
+                <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
+                <target>SNOMED CT REQUEST MANAGEMENT PORTAL</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/instance/instance.component.html</context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="eef047a1462ff8b98b84ec86aaad599e8bdb0569" datatype="html">
+                <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select your edition from the options below.</source>
+                <target>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select your edition from the options below.</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="0a01e5dac6d1c12599ef5cd946f52fa7fdb6f666" datatype="html">
+                <source>BELGIUM EDITION</source>
+                <target>BELGIUM EDITION</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="e52e33bba702588388abcf4f403c357fa340d32f" datatype="html">
+                <source>Request Management Portal</source>
+                <target>Request Management Portal</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">15</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">26</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">37</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">48</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="998e7131a89b801fdf0dbea5c1792033c6826d64" datatype="html">
+                <source>DENMARK EDITION</source>
+                <target>DENMARK EDITION</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">25</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="6c57c9d8fd8862109d158f74686905b8923219e8" datatype="html">
+                <source>IRELAND EDITION</source>
+                <target>IRELAND EDITION</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">36</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3c5331a3d4eaeb3a10a1307d9db069c668b6e57f" datatype="html">
+                <source>NEW ZEALAND EDITION</source>
+                <target>NEW ZEALAND EDITION</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
+                    <context context-type="linenumber">47</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="727da5f68a15139fe2be6521abdc20b90a7983ec" datatype="html">
+                <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</source>
+                <target>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">app/components/instance/instance.component.html</context>
+                    <context context-type="linenumber">5</context>
+                </context-group>
+            </trans-unit>
         </body>
     </file>
 </xliff>
