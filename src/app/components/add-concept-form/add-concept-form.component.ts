@@ -3,6 +3,9 @@ import { Request } from '../../models/request';
 import { JiraService } from '../../services/jira/jira.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {TerminologyServerService} from '../../services/terminologyServer/terminology-server.service';
 
 @Component({
     selector: 'app-add-concept-form',
@@ -14,9 +17,23 @@ export class AddConceptFormComponent implements OnInit {
     @ViewChild('requestForm') requestForm;
     request: Request = new Request('', '', '');
 
+    // typeahead
+    search = (text$: Observable<string>) => text$.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(term => {
+            if (term.length < 3) {
+                return [];
+            } else {
+                return this.terminologyService.getTypeahead(term);
+            }
+        })
+    )
+
     constructor(private jiraService: JiraService,
                 private toastr: ToastrService,
-                private authService: AuthenticationService) {
+                private authService: AuthenticationService,
+                private terminologyService: TerminologyServerService) {
     }
 
     ngOnInit(): void {

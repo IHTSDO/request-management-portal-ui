@@ -62,7 +62,10 @@
         </div>
         <div class="col-5 p-3 mb-3 form-group">
             <label for="parentConcept" i18n>Parent Concept</label>
-            <input type="text" class="form-control" id="parentConcept" required [(ngModel)]="request.parentConcept" name="parentConcept" #parentConcept="ngModel" matTooltip="Please add SCT ID if known" i18n-matTooltip>
+            <div class="input-group">
+                <input type="text" class="form-control" id="parentConcept" required [(ngModel)]="request.parentConcept" name="parentConcept" [ngbTypeahead]="search" placeholder="Type to Search..." i18n-placeholder #parentConcept="ngModel" matTooltip="Please add SCT ID if known" i18n-matTooltip>
+                <div class="input-group-append"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
+            </div>
             <div [hidden]="parentConcept.valid || parentConcept.pristine" class="alert alert-danger" i18n>Parent Concept is required</div>
         </div>
     </div>
