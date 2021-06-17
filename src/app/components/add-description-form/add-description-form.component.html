@@ -9,7 +9,7 @@
     <div class="row">
         <div class="offset-1 col-5 p-3 mb-3 form-group">
             <label for="language" i18n>Language Refset</label>
-            <select class="form-control" id="language" [(ngModel)]="request.language" name="language" #language="ngModel" matTooltip="Select the language the request is for" i18n-matTooltip>
+            <select class="form-control" id="language" required [(ngModel)]="request.language" name="language" #language="ngModel" matTooltip="Select the language the request is for" i18n-matTooltip>
                 <option value="None" i18n>None</option>
                 <option value="Belgian Dutch" i18n>Belgian Dutch</option>
                 <option value="Belgian French" i18n>Belgian French</option>
@@ -27,6 +27,7 @@
                 <option value="Swiss French" i18n>Swiss French</option>
                 <option value="US English" i18n>US English</option>
             </select>
+            <div [hidden]="language.valid || language.pristine" class="alert alert-danger" i18n>Language is required</div>
         </div>
         <div class="col-5 p-3 mb-3 form-group">
             <label for="context" i18n>Context Refset</label>
