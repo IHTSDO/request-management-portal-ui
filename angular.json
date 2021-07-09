@@ -55,7 +55,8 @@
                             "src/favicon_red.ico",
                             "src/favicon_green.ico",
                             "src/favicon_yellow.ico",
-                            "src/assets"
+                            "src/assets",
+                            "src/dashboard"
                         ],
                         "styles": [
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",

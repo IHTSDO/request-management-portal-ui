@@ -1,0 +1,106 @@
+html {
+    font-size: 62.5%;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Poppins', 'Comic Sans MS', 'Arial', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #000000;
+    letter-spacing: 0.5px;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/Poppins-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/Poppins-Medium.ttf');
+    font-weight: 500;
+}
+
+a.logo {
+    height: 4rem;
+    font-size: 1.6rem;
+    text-decoration: none;
+}
+
+img.logo {
+    height: 4rem;
+}
+
+span.title {
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    line-height: 4rem;
+    vertical-align: top;
+    cursor: pointer;
+    color: #C8CFD6;
+}
+
+p.card-text {
+    color: #49A8DB;
+}
+
+h1 {
+    color: #434A55;
+}
+
+h3 {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #434A55;
+}
+
+div.card {
+    cursor: pointer;
+}
+
+div.card:hover > .card-body > p.card-text {
+    color: #1F729F;
+}
+
+p.card-text {
+    font-size: 1.5rem;
+}
+
+a.no-decoration {
+    color: black;
+    text-decoration: none;
+}
+
+img.card-img-top {
+    max-height: 8rem;
+    object-fit: cover;
+    filter: sepia(var(--value, 40%));
+}
+
+div.card:hover {
+    background-color: #F2F2F2;
+}
+
+footer.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 4rem; /* Set the fixed height of the footer here */
+    line-height: 4rem; /* Vertically center the text there */
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+a.footer-link {
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #C8CFD6;
+}
+
+a.footer-link:hover {
+    color: #49A8DB;
+    text-decoration: none;
+}

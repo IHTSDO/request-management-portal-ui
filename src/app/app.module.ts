@@ -24,9 +24,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {ToastrModule} from 'ngx-toastr';
 import {AuthBlockComponent} from './components/auth-block/auth-block.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { InstanceComponent } from './components/instance/instance.component';
 
 @NgModule({
     declarations: [
@@ -42,9 +39,7 @@ import { InstanceComponent } from './components/instance/instance.component';
         InactivateDescriptionFormComponent,
         InactivateRelationshipFormComponent,
         OtherFormComponent,
-        AuthBlockComponent,
-        DashboardComponent,
-        InstanceComponent
+        AuthBlockComponent
     ],
     imports: [
         BrowserModule,
@@ -55,8 +50,7 @@ import { InstanceComponent } from './components/instance/instance.component';
         MatRadioModule,
         MatTooltipModule,
         ToastrModule.forRoot(),
-        ReactiveFormsModule,
-        AppRoutingModule
+        ReactiveFormsModule
     ],
     providers: [
         AuthenticationService,
