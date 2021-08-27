@@ -31,7 +31,13 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('SNOMED CT Request Management Portal');
-        this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+        this.environment = window.location.host.split(/[.]/)[0];
+
+        if (this.environment.includes('dev')) {
+            this.environment = this.environment.slice(4, 6);
+        } else if (!this.environment.includes('local')) {
+            this.environment = this.environment.slice(0, 2);
+        }
 
         this.authoringService.getConfigurationJSON().subscribe(config => {
             const configuration: Configuration = config;

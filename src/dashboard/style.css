@@ -44,7 +44,7 @@ span.title {
 }
 
 p.card-text {
-    color: #49A8DB;
+    color: #ffffff;
 }
 
 h1 {
@@ -59,10 +59,18 @@ h3 {
 
 div.card {
     cursor: pointer;
+    border-radius: 5px;
 }
 
-div.card:hover > .card-body > p.card-text {
+div.card:hover > .card-body {
     color: #1F729F;
+}
+
+div.card-body {
+    background-color: #428bca;
+    border-color: #357ebd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 p.card-text {
@@ -75,9 +83,10 @@ a.no-decoration {
 }
 
 img.card-img-top {
-    max-height: 8rem;
+    max-height: 9rem;
     object-fit: cover;
-    filter: sepia(var(--value, 40%));
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 div.card:hover {

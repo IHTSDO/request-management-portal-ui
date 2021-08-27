@@ -37,6 +37,12 @@ export class SnomedNavbarComponent implements OnInit {
             title: 'German'
         },
         {
+            code: 'ee',
+            flag: 'ee',
+            label: 'Estonian',
+            title: 'Estonian'
+        },
+        {
             code: 'nl',
             flag: 'nl',
             label: 'Nederlands',
@@ -69,8 +75,17 @@ export class SnomedNavbarComponent implements OnInit {
     ];
 
     constructor() {
-        this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+        this.environment = window.location.host.split(/[.]/)[0];
         // console.log('environment: ', this.environment);
+
+        if (this.environment.includes('dev')) {
+            this.environment = this.environment.slice(4, 6);
+            // console.log('environmentA: ', this.environment);
+        } else if (!this.environment.includes('local')) {
+            this.environment = this.environment.slice(0, 2);
+            // console.log('environmentB: ', this.environment);
+        }
+
         this.environmentName = this.defaultlanguageList.find(f => f.code === this.environment).title;
         // console.log('environmentName: ', this.environmentName);
     }
