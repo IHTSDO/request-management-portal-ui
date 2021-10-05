@@ -358,7 +358,7 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>Portalen brukes til å sende inn forespørsler om å legge til, oppdatere eller endre innhold i Snomed CT. Vennligst angi hvilken type forespørsel du ønsker i ruten nedenfor.
+                <target>Portalen brukes til å sende inn forespørsler om å legge til, oppdatere eller endre innhold i Snomed CT. Vennligst angi hvilken type forespørsel du ønsker nedenfor.
                 </target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
@@ -970,8 +970,8 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="19119adc3a478d723a800ce3c4d15a720c2265cb" datatype="html">
-                <source>Norwegian Bokmal</source>
-                <target>Norwegian Bokmal</target>
+                <source>Norwegian Bokmål</source>
+                <target>Norwegian Bokmål</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">21</context>
@@ -1006,8 +1006,8 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="15824c5adf89a15bb5835a65debf5beb28f53547" datatype="html">
-                <source>Norwegian Nyorsk</source>
-                <target>Norwegian Nyorsk</target>
+                <source>Norwegian Nynorsk</source>
+                <target>Norwegian Nynorsk</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">22</context>
@@ -2146,7 +2146,7 @@
             </trans-unit>
             <trans-unit id="ad0d6778647c68b4723b0441e9d0f5d4fbaf5b65" datatype="html">
                 <source>Search for concepts</source>
-                <target>Soke begrep</target>
+                <target>Søk etter begrep</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">14</context>
@@ -2594,7 +2594,7 @@
             </trans-unit>
             <trans-unit id="094279c938c58b7cdc9af7e15a88eacfbcb61bf6" datatype="html">
                 <source>Relationship Target</source>
-                <target>målverdi for relasjon</target>
+                <target>Målverdi for relasjon</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2610,7 +2610,7 @@
             </trans-unit>
             <trans-unit id="420ee653d0bec0cc1372c5442c9892ee126dd0b0" datatype="html">
                 <source>Relationship Target is required</source>
-                <target>målverdi for relasjon er nødvendig</target>
+                <target>Målverdi for relasjon er nødvendig</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
