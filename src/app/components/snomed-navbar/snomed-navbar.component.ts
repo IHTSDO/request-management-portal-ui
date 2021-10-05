@@ -61,9 +61,15 @@ export class SnomedNavbarComponent implements OnInit {
             title: 'Belgian'
         },
         {
-            code: 'no',
+            code: 'no_nb',
             flag: 'no',
-            label: 'Norway',
+            label: 'Bokmål',
+            title: 'Norwegian'
+        },
+        {
+            code: 'no_nn',
+            flag: 'no',
+            label: 'Nynorsk',
             title: 'Norwegian'
         },
         {
