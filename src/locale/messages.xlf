@@ -489,7 +489,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1108,7 +1108,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1143,7 +1143,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1178,7 +1178,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1213,7 +1213,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1248,7 +1248,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1283,7 +1283,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1318,7 +1318,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1353,7 +1353,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1388,7 +1388,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1423,7 +1423,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1458,7 +1458,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1556,7 +1556,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1609,7 +1609,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">76</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1644,7 +1644,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1679,7 +1679,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1714,7 +1714,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1749,7 +1749,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">85</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1784,7 +1784,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1811,18 +1811,11 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="18b12663c535b520d20ed19d971c7662d8872866" datatype="html">
-        <source>Language is required</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="66b48c6eef7c427a6ada2f0dd994daa8d83b1c57" datatype="html">
         <source>Concept</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1849,7 +1842,7 @@
         <source>Search for concepts</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1884,7 +1877,7 @@
         <source>Concept ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1911,11 +1904,11 @@
         <source>Is auto filled when searched</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">59</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1962,7 +1955,7 @@
         <source>Concept ID is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -1989,7 +1982,7 @@
         <source>Concept Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">63</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -2016,7 +2009,7 @@
         <source>Concept Name is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
@@ -2043,7 +2036,7 @@
         <source>New Description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">68</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
@@ -2054,7 +2047,7 @@
         <source>The new description in the extension language</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
@@ -2065,7 +2058,7 @@
         <source>New Description is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
