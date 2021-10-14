@@ -39,6 +39,14 @@
                     "ee": {
                         "baseHref": "/ee/",
                         "translation": "src/locale/messages.ee.xlf"
+                    },
+                    "no_nb": {
+                        "baseHref": "/no_nb/",
+                        "translation": "src/locale/messages.no_nb.xlf"
+                    },
+                    "no_nn": {
+                        "baseHref": "/no_nn/",
+                        "translation": "src/locale/messages.no_nn.xlf"
                     }
                 }
             },
@@ -116,6 +124,12 @@
                         },
                         "ee": {
                             "localize": ["ee"]
+                        },
+                        "no_nb": {
+                            "localize": ["no_nb"]
+                        },
+                        "no_nn": {
+                            "localize": ["no_nn"]
                         }
                     }
                 },
@@ -147,6 +161,12 @@
                         },
                         "ee": {
                             "browserTarget": "request-management-portal-ui:build:ee"
+                        },
+                        "no_nb": {
+                            "browserTarget": "request-management-portal-ui:build:no_nb"
+                        },
+                        "no_nn": {
+                            "browserTarget": "request-management-portal-ui:build:no_nn"
                         }
                     }
                 },

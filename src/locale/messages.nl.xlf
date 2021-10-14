@@ -971,8 +971,8 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="19119adc3a478d723a800ce3c4d15a720c2265cb" datatype="html">
-                <source>Norwegian Bokmal</source>
-                <target>Norwegian Bokmal</target>
+                <source>Norwegian Bokmål</source>
+                <target>Norwegian Bokmål</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">21</context>
@@ -1007,8 +1007,8 @@
                 </context-group>
             </trans-unit>
             <trans-unit id="15824c5adf89a15bb5835a65debf5beb28f53547" datatype="html">
-                <source>Norwegian Nyorsk</source>
-                <target>Norwegian Nyorsk</target>
+                <source>Norwegian Nynorsk</source>
+                <target>Norwegian Nynorsk</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">22</context>
