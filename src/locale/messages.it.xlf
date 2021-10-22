@@ -348,7 +348,7 @@
             </trans-unit>
             <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
                 <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
-                <target>SNOMED CT REQUEST MANAGEMENT PORTAL</target>
+                <target>PORTALE PER LA GESTIONE DELLE RICHIESTE SNOMED CT</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -358,8 +358,8 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>This Request Portal is for submitting requests to add, update or change SNOMED CT content for a National Extension. Please
-                    select the type of request you require from the options below.
+                <target>Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. 
+                    Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.
                 </target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
@@ -368,7 +368,7 @@
             </trans-unit>
             <trans-unit id="5fb0d40b6c834d9118e5303348467ecaae12dd63" datatype="html">
                 <source>SNOMED CT Request Management Portal</source>
-                <target>SNOMED CT Request Management Portal</target>
+                <target>PORTALE PER LA GESTIONE DELLE RICHIESTE SNOMED CT</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-navbar/snomed-navbar.component.html
                     </context>
@@ -2723,7 +2723,7 @@
             </trans-unit>
             <trans-unit id="03c9827790e249b944ea6f08bf8b24ed0e0ebff5" datatype="html">
                 <source>If you do not have an account you can apply for one <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HERE<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-                <target>Se non avete un account, potete richiederne uno QUI<x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HERE<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+                <target>Se non avete un account, potete richiederne uno <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>QUI<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">6</context>
@@ -2819,7 +2819,7 @@
             </trans-unit>
             <trans-unit id="727da5f68a15139fe2be6521abdc20b90a7983ec" datatype="html">
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</source>
-                <target>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</target>
+                <target>Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/instance/instance.component.html</context>
                     <context context-type="linenumber">5</context>
