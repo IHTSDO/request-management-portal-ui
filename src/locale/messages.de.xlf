@@ -530,7 +530,7 @@
             </trans-unit>
             <trans-unit id="33ac391cd7434a68f36d88a99b95238f21c653b1" datatype="html">
                 <source>The content of the request in one sentence</source>
-                <target>The content of the request in one sentence</target>
+                <target>Bitte Inhalt der Anfrage einem Satz beschreiben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -1700,7 +1700,7 @@
             </trans-unit>
             <trans-unit id="54efe939444b3998d7bfeb92309f53c6f0eb691c" datatype="html">
                 <source>The FSN must be in English</source>
-                <target>The FSN must be in English</target>
+                <target>Der FSN muss in Englisch angegeben werden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">13</context>
@@ -1726,7 +1726,7 @@
             </trans-unit>
             <trans-unit id="33a3c226498d85aac0f659f17086a8f75fb47998" datatype="html">
                 <source>This is the PT in the extension language</source>
-                <target>This is the PT in the extension language</target>
+                <target>Vorzugsterm in der Übersetzungssprache</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">18</context>
@@ -1752,7 +1752,7 @@
             </trans-unit>
             <trans-unit id="eaa5aba0deb75f62caaadbd1cd6d1be15b685abe" datatype="html">
                 <source>Please enter synonyms separated by comma</source>
-                <target>Please enter synonyms separated by comma</target>
+                <target>Mehrere Synonyme bitte durch Komma getrennt eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">23</context>
@@ -1769,7 +1769,7 @@
             </trans-unit>
             <trans-unit id="9039222311aee4a273cbff552d1c0171ec622d07" datatype="html">
                 <source>Please add SCT ID if known</source>
-                <target>Please add SCT ID if known</target>
+                <target>Bitte SCT ID eingeben (falls bekannt)</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">27</context>
@@ -1835,7 +1835,7 @@
             </trans-unit>
             <trans-unit id="ea34cfb5707022f10c7887b33da09806c478d567" datatype="html">
                 <source>Detailed description of clinical or administrative need for the request</source>
-                <target>Detailed description of clinical or administrative need for the request</target>
+                <target>Genaue Beschreibung des Zwecks der Anfrage (z.B. klinisch, administrativ)</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">35</context>
@@ -1920,7 +1920,7 @@
             </trans-unit>
             <trans-unit id="5a2b27ba744aae1c9e072c52f53f18c9636bfefe" datatype="html">
                 <source>Add one or more sources where the concept is described</source>
-                <target>Add one or more sources where the concept is described</target>
+                <target>Quelle(n) hinzufügen, die das Konzept beschreibt</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">39</context>
@@ -2146,7 +2146,7 @@
             </trans-unit>
             <trans-unit id="ad0d6778647c68b4723b0441e9d0f5d4fbaf5b65" datatype="html">
                 <source>Search for concepts</source>
-                <target>Search for concepts</target>
+                <target>Suchbegriff eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">14</context>
@@ -2222,7 +2222,7 @@
             </trans-unit>
             <trans-unit id="b1b62c9ee96a794619d86f7bc977d91d3c4b874a" datatype="html">
                 <source>Is auto filled when searched</source>
-                <target>Is auto filled when searched</target>
+                <target>Wird automatisch in der Suche vervollständigt</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">21</context>
@@ -2410,7 +2410,7 @@
             </trans-unit>
             <trans-unit id="9e627b5db3fb614a04046881c4b61dc8ca47a3ce" datatype="html">
                 <source>The new description in the extension language</source>
-                <target>The new description in the extension language</target>
+                <target>Neue Übersetzung</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">31</context>
@@ -2566,7 +2566,7 @@
             </trans-unit>
             <trans-unit id="9ac17c4fd8aa403b3b144e8fa6441d1c1ac1817a" datatype="html">
                 <source>If ‘Other’ please explain in Justification below</source>
-                <target>If ‘Other’ please explain in Justification below</target>
+                <target>Falls ‘Andere' gewählt wurde, bitte Begründung unten eingeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
                     <context context-type="linenumber">30</context>
@@ -2642,7 +2642,7 @@
             </trans-unit>
             <trans-unit id="1345caafc529ba3223def8a01c96fda735e6bc2f" datatype="html">
                 <source>The description to be changed</source>
-                <target>The description to be changed</target>
+                <target>Description, die geändert werden soll</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
                     <context context-type="linenumber">30</context>
@@ -2686,7 +2686,7 @@
             </trans-unit>
             <trans-unit id="544526d803c6c743a1e236296f36a341f9304cd9" datatype="html">
                 <source>The relationship to be changed</source>
-                <target>The relationship to be changed</target>
+                <target>Relationship, die geändert werden soll</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
                     <context context-type="linenumber">30</context>
