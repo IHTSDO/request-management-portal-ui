@@ -530,7 +530,7 @@
             </trans-unit>
             <trans-unit id="33ac391cd7434a68f36d88a99b95238f21c653b1" datatype="html">
                 <source>The content of the request in one sentence</source>
-                <target>Bitte Inhalt der Anfrage einem Satz beschreiben</target>
+                <target>Inhalt der Anfrage in einem Satz beschreiben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -1700,7 +1700,7 @@
             </trans-unit>
             <trans-unit id="54efe939444b3998d7bfeb92309f53c6f0eb691c" datatype="html">
                 <source>The FSN must be in English</source>
-                <target>Der FSN muss in Englisch angegeben werden</target>
+                <target>Der FSN muss auf Englisch angegeben werden</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">13</context>
@@ -1920,7 +1920,7 @@
             </trans-unit>
             <trans-unit id="5a2b27ba744aae1c9e072c52f53f18c9636bfefe" datatype="html">
                 <source>Add one or more sources where the concept is described</source>
-                <target>Quelle(n) hinzufügen, die das Konzept beschreibt</target>
+                <target>Quellenverweise zur Erläuterung angeben</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">39</context>
@@ -2566,7 +2566,7 @@
             </trans-unit>
             <trans-unit id="9ac17c4fd8aa403b3b144e8fa6441d1c1ac1817a" datatype="html">
                 <source>If ‘Other’ please explain in Justification below</source>
-                <target>Falls ‘Andere' gewählt wurde, bitte Begründung unten eingeben</target>
+                <target>Falls ‘Andere' gewählt wurde, bitte unter Begründung hinzufügen</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
                     <context context-type="linenumber">30</context>
@@ -2642,7 +2642,7 @@
             </trans-unit>
             <trans-unit id="1345caafc529ba3223def8a01c96fda735e6bc2f" datatype="html">
                 <source>The description to be changed</source>
-                <target>Description, die geändert werden soll</target>
+                <target>Bestehende Übersetzung, die geändert werden soll</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
                     <context context-type="linenumber">30</context>
