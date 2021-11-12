@@ -392,7 +392,7 @@
             </trans-unit>
             <trans-unit id="f03a65dc29188cd55e01deba3d62c77533cc8ad2" datatype="html">
                 <source>User Guide</source>
-                <target>User Guide</target>
+                <target>Guide de l'utilisateur</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
                     </context>
@@ -2147,7 +2147,7 @@
             </trans-unit>
             <trans-unit id="ad0d6778647c68b4723b0441e9d0f5d4fbaf5b65" datatype="html">
                 <source>Search for concepts</source>
-                <target>Search for concepts</target>
+                <target>Recherche de concepts</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">14</context>
@@ -2595,7 +2595,7 @@
             </trans-unit>
             <trans-unit id="094279c938c58b7cdc9af7e15a88eacfbcb61bf6" datatype="html">
                 <source>Relationship Target</source>
-                <target>Relation avec le Concept cible</target>
+                <target>(concept) cible de la relation</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2611,7 +2611,7 @@
             </trans-unit>
             <trans-unit id="420ee653d0bec0cc1372c5442c9892ee126dd0b0" datatype="html">
                 <source>Relationship Target is required</source>
-                <target>Relation avec le Concept cible est requise</target>
+                <target>(concept) cible de la relation est requise</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
