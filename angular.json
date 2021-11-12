@@ -36,6 +36,10 @@
                         "baseHref": "/fr/",
                         "translation": "src/locale/messages.fr.xlf"
                     },
+                    "it": {
+                        "baseHref": "/it/",
+                        "translation": "src/locale/messages.it.xlf"
+                    },
                     "ee": {
                         "baseHref": "/ee/",
                         "translation": "src/locale/messages.ee.xlf"
@@ -122,6 +126,9 @@
                         "fr": {
                             "localize": ["fr"]
                         },
+                        "it": {
+                            "localize": ["it"]
+                        },
                         "ee": {
                             "localize": ["ee"]
                         },
@@ -158,6 +165,9 @@
                         },
                         "fr": {
                             "browserTarget": "request-management-portal-ui:build:fr"
+                        },
+                        "it": {
+                            "browserTarget": "request-management-portal-ui:build:it"
                         },
                         "ee": {
                             "browserTarget": "request-management-portal-ui:build:ee"

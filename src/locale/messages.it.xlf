@@ -348,7 +348,7 @@
             </trans-unit>
             <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
                 <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
-                <target>PORTAIL DE GESTION DES REQUETES SNOMED CT</target>
+                <target>PORTALE PER LA GESTIONE DELLE RICHIESTE SNOMED CT</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -358,8 +358,8 @@
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please
                     select the type of request you require from the options below.
                 </source>
-                <target>Ce portail de requête est destiné à soumettre des demandes d'ajout, de mise à jour ou de modification
-                du contenu SNOMED CT. Veuillez sélectionner le type de demande souhaité parmi les options ci-dessous.
+                <target>Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. 
+                    Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.
                 </target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/app.component.html</context>
@@ -368,7 +368,7 @@
             </trans-unit>
             <trans-unit id="5fb0d40b6c834d9118e5303348467ecaae12dd63" datatype="html">
                 <source>SNOMED CT Request Management Portal</source>
-                <target>SNOMED CT Request Management Portal</target>
+                <target>PORTALE PER LA GESTIONE DELLE RICHIESTE SNOMED CT</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-navbar/snomed-navbar.component.html
                     </context>
@@ -392,7 +392,7 @@
             </trans-unit>
             <trans-unit id="f03a65dc29188cd55e01deba3d62c77533cc8ad2" datatype="html">
                 <source>User Guide</source>
-                <target>Guide de l'utilisateur</target>
+                <target>User Guide</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/snomed-footer/snomed-footer.component.html
                     </context>
@@ -410,7 +410,7 @@
             </trans-unit>
             <trans-unit id="54754035562ab4913f9d63832d092fcb2edfe3d4" datatype="html">
                 <source>REQUEST DETAILS</source>
-                <target>DÉTAILS DE LA REQUÊTE </target>
+                <target>DETTAGLI DELLA RICHIESTA</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">3</context>
@@ -418,7 +418,7 @@
             </trans-unit>
             <trans-unit id="dc6d2274470f202ab0b38dc00e19eb20982ca30e" datatype="html">
                 <source>ADD CONCEPT</source>
-                <target>AJOUTER CONCEPT</target>
+                <target>AGGIUNGI CONCETTO</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">8</context>
@@ -426,7 +426,7 @@
             </trans-unit>
             <trans-unit id="f7e794a17a8c47e7b5d8b4bd7401fb654f533f80" datatype="html">
                 <source>ADD DESCRIPTION</source>
-                <target>AJOUTER DESCRIPTION</target>
+                <target>AGGIUNGI DESCRIZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">11</context>
@@ -434,7 +434,7 @@
             </trans-unit>
             <trans-unit id="b9dda2946dfe192ec1232cfc5e9bea2a2b884cf7" datatype="html">
                 <source>ADD RELATIONSHIP</source>
-                <target>AJOUTER RELATION</target>
+                <target>AGGIUNGI RELAZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">14</context>
@@ -442,7 +442,7 @@
             </trans-unit>
             <trans-unit id="ecc1389c44884f2a8d5fd61e3c7dc63eb7d4308c" datatype="html">
                 <source>CHANGE DESCRIPTION</source>
-                <target>MODIFIER DESCRIPTION</target>
+                <target>MODIFICA DESCRIZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">17</context>
@@ -450,7 +450,7 @@
             </trans-unit>
             <trans-unit id="9ac3606141d3357b5449869468dbf8cb43c14a49" datatype="html">
                 <source>CHANGE RELATIONSHIP</source>
-                <target>MODIFIER RELATION</target>
+                <target>MODIFICA RELAZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">20</context>
@@ -458,7 +458,7 @@
             </trans-unit>
             <trans-unit id="791564a40c97f143fe581e7e7b2952ca77996e23" datatype="html">
                 <source>INACTIVATE DESCRIPTION</source>
-                <target>INACTIVER DESCRIPTION</target>
+                <target>INATTIVA DESCRIZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">23</context>
@@ -466,7 +466,7 @@
             </trans-unit>
             <trans-unit id="b0b7562962d7754a977cc2c222fa7b8ec7e0c5d4" datatype="html">
                 <source>INACTIVATE RELATIONSHIP</source>
-                <target>INACTIVER RELATION</target>
+                <target>INATTIVA RELAZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">26</context>
@@ -474,7 +474,7 @@
             </trans-unit>
             <trans-unit id="67f36c68fca0e32bcbb03b1e4b55c3e1d9e6cc9a" datatype="html">
                 <source>OTHER</source>
-                <target>AUTRE</target>
+                <target>ALTRO</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/request-tabs/request-tabs.component.html</context>
                     <context context-type="linenumber">29</context>
@@ -482,7 +482,7 @@
             </trans-unit>
             <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
                 <source>Summary</source>
-                <target>Résumé</target>
+                <target>Riassunto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -531,7 +531,7 @@
             </trans-unit>
             <trans-unit id="33ac391cd7434a68f36d88a99b95238f21c653b1" datatype="html">
                 <source>The content of the request in one sentence</source>
-                <target>Objet de la requête en une phrase</target>
+                <target>Il contenuto della richiesta in una frase</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -567,7 +567,7 @@
             </trans-unit>
             <trans-unit id="79f8a3a55d3a26c0bf24de3d4b800b563b5b9f5e" datatype="html">
                 <source>Summary is required</source>
-                <target>Résumé est requise</target>
+                <target>Riassunto è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -652,7 +652,7 @@
             </trans-unit>
             <trans-unit id="a2f14a73f7a6e94479f67423cc51102da8d6f524" datatype="html">
                 <source>None</source>
-                <target>Aucun</target>
+                <target>Nessuna</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">13</context>
@@ -1260,7 +1260,7 @@
             </trans-unit>
             <trans-unit id="9e02ed032d230a4fe81a56a5afab710f39e56910" datatype="html">
                 <source>Select the language the request is for</source>
-                <target>Sélectionnez la langue pour laquelle la demande est faite</target>
+                <target>Selezionare la lingua per la quale è presentata la richiesta</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">12</context>
@@ -1656,7 +1656,7 @@
             </trans-unit>
             <trans-unit id="93d25609b007c2e803b191f0ccfa7abfb820a8ba" datatype="html">
                 <source>Select the context the request is for</source>
-                <target>Sélectionnez le contexte pour lequel la demande est faite</target>
+                <target>Selezionare il contesto per il quale è presentata la richiesta</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">33</context>
@@ -1692,7 +1692,7 @@
             </trans-unit>
             <trans-unit id="e3c82437ecafdd4027ebba1c9b76ebc38bd61f4f" datatype="html">
                 <source>New FSN</source>
-                <target>Nouveau FSN</target>
+                <target>Nuovo FSN</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1701,7 +1701,7 @@
             </trans-unit>
             <trans-unit id="54efe939444b3998d7bfeb92309f53c6f0eb691c" datatype="html">
                 <source>The FSN must be in English</source>
-                <target>Le FSN doit être en anglais</target>
+                <target>L’FSN deve essere in inglese</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">13</context>
@@ -1709,7 +1709,7 @@
             </trans-unit>
             <trans-unit id="9e8e2679dbdfa1260b06322004b220a249235f09" datatype="html">
                 <source>New FSN is required</source>
-                <target>Nouveau FSN est requise</target>
+                <target>New FSN è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1718,7 +1718,7 @@
             </trans-unit>
             <trans-unit id="3e9a08fd241e9d7b8b9e17dcef7571c0b67c6cf2" datatype="html">
                 <source>New Preferred Term</source>
-                <target>Nouveau Preferred Term (PT, ou terme préféré)</target>
+                <target>Nuovo Preferred Term (PT)</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1727,7 +1727,7 @@
             </trans-unit>
             <trans-unit id="33a3c226498d85aac0f659f17086a8f75fb47998" datatype="html">
                 <source>This is the PT in the extension language</source>
-                <target>PT dans la langue de l'extension</target>
+                <target>Si tratta del PT nella lingua dell’estensione</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">18</context>
@@ -1735,7 +1735,7 @@
             </trans-unit>
             <trans-unit id="38eb71069b880a4f7a53f935f359baa5cf5bf78e" datatype="html">
                 <source>New Preferred Term is required</source>
-                <target>Nouveau Preferred Term est requise</target>
+                <target>New Preferred Term è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1744,7 +1744,7 @@
             </trans-unit>
             <trans-unit id="3e7c5d65f1ad69450bd9059cbf31611617d7f54d" datatype="html">
                 <source>New Synonyms</source>
-                <target>Nouveau Synonyme(s)</target>
+                <target>Nuovo(i) sinonimo(i)</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1753,7 +1753,7 @@
             </trans-unit>
             <trans-unit id="eaa5aba0deb75f62caaadbd1cd6d1be15b685abe" datatype="html">
                 <source>Please enter synonyms separated by comma</source>
-                <target>Veuillez ajouter les synonymes, séparés d'une virgule</target>
+                <target>Immettere i sinonimi separati da una virgola</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">23</context>
@@ -1761,7 +1761,7 @@
             </trans-unit>
             <trans-unit id="4f75015f3eeca855faa8fc7af929710016c6612a" datatype="html">
                 <source>Parent Concept</source>
-                <target>Concept parent</target>
+                <target>Concetto padre</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1770,7 +1770,7 @@
             </trans-unit>
             <trans-unit id="9039222311aee4a273cbff552d1c0171ec622d07" datatype="html">
                 <source>Please add SCT ID if known</source>
-                <target>Veuillez préciser l'identifiant SCT s'il est connu</target>
+                <target>Aggiungere un SCT ID se noto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">27</context>
@@ -1778,7 +1778,7 @@
             </trans-unit>
             <trans-unit id="445854d01fe4f31391b290458801130f74b488e6" datatype="html">
                 <source>Parent Concept is required</source>
-                <target>Concept parent est requise</target>
+                <target>Parent Concept è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1787,7 +1787,7 @@
             </trans-unit>
             <trans-unit id="05e961e18ee86f6749782ba837b81b5f0a94b103" datatype="html">
                 <source>Justification</source>
-                <target>Justification</target>
+                <target>Giustificazione</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1836,7 +1836,7 @@
             </trans-unit>
             <trans-unit id="ea34cfb5707022f10c7887b33da09806c478d567" datatype="html">
                 <source>Detailed description of clinical or administrative need for the request</source>
-                <target>Description détaillée de la nécessité clinique ou administrative de la requête</target>
+                <target>Descrizione dettagliata delle esigenze cliniche o amministrative per la richiesta</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">35</context>
@@ -1872,7 +1872,7 @@
             </trans-unit>
             <trans-unit id="7529307ff5a8475ecd0755abb1b8a91ae24c1d52" datatype="html">
                 <source>Reference</source>
-                <target>Référence</target>
+                <target>Riferimento</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -1921,7 +1921,7 @@
             </trans-unit>
             <trans-unit id="5a2b27ba744aae1c9e072c52f53f18c9636bfefe" datatype="html">
                 <source>Add one or more sources where the concept is described</source>
-                <target>Ajouter une ou plusieurs sources où le concept est décrit</target>
+                <target>Aggiungere una o più fonti nelle quali è descritto il concetto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html</context>
                     <context context-type="linenumber">39</context>
@@ -1957,7 +1957,7 @@
             </trans-unit>
             <trans-unit id="9134801552b7509c4816e75d9fa002898b7b63c3" datatype="html">
                 <source>RESET</source>
-                <target>RÉINITIALISER</target>
+                <target>REIMPOSTA</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -2006,7 +2006,7 @@
             </trans-unit>
             <trans-unit id="eff550208c514f5c350e6381df99fcb99c5920ea" datatype="html">
                 <source>SUBMIT</source>
-                <target>SOUMETTRE</target>
+                <target>INVIA</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-concept-form/add-concept-form.component.html
                     </context>
@@ -2055,7 +2055,7 @@
             </trans-unit>
             <trans-unit id="66b48c6eef7c427a6ada2f0dd994daa8d83b1c57" datatype="html">
                 <source>Concept</source>
-                <target>Concept</target>
+                <target>Concetto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2095,7 +2095,7 @@
             </trans-unit>
             <trans-unit id="d4373fa2a597f9e7458c387f3bf16f4bccc7f32d" datatype="html">
                 <source>Type to Search...</source>
-                <target>Tapez pour rechercher...</target>
+                <target>Immettere una chiave di ricerca...</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2147,7 +2147,7 @@
             </trans-unit>
             <trans-unit id="ad0d6778647c68b4723b0441e9d0f5d4fbaf5b65" datatype="html">
                 <source>Search for concepts</source>
-                <target>Recherche de concepts</target>
+                <target>Ricerca di concetti</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">14</context>
@@ -2183,7 +2183,7 @@
             </trans-unit>
             <trans-unit id="3cd009f3c119059a2fd23437eb0a0599267a2bcc" datatype="html">
                 <source>Concept ID</source>
-                <target>Identifiant du concept</target>
+                <target>ID concetto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2223,7 +2223,7 @@
             </trans-unit>
             <trans-unit id="b1b62c9ee96a794619d86f7bc977d91d3c4b874a" datatype="html">
                 <source>Is auto filled when searched</source>
-                <target>Rempli automatiquement lors d'une recherche</target>
+                <target>Campo riempito automaticamente durante la ricerca</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">21</context>
@@ -2275,7 +2275,7 @@
             </trans-unit>
             <trans-unit id="4076f2544452d175d34fd52f927472d8625fe770" datatype="html">
                 <source>Concept ID is required</source>
-                <target>Identifiant du concept est requise</target>
+                <target>Concept ID è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2315,7 +2315,7 @@
             </trans-unit>
             <trans-unit id="f08e82b5db4500aa35128af7afeef1ca0f600d62" datatype="html">
                 <source>Concept Name</source>
-                <target>Nom du concept</target>
+                <target>Nome concetto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2355,7 +2355,7 @@
             </trans-unit>
             <trans-unit id="ddca5be793d5c85894bf44142502e2b4ef1eecb8" datatype="html">
                 <source>Concept Name is required</source>
-                <target>Nom du concept est requise</target>
+                <target>Concept Name è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2395,7 +2395,7 @@
             </trans-unit>
             <trans-unit id="c904df6e44a0211212755de38fb4b3030726f0f8" datatype="html">
                 <source>New Description</source>
-                <target>Nouvelle description</target>
+                <target>Nuova descrizione</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2411,7 +2411,7 @@
             </trans-unit>
             <trans-unit id="9e627b5db3fb614a04046881c4b61dc8ca47a3ce" datatype="html">
                 <source>The new description in the extension language</source>
-                <target>La nouvelle description dans la langue de l'extension</target>
+                <target>Nuova descrizione nella lingua dell’estensione</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-description-form/add-description-form.component.html</context>
                     <context context-type="linenumber">31</context>
@@ -2423,7 +2423,7 @@
             </trans-unit>
             <trans-unit id="a6abbf232018d923ca1aeca2e5aff3e53e6bcd75" datatype="html">
                 <source>New Description is required</source>
-                <target>Nouvelle description est requise</target>
+                <target>New Description è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-description-form/add-description-form.component.html
@@ -2439,7 +2439,7 @@
             </trans-unit>
             <trans-unit id="49dd0ba362aa1693dbd648386674ad087647211b" datatype="html">
                 <source>Relationship Type</source>
-                <target>Type de relation</target>
+                <target>Tipo di relazione</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2455,7 +2455,7 @@
             </trans-unit>
             <trans-unit id="a2f14a73f7a6e94479f67423cc51102da8d6f524" datatype="html">
                 <source>None</source>
-                <target>Aucun</target>
+                <target>None</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2471,7 +2471,7 @@
             </trans-unit>
             <trans-unit id="6c73c9ceefdd42e93a9361dece5055ffa191171f" datatype="html">
                 <source>Is a</source>
-                <target>Est un sous-type de</target>
+                <target>Is a</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2487,7 +2487,7 @@
             </trans-unit>
             <trans-unit id="6e67bc66c21d5b18c61355f709df4c6bb8a2d50a" datatype="html">
                 <source>Associated Morphology</source>
-                <target>Morphologie associée</target>
+                <target>Associated Morphology</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2503,7 +2503,7 @@
             </trans-unit>
             <trans-unit id="07252896174ce0e12461895768a833d5f2c7e143" datatype="html">
                 <source>Finding Site</source>
-                <target>Site de la constatation</target>
+                <target>Finding Site</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2519,7 +2519,7 @@
             </trans-unit>
             <trans-unit id="2d830653ec4c8482060aa6d248b4a70b8289b2a0" datatype="html">
                 <source>Procedure Site</source>
-                <target>Site de la procédure</target>
+                <target>Procedure Site</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2535,7 +2535,7 @@
             </trans-unit>
             <trans-unit id="e5d8bb389c702588877f039d72178f219453a72d" datatype="html">
                 <source>Unknown</source>
-                <target>Inconnu</target>
+                <target>Sconosciuta</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2551,7 +2551,7 @@
             </trans-unit>
             <trans-unit id="c2a9de3714f5767b174d0424bc8abe2dc37acc41" datatype="html">
                 <source>Other</source>
-                <target>Autre</target>
+                <target>Altro</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2567,7 +2567,7 @@
             </trans-unit>
             <trans-unit id="9ac17c4fd8aa403b3b144e8fa6441d1c1ac1817a" datatype="html">
                 <source>If ‘Other’ please explain in Justification below</source>
-                <target>Si « Autre », veuillez préciser dans la justification ci-dessous</target>
+                <target>Se “Altro”, aggiungere una spiegazione nel campo Giustificazione sotto</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/add-relationship-form/add-relationship-form.component.html</context>
                     <context context-type="linenumber">30</context>
@@ -2579,7 +2579,7 @@
             </trans-unit>
             <trans-unit id="75254ec3804182b7db620e6cf56861b5bbd4325c" datatype="html">
                 <source>Relationship Type is required</source>
-                <target>Type de relation est requise</target>
+                <target>Relationship Type è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2595,7 +2595,7 @@
             </trans-unit>
             <trans-unit id="094279c938c58b7cdc9af7e15a88eacfbcb61bf6" datatype="html">
                 <source>Relationship Target</source>
-                <target>(concept) cible de la relation</target>
+                <target>Relationship Target</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2611,7 +2611,7 @@
             </trans-unit>
             <trans-unit id="420ee653d0bec0cc1372c5442c9892ee126dd0b0" datatype="html">
                 <source>Relationship Target is required</source>
-                <target>(concept) cible de la relation est requise</target>
+                <target>Relationship Target è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/add-relationship-form/add-relationship-form.component.html
@@ -2627,7 +2627,7 @@
             </trans-unit>
             <trans-unit id="1430597e14daa7eae64856e671275820ac6977c3" datatype="html">
                 <source>Existing Description</source>
-                <target>Description existante</target>
+                <target>Descrizione esistente</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -2643,7 +2643,7 @@
             </trans-unit>
             <trans-unit id="1345caafc529ba3223def8a01c96fda735e6bc2f" datatype="html">
                 <source>The description to be changed</source>
-                <target>Description à modifier</target>
+                <target>La descrizione da modificare</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/change-description-form/change-description-form.component.html</context>
                     <context context-type="linenumber">30</context>
@@ -2655,7 +2655,7 @@
             </trans-unit>
             <trans-unit id="e6a5a8dee9fb07fc87acdf5f3101e2280edf0155" datatype="html">
                 <source>Existing Description is required</source>
-                <target>Description existante est requise</target>
+                <target>Existing Description è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-description-form/change-description-form.component.html
@@ -2671,7 +2671,7 @@
             </trans-unit>
             <trans-unit id="9a627f671f1eeb43f65dc7dbead2f7d4816406c3" datatype="html">
                 <source>Existing Relationship</source>
-                <target>Relation existante</target>
+                <target>Relazione esistente</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
@@ -2687,7 +2687,7 @@
             </trans-unit>
             <trans-unit id="544526d803c6c743a1e236296f36a341f9304cd9" datatype="html">
                 <source>The relationship to be changed</source>
-                <target>Relation à modifier</target>
+                <target>La relazione da modificare</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/change-relationship-form/change-relationship-form.component.html</context>
                     <context context-type="linenumber">30</context>
@@ -2699,7 +2699,7 @@
             </trans-unit>
             <trans-unit id="09000735869d285eea0a79ac27c53800282e5d43" datatype="html">
                 <source>Existing Relationship is required</source>
-                <target>Relation existante est requise</target>
+                <target>Existing Relationship è obbligatorio</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">
                         app/components/change-relationship-form/change-relationship-form.component.html
@@ -2715,7 +2715,7 @@
             </trans-unit>
             <trans-unit id="b68dccd4a64e24b561ac3eecd4e0311981ffa2a6" datatype="html">
                 <source>AUTHENTICATION</source>
-                <target>AUTHENTIFICATION</target>
+                <target>AUTENTICAZIONE</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">3</context>
@@ -2723,7 +2723,7 @@
             </trans-unit>
             <trans-unit id="03c9827790e249b944ea6f08bf8b24ed0e0ebff5" datatype="html">
                 <source>If you do not have an account you can apply for one <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>HERE<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-                <target>Si vous n'avez pas encore de compte utilisateur, vous pouvez en demander un <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>ICI<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+                <target>Se non avete un account, potete richiederne uno <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>QUI<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">6</context>
@@ -2731,7 +2731,7 @@
             </trans-unit>
             <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
                 <source>Username</source>
-                <target>Nom d'utilisateur</target>
+                <target>Nome utente</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">8</context>
@@ -2739,7 +2739,7 @@
             </trans-unit>
             <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
                 <source>Password</source>
-                <target>Mot de passe</target>
+                <target>Password</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/auth-block/auth-block.component.html</context>
                     <context context-type="linenumber">12</context>
@@ -2747,7 +2747,7 @@
             </trans-unit>
             <trans-unit id="53fef31b15885844f43d77f8f3cccccdeddfa938" datatype="html">
                 <source>SNOMED CT REQUEST MANAGEMENT PORTAL</source>
-                <target>SNOMED CT REQUEST MANAGEMENT PORTAL</target>
+                <target>PORTALE PER LA GESTIONE DELLE RICHIESTE SNOMED CT</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
                     <context context-type="linenumber">4</context>
@@ -2759,7 +2759,7 @@
             </trans-unit>
             <trans-unit id="eef047a1462ff8b98b84ec86aaad599e8bdb0569" datatype="html">
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content within the following National Extensions. Please select the relevant country from the options below.</source>
-                <target>This Request Portal is for submitting requests to add, update or change SNOMED content within the following National Extensions. Please select the relevant country from the options below.</target>
+                <target>Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/dashboard/dashboard.component.html</context>
                     <context context-type="linenumber">5</context>
@@ -2819,7 +2819,7 @@
             </trans-unit>
             <trans-unit id="727da5f68a15139fe2be6521abdc20b90a7983ec" datatype="html">
                 <source>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</source>
-                <target>This Request Portal is for submitting requests to add, update or change SNOMED content. Please select the type of request you require from the options below.</target>
+                <target>Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">app/components/instance/instance.component.html</context>
                     <context context-type="linenumber">5</context>

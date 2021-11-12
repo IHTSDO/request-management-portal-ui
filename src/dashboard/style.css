@@ -60,6 +60,7 @@ h3 {
 div.card {
     cursor: pointer;
     border-radius: 5px;
+    margin: auto;
 }
 
 div.card:hover > .card-body {
@@ -83,7 +84,7 @@ a.no-decoration {
 }
 
 img.card-img-top {
-    max-height: 9rem;
+    max-height: 12rem;
     object-fit: cover;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
