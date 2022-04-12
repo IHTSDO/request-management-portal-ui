@@ -1,29 +1,5 @@
 {
     "version":"v0.0.1",
     "jiraUrl":"https://jira.ihtsdotools.org/rest/api/2/",
-    "terminologyServerEndpoint":"/snowstorm/snomed-ct/",
-    "extensions" :
-    [
-        {
-            "key": "LOCAL",
-            "projectKey": "RMP",
-            "contactUsUrl": "",
-            "userGuideUrl": "",
-            "uiLanguage": "en"
-        },
-        {
-            "key": "DK",
-            "projectKey": "DKRMP",
-            "contactUsUrl": "",
-            "userGuideUrl": "",
-            "uiLanguage": "dk"
-        },
-        {
-            "key": "IE",
-            "projectKey": "IERMP",
-            "contactUsUrl": "",
-            "userGuideUrl": "",
-            "uiLanguage": "en"
-        }
-    ]
+    "terminologyServerEndpoint":"/snowstorm/snomed-ct/"
 }

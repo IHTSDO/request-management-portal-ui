@@ -13,53 +13,11 @@
                     "style": "scss"
                 }
             },
-            "i18n": {
-                "sourceLocale": "en-US",
-                "locales": {
-                    "en": {
-                        "baseHref": "/en/",
-                        "translation": "src/locale/messages.en.xlf"
-                    },
-                    "dk": {
-                        "baseHref": "/dk/",
-                        "translation": "src/locale/messages.dk.xlf"
-                    },
-                    "de": {
-                        "baseHref": "/de/",
-                        "translation": "src/locale/messages.de.xlf"
-                    },
-                    "nl": {
-                        "baseHref": "/nl/",
-                        "translation": "src/locale/messages.nl.xlf"
-                    },
-                    "fr": {
-                        "baseHref": "/fr/",
-                        "translation": "src/locale/messages.fr.xlf"
-                    },
-                    "it": {
-                        "baseHref": "/it/",
-                        "translation": "src/locale/messages.it.xlf"
-                    },
-                    "ee": {
-                        "baseHref": "/ee/",
-                        "translation": "src/locale/messages.ee.xlf"
-                    },
-                    "no_nb": {
-                        "baseHref": "/no_nb/",
-                        "translation": "src/locale/messages.no_nb.xlf"
-                    },
-                    "no_nn": {
-                        "baseHref": "/no_nn/",
-                        "translation": "src/locale/messages.no_nn.xlf"
-                    }
-                }
-            },
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "localize": true,
-                        "aot": true,
+                        "baseHref": "/",
                         "outputPath": "dist/request-management-portal-ui",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -100,43 +58,16 @@
                                     "with": "src/environments/environment.prod.ts"
                                 }
                             ],
+                            "baseHref": "/",
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
-                            "extractCss": true,
                             "namedChunks": false,
                             "localize": true,
                             "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true
-                        },
-                        "en": {
-                            "localize": ["en"]
-                        },
-                        "dk": {
-                            "localize": ["dk"]
-                        },
-                        "de": {
-                            "localize": ["de"]
-                        },
-                        "nl": {
-                            "localize": ["nl"]
-                        },
-                        "fr": {
-                            "localize": ["fr"]
-                        },
-                        "it": {
-                            "localize": ["it"]
-                        },
-                        "ee": {
-                            "localize": ["ee"]
-                        },
-                        "no_nb": {
-                            "localize": ["no_nb"]
-                        },
-                        "no_nn": {
-                            "localize": ["no_nn"]
                         }
                     }
                 },
@@ -144,39 +75,11 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
                         "browserTarget": "request-management-portal-ui:build",
-                        "liveReload": false,
-                        "baseHref": "/"
+                        "liveReload": false
                     },
                     "configurations": {
                         "production": {
                             "browserTarget": "request-management-portal-ui:build:production"
-                        },
-                        "en": {
-                            "browserTarget": "request-management-portal-ui:build:en"
-                        },
-                        "dk": {
-                            "browserTarget": "request-management-portal-ui:build:dk"
-                        },
-                        "de": {
-                            "browserTarget": "request-management-portal-ui:build:de"
-                        },
-                        "nl": {
-                            "browserTarget": "request-management-portal-ui:build:nl"
-                        },
-                        "fr": {
-                            "browserTarget": "request-management-portal-ui:build:fr"
-                        },
-                        "it": {
-                            "browserTarget": "request-management-portal-ui:build:it"
-                        },
-                        "ee": {
-                            "browserTarget": "request-management-portal-ui:build:ee"
-                        },
-                        "no_nb": {
-                            "browserTarget": "request-management-portal-ui:build:no_nb"
-                        },
-                        "no_nn": {
-                            "browserTarget": "request-management-portal-ui:build:no_nn"
                         }
                     }
                 },
