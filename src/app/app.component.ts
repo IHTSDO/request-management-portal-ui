@@ -7,6 +7,7 @@ import { TerminologyServerService } from './services/terminologyServer/terminolo
 import { Configuration } from './models/configuration';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { Subscription } from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
@@ -25,8 +26,12 @@ export class AppComponent implements OnInit {
                 private branchingService: BranchingService,
                 private titleService: Title,
                 private terminologyService: TerminologyServerService,
-                private authService: AuthenticationService) {
+                private authService: AuthenticationService,
+                private translate: TranslateService) {
         this.authenticatedSubscription = this.authService.getAuthenticated().subscribe(data => this.authenticated = data);
+        translate.addLangs(['en', 'fr']);
+        translate.setDefaultLang('en');
+        translate.use('en');
     }
 
     ngOnInit() {
@@ -39,20 +44,20 @@ export class AppComponent implements OnInit {
             this.environment = this.environment.slice(0, 2);
         }
 
-        this.authoringService.getConfigurationJSON().subscribe(config => {
-            const configuration: Configuration = config;
-
-            configuration.extension = config.extensions.find(item => {
-                return item.key.toLowerCase() === this.environment;
-            });
-
-            this.authoringService.setConfig(configuration);
-
-            this.terminologyService.getVersions(false).subscribe(versions => {
-                versions.items.reverse();
-                this.branchingService.setBranchPath(versions.items[0].branchPath);
-            });
-        });
+        // this.authoringService.getConfigurationJSON().subscribe(config => {
+        //     const configuration: Configuration = config;
+        //
+        //     configuration.extension = config.extensions.find(item => {
+        //         return item.key.toLowerCase() === this.environment;
+        //     });
+        //
+        //     this.authoringService.setConfig(configuration);
+        //
+        //     this.terminologyService.getVersions(false).subscribe(versions => {
+        //         versions.items.reverse();
+        //         this.branchingService.setBranchPath(versions.items[0].branchPath);
+        //     });
+        // });
 
         this.assignFavicon();
     }

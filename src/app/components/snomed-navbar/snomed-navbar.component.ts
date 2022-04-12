@@ -121,7 +121,7 @@ export class SnomedNavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(window.location);
+        // console.log(window.location);
         if (window.location.pathname === '/') {
             this.siteFlag = this.defaultlanguageList.find(f => f.code === this.environment).flag;
             this.siteFlagLabel = this.defaultlanguageList.find(f => f.code === this.environment).label;
