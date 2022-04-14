@@ -1,0 +1,119 @@
+{
+    "home": {
+        "title": "Portal for Forespørsel om innhold i Snomed CT",
+        "description": "Portalen brukes til å sende inn forespørsler om å legge til, oppdatere eller endre innhold i Snomed CT. Vennligst angi hvilken type forespørsel du ønsker nedenfor."
+    },
+    "authentication": {
+        "title": "Autentisering",
+        "description": ["Dersom du ikke har en konto, kan du søke om å opprette en ", "Her", ""],
+        "username": "Brukernavn",
+        "password": "Passord"
+    },
+    "requestDetails": {
+        "title": "Type forespørsel",
+        "addConcept": "Legg til begrep",
+        "addDescription": "Legg til beskrivelse",
+        "addRelationship": "Legg til begrepsrelasjon",
+        "changeDescription": "Endre beskrivelse",
+        "changeRelationship": "Endre begrepsrelasjon",
+        "inactivateDescription": "Inaktiver beskrivelse",
+        "inactivateRelationship": "Inaktiver begrepsrelasjon",
+        "other": "Annet"
+    },
+    "form": {
+        "summary": "Sammendrag",
+        "languageRefset": "Språkbasert referansesett",
+        "contextRefset": "Kontekstbasert referansesett",
+        "newFSN": "Nytt FSN (fullstendig spesifisert navn)",
+        "newPreferredTerm": "Ny foretrukket term",
+        "newSynonyms": "Nytt synonym",
+        "parentConcept": "Foreldrebegrep (nærmeste overbegrep)",
+        "justification": "Begrunnelse for forespørsel",
+        "reference": "Kilde",
+        "concept": "Begrep",
+        "conceptID": "Begreps-ID",
+        "conceptName": "Term (navn på begrep)",
+        "newDescription": "Ny beskrivelse",
+        "relationshipType": "Type begrepsrelasjon",
+        "relationshipTarget": "Målverdi for relasjon",
+        "existingDescription": "Eksisterende beskrivelse",
+        "existingRelationship": "Eksisterende relasjon",
+        "placeholder": "Skriv for å søke...",
+        "reset": "Nullstill",
+        "submit": "Send Inn"
+    },
+    "tooltip": {
+        "summary": "Oppgi innholdet i forespørselen i én setning",
+        "languageRefset": "Velg språket forespørselen gjelder",
+        "contextRefset": "Velg konteksten forespørselen gjelder",
+        "newFSN": "FSN-et angis på engelsk",
+        "newPreferredTerm": "Foretrukket term angis på bokmål eller nynorsk (språket angitt i språkbasert referansesett)",
+        "newSynonyms": "Legg til eventuelle synonymer. Dersom det er flere forslag, vennligst sett komma mellom hvert synonym.",
+        "parentConcept": "Legg til Snomed ID-en til foreldrebegrepet dersom du kjenner denne",
+        "justification": "Oppgi en detaljert beskrivelse for klinisk eller administrativt behov",
+        "reference": "Vennligst legg ved én eller flere kilder som beskriver begrepet",
+        "concept": "Søk etter begrep",
+        "conceptID": "Fylles ut automatisk ved søk",
+        "conceptName": "Fylles ut automatisk ved søk",
+        "newDescription": "Den nye beskrivelsen angis på bokmål eller nynorsk (språket angitt i det språkbaserte referansesettet)",
+        "relationshipType": "Dersom ‘Annet’, vennligst forklar i feltet ‘Begrunnelse for forespørsel’",
+        "relationshipTarget": "Søk etter begrep",
+        "existingDescription": "Angi beskrivelsen som skal endres",
+        "existingRelationship": "Relasjonen som skal endres"
+    },
+    "required": {
+        "summary": "Sammendrag er nødvendig",
+        "newFSN": "Nytt FSN er nødvendig",
+        "newPreferredTerm": "Ny foretrukket term er nødvendig",
+        "parentConcept": "Foreldrebegrep er nødvendig",
+        "conceptID": "Begreps-ID er nødvendig",
+        "conceptName": "Term (navn på begrep) er nødvendig",
+        "newDescription": "Ny beskrivelse er nødvendig",
+        "relationshipType": "Type begrepsrelasjon er nødvendig",
+        "relationshipTarget": "Målverdi for relasjon er nødvendig",
+        "existingDescription": "Eksisterende beskrivelse er nødvendig",
+        "existingRelationship": "Eksisterende begrepsrelasjon er nødvendig"
+    },
+    "language": {
+        "none": "Ingen",
+        "belgianDutch": "Belgian Dutch",
+        "belgianFrench": "Belgian French",
+        "danish": "Danish",
+        "estonian": "Estonian",
+        "ieEnglish": "IE English",
+        "gbEnglish": "GB English",
+        "maori": "Māori",
+        "norwegianBokmal": "Norwegian Bokmål",
+        "norwegianNyorsk": "Norwegian Nynorsk",
+        "nzEnglish": "NZ English",
+        "swedish": "Swedish",
+        "swissGerman": "Swiss German",
+        "swissItalian": "Swiss Italian",
+        "swissFrench": "Swiss French",
+        "usEnglish": "US English"
+    },
+    "context": {
+        "none": "Ingen",
+        "beGPDutch": "BE GP - Dutch",
+        "beGPFrench": "BE GP - French",
+        "nzPatientFriendlyEnglish": "NZ Patient Friendly - English",
+        "seChiefComplaints": "SE Chief Complaints",
+        "seDoseUnitAbbr": "SE Dose Unit Abbr.",
+        "seLabMedicine": "SE Lab Medicine",
+        "seDoseUnitPlural": "SE Dose Unit Plural",
+        "seMedicationProf": "SE Medication Prof.",
+        "seMedicationCommon": "SE Medication Common"
+    },
+    "relationshipType": {
+        "isA": "Er en (foreldrebegrep)",
+        "associatedMorphology": "Assosiert morfologi",
+        "findingSite": "Funnsted",
+        "procedureSite": "Prosedyrested",
+        "unknown": "Ukjent",
+        "other": "Annet"
+    },
+    "footer": {
+        "userGuide": "bruksanvisning",
+        "contactUs": "kontakt oss"
+    }
+}

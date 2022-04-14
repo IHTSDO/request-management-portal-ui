@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
                 private authService: AuthenticationService,
                 private translate: TranslateService) {
         this.authenticatedSubscription = this.authService.getAuthenticated().subscribe(data => this.authenticated = data);
-        translate.addLangs(['en', 'fr']);
+        translate.addLangs(['en', 'dk', 'de', 'it', 'fr', 'nl', 'no_nb', 'no_nn']);
         translate.setDefaultLang('en');
         translate.use('en');
     }
