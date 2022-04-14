@@ -71,46 +71,98 @@ body {
     font-weight: 900;
 }
 
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 3.0rem;
+    font-weight: 300;
+}
+
 h2 {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     font-weight: 300;
 }
 
 h3 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 300;
 }
 
 h4 {
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+h5 {
     font-size: 1.4rem;
     font-weight: 300;
 }
 
-div, p, a, select, label {
-    font-size: 1.5rem;
+h6 {
+    font-size: 1.2rem;
     font-weight: 300;
+}
 
-    &.form-control {
-        font-size: 1.8rem;
-    }
+p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: $river-bed;
+}
 
-    span.input-group-text {
-        padding: 4px 8px 4px 8px;
-        font-size: 2rem;
-        color: $slate-grey;
+a {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: $cerulean;
+
+    &:hover {
+        color: darken($cerulean, 20%);
     }
 }
 
-label {
-    margin-bottom: 0;
+b {
+    font-weight: 600;
 }
 
-button, input, textarea {
-    font-size: 1.8rem;
+button {
+    &.btn {
+        font-size: 1.4rem;
+        font-weight: 300;
+        letter-spacing: 1.5px;
+        border: none;
+        color: $white;
+
+        &:hover {
+            color: $white;
+        }
+    }
+
+    &:focus, &:active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input, textarea {
+    font-size: 1.4rem;
     font-weight: 300;
     letter-spacing: 0.5px;
-    border: none;
     resize: none;
+
+    &:focus, &:active {
+        outline: none !important;
+    }
+}
+
+select {
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 
     &:focus, &:active {
         outline: none !important;
@@ -119,12 +171,10 @@ button, input, textarea {
     &:hover {
         cursor: pointer;
     }
+}
 
-    &.btn {
-        font-size: 1.8rem;
-        font-weight: 300;
-        letter-spacing: 1.5px;
-    }
+.form-control {
+    font-size: 1.4rem;
 }
 
 .footer-margin {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -11,7 +12,7 @@ export class SnomedNavbarComponent implements OnInit {
     environmentName: string;
     siteFlag: string;
     siteFlagLabel: string;
-    defaultlanguageList = [
+    instanceList = [
         {
             code: 'en',
             flag: 'gb',
@@ -95,45 +96,36 @@ export class SnomedNavbarComponent implements OnInit {
             flag: 'nz',
             label: 'New Zealand',
             title: 'New Zealand'
-        },
-        {
-            code: 'local',
-            flag: 'local',
-            label: 'Localhost',
-            title: 'Localhost'
         }
     ];
 
-    constructor() {
+    constructor(private translate: TranslateService) {
         this.environment = window.location.host.split(/[.]/)[0];
-        // console.log('environment: ', this.environment);
-
-        if (this.environment.includes('dev')) {
-            this.environment = this.environment.slice(4, 6);
-            // console.log('environmentA: ', this.environment);
-        } else if (!this.environment.includes('local')) {
-            this.environment = this.environment.slice(0, 2);
-            // console.log('environmentB: ', this.environment);
-        }
-
-        this.environmentName = this.defaultlanguageList.find(f => f.code === this.environment).title;
-        // console.log('environmentName: ', this.environmentName);
     }
 
     ngOnInit() {
-        // console.log(window.location);
-        if (window.location.pathname === '/') {
-            this.siteFlag = this.defaultlanguageList.find(f => f.code === this.environment).flag;
-            this.siteFlagLabel = this.defaultlanguageList.find(f => f.code === this.environment).label;
-            // console.log('siteFlag: ', this.siteFlag);
-            // console.log('siteFlagLabel: ', this.siteFlagLabel);
-        } else {
-            this.siteFlag = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/\/(.*)\//).pop()).flag;
-            this.siteFlagLabel = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/\/(.*)\//).pop()).label;
-            // this.siteFlag = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/.{2}$/).pop()).flag;
-            // this.siteFlagLabel = this.defaultlanguageList.find(f => f.code === window.location.pathname.match(/.{2}$/).pop()).label;
-            // console.log('siteFlag: ', this.siteFlag);
-            // console.log('siteFlagLabel: ', this.siteFlagLabel);
+        if (this.environment.includes('dev')) {
+            this.environment = this.environment.slice(4, 6);
+        } else if (!this.environment.includes('local')) {
+            this.environment = this.environment.slice(0, 2);
         }
+
+        if (this.environment === 'local') {
+            this.siteFlag = this.instanceList.find(f => f.code === 'en').flag;
+            this.siteFlagLabel = this.instanceList.find(f => f.code === 'en').label;
+            this.environmentName = this.instanceList.find(f => f.code === 'en').title;
+            this.translate.use('en');
+        } else {
+            this.siteFlag = this.instanceList.find(f => f.code === this.environment).flag;
+            this.siteFlagLabel = this.instanceList.find(f => f.code === this.environment).label;
+            this.environmentName = this.instanceList.find(f => f.code === this.environment).title;
+            this.translate.use(this.environment);
+        }
+    }
+
+    changeLanguage(lang: string) {
+        this.siteFlag = this.instanceList.find(f => f.code === lang).flag;
+        this.siteFlagLabel = this.instanceList.find(f => f.code === lang).label;
+        this.translate.use(lang);
     }
 }
