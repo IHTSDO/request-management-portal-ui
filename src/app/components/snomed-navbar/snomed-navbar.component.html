@@ -40,14 +40,14 @@
                 {{siteFlagLabel}}<img class="p-2" src="./assets/flags/{{siteFlag}}.png" alt="{{siteFlag}}">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" (click)="changeLanguage('en')">English<img class="p-2" src="./assets/flags/gb.png" alt="English"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('dk')">Dansk<img class="p-2" src="./assets/flags/dk.png" alt="Dansk"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('de')">Deutsch<img class="p-2" src="./assets/flags/de.png" alt="Deutsch"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('it')">Italiano<img class="p-2" src="./assets/flags/it.png" alt="Italiano"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('fr')">Français<img class="p-2" src="./assets/flags/fr.png" alt="Français"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('nl')">Nederlands<img class="p-2" src="./assets/flags/nl.png" alt="Nederlands"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('no_nb')">Bokmål<img class="p-2" src="./assets/flags/no.png" alt="Bokmål"></a></li>
-                <li><a class="dropdown-item" (click)="changeLanguage('no_nn')">Nynorsk<img class="p-2" src="./assets/flags/no.png" alt="Nynorsk"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['en']" (click)="changeLanguage('en')">English<img class="p-2" src="./assets/flags/gb.png" alt="English"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['dk']" (click)="changeLanguage('dk')">Dansk<img class="p-2" src="./assets/flags/dk.png" alt="Dansk"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['de']" (click)="changeLanguage('de')">Deutsch<img class="p-2" src="./assets/flags/de.png" alt="Deutsch"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['it']" (click)="changeLanguage('it')">Italiano<img class="p-2" src="./assets/flags/it.png" alt="Italiano"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['fr']" (click)="changeLanguage('fr')">Français<img class="p-2" src="./assets/flags/fr.png" alt="Français"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['nl']" (click)="changeLanguage('nl')">Nederlands<img class="p-2" src="./assets/flags/nl.png" alt="Nederlands"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['no_nb']" (click)="changeLanguage('no_nb')">Bokmål<img class="p-2" src="./assets/flags/no.png" alt="Bokmål"></a></li>
+                <li><a class="dropdown-item" [routerLink]="['no_nn']" (click)="changeLanguage('no_nn')">Nynorsk<img class="p-2" src="./assets/flags/no.png" alt="Nynorsk"></a></li>
             </ul>
         </div>
     </span>
