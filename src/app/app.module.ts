@@ -26,6 +26,7 @@ import {AuthBlockComponent} from './components/auth-block/auth-block.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { AppRoutingModule } from './app-routing.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -64,7 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        AppRoutingModule
     ],
     providers: [
         AuthenticationService,

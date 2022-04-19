@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -99,7 +101,9 @@ export class SnomedNavbarComponent implements OnInit {
         }
     ];
 
-    constructor(private translate: TranslateService) {
+    constructor(private translate: TranslateService,
+                private location: Location,
+                private route: ActivatedRoute) {
         this.environment = window.location.host.split(/[.]/)[0];
     }
 
@@ -110,17 +114,28 @@ export class SnomedNavbarComponent implements OnInit {
             this.environment = this.environment.slice(0, 2);
         }
 
-        if (this.environment === 'local') {
-            this.siteFlag = this.instanceList.find(f => f.code === 'en').flag;
-            this.siteFlagLabel = this.instanceList.find(f => f.code === 'en').label;
-            this.environmentName = this.instanceList.find(f => f.code === 'en').title;
-            this.translate.use('en');
+        if (this.languageExists(this.location.path().slice(1))) {
+            this.siteFlag = this.instanceList.find(f => f.code === this.location.path().slice(1)).flag;
+            this.siteFlagLabel = this.instanceList.find(f => f.code === this.location.path().slice(1)).label;
+            this.environmentName = this.instanceList.find(f => f.code === this.location.path().slice(1)).title;
+            this.translate.use(this.location.path().slice(1));
         } else {
-            this.siteFlag = this.instanceList.find(f => f.code === this.environment).flag;
-            this.siteFlagLabel = this.instanceList.find(f => f.code === this.environment).label;
-            this.environmentName = this.instanceList.find(f => f.code === this.environment).title;
-            this.translate.use(this.environment);
+            this.defaultToEnglish();
         }
+    }
+
+    languageExists(lang: string): boolean {
+        if (lang) {
+            return !!this.instanceList.find(item => item.code === lang);
+        }
+    }
+
+    defaultToEnglish() {
+        this.siteFlag = this.instanceList.find(f => f.code === 'en').flag;
+        this.siteFlagLabel = this.instanceList.find(f => f.code === 'en').label;
+        this.environmentName = this.instanceList.find(f => f.code === 'en').title;
+        this.translate.use('en');
+        this.location.replaceState('en');
     }
 
     changeLanguage(lang: string) {
