@@ -44,20 +44,20 @@ export class AppComponent implements OnInit {
             this.environment = this.environment.slice(0, 2);
         }
 
-        // this.authoringService.getConfigurationJSON().subscribe(config => {
-        //     const configuration: Configuration = config;
-        //
-        //     configuration.extension = config.extensions.find(item => {
-        //         return item.key.toLowerCase() === this.environment;
-        //     });
-        //
-        //     this.authoringService.setConfig(configuration);
-        //
-        //     this.terminologyService.getVersions(false).subscribe(versions => {
-        //         versions.items.reverse();
-        //         this.branchingService.setBranchPath(versions.items[0].branchPath);
-        //     });
-        // });
+        this.authoringService.getConfigurationJSON().subscribe(config => {
+            const configuration: Configuration = config;
+
+            configuration.extension = config.extensions.find(item => {
+                return item.key.toLowerCase() === this.environment;
+            });
+
+            this.authoringService.setConfig(configuration);
+
+            this.terminologyService.getVersions(false).subscribe(versions => {
+                versions.items.reverse();
+                this.branchingService.setBranchPath(versions.items[0].branchPath);
+            });
+        });
 
         this.assignFavicon();
     }
