@@ -64,7 +64,7 @@
             <label for="parentConcept">{{ 'form.parentConcept' | translate }}</label>
             <div class="input-group">
                 <input type="text" class="form-control" id="parentConcept" required [(ngModel)]="request.parentConcept" name="parentConcept" [ngbTypeahead]="search" placeholder="{{ 'form.placeholder' | translate }}" #parentConcept="ngModel" matTooltip="{{ 'tooltip.parentConcept' | translate }}">
-                <div class="input-group-append"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
             </div>
             <div [hidden]="parentConcept.valid || parentConcept.pristine" class="alert alert-danger">{{ 'required.parentConcept' | translate }}</div>
         </div>
