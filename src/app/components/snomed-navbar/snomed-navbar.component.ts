@@ -52,8 +52,8 @@ export class SnomedNavbarComponent implements OnInit {
             title: 'German'
         },
         {
-            code: 'et',
-            flag: 'et',
+            code: 'ee',
+            flag: 'ee',
             label: 'Estonian',
             title: 'Estonian'
         },
