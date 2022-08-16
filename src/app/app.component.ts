@@ -4,7 +4,6 @@ import { Title } from '@angular/platform-browser';
 import { AuthoringService } from './services/authoring/authoring.service';
 import { BranchingService } from './services/branching/branching.service';
 import { TerminologyServerService } from './services/terminologyServer/terminology-server.service';
-import { Configuration } from './models/configuration';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { Subscription } from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
@@ -16,7 +15,6 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
 
-    versions: object;
     environment: string;
 
     authenticated: boolean;
@@ -45,13 +43,7 @@ export class AppComponent implements OnInit {
         }
 
         this.authoringService.getConfigurationJSON().subscribe(config => {
-            const configuration: Configuration = config;
-
-            configuration.extension = config.extensions.find(item => {
-                return item.key.toLowerCase() === this.environment;
-            });
-
-            this.authoringService.setConfig(configuration);
+            this.authoringService.setConfig(config);
 
             this.terminologyService.getVersions(false).subscribe(versions => {
                 versions.items.reverse();
