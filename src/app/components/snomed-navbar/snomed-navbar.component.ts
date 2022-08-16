@@ -120,6 +120,7 @@ export class SnomedNavbarComponent implements OnInit {
             this.siteFlag = this.instanceList.find(f => f.code === this.location.path().slice(1)).flag;
             this.siteFlagLabel = this.instanceList.find(f => f.code === this.location.path().slice(1)).label;
             this.environmentName = this.instanceList.find(f => f.code === this.location.path().slice(1)).title;
+            console.log('this.environmentName: ', this.environmentName);
             this.translate.use(this.location.path().slice(1));
         } else {
             this.defaultToEnglish();
