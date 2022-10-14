@@ -107,7 +107,7 @@ export class SnomedNavbarComponent implements OnInit {
                 private router: Router) {
         this.environment = window.location.host.split(/[.]/)[0];
         router.events.subscribe( () => {
-            this.environmentName = this.instanceList.find(f => f.code === this.environment).title;
+            this.environmentName = this.instanceList.find(f => f.code === this.environment)?.title;
         });
     }
 
