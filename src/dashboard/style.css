@@ -84,7 +84,7 @@ a.no-decoration {
 }
 
 img.card-img-top {
-    max-height: 12rem;
+    height: 16rem;
     object-fit: cover;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
