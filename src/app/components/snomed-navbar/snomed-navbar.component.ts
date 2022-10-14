@@ -113,7 +113,9 @@ export class SnomedNavbarComponent implements OnInit {
         }
 
         if (!this.environment.includes('local')) {
-            this.location.replaceState(this.environment);
+            if (!this.location.path().slice(1)) {
+                this.location.replaceState(this.environment);
+            }
             this.siteFlag = this.instanceList.find(f => f.code === this.location.path().slice(1)).flag;
             this.siteFlagLabel = this.instanceList.find(f => f.code === this.location.path().slice(1)).label;
             this.environmentName = this.instanceList.find(f => f.code === this.environment).title;
