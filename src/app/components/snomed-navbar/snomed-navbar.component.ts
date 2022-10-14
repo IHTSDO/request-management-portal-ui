@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Location} from '@angular/common';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -102,13 +101,8 @@ export class SnomedNavbarComponent implements OnInit {
     ];
 
     constructor(private translate: TranslateService,
-                private location: Location,
-                private route: ActivatedRoute,
-                private router: Router) {
+                private location: Location) {
         this.environment = window.location.host.split(/[.]/)[0];
-        router.events.subscribe( () => {
-            this.environmentName = this.instanceList.find(f => f.code === this.environment)?.title;
-        });
     }
 
     ngOnInit() {
@@ -118,7 +112,7 @@ export class SnomedNavbarComponent implements OnInit {
             this.environment = this.environment.slice(0, 2);
         }
 
-        if (!this.environment.includes('local') && this.languageExists(this.location.path().slice(1))) {
+        if (!this.environment.includes('local')) {
             this.siteFlag = this.instanceList.find(f => f.code === this.location.path().slice(1)).flag;
             this.siteFlagLabel = this.instanceList.find(f => f.code === this.location.path().slice(1)).label;
             this.environmentName = this.instanceList.find(f => f.code === this.environment).title;
