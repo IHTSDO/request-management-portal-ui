@@ -140,12 +140,17 @@ export class SnomedNavbarComponent implements OnInit {
     ngOnInit() {
         if (this.environment.includes('local')) {
             this.instance = this.instanceList.find(instance => instance.code === 'en');
-            this.language = this.languageList.find(language => language.languageCode === 'en');
         } else if (this.environment.includes('dev')) {
             this.instance = this.instanceList.find(instance => instance.code === this.environment.slice(4,6));
-            this.language = this.languageList.find(language => language.languageCode === this.instance.defaultLanguage);
         } else if (!this.environment.includes('local')) {
             this.instance = this.instanceList.find(instance => instance.code === this.environment.slice(0,2));
+        }
+
+        let urlLanguage = this.location.path().slice(1);
+
+        if (this.languageList.some(lang => lang.languageCode === urlLanguage)) {
+            this.language = this.languageList.find(language => language.languageCode === urlLanguage);
+        } else {
             this.language = this.languageList.find(language => language.languageCode === this.instance.defaultLanguage);
         }
 
