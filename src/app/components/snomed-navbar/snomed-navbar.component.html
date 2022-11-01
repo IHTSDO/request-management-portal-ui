@@ -1,8 +1,8 @@
 <nav class="navbar sticky-top navbar-dark bg-dark p-2 pe-2">
     <a class="logo" routerLink="/">
         <img class="logo me-2 p-0" src="./assets/small_logo.png" alt="Logo">
-        <span class="title">SNOMED CT {{environmentName}} Extension
-            <img src="./assets/flags/{{environment}}.png" alt="{{environment}}">
+        <span class="title">SNOMED CT {{instance?.instanceName}} Extension
+            <img src="./assets/flags/{{instance?.instanceFlag}}.png" alt="{{instance?.instanceName}}">
         </span>
     </a>
 
@@ -17,18 +17,12 @@
     <span class="pe-5">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {{siteFlagLabel}}<img class="p-2 ps-4" src="./assets/flags/{{siteFlag}}.png" alt="{{siteFlag}}">
+                {{language?.languageName}}<img class="p-2 ps-4" src="./assets/flags/{{language?.languageFlag}}.png" alt="{{language?.languageName}}">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" [routerLink]="['en']" (click)="changeLanguage('en')">English<img class="p-2" src="./assets/flags/gb.png" alt="English"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['dk']" (click)="changeLanguage('dk')">Dansk<img class="p-2" src="./assets/flags/dk.png" alt="Dansk"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['de']" (click)="changeLanguage('de')">Deutsch<img class="p-2" src="./assets/flags/de.png" alt="Deutsch"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['it']" (click)="changeLanguage('it')">Italiano<img class="p-2" src="./assets/flags/it.png" alt="Italiano"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['fr']" (click)="changeLanguage('fr')">Français<img class="p-2" src="./assets/flags/fr.png" alt="Français"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['nl']" (click)="changeLanguage('nl')">Nederlands<img class="p-2" src="./assets/flags/nl.png" alt="Nederlands"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['no_nb']" (click)="changeLanguage('no_nb')">Bokmål<img class="p-2" src="./assets/flags/no.png" alt="Bokmål"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['no_nn']" (click)="changeLanguage('no_nn')">Nynorsk<img class="p-2" src="./assets/flags/no.png" alt="Nynorsk"></a></li>
-                <li><a class="dropdown-item" [routerLink]="['ee']" (click)="changeLanguage('ee')">Estonian<img class="p-2" src="./assets/flags/ee.png" alt="Estonian"></a></li>
+                <li *ngFor="let lang of languageList">
+                    <a class="dropdown-item" [routerLink]="[lang.languageCode]" (click)="changeLanguage(lang.languageCode)">{{lang.languageName}}<img class="p-2" src="./assets/flags/{{lang.languageFlag}}.png" alt="{{language.languageName}}"></a>
+                </li>
             </ul>
         </div>
     </span>

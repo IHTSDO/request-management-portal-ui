@@ -59,15 +59,8 @@
                                 }
                             ],
                             "baseHref": "/",
-                            "outputHashing": "all"
-                        },
-                        "development": {
-                            "buildOptimizer": false,
-                            "optimization": false,
-                            "vendorChunk": true,
-                            "extractLicenses": false,
                             "sourceMap": true,
-                            "namedChunks": true
+                            "optimization": false
                         }
                     }
                 },
@@ -79,7 +72,14 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "request-management-portal-ui:build:production"
+                            "browserTarget": "request-management-portal-ui:build:production",
+                            "sourceMap": true,
+                            "optimization": false
+                        },
+                        "development": {
+                            "browserTarget": "request-management-portal-ui:build:development",
+                            "sourceMap": true,
+                            "optimization": false
                         }
                     }
                 },
