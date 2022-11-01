@@ -10,93 +10,125 @@ import {Location} from '@angular/common';
 export class SnomedNavbarComponent implements OnInit {
 
     environment: string;
-    environmentName: string;
-    siteFlag: string;
-    siteFlagLabel: string;
+
+    instance: any;
+    language: any;
+
     instanceList = [
         {
             code: 'en',
-            flag: 'gb',
-            label: 'English',
-            title: 'English'
+            instanceFlag: 'gb',
+            instanceName: 'English',
+            defaultLanguage: 'en'
         },
         {
             code: 'ie',
-            flag: 'ie',
-            label: 'English',
-            title: 'Irish'
+            instanceFlag: 'ie',
+            instanceName: 'Irish',
+            defaultLanguage: 'en'
         },
         {
             code: 'it',
-            flag: 'it',
-            label: 'Italiano',
-            title: 'Italian'
-        },
-        {
-            code: 'ch',
-            flag: 'ch',
-            label: 'Swiss',
-            title: 'Swiss'
+            instanceFlag: 'it',
+            instanceName: 'Italian',
+            defaultLanguage: 'it'
         },
         {
             code: 'dk',
-            flag: 'dk',
-            label: 'Dansk',
-            title: 'Danish'
+            instanceFlag: 'dk',
+            instanceName: 'Danish',
+            defaultLanguage: 'dk'
         },
         {
             code: 'de',
-            flag: 'de',
-            label: 'Deutsch',
-            title: 'German'
-        },
-        {
-            code: 'ee',
-            flag: 'ee',
-            label: 'Estonian',
-            title: 'Estonian'
+            instanceFlag: 'de',
+            instanceName: 'German',
+            defaultLanguage: 'de'
         },
         {
             code: 'nl',
-            flag: 'nl',
-            label: 'Nederlands',
-            title: 'Netherlands'
+            instanceFlag: 'nl',
+            instanceName: 'Netherlands',
+            defaultLanguage: 'nl'
+        },
+        {
+            code: 'ch',
+            instanceFlag: 'ch',
+            instanceName: 'Switzerland',
+            defaultLanguage: 'de'
         },
         {
             code: 'fr',
-            flag: 'fr',
-            label: 'Français',
-            title: 'French'
+            instanceFlag: 'fr',
+            instanceName: 'French',
+            defaultLanguage: 'fr'
         },
         {
             code: 'be',
-            flag: 'be',
-            label: 'Belgium',
-            title: 'Belgian'
+            instanceFlag: 'be',
+            instanceName: 'Belgian',
+            defaultLanguage: 'nl'
         },
         {
             code: 'no',
-            flag: 'no',
-            label: 'Norway',
-            title: 'Norwegian'
-        },
-        {
-            code: 'no_nb',
-            flag: 'no',
-            label: 'Bokmål',
-            title: 'Norwegian'
-        },
-        {
-            code: 'no_nn',
-            flag: 'no',
-            label: 'Nynorsk',
-            title: 'Norwegian'
+            instanceFlag: 'no',
+            instanceName: 'Norwegian',
+            defaultLanguage: 'no_nn'
         },
         {
             code: 'nz',
-            flag: 'nz',
-            label: 'New Zealand',
-            title: 'New Zealand'
+            instanceFlag: 'nz',
+            instanceName: 'New Zealand',
+            defaultLanguage: 'en'
+        },
+        {
+            code: 'ee',
+            instanceFlag: 'ee',
+            instanceName: 'Estonian',
+            defaultLanguage: 'en'
+        }
+    ];
+
+    languageList = [
+        {
+            languageCode: 'en',
+            languageFlag: 'gb',
+            languageName: 'English'
+        },
+        {
+            languageCode: 'it',
+            languageFlag: 'it',
+            languageName: 'Italiano'
+        },
+        {
+            languageCode: 'dk',
+            languageFlag: 'dk',
+            languageName: 'Dansk'
+        },
+        {
+            languageCode: 'de',
+            languageFlag: 'de',
+            languageName: 'Deutsch'
+        },
+        {
+            languageCode: 'nl',
+            languageFlag: 'nl',
+            languageName: 'Nederlands'
+        },
+        {
+            languageCode: 'fr',
+            languageFlag: 'fr',
+            languageName: 'Français'
+        },
+        {
+            languageCode: 'no_nn',
+            languageFlag: 'no',
+            languageName: 'Nynorsk'
+        },
+        {
+            languageCode: 'no_nb',
+            languageFlag: 'no',
+            languageName: 'Bokmål'
         }
     ];
 
@@ -106,42 +138,25 @@ export class SnomedNavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.environment.includes('dev')) {
-            this.environment = this.environment.slice(4, 6);
+        if (this.environment.includes('local')) {
+            this.instance = this.instanceList.find(instance => instance.code === 'en');
+            this.language = this.languageList.find(language => language.languageCode === 'en');
+        } else if (this.environment.includes('dev')) {
+            this.instance = this.instanceList.find(instance => instance.code === this.environment.slice(4,6));
+            this.language = this.languageList.find(language => language.languageCode === this.instance.defaultLanguage);
         } else if (!this.environment.includes('local')) {
-            this.environment = this.environment.slice(0, 2);
+            this.instance = this.instanceList.find(instance => instance.code === this.environment.slice(0,2));
+            this.language = this.languageList.find(language => language.languageCode === this.instance.defaultLanguage);
         }
 
-        if (!this.environment.includes('local')) {
-            if (!this.location.path().slice(1)) {
-                this.location.replaceState(this.environment);
-            }
-            this.siteFlag = this.instanceList.find(f => f.code === this.location.path().slice(1)).flag;
-            this.siteFlagLabel = this.instanceList.find(f => f.code === this.location.path().slice(1)).label;
-            this.environmentName = this.instanceList.find(f => f.code === this.environment).title;
-            this.translate.use(this.location.path().slice(1));
-        } else {
-            this.defaultToEnglish();
-        }
-    }
-
-    languageExists(lang: string): boolean {
-        if (lang) {
-            return !!this.instanceList.find(item => item.code === lang);
-        }
-    }
-
-    defaultToEnglish() {
-        this.siteFlag = this.instanceList.find(f => f.code === 'en').flag;
-        this.siteFlagLabel = this.instanceList.find(f => f.code === 'en').label;
-        this.environmentName = this.instanceList.find(f => f.code === 'en').title;
-        this.translate.use('en');
-        this.location.replaceState('en');
+        this.location.replaceState(this.language.languageCode);
+        this.translate.use(this.language.languageCode);
     }
 
     changeLanguage(lang: string) {
-        this.siteFlag = this.instanceList.find(f => f.code === lang).flag;
-        this.siteFlagLabel = this.instanceList.find(f => f.code === lang).label;
-        this.translate.use(lang);
+        this.language = this.languageList.find(language => language.languageCode === lang);
+
+        this.location.replaceState(this.language.languageCode);
+        this.translate.use(this.language.languageCode);
     }
 }
