@@ -16,7 +16,7 @@ export class TerminologyServerService {
     private branchPath: string;
     private branchPathSubscription: Subscription;
 
-    private configuration: Configuration;
+    private configuration: any;
     private configurationSubscription: Subscription;
 
     constructor(private http: HttpClient,

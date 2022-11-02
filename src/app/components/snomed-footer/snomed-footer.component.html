@@ -1,6 +1,6 @@
 <footer class="footer bg-dark">
     <a class="px-3" href="http://www.snomed.org/" target="_blank">Copyright © {{year}} SNOMED International</a>
-    <a *ngIf="configuration?.extension?.userGuideUrl" class="px-3" [href]="configuration.extension.userGuideUrl" target="_blank">{{ 'footer.userGuide' | translate}}</a>
-    <a *ngIf="configuration?.extension?.contactUsUrl" class="px-3" [href]="configuration.extension.contactUsUrl" target="_blank">{{ 'footer.contactUs' | translate}}</a>
+    <a *ngIf="instance?.userGuideUrl" class="px-3" [href]="instance.userGuideUrl" target="_blank">{{ 'footer.userGuide' | translate}}</a>
+    <a *ngIf="instance?.contactUsUrl" class="px-3" [href]="instance.contactUsUrl" target="_blank">{{ 'footer.contactUs' | translate}}</a>
     <a *ngIf="configuration?.version" class="px-3 float-end">{{configuration.version}}</a>
 </footer>

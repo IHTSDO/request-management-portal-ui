@@ -2,7 +2,7 @@
     <a class="logo" routerLink="/">
         <img class="logo me-2 p-0" src="./assets/small_logo.png" alt="Logo">
         <span class="title">SNOMED CT {{instance?.instanceName}} Extension
-            <img src="./assets/flags/{{instance?.instanceFlag}}.png" alt="{{instance?.instanceName}}">
+            <img *ngIf="instance?.instanceFlag" src="./assets/flags/{{instance?.instanceFlag}}.png" alt="{{instance?.instanceName}}">
         </span>
     </a>
 
@@ -17,10 +17,10 @@
     <span class="pe-5">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {{language?.languageName}}<img class="p-2 ps-4" src="./assets/flags/{{language?.languageFlag}}.png" alt="{{language?.languageName}}">
+                {{language?.languageName}}<img *ngIf="language?.languageFlag" class="p-2 ps-4" src="./assets/flags/{{language?.languageFlag}}.png" alt="{{language?.languageName}}">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li *ngFor="let lang of languageList">
+                <li *ngFor="let lang of configuration?.languages">
                     <a class="dropdown-item" [routerLink]="[lang.languageCode]" (click)="changeLanguage(lang.languageCode)">{{lang.languageName}}<img class="p-2" src="./assets/flags/{{lang.languageFlag}}.png" alt="{{language.languageName}}"></a>
                 </li>
             </ul>

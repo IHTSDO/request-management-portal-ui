@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { Configuration } from '../../models/configuration';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +8,7 @@ import { Configuration } from '../../models/configuration';
 export class AuthoringService {
 
     public environmentEndpoint: string;
-    private configuration = new Subject<Configuration>();
+    configuration = new Subject();
 
     constructor(private http: HttpClient) {
         this.environmentEndpoint = window.location.origin + '/';
@@ -20,11 +19,11 @@ export class AuthoringService {
         this.configuration.next(config);
     }
 
-    getConfig(): Observable<Configuration> {
+    getConfig() {
         return this.configuration.asObservable();
     }
 
-    getConfigurationJSON(): Observable<Configuration> {
-        return this.http.get<Configuration>('./assets/configuration.json');
+    getConfigurationJSON() {
+        return this.http.get('./assets/configuration.json');
     }
 }
