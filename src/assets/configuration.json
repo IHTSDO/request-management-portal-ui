@@ -1,5 +1,135 @@
 {
     "version":"v0.0.1",
     "jiraUrl":"https://jira.ihtsdotools.org/rest/api/2/",
-    "terminologyServerEndpoint":"/snowstorm/snomed-ct/"
+    "terminologyServerEndpoint":"/snowstorm/snomed-ct/",
+    "instances": [
+        {
+            "code": "en",
+            "instanceFlag": "gb",
+            "instanceName": "English",
+            "defaultLanguage": "en",
+            "projectKey": "ENRMP"
+        },
+        {
+            "code": "ie",
+            "instanceFlag": "ie",
+            "instanceName": "Irish",
+            "defaultLanguage": "en",
+            "projectKey": "IERMP"
+        },
+        {
+            "code": "it",
+            "instanceFlag": "it",
+            "instanceName": "Italian",
+            "defaultLanguage": "it",
+            "projectKey": "ITRMP"
+        },
+        {
+            "code": "dk",
+            "instanceFlag": "dk",
+            "instanceName": "Danish",
+            "defaultLanguage": "dk",
+            "projectKey": "DKRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
+        },
+        {
+            "code": "de",
+            "instanceFlag": "de",
+            "instanceName": "German",
+            "defaultLanguage": "de",
+            "projectKey": "DERMP"
+        },
+        {
+            "code": "nl",
+            "instanceFlag": "nl",
+            "instanceName": "Netherlands",
+            "defaultLanguage": "nl",
+            "projectKey": "NLRMP"
+        },
+        {
+            "code": "ch",
+            "instanceFlag": "ch",
+            "instanceName": "Switzerland",
+            "defaultLanguage": "de",
+            "projectKey": "CHRMP"
+        },
+        {
+            "code": "fr",
+            "instanceFlag": "fr",
+            "instanceName": "French",
+            "defaultLanguage": "fr",
+            "projectKey": "FRRMP"
+        },
+        {
+            "code": "be",
+            "instanceFlag": "be",
+            "instanceName": "Belgian",
+            "defaultLanguage": "nl",
+            "projectKey": "BERMP"
+        },
+        {
+            "code": "no",
+            "instanceFlag": "no",
+            "instanceName": "Norwegian",
+            "defaultLanguage": "no_nn",
+            "projectKey": "NORMP"
+        },
+        {
+            "code": "nz",
+            "instanceFlag": "nz",
+            "instanceName": "New Zealand",
+            "defaultLanguage": "en",
+            "projectKey": "NZRMP"
+        },
+        {
+            "code": "ee",
+            "instanceFlag": "ee",
+            "instanceName": "Estonian",
+            "defaultLanguage": "en",
+            "projectKey": "EERMP"
+        }
+    ],
+    "languages": [
+        {
+            "languageCode": "en",
+            "languageFlag": "gb",
+            "languageName": "English"
+        },
+        {
+            "languageCode": "it",
+            "languageFlag": "it",
+            "languageName": "Italiano"
+        },
+        {
+            "languageCode": "dk",
+            "languageFlag": "dk",
+            "languageName": "Dansk"
+        },
+        {
+            "languageCode": "de",
+            "languageFlag": "de",
+            "languageName": "Deutsch"
+        },
+        {
+            "languageCode": "nl",
+            "languageFlag": "nl",
+            "languageName": "Nederlands"
+        },
+        {
+            "languageCode": "fr",
+            "languageFlag": "fr",
+            "languageName": "Français"
+        },
+        {
+            "languageCode": "no_nn",
+            "languageFlag": "no",
+            "languageName": "Nynorsk"
+        },
+        {
+            "languageCode": "no_nb",
+            "languageFlag": "no",
+            "languageName": "Bokmål"
+        }
+    ]
 }

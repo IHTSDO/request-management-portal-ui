@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthoringService } from '../authoring/authoring.service';
 import { BranchingService } from '../branching/branching.service';
 import { Request } from '../../models/request';
-import { Configuration } from '../../models/configuration';
+import {Configuration, Instance} from '../../models/configuration';
+import {InstanceService} from '../instance/instance.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,14 +15,15 @@ export class JiraService {
     private branchPath: string;
     private branchPathSubscription: Subscription;
 
-    private configuration: Configuration;
-    private configurationSubscription: Subscription;
+    private instance: any;
+    private instanceSubscription: Subscription;
 
     constructor(private http: HttpClient,
                 private authoringService: AuthoringService,
-                private branchingService: BranchingService) {
+                private branchingService: BranchingService,
+                private instanceService: InstanceService) {
         this.branchPathSubscription = this.branchingService.getBranchPath().subscribe(data => this.branchPath = data);
-        this.configurationSubscription = this.authoringService.getConfig().subscribe(data => this.configuration = data);
+        this.instanceSubscription = this.instanceService.getInstance().subscribe(data => this.instance = data);
 
     }
 
@@ -33,7 +35,7 @@ export class JiraService {
     createRequestObject(request: Request, requestType: string) {
         const requestObject = {
             'fields': {
-                'project': {'key': this.configuration.extension.projectKey},
+                'project': {'key': this.instance.projectKey},
                 'issuetype': {'id': requestType}
             }
         };
