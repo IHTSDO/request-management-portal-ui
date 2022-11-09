@@ -47,10 +47,10 @@ export class SnomedNavbarComponent implements OnInit {
 
             let urlLanguage = this.location.path().slice(1);
 
-            if (this.configuration.languages.some(lang => lang.languageCode === urlLanguage)) {
-                this.instanceService.setLanguage(this.configuration.languages.find(language => language.languageCode === urlLanguage));
+            if (this.configuration.languages?.some(lang => lang.languageCode === urlLanguage)) {
+                this.instanceService.setLanguage(this.configuration.languages?.find(language => language.languageCode === urlLanguage));
             } else {
-                this.instanceService.setLanguage(this.configuration.languages.find(language => language.languageCode === this.instance.defaultLanguage));
+                this.instanceService.setLanguage(this.configuration.languages?.find(language => language.languageCode === this.instance.defaultLanguage));
             }
 
             this.location.replaceState(this.language.languageCode);
