@@ -53,8 +53,8 @@ export class SnomedNavbarComponent implements OnInit {
                 this.instanceService.setLanguage(this.configuration.languages?.find(language => language.languageCode === this.instance.defaultLanguage));
             }
 
-            this.location.replaceState(this.language.languageCode);
-            this.translate.use(this.language.languageCode);
+            this.location.replaceState(this.language?.languageCode);
+            this.translate.use(this.language?.languageCode);
         });
     }
 
