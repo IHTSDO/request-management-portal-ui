@@ -37,24 +37,24 @@ export class SnomedNavbarComponent implements OnInit {
 
             if (this.environment.includes('local')) {
                 console.log('this.configuration: ', this.configuration);
-                this.instanceService.setInstance(this.configuration.instances?.find(instance => instance.code === 'en'));
+                this.instanceService.setInstance(this.configuration.instances.find(instance => instance.code === 'en'));
             } else if (this.environment.includes('dev')) {
                 console.log('this.configuration: ', this.configuration);
-                this.instanceService.setInstance(this.configuration.instances?.find(instance => instance.code === this.environment.slice(4,6)));
+                this.instanceService.setInstance(this.configuration.instances.find(instance => instance.code === this.environment.slice(4,6)));
             } else if (!this.environment.includes('local')) {
-                this.instanceService.setInstance(this.configuration.instances?.find(instance => instance.code === this.environment.slice(0,2)));
+                this.instanceService.setInstance(this.configuration.instances.find(instance => instance.code === this.environment.slice(0,2)));
             }
 
             let urlLanguage = this.location.path().slice(1);
 
-            if (this.configuration.languages?.some(lang => lang.languageCode === urlLanguage)) {
-                this.instanceService.setLanguage(this.configuration.languages?.find(language => language.languageCode === urlLanguage));
+            if (this.configuration.languages.some(lang => lang.languageCode === urlLanguage)) {
+                this.instanceService.setLanguage(this.configuration.languages.find(language => language.languageCode === urlLanguage));
             } else {
-                this.instanceService.setLanguage(this.configuration.languages?.find(language => language.languageCode === this.instance.defaultLanguage));
+                this.instanceService.setLanguage(this.configuration.languages.find(language => language.languageCode === this.instance.defaultLanguage));
             }
 
-            this.location.replaceState(this.language?.languageCode);
-            this.translate.use(this.language?.languageCode);
+            this.location.replaceState(this.language.languageCode);
+            this.translate.use(this.language.languageCode);
         });
     }
 
