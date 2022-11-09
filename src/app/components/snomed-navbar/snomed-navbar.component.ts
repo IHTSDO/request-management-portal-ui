@@ -4,6 +4,7 @@ import {Location} from '@angular/common';
 import {InstanceService} from '../../services/instance/instance.service';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {Subscription} from 'rxjs';
+import {Configuration} from '../../models/configuration';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -32,30 +33,28 @@ export class SnomedNavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authoringService.getConfigurationJSON().subscribe(config => {
+        this.authoringService.getConfigurationJSON().subscribe((config: Configuration) => {
             this.authoringService.setConfig(config);
 
             if (this.environment.includes('local')) {
-                this.instanceService.setInstance(this.configuration.instances.find(instance => instance.code === 'en'));
+                this.instanceService.setInstance(config.instances.find(instance => instance.code === 'en'));
             } else if (this.environment.includes('dev')) {
-                this.instanceService.setInstance(this.configuration.instances.find(instance => instance.code === this.environment.slice(4,6)));
+                this.instanceService.setInstance(config.instances.find(instance => instance.code === this.environment.slice(4,6)));
             } else if (!this.environment.includes('local')) {
-                this.instanceService.setInstance(this.configuration.instances.find(instance => instance.code === this.environment.slice(0,2)));
+                this.instanceService.setInstance(config.instances.find(instance => instance.code === this.environment.slice(0,2)));
             }
 
             let urlLanguage = this.location.path().slice(1);
 
-            if (this.configuration.languages.some(lang => lang.languageCode === urlLanguage)) {
-                this.instanceService.setLanguage(this.configuration.languages.find(language => language.languageCode === urlLanguage));
+            if (config.languages.some(lang => lang.languageCode === urlLanguage)) {
+                this.instanceService.setLanguage(config.languages.find(language => language.languageCode === urlLanguage));
             } else {
-                this.instanceService.setLanguage(this.configuration.languages.find(language => language.languageCode === this.instance.defaultLanguage));
+                this.instanceService.setLanguage(config.languages.find(language => language.languageCode === this.instance.defaultLanguage));
             }
 
             this.location.replaceState(this.language.languageCode);
             this.translate.use(this.language.languageCode);
         });
-
-
     }
 
     changeLanguage(lang: string) {
