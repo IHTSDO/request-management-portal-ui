@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import {InstanceService} from '../../services/instance/instance.service';
+import {ExtensionService} from '../../services/extension/extension.service';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 
 @Component({
@@ -11,14 +11,14 @@ import {AuthoringService} from '../../services/authoring/authoring.service';
 export class SnomedFooterComponent implements OnInit {
 
     year: number = new Date().getFullYear();
-    instance: any;
-    instanceSubscription: Subscription;
+    extension: any;
+    extensionSubscription: Subscription;
     configuration: any;
     configurationSubscription: Subscription;
 
-    constructor(private instanceService: InstanceService,
+    constructor(private extensionService: ExtensionService,
                 private authoringService: AuthoringService) {
-        this.instanceSubscription = this.instanceService.getInstance().subscribe(data => this.instance = data);
+        this.extensionSubscription = this.extensionService.getExtension().subscribe(data => this.extension = data);
         this.configurationSubscription = this.authoringService.getConfig().subscribe(data => this.configuration = data);
     }
 

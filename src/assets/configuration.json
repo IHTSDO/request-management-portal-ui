@@ -2,32 +2,32 @@
     "version":"v0.0.1",
     "jiraUrl":"https://jira.ihtsdotools.org/rest/api/2/",
     "terminologyServerEndpoint":"/snowstorm/snomed-ct/",
-    "instances": [
+    "extensions": [
         {
             "code": "en",
-            "instanceFlag": "gb",
-            "instanceName": "English",
+            "extensionFlag": "gb",
+            "extensionName": "English",
             "defaultLanguage": "en",
             "projectKey": "ENRMP"
         },
         {
             "code": "ie",
-            "instanceFlag": "ie",
-            "instanceName": "Irish",
+            "extensionFlag": "ie",
+            "extensionName": "Irish",
             "defaultLanguage": "en",
             "projectKey": "IERMP"
         },
         {
             "code": "it",
-            "instanceFlag": "it",
-            "instanceName": "Italian",
+            "extensionFlag": "it",
+            "extensionName": "Italian",
             "defaultLanguage": "it",
             "projectKey": "ITRMP"
         },
         {
             "code": "dk",
-            "instanceFlag": "dk",
-            "instanceName": "Danish",
+            "extensionFlag": "dk",
+            "extensionName": "Danish",
             "defaultLanguage": "dk",
             "projectKey": "DKRMP",
             "contactUsUrl": "",
@@ -35,57 +35,57 @@
         },
         {
             "code": "de",
-            "instanceFlag": "de",
-            "instanceName": "German",
+            "extensionFlag": "de",
+            "extensionName": "German",
             "defaultLanguage": "de",
             "projectKey": "DERMP"
         },
         {
             "code": "nl",
-            "instanceFlag": "nl",
-            "instanceName": "Netherlands",
+            "extensionFlag": "nl",
+            "extensionName": "Netherlands",
             "defaultLanguage": "nl",
             "projectKey": "NLRMP"
         },
         {
             "code": "ch",
-            "instanceFlag": "ch",
-            "instanceName": "Switzerland",
+            "extensionFlag": "ch",
+            "extensionName": "Switzerland",
             "defaultLanguage": "de",
             "projectKey": "CHRMP"
         },
         {
             "code": "fr",
-            "instanceFlag": "fr",
-            "instanceName": "French",
+            "extensionFlag": "fr",
+            "extensionName": "French",
             "defaultLanguage": "fr",
             "projectKey": "FRRMP"
         },
         {
             "code": "be",
-            "instanceFlag": "be",
-            "instanceName": "Belgian",
+            "extensionFlag": "be",
+            "extensionName": "Belgian",
             "defaultLanguage": "nl",
             "projectKey": "BERMP"
         },
         {
             "code": "no",
-            "instanceFlag": "no",
-            "instanceName": "Norwegian",
+            "extensionFlag": "no",
+            "extensionName": "Norwegian",
             "defaultLanguage": "no_nn",
             "projectKey": "NORMP"
         },
         {
             "code": "nz",
-            "instanceFlag": "nz",
-            "instanceName": "New Zealand",
+            "extensionFlag": "nz",
+            "extensionName": "New Zealand",
             "defaultLanguage": "en",
             "projectKey": "NZRMP"
         },
         {
             "code": "ee",
-            "instanceFlag": "ee",
-            "instanceName": "Estonian",
+            "extensionFlag": "ee",
+            "extensionName": "Estonian",
             "defaultLanguage": "en",
             "projectKey": "EERMP"
         }

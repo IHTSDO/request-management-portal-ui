@@ -4,21 +4,21 @@ import {Subject} from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class InstanceService {
+export class ExtensionService {
 
-    instance = new Subject();
+    extension = new Subject();
     language = new Subject();
 
     constructor() {
     }
 
-    // Setters & Getters: Instance
-    setInstance(instance) {
-        this.instance.next(instance);
+    // Setters & Getters: Extension
+    setExtension(extension) {
+        this.extension.next(extension);
     }
 
-    getInstance() {
-        return this.instance.asObservable();
+    getExtension() {
+        return this.extension.asObservable();
     }
 
     // Setters & Getters: Language

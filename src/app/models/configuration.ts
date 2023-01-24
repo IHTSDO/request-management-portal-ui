@@ -2,14 +2,14 @@ export class Configuration {
     version: string;
     jiraUrl: string;
     terminologyServerEndpoint: string;
-    instances: Instance[];
+    extensions: Extension[];
     languages: Language[];
 }
 
-export class Instance {
+export class Extension {
     code: string;
-    instanceFlag: string;
-    instanceName: string;
+    extensionFlag: string;
+    extensionName: string;
     defaultLanguage: string;
     projectKey: string;
     contactUsUrl: string;
