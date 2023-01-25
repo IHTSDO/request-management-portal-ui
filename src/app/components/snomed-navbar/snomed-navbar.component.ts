@@ -36,10 +36,8 @@ export class SnomedNavbarComponent implements OnInit {
             this.authoringService.setConfig(config);
 
             if (this.environment.includes('local')) {
-                console.log('this.configuration: ', this.configuration);
                 this.extensionService.setExtension(this.configuration.extensions.find(extension => extension.code === 'en'));
             } else if (this.environment.includes('dev')) {
-                console.log('this.configuration: ', this.configuration);
                 this.extensionService.setExtension(this.configuration.extensions.find(extension => extension.code === this.environment.slice(4,6)));
             } else if (!this.environment.includes('local')) {
                 this.extensionService.setExtension(this.configuration.extensions.find(extension => extension.code === this.environment.slice(0,2)));

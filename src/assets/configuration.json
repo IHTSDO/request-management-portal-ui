@@ -1,6 +1,6 @@
 {
     "version":"v0.0.1",
-    "jiraUrl":"https://jira.ihtsdotools.org/rest/api/2/",
+    "jiraUrl":"",
     "terminologyServerEndpoint":"/snowstorm/snomed-ct/",
     "extensions": [
         {
@@ -8,21 +8,27 @@
             "extensionFlag": "gb",
             "extensionName": "English",
             "defaultLanguage": "en",
-            "projectKey": "ENRMP"
+            "projectKey": "ENRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "ie",
             "extensionFlag": "ie",
             "extensionName": "Irish",
             "defaultLanguage": "en",
-            "projectKey": "IERMP"
+            "projectKey": "IERMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "it",
             "extensionFlag": "it",
             "extensionName": "Italian",
             "defaultLanguage": "it",
-            "projectKey": "ITRMP"
+            "projectKey": "ITRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "dk",
@@ -38,7 +44,9 @@
             "extensionFlag": "de",
             "extensionName": "German",
             "defaultLanguage": "de",
-            "projectKey": "DERMP"
+            "projectKey": "DERMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "nl",
@@ -52,42 +60,54 @@
             "extensionFlag": "ch",
             "extensionName": "Switzerland",
             "defaultLanguage": "de",
-            "projectKey": "CHRMP"
+            "projectKey": "CHRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "fr",
             "extensionFlag": "fr",
             "extensionName": "French",
             "defaultLanguage": "fr",
-            "projectKey": "FRRMP"
+            "projectKey": "FRRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "be",
             "extensionFlag": "be",
             "extensionName": "Belgian",
             "defaultLanguage": "nl",
-            "projectKey": "BERMP"
+            "projectKey": "BERMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "no",
             "extensionFlag": "no",
             "extensionName": "Norwegian",
             "defaultLanguage": "no_nn",
-            "projectKey": "NORMP"
+            "projectKey": "NORMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "nz",
             "extensionFlag": "nz",
             "extensionName": "New Zealand",
             "defaultLanguage": "en",
-            "projectKey": "NZRMP"
+            "projectKey": "NZRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         },
         {
             "code": "ee",
             "extensionFlag": "ee",
             "extensionName": "Estonian",
             "defaultLanguage": "en",
-            "projectKey": "EERMP"
+            "projectKey": "EERMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         }
     ],
     "languages": [
