@@ -24,6 +24,6 @@ export class AuthoringService {
     }
 
     getConfigurationJSON() {
-        return this.http.get('./assets/configuration2.json');
+        return this.http.get('./assets/configuration.json');
     }
 }
