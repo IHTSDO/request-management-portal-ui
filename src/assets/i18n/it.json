@@ -76,8 +76,8 @@
     },
     "language": {
         "none": "Nessuna",
-        "belgianDutch": "Belgian Dutch",
-        "belgianFrench": "Belgian French",
+        "beDutch": "Belgian Dutch",
+        "beFrench": "Belgian French",
         "danish": "Danish",
         "estonian": "Estonian",
         "ieEnglish": "IE English",
