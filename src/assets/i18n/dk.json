@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Login-oplysninger",
-        "description": ["Hvis du ikke har en konto, kan du ansøge om en ", "Her", ""],
+        "description": [
+            "Hvis du ikke har en konto, kan du ansøge om en ",
+            "Her",
+            " ."
+        ],
         "username": "Brugernavn",
         "password": "Adgangskode"
     },
@@ -56,8 +60,8 @@
         "conceptID": "Auto-udfyldes ved søgningen",
         "conceptName": "Auto-udfyldes ved søgningen",
         "newDescription": "Den nye term skal være på dansk",
-        "relationshipType": "Hvis ’anden’, så skriv venligst hvilken i begrundelse neden for.",
-        "relationshipTarget": "Search for concepts",
+        "relationshipType": "Hvis ’anden’, så skriv venligst hvilken i begrundelse neden for",
+        "relationshipTarget": "Søg begreb...",
         "existingDescription": "Den term der skal ændres",
         "existingRelationship": "Den relation der skal ændres"
     },
