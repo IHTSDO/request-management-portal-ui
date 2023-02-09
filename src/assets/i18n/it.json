@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Autenticazione",
-        "description": ["Se non avete un account, potete richiederne uno ", "Qui", ""],
+        "description": [
+            "Se non avete un account, potete richiederne uno ",
+            "Qui",
+            " ."
+        ],
         "username": "Nome utente",
         "password": "Password"
     },
