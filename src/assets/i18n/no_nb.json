@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Autentisering",
-        "description": ["Dersom du ikke har en konto, kan du søke om å opprette en ", "Her", ""],
+        "description": [
+            "Dersom du ikke har en konto, kan du søke om å opprette en ",
+            "Her",
+            " ."
+        ],
         "username": "Brukernavn",
         "password": "Passord"
     },
@@ -48,7 +52,7 @@
         "contextRefset": "Velg konteksten forespørselen gjelder",
         "newFSN": "FSN-et angis på engelsk",
         "newPreferredTerm": "Foretrukket term angis på bokmål eller nynorsk (språket angitt i språkbasert referansesett)",
-        "newSynonyms": "Legg til eventuelle synonymer. Dersom det er flere forslag, vennligst sett komma mellom hvert synonym.",
+        "newSynonyms": "Legg til eventuelle synonymer. Dersom det er flere forslag, vennligst sett komma mellom hvert synonym",
         "parentConcept": "Legg til Snomed ID-en til foreldrebegrepet dersom du kjenner denne",
         "justification": "Oppgi en detaljert beskrivelse for klinisk eller administrativt behov",
         "reference": "Vennligst legg ved én eller flere kilder som beskriver begrepet",
