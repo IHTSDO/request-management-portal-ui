@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Anmeldung",
-        "description": ["Wenn Sie noch nicht über ein Benutzerkonto verfügen, können Sie ", "hier", " eines einrichten."],
+        "description": [
+            "Wenn Sie noch nicht über ein Benutzerkonto verfügen, können Sie ",
+            "hier",
+            " eines einrichten."
+        ],
         "username": "Benutzername",
         "password": "Passwort"
     },
