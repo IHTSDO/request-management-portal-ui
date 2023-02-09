@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Authenticatie",
-        "description": ["Als u nog geen account heeft, kunt u dit ", "Hier", " aanvragen"],
+        "description": [
+            "Als u nog geen account heeft, kunt u dit ",
+            "Hier",
+            " aanvragen"
+        ],
         "username": "Gebruikersnaam",
         "password": "Wachtwoord"
     },
