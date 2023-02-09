@@ -1,16 +1,20 @@
 {
     "home": {
         "title": "Portail de gestion des requetes Snomed CT",
-        "description": "Ce portail de requête est destiné à soumettre des demandes d'ajout, de mise à jour ou de modification\n                du contenu SNOMED CT. Veuillez sélectionner le type de demande souhaité parmi les options ci-dessous."
+        "description": "Ce portail de requête est destiné à soumettre des demandes d'ajout, de mise à jour ou de modification du contenu SNOMED CT. Veuillez sélectionner le type de demande souhaité parmi les options ci-dessous."
     },
     "authentication": {
         "title": "Authentification",
-        "description": ["Si vous n'avez pas encore de compte utilisateur, vous pouvez en demander un ", "Ici", ""],
+        "description": [
+            "Si vous n'avez pas encore de compte utilisateur, vous pouvez en demander un ",
+            "Ici",
+            " ."
+        ],
         "username": "Nom d'utilisateur",
         "password": "Mot de passe"
     },
     "requestDetails": {
-        "title": "Détails de la Requête ",
+        "title": "Détails de la Requête",
         "addConcept": "Ajouter Concept",
         "addDescription": "Ajouter Description",
         "addRelationship": "Ajouter Relation",
