@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Autentisering",
-        "description": ["Dersom du ikkje har ein konto, kan du søkje om opprette ein ", "Her", ""],
+        "description": [
+            "Dersom du ikkje har ein konto, kan du søkje om opprette ein ",
+            "Her",
+            " ."
+        ],
         "username": "Brukarnamn",
         "password": "Passord"
     },
