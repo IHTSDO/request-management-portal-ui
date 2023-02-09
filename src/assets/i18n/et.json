@@ -5,7 +5,11 @@
     },
     "authentication": {
         "title": "Authentication",
-        "description": ["If you do not have an account you can apply for one ", "Here", ""],
+        "description": [
+            "If you do not have an account you can apply for one ",
+            "Here",
+            " ."
+        ],
         "username": "Username",
         "password": "Password"
     },
