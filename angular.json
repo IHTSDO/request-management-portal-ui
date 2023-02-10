@@ -41,7 +41,7 @@
                             "./node_modules/jquery/dist/jquery.min.js",
                             "./node_modules/@popperjs/core/dist/umd/popper.min.js",
                             "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-                            "./src/assets/js/cookieBanner.js"
+                            "./src/assets/js/iubenda-cookies.js"
                         ]
                     },
                     "configurations": {
