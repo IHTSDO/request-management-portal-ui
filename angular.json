@@ -4,24 +4,25 @@
     "newProjectRoot": "projects",
     "projects": {
         "request-management-portal-ui": {
+            "root": "",
+            "sourceRoot": "src",
             "projectType": "application",
+            "prefix": "app",
             "schematics": {
                 "@schematics/angular:component": {
                     "style": "scss"
                 }
             },
-            "root": "",
-            "sourceRoot": "src",
-            "prefix": "app",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "baseHref": "/",
                         "outputPath": "dist/request-management-portal-ui",
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "tsConfig": "tsconfig.app.json",
-                        "inlineStyleLanguage": "scss",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.app.json",
                         "assets": [
                             "src/favicon.ico",
                             "src/favicon_grey.ico",
@@ -47,51 +48,62 @@
                         "production": {
                             "budgets": [
                                 {
-                                    "type": "initial",
-                                    "maximumWarning": "1mb",
-                                    "maximumError": "2mb"
-                                },
-                                {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "16kb",
-                                    "maximumError": "32kb"
+                                    "maximumWarning": "6kb"
                                 }
                             ],
-                            "outputHashing": "all"
-                        },
-                        "development": {
-                            "buildOptimizer": false,
-                            "optimization": false,
-                            "vendorChunk": true,
-                            "extractLicenses": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "baseHref": "/",
                             "sourceMap": true,
-                            "namedChunks": true
+                            "optimization": false
                         }
-                    },
-                    "defaultConfiguration": "production"
+                    }
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
+                        "browserTarget": "request-management-portal-ui:build",
                         "liveReload": false
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "request-management-portal-ui:build:production"
+                            "browserTarget": "request-management-portal-ui:build:production",
+                            "sourceMap": true,
+                            "optimization": false
                         },
                         "development": {
-                            "browserTarget": "request-management-portal-ui:build:development"
+                            "browserTarget": "request-management-portal-ui:build:development",
+                            "sourceMap": true,
+                            "optimization": false
                         }
-                    },
-                    "defaultConfiguration": "development"
+                    }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
                         "browserTarget": "request-management-portal-ui:build"
                     }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "src/**/*.ts",
+                            "src/**/*.html"
+                        ]
+                    }
                 }
             }
         }
+    },
+    "defaultProject": "request-management-portal-ui",
+    "cli": {
+        "analytics": false,
+        "defaultCollection": "@angular-eslint/schematics"
     }
 }
