@@ -15,11 +15,10 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular/build:application",
                     "options": {
                         "outputPath": "dist/request-management-portal-ui",
                         "index": "src/index.html",
-                        "main": "src/main.ts",
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
@@ -32,37 +31,37 @@
                             "src/dashboard"
                         ],
                         "styles": [
-                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+                            "@angular/material/prebuilt-themes/indigo-pink.css",
+                            "bootstrap/dist/css/bootstrap.min.css",
+                            "@fortawesome/fontawesome-free/css/all.css",
                             "src/styles.scss"
                         ],
                         "scripts": [
-                            "./node_modules/jquery/dist/jquery.min.js",
-                            "./node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+                            "@popperjs/core/dist/umd/popper.min.js",
+                            "bootstrap/dist/js/bootstrap.min.js",
                             "./src/assets/js/iubenda-cookies.js"
-                        ]
+                        ],
+                        "browser": "src/main.ts"
                     },
                     "configurations": {
                         "production": {
+                            "baseHref": "/",
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "1mb",
-                                    "maximumError": "2mb"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "4mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "16kb",
-                                    "maximumError": "32kb"
+                                    "maximumWarning": "250kb",
+                                    "maximumError": "500kb"
                                 }
                             ],
                             "outputHashing": "all"
                         },
                         "development": {
-                            "buildOptimizer": false,
                             "optimization": false,
-                            "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true
@@ -71,24 +70,24 @@
                     "defaultConfiguration": "production"
                 },
                 "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "builder": "@angular/build:dev-server",
                     "options": {
                         "liveReload": false
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "request-management-portal-ui:build:production"
+                            "buildTarget": "request-management-portal-ui:build:production"
                         },
                         "development": {
-                            "browserTarget": "request-management-portal-ui:build:development"
+                            "buildTarget": "request-management-portal-ui:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "builder": "@angular/build:extract-i18n",
                     "options": {
-                        "browserTarget": "request-management-portal-ui:build"
+                        "buildTarget": "request-management-portal-ui:build"
                     }
                 }
             }
