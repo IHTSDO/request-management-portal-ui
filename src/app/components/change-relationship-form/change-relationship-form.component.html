@@ -10,7 +10,6 @@
         <div class="offset-1 col-5 p-3 mb-3 form-group">
             <label for="language">{{ 'form.languageRefset' | translate }}</label>
             <select class="form-control" id="language" [(ngModel)]="request.language" name="language" #language="ngModel" matTooltip="{{ 'tooltip.languageRefset' | translate }}">
-                <option value="None" selected>{{ 'language.none' | translate }}</option>
                 <option value="Belgian Dutch">{{ 'language.beDutch' | translate }}</option>
                 <option value="Belgian French">{{ 'language.beFrench' | translate }}</option>
                 <option value="Danish">{{ 'language.danish' | translate }}</option>
@@ -31,7 +30,6 @@
         <div class="col-5 p-3 mb-3 form-group">
             <label for="context">{{ 'form.contextRefset' | translate }}</label>
             <select class="form-control" id="context" [(ngModel)]="request.context" name="context" #context="ngModel" matTooltip="{{ 'tooltip.contextRefset' | translate }}">
-                <option value="None" selected>{{ 'context.none' | translate }}</option>
                 <option value="BE GP - Dutch">{{ 'context.beGPDutch' | translate }}</option>
                 <option value="BE GP - French">{{ 'context.beGPFrench' | translate }}</option>
                 <option value="NZ Patient Friendly - English">{{ 'context.nzPatientFriendlyEnglish' | translate }}</option>
