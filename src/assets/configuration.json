@@ -83,15 +83,6 @@
             "userGuideUrl": ""
         },
         {
-            "code": "no",
-            "extensionFlag": "no",
-            "extensionName": "Norwegian",
-            "defaultLanguage": "no_nn",
-            "projectKey": "NORMP",
-            "contactUsUrl": "",
-            "userGuideUrl": ""
-        },
-        {
             "code": "nz",
             "extensionFlag": "nz",
             "extensionName": "New Zealand",
