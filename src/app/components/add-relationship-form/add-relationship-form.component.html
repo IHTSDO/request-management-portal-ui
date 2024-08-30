@@ -2,6 +2,8 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
             <label for="summary">{{ 'form.summary' | translate }}</label>
+            <span *ngIf="request.summary.length > 0" class="float-end">{{256 - request.summary.length}} characters left</span>
+
             <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="{{ 'tooltip.summary' | translate }}">
             <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">{{ 'required.summary' | translate }}</div>
         </div>
