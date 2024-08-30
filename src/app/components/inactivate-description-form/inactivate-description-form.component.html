@@ -75,7 +75,7 @@
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="reference">{{ 'form.reference' | translate }}</label>
-            <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}">
+            <textarea type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}"></textarea>
         </div>
     </div>
     <div class="text-end">
