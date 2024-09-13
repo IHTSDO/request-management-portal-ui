@@ -33,7 +33,7 @@
                                     <type>directory</type>
                                     <mapper>
                                         <type>perm</type>
-                                        <prefix>/opt/${packageName}/lib/browser/</prefix>
+                                        <prefix>/opt/${packageName}/lib/</prefix>
                                     </mapper>
                                 </data>
                             </dataSet>
