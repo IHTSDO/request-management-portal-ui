@@ -22,7 +22,9 @@
         "changeRelationship": "Endre omgrepsrelasjon",
         "inactivateDescription": "Inaktiver beskriving",
         "inactivateRelationship": "Inaktiver omgrepsrelasjon",
-        "other": "Anna"
+        "other": "Anna",
+        "addRefset": "Add Refset",
+        "changeRefset": "Change Refset"
     },
     "form": {
         "summary": "Samandrag",
@@ -44,7 +46,9 @@
         "existingRelationship": "Eksisterande omgrepsrelasjon",
         "placeholder": "Skriv for å søkje...",
         "reset": "Nullstill",
-        "submit": "Send Inn"
+        "submit": "Send Inn",
+        "eclQuery": "ECL Query (for intensional refsets only)",
+        "membersList": "Member Concept Ids (for extensional refsets only)"
     },
     "tooltip": {
         "summary": "Oppgje innhaldet i førespurnaden i éi setning",
@@ -63,7 +67,9 @@
         "relationshipType": "Dersom 'Anna', forklar i feltet 'Grunngjeving for førespurnad'",
         "relationshipTarget": "Søk etter omgrep",
         "existingDescription": "Før opp beskrivinga som skal inaktiverast",
-        "existingRelationship": "Omgrepsrelasjonen som skal endrast"
+        "existingRelationship": "Omgrepsrelasjonen som skal endrast",
+        "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+        "membersList": "Enter a list of concept IDs here, separated by commas"
     },
     "required": {
         "summary": "Samandrag er nødvendig",

@@ -22,7 +22,9 @@
         "changeRelationship": "Change Relationship",
         "inactivateDescription": "Inactivate Description",
         "inactivateRelationship": "Inactivate Relationship",
-        "other": "Other"
+        "other": "Other",
+        "addRefset": "Add Refset",
+        "changeRefset": "Change Refset"
     },
     "form": {
         "summary": "Summary",
@@ -44,7 +46,9 @@
         "existingRelationship": "Existing Relationship",
         "placeholder": "Type to Search...",
         "reset": "Reset",
-        "submit": "Submit"
+        "submit": "Submit",
+        "eclQuery": "ECL Query (for intensional refsets only)",
+        "membersList": "Member Concept Ids (for extensional refsets only)"
     },
     "tooltip": {
         "summary": "The content of the request in one sentence",
@@ -63,7 +67,9 @@
         "relationshipType": "If 'Other' please explain in Justification below",
         "relationshipTarget": "Search for concepts",
         "existingDescription": "The description to be changed",
-        "existingRelationship": "The relationship to be changed"
+        "existingRelationship": "The relationship to be changed",
+        "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+        "membersList": "Enter a list of concept IDs here, separated by commas"
     },
     "required": {
         "summary": "Summary is required",

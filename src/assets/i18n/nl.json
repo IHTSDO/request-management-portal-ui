@@ -22,7 +22,9 @@
         "changeRelationship": "Relatie Wijzigen",
         "inactivateDescription": "Beschrijving Inactiveren",
         "inactivateRelationship": "Relatie Inactiveren",
-        "other": "Andere"
+        "other": "Andere",
+        "addRefset": "Add Refset",
+        "changeRefset": "Change Refset"
     },
     "form": {
         "summary": "Omschrijving",
@@ -44,7 +46,9 @@
         "existingRelationship": "Bestaande relatie",
         "placeholder": "Typ om te zoeken...",
         "reset": "Reset",
-        "submit": "Bevestig"
+        "submit": "Bevestig",
+        "eclQuery": "ECL Query (for intensional refsets only)",
+        "membersList": "Member Concept Ids (for extensional refsets only)"
     },
     "tooltip": {
         "summary": "De inhoud van de aanvraag in één zin",
@@ -63,7 +67,9 @@
         "relationshipType": "Indien \"Andere\", gelieve toe te lichten in de motivering hieronder",
         "relationshipTarget": "Zoeken naar concepten",
         "existingDescription": "De beschrijving die gewijzigd moet worden",
-        "existingRelationship": "De relatie die moet worden gewijzigd"
+        "existingRelationship": "De relatie die moet worden gewijzigd",
+        "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+        "membersList": "Enter a list of concept IDs here, separated by commas"
     },
     "required": {
         "summary": "Omschrijving is vereist",

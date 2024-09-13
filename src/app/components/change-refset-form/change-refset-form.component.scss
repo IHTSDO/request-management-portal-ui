@@ -1,0 +1,18 @@
+@import 'src/variables.scss';
+
+label {
+    font-size: 1.4rem;
+}
+
+input {
+    font-size: 1.8rem;
+}
+
+div.form-break {
+    border-bottom: solid 1px $ghost-grey;
+}
+
+textarea {
+    height: 10rem;
+    resize: vertical;
+}

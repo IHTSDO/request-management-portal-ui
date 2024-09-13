@@ -22,7 +22,9 @@
         "changeRelationship": "Ændring af Relation",
         "inactivateDescription": "Inaktiver Term",
         "inactivateRelationship": "Inaktiver Relation",
-        "other": "Andet"
+        "other": "Andet",
+        "addRefset": "Add Refset",
+        "changeRefset": "Change Refset"
     },
     "form": {
         "summary": "Resumé",
@@ -44,7 +46,9 @@
         "existingRelationship": "Eksisterende relation",
         "placeholder": "Tast for at søge...",
         "reset": "Slet Alt",
-        "submit": "Indsend"
+        "submit": "Indsend",
+        "eclQuery": "ECL Query (for intensional refsets only)",
+        "membersList": "Member Concept Ids (for extensional refsets only)"
     },
     "tooltip": {
         "summary": "Forespørgslens indhold i en enkelt sætning",
@@ -63,7 +67,9 @@
         "relationshipType": "Hvis ’anden’, så skriv venligst hvilken i begrundelse neden for",
         "relationshipTarget": "Søg begreb...",
         "existingDescription": "Den term der skal ændres",
-        "existingRelationship": "Den relation der skal ændres"
+        "existingRelationship": "Den relation der skal ændres",
+        "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+        "membersList": "Enter a list of concept IDs here, separated by commas"
     },
     "required": {
         "summary": "Resumé er påkrævet",

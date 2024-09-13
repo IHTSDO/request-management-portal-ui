@@ -1,0 +1,37 @@
+<form (ngSubmit)="submitRequest()" #requestForm="ngForm">
+    <div class="row">
+        <div class="offset-1 col-10 p-3 mb-3 form-group">
+            <label for="summary">{{ 'form.summary' | translate }}</label>
+            <span *ngIf="request.summary.length > 0" class="float-end">{{256 - request.summary.length}} characters left</span>
+
+            <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="{{ 'tooltip.summary' | translate }}">
+            <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">{{ 'required.summary' | translate }}</div>
+        </div>
+    </div>
+    <div class="form-break mb-2"></div>
+    <div class="row">
+        <div class="offset-1 col-10 p-3 mb-0 form-group">
+            <label for="membersList">{{ 'form.membersList' | translate }}</label>
+            <textarea type="text" class="form-control" id="membersList" [(ngModel)]="request.membersList" name="membersList" matTooltip="{{ 'tooltip.membersList' | translate }}"></textarea>
+        </div>
+        <div class="offset-1 col-10 p-3 mb-0 form-group">
+            <label for="eclQuery">{{ 'form.eclQuery' | translate }}</label>
+            <textarea type="text" class="form-control" id="eclQuery" [(ngModel)]="request.eclQuery" name="eclQuery" matTooltip="{{ 'tooltip.eclQuery' | translate }}"></textarea>
+        </div>
+    </div>
+    <div class="form-break mb-2"></div>
+    <div class="row">
+        <div class="offset-1 col-10 p-3 mb-0 form-group">
+            <label for="justification">{{ 'form.justification' | translate }}</label>
+            <textarea type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification" matTooltip="{{ 'tooltip.justification' | translate }}"></textarea>
+        </div>
+        <div class="offset-1 col-10 p-3 mb-0 form-group">
+            <label for="reference">{{ 'form.reference' | translate }}</label>
+            <textarea type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}"></textarea>
+        </div>
+    </div>
+    <div class="text-end">
+        <button type="button" class="btn btn-secondary p-3 px-5" (click)="requestForm.reset()">{{ 'form.reset' | translate | uppercase}}</button>
+        <button type="submit" class="btn btn-success p-3 px-5 m-5" [disabled]="!requestForm.form.valid">{{ 'form.submit' | translate | uppercase}}</button>
+    </div>
+</form>

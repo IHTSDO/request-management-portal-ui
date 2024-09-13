@@ -22,7 +22,9 @@
         "changeRelationship": "Endre begrepsrelasjon",
         "inactivateDescription": "Inaktiver beskrivelse",
         "inactivateRelationship": "Inaktiver begrepsrelasjon",
-        "other": "Annet"
+        "other": "Annet",
+        "addRefset": "Add Refset",
+        "changeRefset": "Change Refset"
     },
     "form": {
         "summary": "Sammendrag",
@@ -44,7 +46,9 @@
         "existingRelationship": "Eksisterende relasjon",
         "placeholder": "Skriv for å søke...",
         "reset": "Nullstill",
-        "submit": "Send Inn"
+        "submit": "Send Inn",
+        "eclQuery": "ECL Query (for intensional refsets only)",
+        "membersList": "Member Concept Ids (for extensional refsets only)"
     },
     "tooltip": {
         "summary": "Oppgi innholdet i forespørselen i én setning",
@@ -63,7 +67,9 @@
         "relationshipType": "Dersom ‘Annet’, vennligst forklar i feltet ‘Begrunnelse for forespørsel’",
         "relationshipTarget": "Søk etter begrep",
         "existingDescription": "Angi beskrivelsen som skal endres",
-        "existingRelationship": "Relasjonen som skal endres"
+        "existingRelationship": "Relasjonen som skal endres",
+        "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+        "membersList": "Enter a list of concept IDs here, separated by commas"
     },
     "required": {
         "summary": "Sammendrag er nødvendig",
