@@ -28,12 +28,12 @@ export class JiraService {
 
     postJiraIssue(request: Request, requestType: string): Observable<object> {
         const params = this.createRequestObject(request, requestType);
-        console.log('params: ', params);
+        console.log('params : ', params);
         return this.http.post<object>('/jira/issue', params);
     }
 
     createRequestObject(request: Request, requestType: string) {
-        console.log('extension: ', this.extension);
+        console.log('extension : ', this.extension);
         const requestObject = {
             'fields': {
                 'project': {'key': this.extension.projectKey},
