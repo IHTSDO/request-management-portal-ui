@@ -48,7 +48,8 @@
         "reset": "Réinitialiser",
         "submit": "Soumettre",
         "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)"
+        "membersList": "Member Concept Ids (for extensional refsets only)",
+        "charactersLeft": "characters left"
     },
     "tooltip": {
         "summary": "Objet de la requête en une phrase",

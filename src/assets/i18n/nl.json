@@ -48,7 +48,8 @@
         "reset": "Reset",
         "submit": "Bevestig",
         "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)"
+        "membersList": "Member Concept Ids (for extensional refsets only)",
+        "charactersLeft": "characters left"
     },
     "tooltip": {
         "summary": "De inhoud van de aanvraag in één zin",

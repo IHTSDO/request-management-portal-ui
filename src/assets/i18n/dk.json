@@ -48,7 +48,8 @@
         "reset": "Slet Alt",
         "submit": "Indsend",
         "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)"
+        "membersList": "Member Concept Ids (for extensional refsets only)",
+        "charactersLeft": "characters left"
     },
     "tooltip": {
         "summary": "Forespørgslens indhold i en enkelt sætning",

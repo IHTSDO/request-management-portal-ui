@@ -48,7 +48,8 @@
         "reset": "Reimposta",
         "submit": "Invia",
         "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)"
+        "membersList": "Member Concept Ids (for extensional refsets only)",
+        "charactersLeft": "characters left"
     },
     "tooltip": {
         "summary": "Il contenuto della richiesta in una frase",

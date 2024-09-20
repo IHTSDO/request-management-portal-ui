@@ -48,7 +48,8 @@
         "reset": "Zurücksetzen",
         "submit": "Antrag Einreichen",
         "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)"
+        "membersList": "Member Concept Ids (for extensional refsets only)",
+        "charactersLeft": "characters left"
     },
     "tooltip": {
         "summary": "Inhalt der Anfrage in einem Satz beschreiben",
