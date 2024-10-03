@@ -23,8 +23,8 @@
         "inactivateDescription": "Inattiva Descrizione",
         "inactivateRelationship": "Inattiva Relazione",
         "other": "Altro",
-        "addRefset": "Add Refset",
-        "changeRefset": "Change Refset"
+        "addRefset": "Aggiungi Refset",
+        "changeRefset": "Cambia Refset"
     },
     "form": {
         "summary": "Riassunto",
@@ -47,9 +47,9 @@
         "placeholder": "Immettere una chiave di ricerca...",
         "reset": "Reimposta",
         "submit": "Invia",
-        "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)",
-        "charactersLeft": "characters left"
+        "eclQuery": "Query ECL (solo per refset intenzionali)",
+        "membersList": "ID concetti membri (solo per refset estensionali)",
+        "charactersLeft": "Caratteri rimanenti"
     },
     "tooltip": {
         "summary": "Il contenuto della richiesta in una frase",

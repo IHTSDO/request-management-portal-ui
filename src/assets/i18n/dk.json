@@ -23,8 +23,8 @@
         "inactivateDescription": "Inaktiver Term",
         "inactivateRelationship": "Inaktiver Relation",
         "other": "Andet",
-        "addRefset": "Add Refset",
-        "changeRefset": "Change Refset"
+        "addRefset": "Tilføj refset",
+        "changeRefset": "Rediger refset"
     },
     "form": {
         "summary": "Resumé",
@@ -47,9 +47,9 @@
         "placeholder": "Tast for at søge...",
         "reset": "Slet Alt",
         "submit": "Indsend",
-        "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)",
-        "charactersLeft": "characters left"
+        "eclQuery": "ECL-forespørgsel (kun intensionelle refsets)",
+        "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)",
+        "charactersLeft": "tegn tilbage"
     },
     "tooltip": {
         "summary": "Forespørgslens indhold i en enkelt sætning",
