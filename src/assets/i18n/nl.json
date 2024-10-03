@@ -23,8 +23,8 @@
         "inactivateDescription": "Beschrijving Inactiveren",
         "inactivateRelationship": "Relatie Inactiveren",
         "other": "Andere",
-        "addRefset": "Add Refset",
-        "changeRefset": "Change Refset"
+        "addRefset": "Refset toevoegen",
+        "changeRefset": "Refset wijzigen"
     },
     "form": {
         "summary": "Omschrijving",
@@ -47,9 +47,9 @@
         "placeholder": "Typ om te zoeken...",
         "reset": "Reset",
         "submit": "Bevestig",
-        "eclQuery": "ECL Query (for intensional refsets only)",
-        "membersList": "Member Concept Ids (for extensional refsets only)",
-        "charactersLeft": "characters left"
+        "eclQuery": "ECL Query (enkel voor intensionele refsets)",
+        "membersList": "Member Concept Ids (enkel voor extensionele refsets)",
+        "charactersLeft": "karakters resterend"
     },
     "tooltip": {
         "summary": "De inhoud van de aanvraag in één zin",
