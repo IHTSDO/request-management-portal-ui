@@ -2,9 +2,9 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
             <label for="summary">{{ 'form.summary' | translate }}</label>
-            <span *ngIf="request.summary?.length > 0" class="float-end">{{256 - request.summary?.length}} {{ 'form.charactersLeft' | translate }}</span>
+            <span *ngIf="request.summary?.length > 0" class="float-end">{{255 - request.summary?.length}} {{ 'form.charactersLeft' | translate }}</span>
 
-            <input type="text" class="form-control" id="summary" maxlength="256" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="{{ 'tooltip.summary' | translate }}">
+            <input type="text" class="form-control" id="summary" maxlength="255" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="{{ 'tooltip.summary' | translate }}">
             <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">{{ 'required.summary' | translate }}</div>
         </div>
     </div>
@@ -73,13 +73,13 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="justification">{{ 'form.justification' | translate }}</label>
-            <span *ngIf="request.justification?.length > 0" class="float-end"><ng-container *ngIf="request.justification?.length > 32511">{{32767 - request.justification?.length}} {{ 'form.charactersLeft' | translate }}</ng-container></span>
-            <textarea type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification" matTooltip="{{ 'tooltip.justification' | translate }}"></textarea>
+            <span *ngIf="request.justification?.length > 0" class="float-end"><ng-container *ngIf="request.justification?.length > 32512">{{32767 - request.justification?.length}} {{ 'form.charactersLeft' | translate }}</ng-container></span>
+            <textarea type="text" class="form-control" id="justification" maxlength="32767" [(ngModel)]="request.justification" name="justification" matTooltip="{{ 'tooltip.justification' | translate }}"></textarea>
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="reference">{{ 'form.reference' | translate }}</label>
-            <span *ngIf="request.reference?.length > 0" class="float-end">{{256 - request.reference?.length}} {{ 'form.charactersLeft' | translate }}</span>
-            <textarea type="text" class="form-control" id="reference" maxlength="256" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}"></textarea>
+            <span *ngIf="request.reference?.length > 0" class="float-end">{{255 - request.reference?.length}} {{ 'form.charactersLeft' | translate }}</span>
+            <textarea type="text" class="form-control" id="reference" maxlength="255" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}"></textarea>
         </div>
     </div>
     <div class="text-end">
