@@ -22,7 +22,9 @@
         "changeRelationship": "Relationship ändern",
         "inactivateDescription": "Term inaktivieren",
         "inactivateRelationship": "Relationship inaktivieren",
-        "other": "Andere Anfrage"
+        "other": "Andere Anfrage",
+        "addRefset": "Refset hinzufügen",
+        "changeRefset": "Refset ändern"
     },
     "form": {
         "summary": "Zusammenfassung",
@@ -44,7 +46,10 @@
         "existingRelationship": "Bestehende Relationship",
         "placeholder": "Suche...",
         "reset": "Zurücksetzen",
-        "submit": "Antrag Einreichen"
+        "submit": "Antrag Einreichen",
+        "eclQuery": "ECL-Abfrage (nur für intentionale Refsets)",
+        "membersList": "Konzept-IDs der Mitglieder (nur für extensionale Refsets)",
+        "charactersLeft": "Verbleibende Zeichen"
     },
     "tooltip": {
         "summary": "Inhalt der Anfrage in einem Satz beschreiben",
@@ -63,7 +68,9 @@
         "relationshipType": "Falls ‘Andere' gewählt wurde, bitte unter Begründung hinzufügen",
         "relationshipTarget": "Suchbegriff eingeben",
         "existingDescription": "Bestehende Übersetzung, die geändert werden soll",
-        "existingRelationship": "Relationship, die geändert werden soll"
+        "existingRelationship": "Relationship, die geändert werden soll",
+        "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+        "membersList": "Enter a list of concept IDs here, separated by commas"
     },
     "required": {
         "summary": "Bitte Zusammenfassung eingeben",

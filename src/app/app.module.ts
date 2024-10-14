@@ -28,6 +28,8 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import {ExtensionService} from './services/extension/extension.service';
+import {AddRefsetFormComponent} from './components/add-refset-form/add-refset-form.component';
+import {ChangeRefsetFormComponent} from './components/change-refset-form/change-refset-form.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,6 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ChangeRelationshipFormComponent,
         InactivateDescriptionFormComponent,
         InactivateRelationshipFormComponent,
+        AddRefsetFormComponent,
+        ChangeRefsetFormComponent,
         OtherFormComponent,
         AuthBlockComponent
     ],

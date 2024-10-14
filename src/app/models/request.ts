@@ -17,6 +17,8 @@ export class Request {
         public destinationConcept?: string,
         public existingDescription?: string,
         public language?: string,
-        public context?: string) {
+        public context?: string,
+        public eclQuery?: string,
+        public membersList?: string) {
     }
 }

@@ -2,7 +2,8 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-3 form-group">
             <label for="summary">{{ 'form.summary' | translate }}</label>
-            <input type="text" class="form-control" id="summary" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="{{ 'tooltip.summary' | translate }}">
+            <span *ngIf="request.summary?.length > 0" class="float-end">{{255 - request.summary?.length}} {{ 'form.charactersLeft' | translate }}</span>
+            <input type="text" class="form-control" id="summary" maxlength="255" required [(ngModel)]="request.summary" name="summary" #summary="ngModel" matTooltip="{{ 'tooltip.summary' | translate }}">
             <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">{{ 'required.summary' | translate }}</div>
         </div>
     </div>
@@ -10,7 +11,6 @@
         <div class="offset-1 col-5 p-3 mb-3 form-group">
             <label for="language">{{ 'form.languageRefset' | translate }}</label>
             <select class="form-control" id="language" [(ngModel)]="request.language" name="language" #language="ngModel" matTooltip="{{ 'tooltip.languageRefset' | translate }}">
-                <option value="None" selected>{{ 'language.none' | translate }}</option>
                 <option value="Belgian Dutch">{{ 'language.beDutch' | translate }}</option>
                 <option value="Belgian French">{{ 'language.beFrench' | translate }}</option>
                 <option value="Danish">{{ 'language.danish' | translate }}</option>
@@ -31,7 +31,6 @@
         <div class="col-5 p-3 mb-3 form-group">
             <label for="context">{{ 'form.contextRefset' | translate }}</label>
             <select class="form-control" id="context" [(ngModel)]="request.context" name="context" #context="ngModel" matTooltip="{{ 'tooltip.contextRefset' | translate }}">
-                <option value="None" selected>{{ 'context.none' | translate }}</option>
                 <option value="BE GP - Dutch">{{ 'context.beGPDutch' | translate }}</option>
                 <option value="BE GP - French">{{ 'context.beGPFrench' | translate }}</option>
                 <option value="NZ Patient Friendly - English">{{ 'context.nzPatientFriendlyEnglish' | translate }}</option>
@@ -73,11 +72,13 @@
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="justification">{{ 'form.justification' | translate }}</label>
-            <input type="text" class="form-control" id="justification" [(ngModel)]="request.justification" name="justification" matTooltip="{{ 'tooltip.justification' | translate }}">
+            <span *ngIf="request.justification?.length > 0" class="float-end"><ng-container *ngIf="request.justification?.length > 32512">{{32767 - request.justification?.length}} {{ 'form.charactersLeft' | translate }}</ng-container></span>
+            <textarea type="text" class="form-control" id="justification" maxlength="32767" [(ngModel)]="request.justification" name="justification" matTooltip="{{ 'tooltip.justification' | translate }}"></textarea>
         </div>
         <div class="offset-1 col-10 p-3 mb-0 form-group">
             <label for="reference">{{ 'form.reference' | translate }}</label>
-            <input type="text" class="form-control" id="reference" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}">
+            <span *ngIf="request.reference?.length > 0" class="float-end">{{255 - request.reference?.length}} {{ 'form.charactersLeft' | translate }}</span>
+            <textarea type="text" class="form-control" id="reference" maxlength="255" [(ngModel)]="request.reference" name="reference" matTooltip="{{ 'tooltip.reference' | translate }}"></textarea>
         </div>
     </div>
     <div class="text-end">

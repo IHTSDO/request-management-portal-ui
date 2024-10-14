@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { AuthoringService } from '../authoring/authoring.service';
 import { BranchingService } from '../branching/branching.service';
 import { Request } from '../../models/request';
-import {Configuration, Extension} from '../../models/configuration';
 import {ExtensionService} from '../extension/extension.service';
 
 @Injectable({
@@ -33,6 +32,7 @@ export class JiraService {
     }
 
     createRequestObject(request: Request, requestType: string) {
+        console.log('extension : ', this.extension);
         const requestObject = {
             'fields': {
                 'project': {'key': this.extension.projectKey},
@@ -102,6 +102,14 @@ export class JiraService {
 
         if (request.existingDescription) {
             requestObject.fields['customfield_14211'] = request.existingDescription;
+        }
+
+        if (request.eclQuery) {
+            requestObject.fields['customfield_15901'] = request.eclQuery;
+        }
+
+        if (request.membersList) {
+            requestObject.fields['customfield_15902'] = request.membersList;
         }
 
         return requestObject;

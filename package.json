@@ -6,9 +6,7 @@
         "start": "ng serve",
         "build": "ng build",
         "build:prod": "ng build --configuration production",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "lint": "ng lint"
+        "watch": "ng build --watch --configuration development"
     },
     "private": true,
     "browserslist": [
@@ -18,88 +16,35 @@
         "last 2 Edge versions"
     ],
     "dependencies": {
-        "@angular/animations": "^12.2.6",
-        "@angular/cdk": "^12.2.6",
-        "@angular/common": "^12.2.6",
-        "@angular/compiler": "^12.2.6",
-        "@angular/core": "^12.2.6",
-        "@angular/forms": "^12.2.6",
-        "@angular/localize": "^12.2.6",
-        "@angular/material": "^12.2.6",
-        "@angular/platform-browser": "^12.2.6",
-        "@angular/platform-browser-dynamic": "^12.2.6",
-        "@angular/router": "^12.2.6",
-        "@briebug/jest-schematic": "^2.2.0",
-        "@fortawesome/fontawesome-free": "^5.13.0",
-        "@ng-bootstrap/ng-bootstrap": "^10.0.0",
-        "@ngx-translate/core": "^13.0.0",
-        "@ngx-translate/http-loader": "^6.0.0",
-        "@popperjs/core": "^2.10.1",
-        "@types/jquery": "^3.5.1",
-        "ajv": "^6.12.2",
-        "bootstrap": "^5.1.1",
-        "core-js": "^3.6.5",
-        "guid-typescript": "^1.0.9",
-        "jquery": "^3.5.1",
-        "ngx-toastr": "^13.2.0",
-        "rxjs": "^6.6.3",
-        "tslib": "^2.0.0",
-        "zone.js": "~0.11.4"
+        "@angular/animations": "^18.0.2",
+        "@angular/cdk": "^18.0.2",
+        "@angular/common": "^18.0.2",
+        "@angular/compiler": "^18.0.2",
+        "@angular/core": "^18.0.2",
+        "@angular/forms": "^18.0.2",
+        "@angular/localize": "^18.0.2",
+        "@angular/material": "^18.0.2",
+        "@angular/platform-browser": "^18.0.2",
+        "@angular/platform-browser-dynamic": "^18.0.2",
+        "@angular/router": "^18.0.2",
+        "@fortawesome/fontawesome-free": "^6.4.0",
+        "@ng-bootstrap/ng-bootstrap": "^17.0.0",
+        "@ngx-translate/core": "^15.0.0",
+        "@ngx-translate/http-loader": "^8.0.0",
+        "@popperjs/core": "^2.11.7",
+        "bootstrap": "^5.2.3",
+        "ngx-toastr": "^19.0.0",
+        "rxjs": "~7.8.0",
+        "sonarqube-scanner": "^4.2.0",
+        "tslib": "^2.3.0",
+        "zone.js": "~0.14.6"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~12.2.6",
-        "@angular-eslint/builder": "12.7.0",
-        "@angular-eslint/eslint-plugin": "12.7.0",
-        "@angular-eslint/eslint-plugin-template": "12.7.0",
-        "@angular-eslint/schematics": "12.7.0",
-        "@angular-eslint/template-parser": "12.7.0",
-        "@angular/cli": "~12.2.6",
-        "@angular/compiler-cli": "^12.2.6",
-        "@angular/language-service": "^12.2.6",
-        "@types/jasmine": "^3.6.0",
-        "@types/jasminewd2": "~2.0.8",
-        "@types/jest": "26.0.4",
-        "@types/node": "^12.11.1",
-        "@typescript-eslint/eslint-plugin": "4.28.2",
-        "@typescript-eslint/parser": "4.28.2",
-        "eslint": "^7.26.0",
-        "jasmine-core": "~3.6.0",
-        "jasmine-spec-reporter": "~5.0.0",
-        "jest": "26.1.0",
-        "jest-preset-angular": "8.2.1",
-        "protractor": "~7.0.0",
-        "stylelint": "^13.7.0",
-        "ts-node": "~8.9.1",
-        "typescript": "~4.3.5"
-    },
-    "jest": {
-        "preset": "jest-preset-angular",
-        "roots": [
-            "src"
-        ],
-        "transform": {
-            "^.+\\.(ts|js|html)$": "ts-jest"
-        },
-        "setupFilesAfterEnv": [
-            "<rootDir>/src/setupJest.ts"
-        ],
-        "moduleNameMapper": {
-            "@app/(.*)": "<rootDir>/src/app/$1",
-            "@assets/(.*)": "<rootDir>/src/assets/$1",
-            "@core/(.*)": "<rootDir>/src/app/core/$1",
-            "@env": "<rootDir>/src/environments/environment",
-            "@src/(.*)": "<rootDir>/src/src/$1",
-            "@state/(.*)": "<rootDir>/src/app/state/$1"
-        },
-        "globals": {
-            "ts-jest": {
-                "tsConfig": "<rootDir>/src/tsconfig.spec.json",
-                "stringifyContentPathRegex": "\\.html$",
-                "astTransformers": [
-                    "jest-preset-angular/build/InlineFilesTransformer",
-                    "jest-preset-angular/build/StripStylesTransformer"
-                ]
-            }
-        }
+        "@angular/build": "^18.0.3",
+        "@angular/cli": "~18.0.3",
+        "@angular/compiler-cli": "^18.0.2",
+        "@types/jasmine": "~4.3.0",
+        "jasmine-core": "~4.6.0",
+        "typescript": "~5.4.5"
     }
 }
