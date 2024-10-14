@@ -7,42 +7,6 @@
             <div [hidden]="summary.valid || summary.pristine" class="alert alert-danger">{{ 'required.summary' | translate }}</div>
         </div>
     </div>
-    <div class="row">
-        <div class="offset-1 col-5 p-3 mb-3 form-group">
-            <label for="language">{{ 'form.languageRefset' | translate }}</label>
-            <select class="form-control" id="language" [(ngModel)]="request.language" name="language" #language="ngModel" matTooltip="{{ 'tooltip.languageRefset' | translate }}">
-                <option value="Belgian Dutch">{{ 'language.beDutch' | translate }}</option>
-                <option value="Belgian French">{{ 'language.beFrench' | translate }}</option>
-                <option value="Danish">{{ 'language.danish' | translate }}</option>
-                <option value="Estonian">{{ 'language.estonian' | translate }}</option>
-                <option value="IE English">{{ 'language.ieEnglish' | translate }}</option>
-                <option value="GB English">{{ 'language.gbEnglish' | translate }}</option>
-                <option value="Māori">{{ 'language.maori' | translate }}</option>
-                <option value="Norwegian Bokmal">{{ 'language.norwegianBokmal' | translate }}</option>
-                <option value="Norwegian Nyorsk">{{ 'language.norwegianNyorsk' | translate }}</option>
-                <option value="NZ English">{{ 'language.nzEnglish' | translate }}</option>
-                <option value="Swedish">{{ 'language.swedish' | translate }}</option>
-                <option value="Swiss German">{{ 'language.swissGerman' | translate }}</option>
-                <option value="Swiss Italian">{{ 'language.swissItalian' | translate }}</option>
-                <option value="Swiss French">{{ 'language.swissFrench' | translate }}</option>
-                <option value="US English">{{ 'language.usEnglish' | translate }}</option>
-            </select>
-        </div>
-        <div class="col-5 p-3 mb-3 form-group">
-            <label for="context">{{ 'form.contextRefset' | translate }}</label>
-            <select class="form-control" id="context" [(ngModel)]="request.context" name="context" #context="ngModel" matTooltip="{{ 'tooltip.contextRefset' | translate }}">
-                <option value="BE GP - Dutch">{{ 'context.beGPDutch' | translate }}</option>
-                <option value="BE GP - French">{{ 'context.beGPFrench' | translate }}</option>
-                <option value="NZ Patient Friendly - English">{{ 'context.nzPatientFriendlyEnglish' | translate }}</option>
-                <option value="SE Chief Complaints">{{ 'context.seChiefComplaints' | translate }}</option>
-                <option value="SE Dose Unit Abbr.">{{ 'context.seDoseUnitAbbr' | translate }}</option>
-                <option value="SE Lab Medicine">{{ 'context.seLabMedicine' | translate }}</option>
-                <option value="SE Dose Unit Plural">{{ 'context.seDoseUnitPlural' | translate }}</option>
-                <option value="SE Medication Prof.">{{ 'context.seMedicationProf' | translate }}</option>
-                <option value="SE Medication Common">{{ 'context.seMedicationCommon' | translate }}</option>
-            </select>
-        </div>
-    </div>
     <div class="form-break mb-2"></div>
     <div class="row">
         <div class="offset-1 col-10 p-3 mb-0 form-group">
