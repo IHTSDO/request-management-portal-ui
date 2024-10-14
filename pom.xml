@@ -6,7 +6,6 @@
     <properties>
         <packageName>${project.artifactId}</packageName>
     </properties>
-
     <build>
         <plugins>
             <plugin>
