@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
                 private translate: TranslateService,
                 @Inject(DOCUMENT) private document: Document) {
         this.authenticatedSubscription = this.authService.getAuthenticated().subscribe(data => this.authenticated = data);
-        translate.addLangs(['en', 'dk', 'de', 'it', 'fr', 'nl', 'no_nb', 'no_nn']);
+        translate.addLangs(['en', 'dk', 'de', 'it', 'fr', 'nl', 'no_nb', 'no_nn', 'ko']);
         translate.setDefaultLang('en');
         translate.use('en');
     }

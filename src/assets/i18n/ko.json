@@ -84,9 +84,34 @@
         "existingRelationship": "기존 관계 필수"
     },
     "context": {
-        "none": "기타"
+        "none": "기타",
+        "beGPDutch": "BE GP - Dutch",
+        "beGPFrench": "BE GP - French",
+        "nzPatientFriendlyEnglish": "NZ Patient Friendly - English",
+        "seChiefComplaints": "SE Chief Complaints",
+        "seDoseUnitAbbr": "SE Dose Unit Abbr.",
+        "seLabMedicine": "SE Lab Medicine",
+        "seDoseUnitPlural": "SE Dose Unit Plural",
+        "seMedicationProf": "SE Medication Prof.",
+        "seMedicationCommon": "SE Medication Common"
     },
     "language": {
-        "none": "무"
+        "none": "무",
+        "beDutch": "Belgian Dutch",
+        "beFrench": "Belgian French",
+        "danish": "Danish",
+        "estonian": "Estonian",
+        "french": "French",
+        "ieEnglish": "IE English",
+        "gbEnglish": "GB English",
+        "maori": "Māori",
+        "norwegianBokmal": "Norwegian Bokmål",
+        "norwegianNyorsk": "Norwegian Nynorsk",
+        "nzEnglish": "NZ English",
+        "swedish": "Swedish",
+        "swissGerman": "Swiss German",
+        "swissItalian": "Swiss Italian",
+        "swissFrench": "Swiss French",
+        "usEnglish": "US English"
     }
 }
