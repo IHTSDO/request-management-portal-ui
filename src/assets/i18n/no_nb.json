@@ -107,7 +107,8 @@
         "seLabMedicine": "SE Lab Medicine",
         "seDoseUnitPlural": "SE Dose Unit Plural",
         "seMedicationProf": "SE Medication Prof.",
-        "seMedicationCommon": "SE Medication Common"
+        "seMedicationCommon": "SE Medication Common",
+        "canshareLRS": "Canshare LRS"
     },
     "relationshipType": {
         "isA": "Er en (foreldrebegrep)",

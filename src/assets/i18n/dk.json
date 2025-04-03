@@ -114,7 +114,8 @@
         "seLabMedicine": "SE Lab-medicin",
         "seDoseUnitPlural": "SE dosisenhed flertal",
         "seMedicationProf": "SE Medication Prof.",
-        "seMedicationCommon": "SE Medication Common"
+        "seMedicationCommon": "SE Medication Common",
+        "canshareLRS": "Canshare LRS"
     },
     "relationshipType": {
         "isA": "er en type af",
