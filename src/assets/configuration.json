@@ -101,11 +101,11 @@
             "userGuideUrl": ""
         },
         {
-            "code": "ko",
+            "code": "kr",
             "extensionFlag": "ko",
             "extensionName": "Korean",
             "defaultLanguage": "ko",
-            "projectKey": "KORMP",
+            "projectKey": "KRRMP",
             "contactUsUrl": "",
             "userGuideUrl": ""
         }
