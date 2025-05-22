@@ -1,29 +1,32 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import {Injectable, InjectionToken} from '@angular/core';
+import {UIConfiguration} from '../../models/uiConfiguration';
+import {HttpClient} from '@angular/common/http';
+import {Observable, Subject} from 'rxjs';
 
-@Injectable({
-    providedIn: 'root'
-})
+export const WINDOW = new InjectionToken<Window>("WINDOW", {
+    factory: () => (typeof window !== "undefined" ? window : ({} as Window)),
+});
+
+@Injectable({providedIn: 'root'})
 export class AuthoringService {
 
-    public environmentEndpoint: string;
-    configuration = new Subject();
+
+    // public environmentEndpoint: string;
+    private uiConfiguration: Subject<UIConfiguration> = new Subject<UIConfiguration>();
 
     constructor(private http: HttpClient) {
-        this.environmentEndpoint = window.location.origin + '/';
+        // this.environmentEndpoint = window.location.origin + '/';
     }
 
-    // Setters & Getters: Configuration
-    setConfig(config) {
-        this.configuration.next(config);
+    setUIConfiguration(uiConfiguration: UIConfiguration): void {
+        this.uiConfiguration.next(uiConfiguration);
     }
 
-    getConfig() {
-        return this.configuration.asObservable();
+    getUIConfiguration(): Observable<UIConfiguration> {
+        return this.uiConfiguration.asObservable();
     }
 
-    getConfigurationJSON() {
-        return this.http.get('./assets/configuration.json');
+    httpGetUIConfiguration(): Observable<UIConfiguration> {
+        return this.http.get<UIConfiguration>('/authoring-services/ui-configuration');
     }
 }
