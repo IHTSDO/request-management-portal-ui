@@ -1,29 +1,178 @@
-<nav class="navbar sticky-top navbar-dark bg-dark p-2 pe-2">
-    <a class="logo" routerLink="/">
-        <img class="logo me-2 p-0" src="./assets/small_logo.png" alt="Logo">
-        <span class="title">SNOMED CT {{extension?.extensionName}} Extension
-            <img *ngIf="extension?.extensionFlag" src="./assets/flags/{{extension?.extensionFlag}}.png" alt="{{extension?.extensionName}}">
-        </span>
-    </a>
+<div *ngIf="expandedAppMenu || expandedItemMenu || expandedUserMenu || rolesView" class="absolute right-0 left-0 top-0 bottom-0 bg-zinc-900 opacity-20" (click)="closeMenus()"></div>
+<nav class="w-screen fixed bg-zinc-800 p-2 flex items-center justify-between">
+    <div class="flex justify-start items-center">
+        <img class="size-10" src="logos/snomed-logo-small.png" alt="SNOMED International Logo">
+        <span class="text-gray-200 text-lg pl-3">Request Management Portal</span>
+    </div>
+    <div class="flex justify-end items-center">
+        <div *ngIf="user" class="relative inline-block">
+            <button (click)="expandedUserMenu ? expandedUserMenu = false : switchMenu('user')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="user-menu" aria-expanded="true" aria-haspopup="true">
+<!--                <img class="rounded-full size-8 m-auto" src="https://picsum.photos/200/200" alt="User Avatar">-->
+                <div class="rounded-full size-8 m-auto bg-sky-500 pt-1.5 font-semibold museo antialiased">{{getInitials(user)}}</div>
+            </button>
+
+            <div *ngIf="expandedUserMenu" class="absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" tabindex="-1">
+                <div class="grid gap-x-3 p-2">
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="navigateTo('home')">
+                        <p class="text-slate-700">Home</p>
+                    </div>
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="navigateTo('user-information')">
+                        <p class="text-slate-700">Personal Information</p>
+                    </div>
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="navigateTo('security')">
+                        <p class="text-slate-700">Security</p>
+                    </div>
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="openRolesView()">
+                        <p class="text-slate-700">Roles</p>
+                    </div>
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="logout()">
+                        <p class="text-slate-700">Logout</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        <div *ngIf="user" class="relative inline-block end">-->
+<!--            <button (click)="expandedAppMenu ? expandedAppMenu = false : switchMenu('app')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="app-menu" aria-expanded="true" aria-haspopup="true">-->
+<!--                <i class="fa-solid fa-grip text-lg m-auto"></i>-->
+<!--            </button>-->
+
+<!--            <div *ngIf="expandedAppMenu" class="absolute right-0 z-10 mt-2 w-96 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="app-menu" tabindex="-1">-->
+<!--                <div class="grid grid-cols-4 gap-3 p-2">-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-sky-400 fa-earth-americas text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Browser</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-cyan-400 fa-chart-line text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Statistics</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-sky-400 fa-magnifying-glass text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Lookup</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-blue-400 fa-folder-tree text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">MLDS</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-green-400 fa-pen-to-square text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Authoring</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-lime-500 fa-clipboard-list text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Reporting</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-emerald-400 fa-share-from-square text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Templates</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-teal-400 fa-graduation-cap text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Validation</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-lime-500 fa-network-wired text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">MRCM</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-violet-400 fa-clipboard-list text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">RT2</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-fuchsia-400 fa-link text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Mapping</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-indigo-400 fa-2 text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Snap</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-violet-400 fa-clipboard text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">RST</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-purple-400 fa-graduation-cap text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Weblate</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-amber-400 fa-box text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">CRS</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-yellow-500 fa-box text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">US CRS</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-orange-400 fa-box-open text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">RMP</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-rose-400 fa-right-from-bracket text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Release</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-red-400 fa-toolbox text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Admin</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-pink-400 fa-note-sticky text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">RNMS</p>-->
+<!--                    </div>-->
+<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
+<!--                        <i class="fa-solid text-rose-400 fa-hard-drive text-4xl pb-2 text-center"></i>-->
+<!--                        <p class="text-center text-slate-700">Simplex</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="relative inline-block">
+            <button (click)="expandedItemMenu ? expandedItemMenu = false : switchMenu('item')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="items-menu" aria-expanded="true" aria-haspopup="true">
+                <i class="fa-solid fa-bars text-lg m-auto"></i>
+            </button>
+            <div *ngIf="expandedItemMenu" class="absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="items-menu" tabindex="-1">
+                <div class="grid gap-x-3 p-2">
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="redirectTo('https://snomed.statuspage.io/')">
+                        <p class="text-slate-700">SNOMED Status Page</p>
+                    </div>
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="redirectTo('https://www.snomed.org/')">
+                        <p class="text-slate-700">SNOMED International</p>
+                    </div>
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="redirectTo('https://www.iubenda.com/privacy-policy/46600952')">
+                        <p class="text-slate-700">SNOMED Privacy Policy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <ng-container [ngSwitch]="environment">
-        <div *ngSwitchCase="'local'" class="banner text-white local"></div>
-        <div *ngSwitchCase="'dev'" class="banner text-white dev"></div>
-        <div *ngSwitchCase="'uat'" class="banner text-white uat"></div>
-        <div *ngSwitchCase="'training'" class="banner text-white training"></div>
-        <div *ngSwitchDefault class="banner text-white d-none"></div>
+        <div *ngSwitchCase="'local'" class="banner text-white local bg-slate-500 absolute top-1.5 -left-5 -rotate-45 px-5">LOC</div>
+        <div *ngSwitchCase="'dev'" class="banner text-white dev bg-red-700 absolute top-1.5 -left-5 -rotate-45 px-5">DEV</div>
+        <div *ngSwitchCase="'uat'" class="banner text-white uat bg-lime-600 absolute top-1.5 -left-5 -rotate-45 px-5">UAT</div>
+        <div *ngSwitchCase="'training'" class="banner text-white training bg-amber-500 absolute top-1.5 -left-5 -rotate-45 px-5">TRN</div>
+        <div *ngSwitchDefault class="banner text-white"></div>
     </ng-container>
 
-    <span class="pe-5">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {{language?.languageName}}<img *ngIf="language?.languageFlag" class="p-2 ps-4" src="./assets/flags/{{language?.languageFlag}}.png" alt="{{language?.languageName}}">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li *ngFor="let lang of configuration?.languages">
-                    <a class="dropdown-item" [routerLink]="[lang.languageCode]" (click)="changeLanguage(lang.languageCode)">{{lang.languageName}}<img class="p-2" src="./assets/flags/{{lang.languageFlag}}.png" alt="{{language.languageName}}"></a>
-                </li>
-            </ul>
+    <ng-container *ngIf="rolesView">
+        <div class="absolute right-2 top-12 z-10 mt-2 w-80 rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none">
+            <i class="fa-solid fa-xmark absolute top-1 right-3 text-xl cursor-pointer" (click)="rolesView = false"></i>
+            <h3 class="text-slate-700 text-lg px-3 py-2">Roles <span class="text-base">({{user.roles.length}})</span></h3>
+            <div class="overflow-auto max-h-roles-view">
+                <ng-container *ngFor="let role of user.roles; let last = last">
+                    <p class="text-slate-700 px-3 text-sm" [class.mb-3]="last">{{role}}</p>
+                </ng-container>
+            </div>
         </div>
-    </span>
+    </ng-container>
+
 </nav>

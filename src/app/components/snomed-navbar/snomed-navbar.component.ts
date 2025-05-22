@@ -1,65 +1,99 @@
-import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {Location} from '@angular/common';
-import {ExtensionService} from '../../services/extension/extension.service';
-import {AuthoringService} from '../../services/authoring/authoring.service';
-import {Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {User} from "../../models/user";
+import {Subscription} from "rxjs";
+import {AuthenticationService} from "../../services/authentication/authentication.service";
+import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-snomed-navbar',
+    standalone: true,
+    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
     templateUrl: './snomed-navbar.component.html',
-    styleUrls: ['./snomed-navbar.component.scss']
+    styleUrl: './snomed-navbar.component.scss'
 })
 export class SnomedNavbarComponent implements OnInit {
 
-    environment: string;
+    environment: string = '';
 
-    extension: any;
-    extensionSubscription: Subscription;
-    language: any;
-    languageSubscription: Subscription;
-    configuration: any;
-    configurationSubscription: Subscription;
+    user!: User;
+    userSubscription: Subscription;
 
-    constructor(private translate: TranslateService,
-                private location: Location,
-                private extensionService: ExtensionService,
-                private authoringService: AuthoringService) {
-        this.environment = window.location.host.split(/[.]/)[0];
-        this.extensionSubscription = this.extensionService.getExtension().subscribe(data => this.extension = data);
-        this.languageSubscription = this.extensionService.getLanguage().subscribe(data => this.language = data);
-        this.configurationSubscription = this.authoringService.getConfig().subscribe(data => this.configuration = data);
+    expandedUserMenu: boolean = false;
+    expandedAppMenu: boolean = false;
+    expandedItemMenu: boolean = false;
+    rolesView: boolean = false;
+
+    constructor(private readonly authenticationService: AuthenticationService, private readonly router: Router) {
+        this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
+        router.events.subscribe(() => this.closeMenus());
     }
 
     ngOnInit() {
-        this.authoringService.getConfigurationJSON().subscribe(config => {
-            this.authoringService.setConfig(config);
-
-            if (this.environment.includes('local')) {
-                this.extensionService.setExtension(this.configuration.extensions.find(extension => extension.code === 'en'));
-            } else if (this.environment.includes('dev')) {
-                this.extensionService.setExtension(this.configuration.extensions.find(extension => extension.code === this.environment.slice(4,6)));
-            } else if (!this.environment.includes('local')) {
-                this.extensionService.setExtension(this.configuration.extensions.find(extension => extension.code === this.environment.slice(0,2)));
-            }
-
-            let urlLanguage = this.location.path().slice(1);
-
-            if (this.configuration.languages.some(lang => lang.languageCode === urlLanguage)) {
-                this.extensionService.setLanguage(this.configuration.languages.find(language => language.languageCode === urlLanguage));
-            } else {
-                this.extensionService.setLanguage(this.configuration.languages.find(language => language.languageCode === this.extension.defaultLanguage));
-            }
-
-            this.location.replaceState(this.language.languageCode);
-            this.translate.use(this.language.languageCode);
-        });
+        this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
     }
 
-    changeLanguage(lang: string) {
-        this.extensionService.setLanguage(this.configuration.languages.find(language => language.languageCode === lang));
+    switchMenu(name: string): void {
+        switch (name) {
+            case 'user':
+                this.expandedUserMenu = true;
+                this.expandedAppMenu = false;
+                this.expandedItemMenu = false;
+                break;
+            case 'app':
+                this.expandedUserMenu = false;
+                this.expandedAppMenu = true;
+                this.expandedItemMenu = false;
+                break;
+            case 'item':
+                this.expandedUserMenu = false;
+                this.expandedAppMenu = false;
+                this.expandedItemMenu = true;
+                break;
+        }
+    }
 
-        this.location.replaceState(this.language.languageCode);
-        this.translate.use(this.language.languageCode);
+    closeMenus(): void {
+        this.expandedUserMenu = false;
+        this.expandedAppMenu = false;
+        this.expandedItemMenu = false;
+        this.rolesView = false;
+    }
+
+    openRolesView(): void {
+        this.closeMenus();
+        this.rolesView = true;
+    }
+
+    getInitials(user: User): string {
+        let initials = '';
+
+        if (user.firstName) {
+            initials += user.firstName?.charAt(0).toUpperCase();
+        }
+
+        if (user.lastName) {
+            initials += user.lastName?.charAt(0).toUpperCase();
+        }
+
+        return initials;
+    }
+
+    navigateTo(location: string): void {
+        this.router.navigate([location]);
+    }
+
+    redirectTo(url: string): void {
+        window.open(url, '_blank');
+    }
+
+    logout(): void {
+        this.authenticationService.httpLogout().subscribe({
+            next: () => {
+                this.authenticationService.setUser(undefined!);
+                this.router.navigate(['/']);
+            },
+            error: (e) => console.error('error: ', e)
+        });
     }
 }
