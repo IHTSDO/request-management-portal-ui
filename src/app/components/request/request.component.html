@@ -17,7 +17,7 @@
     </div>
     <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-slate-200 rounded-lg p-3">
         <div>
-            <label for="name" class="text-sm text-slate-700 font-medium">Name</label>
+            <label for="name" class="text-sm text-slate-700 font-medium">Name<span class="text-red-500 ps-1">*</span></label>
             <div class="mt-2">
                 <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                     <input type="text" name="Name" id="name" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -27,8 +27,8 @@
         <div>
             <label for="type" class="text-sm text-slate-700 font-medium">Type</label>
             <div class="mt-2">
-                <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
-                    <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [(ngModel)]="formType">
+                <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50">
+                    <select name="Type" id="type" class="grow py-1.5 text-slate-700 bg-lime-50 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [(ngModel)]="formType">
                         <option [value]="'add-concept'">Add Concept</option>
                         <option [value]="'add-description'">Add Description</option>
                         <option [value]="'add-relationship'">Add Relationship</option>
@@ -89,7 +89,7 @@
 
         <ng-container *ngIf="formType === 'add-concept'">
             <div>
-                <label for="newFSN" class="text-sm text-slate-700 font-medium">New FSN</label>
+                <label for="newFSN" class="text-sm text-slate-700 font-medium">New FSN<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                         <input type="text" name="New FSN" id="newFSN" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div>
-                <label for="newPT" class="text-sm text-slate-700 font-medium">New Preferred Term</label>
+                <label for="newPT" class="text-sm text-slate-700 font-medium">New Preferred Term<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                         <input type="text" name="New Preferred Term" id="newPT" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div>
-                <label for="parentConcept" class="text-sm text-slate-700 font-medium">Parent Concept</label>
+                <label for="parentConcept" class="text-sm text-slate-700 font-medium">Parent Concept<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                         <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div>
-                <label for="conceptId" class="text-sm text-slate-700 font-medium">Concept ID</label>
+                <label for="conceptId" class="text-sm text-slate-700 font-medium">Concept ID<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                         <input type="text" name="Concept ID" id="conceptId" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div>
-                <label for="conceptName" class="text-sm text-slate-700 font-medium">Concept Name</label>
+                <label for="conceptName" class="text-sm text-slate-700 font-medium">Concept Name<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                         <input type="text" name="Concept Name" id="conceptName" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -153,7 +153,7 @@
             </div>
             <ng-container *ngIf="formType === 'add-description'">
                 <div class="col-span-2">
-                    <label for="newDescription" class="text-sm text-slate-700 font-medium">New Description</label>
+                    <label for="newDescription" class="text-sm text-slate-700 font-medium">New Description<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="New Description" id="newDescription" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -164,7 +164,7 @@
 
             <ng-container *ngIf="formType === 'add-relationship'">
                 <div>
-                    <label for="relationshipType" class="text-sm text-slate-700 font-medium">Relationship Type</label>
+                    <label for="relationshipType" class="text-sm text-slate-700 font-medium">Relationship Type<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="Relationship Type" id="relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -172,7 +172,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">Relationship Target</label>
+                    <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">Relationship Target<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
@@ -184,7 +184,7 @@
 
             <ng-container *ngIf="formType === 'change-description'">
                 <div>
-                    <label for="existingDescription" class="text-sm text-slate-700 font-medium">Exisiting Description</label>
+                    <label for="existingDescription" class="text-sm text-slate-700 font-medium">Exisiting Description<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="Exisiting Description" id="existingDescription" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="newChangeDescription" class="text-sm text-slate-700 font-medium">New Description</label>
+                    <label for="newChangeDescription" class="text-sm text-slate-700 font-medium">New Description<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
@@ -204,7 +204,7 @@
 
             <ng-container *ngIf="formType === 'change-relationship'">
                 <div class="col-span-2">
-                    <label for="existingRelationship" class="text-sm text-slate-700 font-medium">Exisiting Relationship</label>
+                    <label for="existingRelationship" class="text-sm text-slate-700 font-medium">Exisiting Relationship<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="Exisiting Relationship" id="existingRelationship" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="relationshipChangeType" class="text-sm text-slate-700 font-medium">Relationship Type</label>
+                    <label for="relationshipChangeType" class="text-sm text-slate-700 font-medium">Relationship Type<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="Relationship Change Type" id="relationshipChangeType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -220,7 +220,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="relationshipChangeTarget" class="text-sm text-slate-700 font-medium">Relationship Target</label>
+                    <label for="relationshipChangeTarget" class="text-sm text-slate-700 font-medium">Relationship Target<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
@@ -232,7 +232,7 @@
 
             <ng-container *ngIf="formType === 'inactivate-description'">
                 <div class="col-span-2">
-                    <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">Exisiting Description</label>
+                    <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">Exisiting Description<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="Exisiting Description" id="inactivateExistingDescription" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
@@ -243,7 +243,7 @@
 
             <ng-container *ngIf="formType === 'inactivate-relationship'">
                 <div class="col-span-2">
-                    <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">Exisiting Relationship</label>
+                    <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">Exisiting Relationship<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300 bg-white">
                             <input type="text" name="Exisiting Relationship" id="inactivateExistingRelationship" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium">
