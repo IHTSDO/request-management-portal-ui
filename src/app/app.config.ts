@@ -6,7 +6,6 @@ import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/ht
 import {contentTypeInterceptor} from "./interceptors/content-type.interceptor";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideToastr} from "ngx-toastr";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 export const appConfig: ApplicationConfig = {
     providers: [
