@@ -1,16 +1,16 @@
-<div class="overflow-auto text-sm mt-12">
+<div class="overflow-auto text-sm mt-12" *ngIf="request">
     <div class="border border-gray-300 overflow-auto w-2/3 justify-self-center m-5 rounded-lg">
         <table class="border-collapse table-auto w-full text-sm">
             <tbody class="bg-white dark:bg-slate-800">
             <tr class="bg-sky-50">
-                <th class="font-normal text-slate-700 text-base py-2">#178</th>
-                <th class="font-normal text-sky-500 text-base py-2">Please add a concept for Evolved Asthma</th>
-                <th class="font-normal text-slate-700 text-base py-2">Add Concept</th>
+                <th class="font-normal text-slate-700 text-base py-2">#{{request.id}}</th>
+                <th class="font-normal text-sky-500 text-base py-2">{{request.summary}}</th>
+                <th class="font-normal text-slate-700 text-base py-2">{{request.type}}</th>
                 <th class="font-normal text-slate-700 text-base py-2">
-                    <span class="rounded-full bg-red-500 text-white px-3 py-1 font-normal tracking-widest">REJECTED</span>
+                    <span class="rounded-full bg-red-500 text-white px-3 py-1 font-normal tracking-widest">{{request.status}}</span>
                 </th>
-                <th class="font-normal text-slate-700 text-base py-2">2025/03/18</th>
-                <th class="font-normal text-slate-700 text-base py-2">Chris Swires</th>
+                <th class="font-normal text-slate-700 text-base py-2">{{request.created | date:'yyyy/MM/dd':'UTC'}}</th>
+                <th class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</th>
             </tr>
             </tbody>
         </table>
