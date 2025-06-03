@@ -1,12 +1,7 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Request } from 'src/app/models/request';
-
-export const WINDOW = new InjectionToken<Window>("WINDOW", {
-    factory: () => (typeof window !== "undefined" ? window : ({} as Window)),
-});
 
 @Injectable({ providedIn: 'root' })
 export class AuthoringService {
@@ -15,7 +10,6 @@ export class AuthoringService {
     private uiConfiguration: Subject<UIConfiguration> = new Subject<UIConfiguration>();
 
     constructor(private http: HttpClient) {
-        // this.environmentEndpoint = window.location.origin + '/';
     }
 
     setUIConfiguration(uiConfiguration: UIConfiguration): void {

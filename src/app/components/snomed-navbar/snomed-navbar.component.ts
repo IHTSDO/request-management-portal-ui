@@ -4,11 +4,12 @@ import {Subscription} from "rxjs";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
 import {Router} from "@angular/router";
+import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-snomed-navbar',
     standalone: true,
-    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
+    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe],
     templateUrl: './snomed-navbar.component.html',
     styleUrl: './snomed-navbar.component.scss'
 })
@@ -22,15 +23,23 @@ export class SnomedNavbarComponent implements OnInit {
     expandedUserMenu: boolean = false;
     expandedAppMenu: boolean = false;
     expandedItemMenu: boolean = false;
+    expandedLanguageMenu: boolean = false;
     rolesView: boolean = false;
 
-    constructor(private readonly authenticationService: AuthenticationService, private readonly router: Router) {
+    constructor(private readonly authenticationService: AuthenticationService, private readonly router: Router, private translate: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         router.events.subscribe(() => this.closeMenus());
+        this.translate.addLangs(['de', 'en']);
+        this.translate.setDefaultLang('en');
     }
 
     ngOnInit() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+    }
+
+    setTranslation(language: string): void {
+        this.translate.use(language);
+        this.expandedLanguageMenu = false;
     }
 
     switchMenu(name: string): void {
@@ -39,16 +48,25 @@ export class SnomedNavbarComponent implements OnInit {
                 this.expandedUserMenu = true;
                 this.expandedAppMenu = false;
                 this.expandedItemMenu = false;
+                this.expandedLanguageMenu = false;
                 break;
             case 'app':
                 this.expandedUserMenu = false;
                 this.expandedAppMenu = true;
                 this.expandedItemMenu = false;
+                this.expandedLanguageMenu = false;
                 break;
             case 'item':
                 this.expandedUserMenu = false;
                 this.expandedAppMenu = false;
                 this.expandedItemMenu = true;
+                this.expandedLanguageMenu = false;
+                break;
+            case 'language':
+                this.expandedUserMenu = false;
+                this.expandedAppMenu = false;
+                this.expandedItemMenu = false;
+                this.expandedLanguageMenu = true;
                 break;
         }
     }
@@ -57,6 +75,7 @@ export class SnomedNavbarComponent implements OnInit {
         this.expandedUserMenu = false;
         this.expandedAppMenu = false;
         this.expandedItemMenu = false;
+        this.expandedLanguageMenu = false;
         this.rolesView = false;
     }
 
