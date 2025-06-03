@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Request } from '../../models/request';
 
 @Injectable({ providedIn: 'root' })
 export class AuthoringService {
