@@ -10,6 +10,7 @@ import { AuthoringService } from '../../services/authoring/authoring.service';
 import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
+import { ImsService } from '../../services/ims/ims.service';
 
 enum Mode {
   NEW,
@@ -32,11 +33,13 @@ export class RequestComponent implements OnInit {
   public formLangageRefset: string = '';
   public formContextRefset: string = '';
 
+  users: any[] = [];
   request: Request;
   requestId: string;
   country: string;
 
   constructor(private authoringService: AuthoringService,
+    private imsService: ImsService,
     private readonly toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
@@ -49,11 +52,20 @@ export class RequestComponent implements OnInit {
       this.authoringService.httpGetRMPRequestDetails(this.requestId).subscribe(response => {
         if (response) {
           this.request = response as Request;
+          this.getUsers(); // Fetch user details for the request
         }
       });
     } else {
       this.resetFormValues(); // Reset form values to defaults
     }
+  }
+
+  getUserDisplayName(username: string): string {
+    const user = this.users.find(user => user.username === username);
+    if (user) {
+      return user.displayName || username;
+    }
+    return username;
   }
 
   saveRequest(form: NgForm): void {
@@ -128,6 +140,14 @@ export class RequestComponent implements OnInit {
       0,  // created timestamp placeholder
       0   // updated timestamp placeholder
     );
+  }
+
+  private getUsers(): void {
+    this.imsService.httpGetUser(this.request.reporter).subscribe(user => {
+      if (!this.users.find(u => u.username === user.username)) {
+        this.users.push(user);
+      }
+    });
   }
 
 }

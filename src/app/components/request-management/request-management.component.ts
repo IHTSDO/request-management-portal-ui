@@ -10,6 +10,7 @@ import { debounceTime, BehaviorSubject, Subscription, switchMap, tap } from 'rxj
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
+import { ImsService } from '../../services/ims/ims.service';
 
 @Component({
   selector: 'app-request-management',
@@ -19,6 +20,7 @@ import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/req
 })
 export class RequestManagementComponent implements OnInit, OnDestroy {
 
+  users: any[] = [];
   requests: Request[] = [];
   country: string;
   requestLoading: boolean = false;
@@ -34,6 +36,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(private authoringService: AuthoringService,
+    private imsService: ImsService,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private readonly toastr: ToastrService) {
@@ -50,6 +53,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     ).subscribe((response: any) => {
       if (response && response.content) {
         this.requests = response.content as Request[];
+        this.getUsers(); // Fetch user details for the requests
       } else {
         this.requests = [];
       }
@@ -65,6 +69,14 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  getUserDisplayName(username: string): string {
+    const user = this.users.find(user => user.username === username);
+    if (user) {
+      return user.displayName || username;
+    }
+    return username;
   }
 
   onSearchInput(event: any) {
@@ -101,6 +113,22 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         console.log('User dismissed!');
       }
     });
+  }
+
+  private getUsers(): void {
+    let userNames = [];
+    for (let i = 0; i < this.requests.length; i++) {
+      if (!this.users.find(u => u.username === this.requests[i].reporter) && userNames.indexOf(this.requests[i].reporter) === -1) {
+        // Fetch user details only if not already present
+        // Avoid duplicate API calls for the same user    
+        userNames.push(this.requests[i].reporter);
+        this.imsService.httpGetUser(this.requests[i].reporter).subscribe(user => {
+          if (!this.users.find(u => u.username === user.username)) {
+            this.users.push(user);
+          }
+        });
+      }
+    }
   }
 
   private searchRequests(searchText: string): void {
