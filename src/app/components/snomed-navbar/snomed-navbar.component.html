@@ -1,10 +1,74 @@
-<div *ngIf="expandedAppMenu || expandedItemMenu || expandedUserMenu || rolesView" class="absolute right-0 left-0 top-0 bottom-0 bg-zinc-900 opacity-20" (click)="closeMenus()"></div>
+<div *ngIf="expandedAppMenu || expandedItemMenu || expandedUserMenu || rolesView || expandedLanguageMenu" class="absolute right-0 left-0 top-0 bottom-0 bg-zinc-900 opacity-20" (click)="closeMenus()"></div>
 <nav class="w-screen fixed bg-zinc-800 p-2 flex items-center justify-between z-10">
     <div class="flex justify-start items-center">
         <img class="size-10" src="logos/snomed-logo-small.png" alt="SNOMED International Logo">
-        <span class="text-gray-200 text-lg pl-3">Request Management Portal</span>
+        <span class="text-gray-200 text-lg pl-3">{{ 'home.title' | translate }}</span>
     </div>
     <div class="flex justify-end items-center">
+        <div *ngIf="user" class="inline-block">
+            <button (click)="expandedLanguageMenu ? expandedLanguageMenu = false : switchMenu('language')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="language-menu" aria-expanded="true" aria-haspopup="true">
+                <div class="rounded-full size-5 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex">
+                    <span class="fib fi-gb fis size-full"></span>
+                </div>
+            </button>
+
+            <div *ngIf="expandedLanguageMenu" class="absolute right-0 left-0 top-0 z-10 w-full bg-gray-50 focus:outline-none pb-5" role="menu" aria-labelledby="user-menu" tabindex="-1">
+                <div class="p-10">
+                    <h1 class="text-xl">Select your language</h1>
+                </div>
+                <div class="grid grid-cols-6 gap-3 flex justify-items-center">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('en')">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-gb fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">English</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('de')">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-de fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Deutsch</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-dk fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Dansk</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-fr fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Français</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-it fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Italiano</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-nl fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Nederlands</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-cz fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Czech</div>
+                    </div>
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
+                        <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
+                            <span class="fib fi-gb-sct fis size-full"></span>
+                        </div>
+                        <div class="inline-block content-center ps-3">Scottish</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div *ngIf="user" class="relative inline-block">
             <button (click)="expandedUserMenu ? expandedUserMenu = false : switchMenu('user')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="user-menu" aria-expanded="true" aria-haspopup="true">
 <!--                <img class="rounded-full size-8 m-auto" src="https://picsum.photos/200/200" alt="User Avatar">-->
