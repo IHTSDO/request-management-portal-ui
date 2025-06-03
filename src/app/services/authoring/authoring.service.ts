@@ -45,4 +45,15 @@ export class AuthoringService {
     httpDeleteRMPRequest(id: number) {
         return this.http.delete('/authoring-services/rmp-tasks/' + id);
     }
+
+    httpCreateRMPRequest(request: Request): Observable<Request> {
+        const requestBody = {
+            ...request
+        };
+        delete requestBody.id; // Ensure id is not sent in the request body
+        delete requestBody.created; // Ensure created is not sent in the request body
+        delete requestBody.updated; // Ensure updated is not sent in the request body
+
+        return this.http.post<Request>('/authoring-services/rmp-tasks', requestBody);
+    }
 }

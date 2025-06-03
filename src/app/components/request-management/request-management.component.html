@@ -8,7 +8,7 @@
                 placeholder="Search..." (input)="onSearchInput($event)">
         </div>
         <div class="col-span-2 m-3 justify-self-end">
-            <button class="rounded-md bg-lime-600 text-white px-3 py-1.5 w-40 text-base content-end">NEW
+            <button class="rounded-md bg-lime-600 text-white px-3 py-1.5 w-40 text-base content-end" routerLink="/{{country}}/new-request">NEW
                 REQUEST</button>
         </div>
     </div>
@@ -31,10 +31,10 @@
                     <th class="border-b border-gray-300 font-normal text-slate-700 text-base py-2">#{{request.id}}</th>
                     <th class="border-b border-gray-300 font-normal text-sky-500 text-base py-2">{{request.summary}}
                     </th>
-                    <th class="border-b border-gray-300 font-normal text-slate-700 text-base py-2">{{request.type}}</th>
+                    <th class="border-b border-gray-300 font-normal text-slate-700 text-base py-2">{{request.type | requestTypeTransform}}</th>
                     <th class="border-b border-gray-300 font-normal text-slate-700 text-base py-2">
                         <span
-                            class="rounded-full bg-red-500 text-white px-3 py-1 font-normal tracking-widest">{{request.status}}</span>
+                            class="rounded-full bg-red-500 text-white px-3 py-1 font-normal tracking-widest">{{request.status | statusTransform}}</span>
                     </th>
                     <th class="border-b border-gray-300 font-normal text-slate-700 text-base py-2">{{request.created |
                         date:'yyyy/MM/dd':'UTC'}}</th>
@@ -52,8 +52,8 @@
                 </tr>
             </tbody>
         </table>
-        <mat-paginator #requestsPaginator [length]="totalRecords" [pageSize]="pageSize" [pageIndex]="pageIndex" (page)="onPageChange($event)"
-            [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+        <mat-paginator #requestsPaginator [length]="totalRecords" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            (page)="onPageChange($event)" [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
         </mat-paginator>
     </div>
 </div>
