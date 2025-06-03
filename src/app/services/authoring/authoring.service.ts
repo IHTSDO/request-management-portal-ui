@@ -30,12 +30,12 @@ export class AuthoringService {
         return this.http.get<UIConfiguration>('/authoring-services/ui-configuration');
     }
 
-    httpGetRMPRequests(country, pageIndex = 0, pageSize = 10): Observable<any> {
-        return this.http.get<any>('/authoring-services/rmp-tasks?country=' + country + '&page=' + pageIndex + '&size=' + pageSize);
+    httpGetRMPRequests(country, pageIndex = 0, pageSize = 10, sort: string = 'updatedDate,desc'): Observable<any> {
+        return this.http.get<any>('/authoring-services/rmp-tasks?country=' + country + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
     }
 
-    searchRMPTask(country: string, searchText: string, pageIndex = 0, pageSize = 10): any {
-        return this.http.get<any>('/authoring-services/rmp-tasks/search?country=' + country + '&criteria=' + searchText + '&page=' + pageIndex + '&size=' + pageSize);
+    searchRMPTask(country: string, searchText: string, pageIndex = 0, pageSize = 10, sort: string = 'updatedDate,desc'): any {
+        return this.http.get<any>('/authoring-services/rmp-tasks/search?country=' + country + '&criteria=' + searchText + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
     }
 
     httpGetRMPRequestDetails(requestId): Observable<any> {
