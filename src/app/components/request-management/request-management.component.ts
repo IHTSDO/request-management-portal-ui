@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Request } from 'src/app/models/request';
+import { Request } from '../../models/request';
 import { AuthoringService } from '../../services/authoring/authoring.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime, BehaviorSubject, Subscription, switchMap, tap } from 'rxjs';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
+import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
+import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 
 @Component({
   selector: 'app-request-management',
-  imports: [RouterLink, CommonModule, MatPaginatorModule],
+  imports: [RouterLink, CommonModule, MatPaginatorModule, StatusTransformPipe, RequestTypeTransformPipe],
   templateUrl: './request-management.component.html',
   styleUrl: './request-management.component.scss'
 })

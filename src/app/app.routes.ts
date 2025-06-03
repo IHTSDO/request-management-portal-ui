@@ -6,5 +6,6 @@ import {RequestManagementComponent} from './components/request-management/reques
 export const routes: Routes = [
     {path: '', component: DashboardComponent},
     {path: ':country', component: RequestManagementComponent},
+    {path: ':country/new-request', component: RequestComponent},
     {path: ':country/:id', component: RequestComponent}
 ];
