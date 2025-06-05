@@ -1,11 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
 import {Request} from '../../models/request';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {JiraService} from '../../services/jira/jira.service';
 import {ToastrService} from 'ngx-toastr';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {TerminologyServerService} from '../../services/terminologyServer/terminology-server.service';
+import {ExtensionService} from '../../services/extension/extension.service';
 
 @Component({
     selector: 'app-add-refset-form',
@@ -17,12 +18,14 @@ export class AddRefsetFormComponent {
     @ViewChild('requestForm') requestForm;
     request: Request = new Request('', '', '');
 
+    private extension: any;
+    private extensionSubscription: Subscription;
     // typeahead
     search = (text$: Observable<string>) => text$.pipe(
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(term => {
-            if (term.length < 3) {
+            if ((term.length < 3) && (!this.extension.code.toUpperCase().includes('SNOMEDCT-KR'))) {
                 return [];
             } else {
                 return this.terminologyService.getTypeahead(term);
@@ -33,7 +36,9 @@ export class AddRefsetFormComponent {
     constructor(private jiraService: JiraService,
                 private toastr: ToastrService,
                 private authService: AuthenticationService,
-                private terminologyService: TerminologyServerService) {
+                private terminologyService: TerminologyServerService,
+                private extensionService: ExtensionService) {
+        this.extensionSubscription = this.extensionService.getExtension().subscribe(data => this.extension = data);
     }
 
     ngOnInit(): void {

@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Request } from '../../models/request';
 import { SnomedUtilityService } from '../../services/snomedUtility/snomed-utility.service';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { TerminologyServerService } from '../../services/terminologyServer/terminology-server.service';
 import { JiraService } from '../../services/jira/jira.service';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../models/user';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import {ExtensionService} from '../../services/extension/extension.service';
 
 @Component({
     selector: 'app-add-relationship-form',
@@ -19,12 +20,14 @@ export class AddRelationshipFormComponent implements OnInit {
     @ViewChild('requestForm') requestForm;
     request: Request = new Request('', '', '');
 
+    private extension: any;
+    private extensionSubscription: Subscription;
     // typeahead
     search = (text$: Observable<string>) => text$.pipe(
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(term => {
-            if (term.length < 3) {
+            if ((term.length < 3) && (!this.extension.code.toUpperCase().includes('SNOMEDCT-KR'))) {
                 return [];
             } else {
                 return this.terminologyService.getTypeahead(term);
@@ -35,7 +38,9 @@ export class AddRelationshipFormComponent implements OnInit {
     constructor(private terminologyService: TerminologyServerService,
                 private jiraService: JiraService,
                 private toastr: ToastrService,
-                private authService: AuthenticationService) {
+                private authService: AuthenticationService,
+                private extensionService: ExtensionService) {
+        this.extensionSubscription = this.extensionService.getExtension().subscribe(data => this.extension = data);
     }
 
     ngOnInit(): void {
