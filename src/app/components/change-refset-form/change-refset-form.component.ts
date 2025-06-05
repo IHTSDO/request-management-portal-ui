@@ -24,10 +24,18 @@ export class ChangeRefsetFormComponent {
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(term => {
-            if ((term.length < 3) && (!this.extension.code.toUpperCase().includes('SNOMEDCT-KR'))) {
-                return [];
+            if (this.extension.code.toUpperCase().includes('SNOMEDCT-KR')) {
+                if (term.length < 1) {
+                    return [];
+                } else {
+                    return this.terminologyService.getTypeahead(term);
+                }
             } else {
-                return this.terminologyService.getTypeahead(term);
+                if (term.length < 3) {
+                    return [];
+                } else {
+                    return this.terminologyService.getTypeahead(term);
+                }
             }
         })
     )
