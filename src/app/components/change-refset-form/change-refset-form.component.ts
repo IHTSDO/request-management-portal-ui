@@ -24,7 +24,7 @@ export class ChangeRefsetFormComponent {
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(term => {
-            if (this.extension.code.toUpperCase().includes('SNOMEDCT-KR')) {
+            if (this.extension.code.includes('kr')) {
                 if (term.length < 1) {
                     return [];
                 } else {
