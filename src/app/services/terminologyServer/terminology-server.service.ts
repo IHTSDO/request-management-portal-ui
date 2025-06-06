@@ -44,7 +44,7 @@ export class TerminologyServerService {
         }
 
         console.log('extension: ', this.extension);
-        return this.http.get(this.configuration.terminologyServerEndpoint + 'MAIN' + this.branchPath + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + term)
+        return this.http.get(this.configuration.terminologyServerEndpoint + 'MAIN' + this.branchPath + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + term + (this.extension.code === 'kr' ? '&preferredOrAcceptableIn=21000267104' : ''))
             .pipe(map(responseData => {
                 const typeaheads = [];
 
