@@ -17,25 +17,15 @@ export class ChangeRefsetFormComponent {
     @ViewChild('requestForm') requestForm;
     request: Request = new Request('', '', '');
 
-    private extension: any;
-    private extensionSubscription: Subscription;
     // typeahead
     search = (text$: Observable<string>) => text$.pipe(
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(term => {
-            if (this.extension.code.includes('kr')) {
-                if (term.length < 1) {
-                    return [];
-                } else {
-                    return this.terminologyService.getTypeahead(term);
-                }
+            if (term.length < 3) {
+                return [];
             } else {
-                if (term.length < 3) {
-                    return [];
-                } else {
-                    return this.terminologyService.getTypeahead(term);
-                }
+                return this.terminologyService.getTypeahead(term);
             }
         })
     )
@@ -45,7 +35,6 @@ export class ChangeRefsetFormComponent {
                 private authService: AuthenticationService,
                 private terminologyService: TerminologyServerService,
                 private extensionService: ExtensionService) {
-        this.extensionSubscription = this.extensionService.getExtension().subscribe(data => this.extension = data);
     }
 
     ngOnInit(): void {
