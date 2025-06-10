@@ -95,7 +95,8 @@
         "swissGerman": "Swiss German",
         "swissItalian": "Swiss Italian",
         "swissFrench": "Swiss French",
-        "usEnglish": "US English"
+        "usEnglish": "US English",
+        "korean": "Korean"
     },
     "context": {
         "none": "Ingen",
@@ -107,7 +108,8 @@
         "seLabMedicine": "SE Lab Medicine",
         "seDoseUnitPlural": "SE Dose Unit Plural",
         "seMedicationProf": "SE Medication Prof.",
-        "seMedicationCommon": "SE Medication Common"
+        "seMedicationCommon": "SE Medication Common",
+        "canshareLRS": "NZ Canshare"
     },
     "relationshipType": {
         "isA": "Er en (foreldrebegrep)",

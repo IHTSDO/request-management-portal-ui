@@ -99,6 +99,15 @@
             "projectKey": "EERMP",
             "contactUsUrl": "",
             "userGuideUrl": ""
+        },
+        {
+            "code": "kr",
+            "extensionFlag": "kr",
+            "extensionName": "Korean",
+            "defaultLanguage": "ko",
+            "projectKey": "KRRMP",
+            "contactUsUrl": "",
+            "userGuideUrl": ""
         }
     ],
     "languages": [
@@ -131,6 +140,11 @@
             "languageCode": "fr",
             "languageFlag": "fr",
             "languageName": "Français"
+        },
+        {
+            "languageCode": "ko",
+            "languageFlag": "kr",
+            "languageName": "Korean"
         }
     ]
 }

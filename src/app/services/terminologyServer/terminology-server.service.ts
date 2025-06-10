@@ -6,7 +6,6 @@ import { BranchingService } from '../branching/branching.service';
 import { map } from 'rxjs/operators';
 import { SnomedUtilityService } from '../snomedUtility/snomed-utility.service';
 import { SnomedResponseObject } from '../../models/snomedResponseObject';
-import { Configuration } from '../../models/configuration';
 import {ExtensionService} from '../extension/extension.service';
 
 @Injectable({
@@ -43,7 +42,6 @@ export class TerminologyServerService {
             this.branchPath = '/SNOMEDCT-' + this.extension.code.toUpperCase();
         }
 
-        console.log('extension: ', this.extension);
         return this.http.get(this.configuration.terminologyServerEndpoint + 'MAIN' + this.branchPath + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + term)
             .pipe(map(responseData => {
                 const typeaheads = [];

@@ -102,7 +102,8 @@
         "swissGerman": "Schweizisk tysk",
         "swissItalian": "Schweizisk italiensk",
         "swissFrench": "Schweizisk fransk",
-        "usEnglish": "US engelsk"
+        "usEnglish": "US engelsk",
+        "korean": "Korean"
     },
     "context": {
         "none": "ingen",
@@ -114,7 +115,8 @@
         "seLabMedicine": "SE Lab-medicin",
         "seDoseUnitPlural": "SE dosisenhed flertal",
         "seMedicationProf": "SE Medication Prof.",
-        "seMedicationCommon": "SE Medication Common"
+        "seMedicationCommon": "SE Medication Common",
+        "canshareLRS": "NZ Canshare"
     },
     "relationshipType": {
         "isA": "er en type af",

@@ -1,11 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
 import {Request} from '../../models/request';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {JiraService} from '../../services/jira/jira.service';
 import {ToastrService} from 'ngx-toastr';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {TerminologyServerService} from '../../services/terminologyServer/terminology-server.service';
+import {ExtensionService} from '../../services/extension/extension.service';
 
 @Component({
     selector: 'app-add-refset-form',
@@ -33,7 +34,8 @@ export class AddRefsetFormComponent {
     constructor(private jiraService: JiraService,
                 private toastr: ToastrService,
                 private authService: AuthenticationService,
-                private terminologyService: TerminologyServerService) {
+                private terminologyService: TerminologyServerService,
+                private extensionService: ExtensionService) {
     }
 
     ngOnInit(): void {

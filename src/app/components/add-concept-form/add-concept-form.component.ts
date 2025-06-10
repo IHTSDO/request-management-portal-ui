@@ -3,9 +3,10 @@ import { Request } from '../../models/request';
 import { JiraService } from '../../services/jira/jira.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {TerminologyServerService} from '../../services/terminologyServer/terminology-server.service';
+import {ExtensionService} from '../../services/extension/extension.service';
 
 @Component({
     selector: 'app-add-concept-form',
@@ -33,7 +34,8 @@ export class AddConceptFormComponent implements OnInit {
     constructor(private jiraService: JiraService,
                 private toastr: ToastrService,
                 private authService: AuthenticationService,
-                private terminologyService: TerminologyServerService) {
+                private terminologyService: TerminologyServerService,
+                private extensionService: ExtensionService) {
     }
 
     ngOnInit(): void {

@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Request } from '../../models/request';
 import { SnomedUtilityService } from '../../services/snomedUtility/snomed-utility.service';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { TerminologyServerService } from '../../services/terminologyServer/terminology-server.service';
 import { JiraService } from '../../services/jira/jira.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import {ExtensionService} from '../../services/extension/extension.service';
 
 @Component({
     selector: 'app-change-relationship-form',
@@ -34,7 +35,8 @@ export class ChangeRelationshipFormComponent implements OnInit {
     constructor(private terminologyService: TerminologyServerService,
                 private jiraService: JiraService,
                 private toastr: ToastrService,
-                private authService: AuthenticationService) {
+                private authService: AuthenticationService,
+                private extensionService: ExtensionService) {
     }
 
     ngOnInit(): void {
