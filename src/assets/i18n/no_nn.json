@@ -108,7 +108,7 @@
         "seDoseUnitPlural": "SE Dose Unit Plural",
         "seMedicationProf": "SE Medication Prof.",
         "seMedicationCommon": "SE Medication Common",
-        "canshareLRS": "Canshare LRS"
+        "canshareLRS": "NZ Canshare"
     },
     "relationshipType": {
         "isA": "Er ein (foreldreomgrep)",
