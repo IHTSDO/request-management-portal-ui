@@ -1,8 +1,6 @@
 
 import { FormsModule, NgForm } from '@angular/forms';
-import { NgIf } from '@angular/common';
-
-import { CommonModule } from '@angular/common';
+import { NgIf, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Request } from '../../models/request';
@@ -101,7 +99,7 @@ export class RequestComponent implements OnInit {
     const currentFormType = this.formType; // Store current form type
     form.resetForm(); // Reset the form state
     this.resetFormValues(); // Reset form values to defaults
-    this.toastr.clear(); // Clear any previous toastr messages    
+    this.toastr.clear(); // Clear any previous toastr messages
 
     setTimeout(() => {
       this.formType = currentFormType;
