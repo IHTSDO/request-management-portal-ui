@@ -25,11 +25,11 @@ export class AuthoringService {
         return this.http.get<UIConfiguration>('/authoring-services/ui-configuration');
     }
 
-    httpGetRMPRequests(country, pageIndex = 0, pageSize = 10, sort: string = 'updatedDate,desc'): Observable<any> {
+    httpGetRMPRequests(country, pageSize = 10,  pageIndex = 0, sort: string = 'updatedDate,desc'): Observable<any> {
         return this.http.get<any>('/authoring-services/rmp-tasks?country=' + country + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
     }
 
-    searchRMPTask(country: string, searchText: string, pageIndex = 0, pageSize = 10, sort: string = 'updatedDate,desc'): any {
+    searchRMPTask(country: string, searchText: string, pageSize = 10, pageIndex = 0, sort: string = 'updatedDate,desc'): any {
         return this.http.get<any>('/authoring-services/rmp-tasks/search?country=' + country + '&criteria=' + searchText + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
     }
 
@@ -50,5 +50,9 @@ export class AuthoringService {
         delete requestBody.updated; // Ensure updated is not sent in the request body
 
         return this.http.post<Request>('/authoring-services/rmp-tasks', requestBody);
+    }
+
+    httpPutRMPRequest(request: Request): Observable<Request> {
+        return this.http.put<Request>('/authoring-services/rmp-tasks/' + request.id, request);
     }
 }
