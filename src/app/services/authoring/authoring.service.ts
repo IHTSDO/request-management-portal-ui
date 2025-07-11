@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Request } from '../../models/request';
+import {Request, RequestComment} from '../../models/request';
 
 @Injectable({ providedIn: 'root' })
 export class AuthoringService {
@@ -54,5 +54,13 @@ export class AuthoringService {
 
     httpPutRMPRequest(request: Request): Observable<Request> {
         return this.http.put<Request>('/authoring-services/rmp-tasks/' + request.id, request);
+    }
+
+    httpGetComments(id: string): Observable<RequestComment[]> {
+        return this.http.get<RequestComment[]>('/authoring-services/rmp-tasks/' + id + '/comment');
+    }
+
+    httpPostComment(id: string, comment: RequestComment): Observable<RequestComment> {
+        return this.http.post<RequestComment>('/authoring-services/rmp-tasks/' + id + '/comment', comment);
     }
 }

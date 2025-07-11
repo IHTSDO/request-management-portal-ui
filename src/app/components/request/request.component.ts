@@ -2,12 +2,14 @@ import {FormsModule, NgForm} from '@angular/forms';
 import {NgIf, CommonModule} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {Request} from '../../models/request';
+import {Request, RequestComment} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
 import {StatusTransformPipe} from '../../pipes/status-transform/status-transform.pipe';
 import {RequestTypeTransformPipe} from '../../pipes/request-type-transform/request-type-transform.pipe';
-import {ImsService} from '../../services/ims/ims.service';
+import {User} from '../../models/user';
+import {Subscription} from 'rxjs';
+import {AuthenticationService} from '../../services/authentication/authentication.service';
 
 enum Mode {
     NEW,
@@ -24,6 +26,10 @@ enum Mode {
 })
 export class RequestComponent implements OnInit {
 
+    requestComments: RequestComment[] = [];
+    user!: User;
+    userSubscription: Subscription;
+
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
 
@@ -31,17 +37,17 @@ export class RequestComponent implements OnInit {
     public formLangageRefset: string = '';
     public formContextRefset: string = '';
 
-    users: any[] = [];
     request: Request;
     requestId: string;
     country: string;
 
-    constructor(private authoringService: AuthoringService,
-                private imsService: ImsService,
+    constructor(private readonly authoringService: AuthoringService,
                 private readonly toastr: ToastrService,
-                private router: Router,
-                private activatedRoute: ActivatedRoute,
-                private statusPipe: StatusTransformPipe) {
+                private readonly authenticationService: AuthenticationService,
+                private readonly router: Router,
+                private readonly activatedRoute: ActivatedRoute,
+                private readonly statusPipe: StatusTransformPipe) {
+        this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
     }
 
     ngOnInit(): void {
@@ -52,20 +58,14 @@ export class RequestComponent implements OnInit {
             this.authoringService.httpGetRMPRequestDetails(this.requestId).subscribe(response => {
                 if (response) {
                     this.request = response as Request;
-                    this.getUsers(); // Fetch user details for the request
                 }
+            });
+            this.authoringService.httpGetComments(this.requestId).subscribe(response => {
+                this.requestComments = response;
             });
         } else {
             this.resetFormValues(); // Reset form values to defaults
         }
-    }
-
-    getUserDisplayName(username: string): string {
-        const user = this.users.find(user => user.username === username);
-        if (user) {
-            return user.displayName || username;
-        }
-        return username;
     }
 
     saveRequest(form: NgForm): void {
@@ -140,14 +140,6 @@ export class RequestComponent implements OnInit {
             0,  // created timestamp placeholder
             0   // updated timestamp placeholder
         );
-    }
-
-    private getUsers(): void {
-        this.imsService.httpGetUser(this.request.reporter).subscribe(user => {
-            if (!this.users.find(u => u.username === user.username)) {
-                this.users.push(user);
-            }
-        });
     }
 
     moveTask(transition: string): void {

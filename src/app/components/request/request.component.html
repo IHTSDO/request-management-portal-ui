@@ -1,11 +1,11 @@
+<button class="rounded-md bg-slate-400 text-white px-3 py-1.5 absolute top-18 left-6 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" routerLink="/be">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+    </svg>BACK</button>
 <form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm mt-12">
     <ng-container *ngIf="request">
         <div class="grid grid-cols-12 my-5">
             <div class="col-span-2 ms-5">
-                <button class="rounded-md bg-slate-400 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" routerLink="/{{country}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                    </svg>BACK</button>
             </div>
             <div class="col-span-8">
                 <ng-container *ngIf="request?.id">
@@ -343,111 +343,130 @@
                 </div>
             </ng-container>
             <ng-container *ngIf="mode !== ModeType.NEW">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-2">
-                        <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer justify-self-start" type="button" (click)="moveTask('CLOSED')">
+                <div class="justify-self-end">
+                    <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('WITHDRAWN')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>WITHDRAWN</button>
+                    <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('REJECTED')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-red-200 me-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>REJECTED</button>
+                    <ng-container *ngIf="request.status === 'NEW'">
+                        <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('ACCEPTED')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                            </svg>COMMENT</button>
-                    </div>
-                    <div class="col-span-10">
-                        <div class="justify-self-end">
-                            <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('WITHDRAWN')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                </svg>WITHDRAWN</button>
-                            <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('REJECTED')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-red-200 me-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                </svg>REJECTED</button>
-                            <ng-container *ngIf="request.status === 'NEW'">
-                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('ACCEPTED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>ACCEPTED</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'ACCEPTED'">
-                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLARIFICATION_REQUESTED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>CLARIFICATION</button>
-                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>IN PROGRESS</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'CLARIFICATION_REQUESTED'">
-                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>IN PROGRESS</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'IN_PROGRESS'">
-                                <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLOSED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>CLOSED</button>
-                                <button class="rounded-md bg-slate-400 hover:bg-slate-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('ON_HOLD')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>ON HOLD</button>
-                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('READY_FOR_RELEASE')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>READY FOR RELEASE</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'ON_HOLD'">
-                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>IN PROGRESS</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'READY_FOR_RELEASE'">
-                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('PUBLISHED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>PUBLISHED</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'PUBLISHED'">
-                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('PUBLISHED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>READY FOR RELEASE</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'REJECTED'">
-                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('UNDER_APPEAL')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>APPEALED</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'UNDER_APPEAL'">
-                                <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('APPEAL_REJECTED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-red-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>APPEAL REJECTED</button>
-                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('APPEAL_CLARIFICATION_REQUESTED')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>APPEAL CLARIFICATION</button>
-                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>IN PROGRESS</button>
-                            </ng-container>
-                            <ng-container *ngIf="request.status === 'APPEAL_CLARIFICATION_REQUESTED'">
-                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('UNDER_APPEAL')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>APPEALED</button>
-                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>IN PROGRESS</button>
-                            </ng-container>
-                        </div>
-                    </div>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>ACCEPTED</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'ACCEPTED'">
+                        <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLARIFICATION_REQUESTED')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>CLARIFICATION</button>
+                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>IN PROGRESS</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'CLARIFICATION_REQUESTED'">
+                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>IN PROGRESS</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'IN_PROGRESS'">
+                        <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLOSED')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>CLOSED</button>
+                        <button class="rounded-md bg-slate-400 hover:bg-slate-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('ON_HOLD')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>ON HOLD</button>
+                        <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('READY_FOR_RELEASE')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>READY FOR RELEASE</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'ON_HOLD'">
+                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>IN PROGRESS</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'READY_FOR_RELEASE'">
+                        <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('PUBLISHED')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>PUBLISHED</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'PUBLISHED'">
+                        <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('PUBLISHED')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>READY FOR RELEASE</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'REJECTED'">
+                        <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('UNDER_APPEAL')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>APPEALED</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'UNDER_APPEAL'">
+                        <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('APPEAL_REJECTED')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-red-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>APPEAL REJECTED</button>
+                        <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('APPEAL_CLARIFICATION_REQUESTED')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>APPEAL CLARIFICATION</button>
+                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>IN PROGRESS</button>
+                    </ng-container>
+                    <ng-container *ngIf="request.status === 'APPEAL_CLARIFICATION_REQUESTED'">
+                        <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('UNDER_APPEAL')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>APPEALED</button>
+                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>IN PROGRESS</button>
+                    </ng-container>
                 </div>
             </ng-container>
         </div>
+
+        <ng-container *ngIf="mode !== ModeType.NEW">
+            <div class="grid w-2/3 justify-self-center my-5">
+                <h2 class="text-xl text-slate-700">Comments</h2>
+                <p *ngIf="requestComments.length === 0" class="p-5 text-center text-gray-500">- There are no comments on this request yet -</p>
+                <ng-container *ngFor="let comment of requestComments">
+                    <div class="my-3">
+                        <ng-container *ngIf="user.login === comment.user">
+                            <p class="ms-3 font-medium">{{comment.user}} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
+                            <div class="border border-lime-300 bg-lime-100 rounded-lg">
+                                <p class="p-3">{{comment.body}}</p>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="user.login !== comment.user">
+                            <p class="ms-3 font-medium">{{comment.user}} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
+                            <div class="border border-sky-200 bg-sky-100 rounded-lg">
+                                <p class="p-3">{{comment.body}}</p>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <div class="justify-self-end">
+                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer justify-self-start" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                        </svg>COMMENT</button>
+                </div>
+            </div>
+        </ng-container>
     </ng-container>
 </form>

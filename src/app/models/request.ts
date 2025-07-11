@@ -29,3 +29,13 @@ export class Request {
         public updated: number
     ) {}
 }
+
+export class RequestComment {
+    constructor(
+        public id: number,
+        public body: string,
+        public user: string,
+        public created: number,
+        public updated: number
+    ) {}
+}
