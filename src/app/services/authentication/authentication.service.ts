@@ -36,7 +36,7 @@ export class AuthenticationService {
     }
 
     httpGetUser() {
-        return this.http.get<User>('/api/account');
+        return this.http.get<User>('/auth');
     }
 
     httpUpdateUser(user: User) {
