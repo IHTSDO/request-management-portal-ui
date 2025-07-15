@@ -29,6 +29,7 @@ export class RequestComponent implements OnInit {
     requestComments: RequestComment[] = [];
     user!: User;
     userSubscription: Subscription;
+    displayWorkflowDiagram: boolean = false;
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW

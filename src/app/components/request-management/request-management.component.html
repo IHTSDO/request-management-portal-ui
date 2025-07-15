@@ -17,17 +17,17 @@
         <table class="border-collapse table-auto w-full text-sm">
             <thead>
                 <tr class="overflow-hidden">
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2">ID</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2">REQUEST</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2">TYPE</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2">STATUS</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2">DATE</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2">USER</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2"></th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">ID</th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">REQUEST</th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">TYPE</th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">STATUS</th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">DATE</th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">USER</th>
+                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start"></th>
                 </tr>
             </thead>
             <tbody class="bg-white dark:bg-slate-800">
-                <tr *ngFor="let request of requests; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer text-center">
+                <tr *ngFor="let request of requests; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer">
                     <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">#{{request.id}}</td>
                     <td class="border-gray-300 font-normal text-sky-500 text-base py-2" [class.border-b]="!last">{{request.summary}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
@@ -57,12 +57,17 @@
         </table>
     </div>
     <ng-container *ngIf="!requestLoading">
-        <div class="text-center">
-            <button class="rounded-md bg-slate-400 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500 disabled:bg-slate-300" disabled [disabled]="totalRequests <= visibleRequests" (click)="loadMore()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-                </svg>
-LOAD MORE</button>
+        <div class="grid grid-cols-8 m-5">
+            <div class="col-span-2 m-3"></div>
+            <div class="col-span-4 m-3 text-center">
+                <button class="rounded-md bg-slate-400 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500 disabled:bg-slate-300" disabled [disabled]="totalRequests <= visibleRequests" (click)="loadMore()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                    </svg>LOAD MORE</button>
+            </div>
+            <div class="col-span-2 me-3 justify-self-end">
+                <h2 class="text-base text-gray-500">Showing {{requests.length <= visibleRequests ? requests.length : visibleRequests}} of {{totalRequests}}</h2>
+            </div>
         </div>
     </ng-container>
 </div>

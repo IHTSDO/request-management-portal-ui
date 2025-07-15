@@ -25,11 +25,11 @@ export class AuthoringService {
         return this.http.get<UIConfiguration>('/authoring-services/ui-configuration');
     }
 
-    httpGetRMPRequests(country, pageSize = 10,  pageIndex = 0, sort: string = 'updatedDate,desc'): Observable<any> {
+    httpGetRMPRequests(country, pageSize = 100,  pageIndex = 0, sort: string = 'updatedDate,desc'): Observable<any> {
         return this.http.get<any>('/authoring-services/rmp-tasks?country=' + country + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
     }
 
-    searchRMPTask(country: string, searchText: string, pageSize = 10, pageIndex = 0, sort: string = 'updatedDate,desc'): any {
+    searchRMPTask(country: string, searchText: string, pageSize = 100, pageIndex = 0, sort: string = 'updatedDate,desc'): any {
         return this.http.get<any>('/authoring-services/rmp-tasks/search?country=' + country + '&criteria=' + searchText + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
     }
 

@@ -24,7 +24,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     country: string;
     requestLoading: boolean = false;
     totalRequests: number = 0;
-    visibleRequests: number = 10;
+    visibleRequests: number = 100;
     searchText: string = '';
 
     searchQuery = new BehaviorSubject<string>('');
@@ -66,7 +66,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     }
 
     loadMore(): void {
-        this.visibleRequests += 10;
+        this.visibleRequests += 100;
         this.searchRequests(this.searchText);
     }
 
