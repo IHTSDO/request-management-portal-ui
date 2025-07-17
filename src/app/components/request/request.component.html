@@ -41,30 +41,24 @@
             </div>
         </div>
 
-        <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW || request.id">
-            <ng-container *ngIf="mode === ModeType.NEW">
-                <div class="justify-self-end">
-                    <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5" (click)="resetForm(requestForm)" type="button">RESET</button>
-                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest" type="submit">SUBMIT</button>
-                </div>
-            </ng-container>
-            <ng-container *ngIf="mode !== ModeType.NEW">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-2">
-                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="button" (click)="displayWorkflowDiagram = true">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
-                            </svg>WORKFLOW</button>
-                        <ng-container *ngIf="displayWorkflowDiagram">
-                            <div class="relative z-10" aria-labelledby="dialog-title" role="dialog" aria-modal="true" (click)="displayWorkflowDiagram = false">
-                                <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
-                                <div class="fixed inset-0 z-10 w-screen overflow-y-auto content-center justify-items-center">
-                                    <img src="images/workflow.png" class="rounded-lg">
-                                </div>
+        <div *ngIf="request.id" class="grid w-2/3 justify-self-center my-5">
+            <div class="grid grid-cols-12">
+                <div class="col-span-2">
+                    <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="button" (click)="displayWorkflowDiagram = true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
+                        </svg>WORKFLOW</button>
+                    <ng-container *ngIf="displayWorkflowDiagram">
+                        <div class="relative z-10" aria-labelledby="dialog-title" role="dialog" aria-modal="true" (click)="displayWorkflowDiagram = false">
+                            <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+                            <div class="fixed inset-0 z-10 w-screen overflow-y-auto content-center justify-items-center">
+                                <img src="images/workflow.png" class="rounded-lg">
                             </div>
-                        </ng-container>
-                    </div>
-                    <div class="col-span-10">
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="col-span-10">
+                    <ng-container *ngIf="isStaff(user)">
                         <div class="justify-self-end">
                             <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('WITHDRAWN')">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">
@@ -159,18 +153,17 @@
                                     </svg>IN PROGRESS</button>
                             </ng-container>
                         </div>
-                    </div>
+                    </ng-container>
                 </div>
-            </ng-container>
+            </div>
         </div>
 
-        <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-sky-50 rounded-lg p-3"
-            *ngIf="mode == ModeType.NEW || request.id">
+        <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-sky-50 rounded-lg p-3" *ngIf="mode === ModeType.NEW || request.id">
             <div>
                 <label for="summary" class="text-sm text-slate-700 font-medium">Summary<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                        <input type="text" [disabled]="mode === ModeType.VIEW" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW" />
+                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <input type="text" [disabled]="request.id && isUser(user)" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" />
                     </div>
                     <div *ngIf="summaryInput.invalid && summaryInput.touched" class="text-red-500 text-sm">Summary is required.</div>
                 </div>
@@ -178,8 +171,8 @@
             <div>
                 <label for="type" class="text-sm text-slate-700 font-medium">Type</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-lime-100]="mode === ModeType.VIEW" [class.bg-lime-50]="mode === ModeType.NEW">
-                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="mode == ModeType.VIEW" [(ngModel)]="formType" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                    <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="request.id && isUser(user)">
+                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formType" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             <option [value]="'add-concept'">Add Concept</option>
                             <option [value]="'add-description'">Add Description</option>
                             <option [value]="'add-relationship'">Add Relationship</option>
@@ -197,8 +190,8 @@
             <div>
                 <label for="languageRefset" class="text-sm text-slate-700 font-medium">Language Refset</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                        <select name="Language Refset" id="languageRefset" [disabled]="mode == ModeType.VIEW" [(ngModel)]="formLangageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             <option>Belgian Dutch</option>
                             <option>Belgian French</option>
                             <option>Danish</option>
@@ -221,8 +214,8 @@
             <div>
                 <label for="contextRefset" class="text-sm text-slate-700 font-medium">Context Refset</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                        <select name="Context Refset" id="contextRefset" [disabled]="mode == ModeType.VIEW" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <select name="Context Refset" id="contextRefset" [disabled]="request.id && isUser(user)" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             <option>BE GP - Dutch</option>
                             <option>BE GP - French</option>
                             <option>NZ Patient Friendly - English</option>
@@ -242,8 +235,8 @@
                 <div>
                     <label for="newFSN" class="text-sm text-slate-700 font-medium">New FSN<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <input type="text" name="New FSN" id="newFSN" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <input type="text" name="New FSN" id="newFSN" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                         </div>
                         <div *ngIf="newFSNInput.invalid && newFSNInput.touched" class="text-red-500 text-sm">New FSN is required.</div>
                     </div>
@@ -251,8 +244,8 @@
                 <div>
                     <label for="newPT" class="text-sm text-slate-700 font-medium">New Preferred Term<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <input type="text" name="New Preferred Term" id="newPT" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <input type="text" name="New Preferred Term" id="newPT" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                         </div>
                         <div *ngIf="newPTInput.invalid && newPTInput.touched" class="text-red-500 text-sm">New Preferred Term is required.</div>
                     </div>
@@ -260,8 +253,8 @@
                 <div>
                     <label for="newSynonyms" class="text-sm text-slate-700 font-medium">New Synonyms</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                         </div>
                     </div>
                 </div>
@@ -269,9 +262,9 @@
                     <label for="parentConcept" class="text-sm text-slate-700 font-medium">Parent Concept<span class="text-red-500 ps-1">*</span></label>
                     <p></p>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW" (input)="onTypeaheadInput()">
+                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="request.id && isUser(user)" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)" (input)="onTypeaheadInput()">
                         </div>
                         <div *ngIf="parentConceptInput.invalid && parentConceptInput.touched" class="text-red-500 text-sm">Parent Concept is required.</div>
                     </div>
@@ -288,17 +281,17 @@
                 <div class="col-span-2">
                     <label for="concept" class="text-sm text-slate-700 font-medium">Concept</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Concept" id="concept" [disabled]="mode == ModeType.VIEW" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <input type="text" name="Concept" id="concept" [disabled]="request.id && isUser(user)" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)">
                         </div>
                     </div>
                 </div>
                 <div>
                     <label for="conceptId" class="text-sm text-slate-700 font-medium">Concept ID<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <input type="text" name="Concept ID" id="conceptId" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <input type="text" name="Concept ID" id="conceptId" [disabled]="request.id && isUser(user)" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                         </div>
                         <div *ngIf="conceptIdInput.invalid && conceptIdInput.touched" class="text-red-500 text-sm">Concept ID is required.</div>
                     </div>
@@ -306,8 +299,8 @@
                 <div>
                     <label for="conceptName" class="text-sm text-slate-700 font-medium">Concept Name<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <input type="text" name="Concept Name" id="conceptName" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.conceptName" #conceptNameInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <input type="text" name="Concept Name" id="conceptName" [disabled]="request.id && isUser(user)" [(ngModel)]="request.conceptName" #conceptNameInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                         </div>
                         <div *ngIf="conceptNameInput.invalid && conceptNameInput.touched" class="text-red-500 text-sm">Concept Name is required.</div>
                     </div>
@@ -316,8 +309,8 @@
                     <div class="col-span-2">
                         <label for="newDescription" class="text-sm text-slate-700 font-medium">New Description<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="New Description" id="newDescription" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="New Description" id="newDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="newDescriptionInput.invalid && newDescriptionInput.touched" class="text-red-500 text-sm">New Description is required.</div>
                         </div>
@@ -328,8 +321,8 @@
                     <div>
                         <label for="relationshipType" class="text-sm text-slate-700 font-medium">Relationship Type<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" required [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" required [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="relationshipTypeInput.invalid && relationshipTypeInput.touched" class="text-red-500 text-sm">Relationship Type is required.</div>
                         </div>
@@ -337,9 +330,9 @@
                     <div>
                         <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">Relationship Target<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                                 <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="relationshipTargetInput.invalid && relationshipTargetInput.touched" class="text-red-500 text-sm">Relationship Target is required.</div>
                         </div>
@@ -350,8 +343,8 @@
                     <div>
                         <label for="existingDescription" class="text-sm text-slate-700 font-medium">Exisiting Description<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="Exisiting Description" id="existingDescription" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="Exisiting Description" id="existingDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="existingDescriptionInput.invalid && existingDescriptionInput.touched" class="text-red-500 text-sm">Exisiting Description is required.</div>
                         </div>
@@ -359,8 +352,8 @@
                     <div>
                         <label for="newChangeDescription" class="text-sm text-slate-700 font-medium">New Description<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="New Description" id="newChangeDescription" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="New Description" id="newChangeDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="newDescriptionInput.invalid && newDescriptionInput.touched" class="text-red-500 text-sm">New Description is required.</div>
                         </div>
@@ -371,8 +364,8 @@
                     <div class="col-span-2">
                         <label for="existingRelationship" class="text-sm text-slate-700 font-medium">Exisiting Relationship<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="Exisiting Relationship" id="existingRelationship" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="Exisiting Relationship" id="existingRelationship" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="existingRelationshipInput.invalid && existingRelationshipInput.touched" class="text-red-500 text-sm">Exisiting Relationship is required.</div>
                         </div>
@@ -380,8 +373,8 @@
                     <div>
                         <label for="relationshipChangeType" class="text-sm text-slate-700 font-medium">Relationship Type<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="Relationship Change Type" id="relationshipChangeType" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.relationshipType" #relationshipChangeTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="Relationship Change Type" id="relationshipChangeType" [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipType" #relationshipChangeTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="relationshipChangeTypeInput.invalid && relationshipChangeTypeInput.touched" class="text-red-500 text-sm">Relationship Change Type is required.</div>
                         </div>
@@ -389,9 +382,9 @@
                     <div>
                         <label for="relationshipChangeTarget" class="text-sm text-slate-700 font-medium">Relationship Target<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                                 <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="relationshipChangeTargetInput.invalid && relationshipChangeTargetInput.touched" class="text-red-500 text-sm">Relationship Change Target is required.</div>
                         </div>
@@ -402,8 +395,8 @@
                     <div class="col-span-2">
                         <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">Exisiting Description<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="Exisiting Description" id="inactivateExistingDescription" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="Exisiting Description" id="inactivateExistingDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="existingDescriptionInput.invalid && existingDescriptionInput.touched" class="text-red-500 text-sm">Exisiting Description is required.</div>
                         </div>
@@ -414,8 +407,8 @@
                     <div class="col-span-2">
                         <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">Exisiting Relationship<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                                <input type="text" name="Exisiting Relationship" id="inactivateExistingRelationship" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                                <input type="text" name="Exisiting Relationship" id="inactivateExistingRelationship" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
                             </div>
                             <div *ngIf="existingRelationshipInput.invalid && existingRelationshipInput.touched" class="text-red-500 text-sm">Exisiting Relationship is required.</div>
                         </div>
@@ -429,16 +422,16 @@
                 <div class="col-span-2">
                     <label for="memberConceptIds" class="text-sm text-slate-700 font-medium">Member Concept Ids (for extensional refsets only)</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md p-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <textarea type="text" name="Member Concept Ids" id="memberConceptIds" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.memberConceptIds" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW"></textarea>
+                        <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <textarea type="text" name="Member Concept Ids" id="memberConceptIds" [disabled]="request.id && isUser(user)" [(ngModel)]="request.memberConceptIds" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-2">
                     <label for="eclQuery" class="text-sm text-slate-700 font-medium">ECL Query (for intensional refsets only)</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md p-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                            <textarea type="text" name="ECL Query" id="eclQuery" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.eclQuery" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW"></textarea>
+                        <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <textarea type="text" name="ECL Query" id="eclQuery" [disabled]="request.id && isUser(user)" [(ngModel)]="request.eclQuery" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
                         </div>
                     </div>
                 </div>
@@ -447,143 +440,33 @@
             <div class="col-span-2">
                 <label for="justification" class="text-sm text-slate-700 font-medium">Justification</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md p-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                        <textarea type="text" name="Justification" id="justification" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.justification" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW"></textarea>
+                    <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <textarea type="text" name="Justification" id="justification" [disabled]="request.id && isUser(user)" [(ngModel)]="request.justification" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
                     </div>
                 </div>
             </div>
             <div class="col-span-2">
                 <label for="reference" class="text-sm text-slate-700 font-medium">Reference</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md p-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
-                        <textarea type="text" name="Reference" id="reference" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW"></textarea>
+                    <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <textarea type="text" name="Reference" id="reference" [disabled]="request.id && isUser(user)" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
                     </div>
                 </div>
             </div>
         </div>
 
-<!--        <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW || request.id">-->
-<!--            <ng-container *ngIf="mode === ModeType.NEW">-->
-<!--                <div class="justify-self-end">-->
-<!--                    <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5" (click)="resetForm(requestForm)" type="button">RESET</button>-->
-<!--                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest" type="submit">SUBMIT</button>-->
-<!--                </div>-->
-<!--            </ng-container>-->
-<!--            <ng-container *ngIf="mode !== ModeType.NEW">-->
-<!--                <div class="grid grid-cols-12">-->
-<!--                    <div class="col-span-2">-->
-<!--                        <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="button" (click)="displayWorkflowDiagram = true">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">-->
-<!--                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />-->
-<!--                            </svg>WORKFLOW</button>-->
-<!--                        <ng-container *ngIf="displayWorkflowDiagram">-->
-<!--                            <div class="relative z-10" aria-labelledby="dialog-title" role="dialog" aria-modal="true" (click)="displayWorkflowDiagram = false">-->
-<!--                                <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>-->
-<!--                                <div class="fixed inset-0 z-10 w-screen overflow-y-auto content-center justify-items-center">-->
-<!--                                    <img src="images/workflow.png" class="rounded-lg">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </ng-container>-->
-<!--                    </div>-->
-<!--                    <div class="col-span-10">-->
-<!--                        <div class="justify-self-end">-->
-<!--                            <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('WITHDRAWN')">-->
-<!--                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">-->
-<!--                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                </svg>WITHDRAWN</button>-->
-<!--                            <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('REJECTED')">-->
-<!--                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-red-200 me-2">-->
-<!--                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                </svg>REJECTED</button>-->
-<!--                            <ng-container *ngIf="request.status === 'NEW'">-->
-<!--                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('ACCEPTED')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>ACCEPTED</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'ACCEPTED'">-->
-<!--                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLARIFICATION_REQUESTED')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>CLARIFICATION</button>-->
-<!--                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>IN PROGRESS</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'CLARIFICATION_REQUESTED'">-->
-<!--                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>IN PROGRESS</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'IN_PROGRESS'">-->
-<!--                                <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLOSED')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>CLOSED</button>-->
-<!--                                <button class="rounded-md bg-slate-400 hover:bg-slate-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('ON_HOLD')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>ON HOLD</button>-->
-<!--                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('READY_FOR_RELEASE')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>READY FOR RELEASE</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'ON_HOLD'">-->
-<!--                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>IN PROGRESS</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'READY_FOR_RELEASE'">-->
-<!--                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('PUBLISHED')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>PUBLISHED</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'PUBLISHED'">-->
-<!--                                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('READY_FOR_RELEASE')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>READY FOR RELEASE</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'REJECTED'">-->
-<!--                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('UNDER_APPEAL')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>APPEALED</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'UNDER_APPEAL'">-->
-<!--                                <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('APPEAL_REJECTED')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-red-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>APPEAL REJECTED</button>-->
-<!--                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('APPEAL_CLARIFICATION_REQUESTED')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>APPEAL CLARIFICATION</button>-->
-<!--                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>IN PROGRESS</button>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container *ngIf="request.status === 'APPEAL_CLARIFICATION_REQUESTED'">-->
-<!--                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('UNDER_APPEAL')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>APPEALED</button>-->
-<!--                                <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('IN_PROGRESS')">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-blue-200 me-2">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />-->
-<!--                                    </svg>IN PROGRESS</button>-->
-<!--                            </ng-container>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </ng-container>-->
-<!--        </div>-->
+        <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW">
+            <div class="justify-self-end">
+                <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5 cursor-pointer" (click)="resetForm(requestForm)" type="button">RESET</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit">SUBMIT</button>
+            </div>
+        </div>
+
+        <div class="grid w-2/3 justify-self-center my-5" *ngIf="request.id">
+            <div class="justify-self-end">
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer">SAVE</button>
+            </div>
+        </div>
 
         <ng-container *ngIf="mode !== ModeType.NEW">
             <div class="grid w-2/3 justify-self-center my-5">

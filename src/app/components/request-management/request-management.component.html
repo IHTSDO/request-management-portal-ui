@@ -27,7 +27,7 @@
                 </tr>
             </thead>
             <tbody class="bg-white dark:bg-slate-800">
-                <tr *ngFor="let request of requests; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer">
+                <tr *ngFor="let request of requests | userRequests:user; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer">
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">#{{request.id}}</td>
                     <td class="border-gray-300 font-normal text-sky-500 text-base p-2" [class.border-b]="!last">{{request.summary}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
@@ -47,7 +47,7 @@
                         <i class="fas fa-times text-2xl text-red-500" (click)="deleteOption = request; $event.stopPropagation()"></i>
                     </td>
                 </tr>
-                <tr *ngIf="requests.length === 0 && !requestLoading">
+                <tr *ngIf="(requests | userRequests:user).length === 0 && !requestLoading">
                     <td colspan="7" class="text-center text-gray-500 py-4">No requests found.</td>
                 </tr>
                 <tr *ngIf="requestLoading">
@@ -66,7 +66,7 @@
                     </svg>LOAD MORE</button>
             </div>
             <div class="col-span-2 me-3 justify-self-end">
-                <h2 class="text-base text-gray-500">Showing {{requests.length <= visibleRequests ? requests.length : visibleRequests}} of {{totalRequests}}</h2>
+                <h2 class="text-base text-gray-500">Showing {{(requests | userRequests:user).length <= visibleRequests ? (requests | userRequests:user).length : visibleRequests}} of {{isUser(user) ? (requests | userRequests:user).length : totalRequests}}</h2>
             </div>
         </div>
     </ng-container>

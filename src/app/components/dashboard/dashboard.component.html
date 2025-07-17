@@ -4,89 +4,94 @@
             <p class="text-center museo inline-block text-white text-6xl">SNOMED CT</p>
             <p class="text-center text-lg text-white m-5 mx-40">This Request Portal is for submitting requests to add, update or change SNOMED content within the following National Extensions. Please select the relevant country from the options below.</p>
         </div>
-<!--        <div class="container">-->
-            <div class="grid grid-cols-4 gap-6">
+        <div *ngIf="user" class="grid grid-cols-4 gap-6">
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-belgium') || user.roles.includes('ROLE_rmp-be-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/be">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-be size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Belgium</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
+            </ng-container>
 
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-denmark') || user.roles.includes('ROLE_rmp-dk-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/dk">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-dk size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Denmark</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
+            </ng-container>
 
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-estonia') || user.roles.includes('ROLE_rmp-ee-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ee">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-ee size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Estonia</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
+            </ng-container>
 
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-ireland') || user.roles.includes('ROLE_rmp-ie-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ie">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-ie size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Ireland</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
-            </div>
-            <div class="grid grid-cols-4 gap-6">
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-newzealand') || user.roles.includes('ROLE_rmp-nz-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/nz">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-nz size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">New Zealand</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
+            </ng-container>
 
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-france') || user.roles.includes('ROLE_rmp-fr-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/fr">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-fr size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">France</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
+            </ng-container>
 
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-switzerland') || user.roles.includes('ROLE_rmp-ch-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ch">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-ch size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Switzerland</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
+            </ng-container>
 
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-korea') || user.roles.includes('ROLE_rmp-kr-requestor')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/kr">
                     <div class="m-3 w-16 text-center">
                         <span class="fi fi-kr size-16 ms-3"></span>
                     </div>
-                    <div class="m-3 w-48 text-center">
+                    <div class="m-3 w-48 text-center content-center">
                         <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Korea</h2>
-                        <h2 class="text-xl text-sky-700 mb-0 antialiased">2025-01-01</h2>
                     </div>
                 </div>
-            </div>
-<!--        </div>-->
+            </ng-container>
+        </div>
     </div>
 </div>

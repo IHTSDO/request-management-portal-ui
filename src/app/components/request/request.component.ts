@@ -200,4 +200,26 @@ export class RequestComponent implements OnInit {
     onTypeaheadInput() {
         this.typeahead.next(this.searchText);
     }
+
+    isStaff(user: User): boolean {
+        return user.roles.includes('ROLE_ms-belgium')
+            || user.roles.includes('ROLE_ms-denmark')
+            || user.roles.includes('ROLE_ms-estonia')
+            || user.roles.includes('ROLE_ms-ireland')
+            || user.roles.includes('ROLE_ms-newzealand')
+            || user.roles.includes('ROLE_ms-france')
+            || user.roles.includes('ROLE_ms-switzerland')
+            || user.roles.includes('ROLE_ms-korea');
+    }
+
+    isUser(user: User): boolean {
+        return user.roles.includes('ROLE_rmp-be-requestor')
+            || user.roles.includes('ROLE_rmp-dk-requestor')
+            || user.roles.includes('ROLE_rmp-ee-requestor')
+            || user.roles.includes('ROLE_rmp-ie-requestor')
+            || user.roles.includes('ROLE_rmp-nz-requestor')
+            || user.roles.includes('ROLE_rmp-fr-requestor')
+            || user.roles.includes('ROLE_rmp-ch-requestor')
+            || user.roles.includes('ROLE_rmp-kr-requestor');
+    }
 }

@@ -8,10 +8,13 @@ import {debounceTime, BehaviorSubject, Subscription, switchMap, tap} from 'rxjs'
 import {StatusTransformPipe} from '../../pipes/status-transform/status-transform.pipe';
 import {RequestTypeTransformPipe} from '../../pipes/request-type-transform/request-type-transform.pipe';
 import {FormsModule} from '@angular/forms';
+import {UserRequestsPipe} from '../../pipes/user-requests/user-requests.pipe';
+import {User} from '../../models/user';
+import {AuthenticationService} from '../../services/authentication/authentication.service';
 
 @Component({
     selector: 'app-request-management',
-    imports: [RouterLink, CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe],
+    imports: [RouterLink, CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe],
     templateUrl: './request-management.component.html',
     styleUrl: './request-management.component.scss'
 })
@@ -19,6 +22,8 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     deleteOption: Request | null;
 
+    user!: User;
+    userSubscription: Subscription;
 
     requests: Request[] = [];
     country: string;
@@ -32,7 +37,9 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     constructor(private readonly authoringService: AuthoringService,
                 private readonly activatedRoute: ActivatedRoute,
+                private readonly authenticationService: AuthenticationService,
                 private readonly toastr: ToastrService) {
+        this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
 
         this.subscription = this.searchQuery.pipe(
             debounceTime(300), // Delay for 300ms after the last event
@@ -102,5 +109,16 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             }
             this.requestLoading = false;
         });
+    }
+
+    isUser(user: User): boolean {
+        return user.roles.includes('ROLE_rmp-be-requestor')
+            || user.roles.includes('ROLE_rmp-dk-requestor')
+            || user.roles.includes('ROLE_rmp-ee-requestor')
+            || user.roles.includes('ROLE_rmp-ie-requestor')
+            || user.roles.includes('ROLE_rmp-nz-requestor')
+            || user.roles.includes('ROLE_rmp-fr-requestor')
+            || user.roles.includes('ROLE_rmp-ch-requestor')
+            || user.roles.includes('ROLE_rmp-kr-requestor');
     }
 }
