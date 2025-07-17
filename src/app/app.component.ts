@@ -3,6 +3,7 @@ import {RouterOutlet} from '@angular/router';
 import {SnomedNavbarComponent} from "./components/snomed-navbar/snomed-navbar.component";
 import {AuthenticationService} from "./services/authentication/authentication.service";
 import {DOCUMENT} from "@angular/common";
+import {AuthoringService} from './services/authoring/authoring.service';
 
 @Component({
     selector: 'app-root',
@@ -15,12 +16,16 @@ export class AppComponent implements OnInit {
 
     environment: string = '';
 
-    constructor(private readonly authenticationService: AuthenticationService, @Inject(DOCUMENT) private readonly document: Document) {
+    constructor(private readonly authenticationService: AuthenticationService, private readonly authoringService: AuthoringService, @Inject(DOCUMENT) private readonly document: Document) {
     }
 
     ngOnInit() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
         this.assignFavicon();
+
+        this.authoringService.httpGetUIConfiguration().subscribe(config => {
+            this.authoringService.uiConfig = config;
+        });
 
         this.authenticationService.httpGetUser().subscribe({
             next: (user) => {

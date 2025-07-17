@@ -8,7 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {StatusTransformPipe} from '../../pipes/status-transform/status-transform.pipe';
 import {RequestTypeTransformPipe} from '../../pipes/request-type-transform/request-type-transform.pipe';
 import {User} from '../../models/user';
-import {Subscription} from 'rxjs';
+import {BehaviorSubject, debounceTime, of, Subscription, switchMap, tap} from 'rxjs';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 
 enum Mode {
@@ -30,6 +30,11 @@ export class RequestComponent implements OnInit {
     user!: User;
     userSubscription: Subscription;
     displayWorkflowDiagram: boolean = false;
+    comment: string = '';
+
+    searchText: string = '';
+    typeahead = new BehaviorSubject<string>('');
+    typeaheadResults: string[] = [];
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
@@ -41,6 +46,23 @@ export class RequestComponent implements OnInit {
     request: Request;
     requestId: string;
     country: string;
+
+    typeaheadSubscription = this.typeahead.pipe(
+        debounceTime(300), // Delay for 300ms after the last event
+        tap(() => {
+            console.log('yo');
+            this.typeaheadResults = [];
+        }),
+        switchMap(searchText => {
+            if (searchText !== '') {
+                return this.authoringService.httpGetTypeahead(searchText, this.country)
+            } else {
+                return of();
+            }
+        }) // Switch to the new observable, cancels the previous one
+    ).subscribe((response: any) => {
+        this.typeaheadResults = response;
+    });
 
     constructor(private readonly authoringService: AuthoringService,
                 private readonly toastr: ToastrService,
@@ -156,5 +178,26 @@ export class RequestComponent implements OnInit {
                 this.toastr.error('#' + updatedRequest.id + ' ' + this.statusPipe.transform(transition), 'ERROR');
             }
         });
+    }
+
+    postComment(): void {
+        let requestComment = new RequestComment(this.request.id, this.comment)
+
+        this.authoringService.httpPostComment(this.request.id, requestComment).subscribe({
+            next: () => {
+                this.toastr.success('#' + this.request.id + ' Comment Added', 'SUCCESS');
+                this.comment = '';
+                this.authoringService.httpGetComments(this.requestId).subscribe(response => {
+                    this.requestComments = response;
+                });
+            },
+            error: () => {
+                this.toastr.error('#' + this.request.id + ' Comment Failed', 'ERROR');
+            }
+        })
+    }
+
+    onTypeaheadInput() {
+        this.typeahead.next(this.searchText);
     }
 }

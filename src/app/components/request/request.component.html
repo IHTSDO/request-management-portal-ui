@@ -267,13 +267,17 @@
                 </div>
                 <div>
                     <label for="parentConcept" class="text-sm text-slate-700 font-medium">Parent Concept<span class="text-red-500 ps-1">*</span></label>
+                    <p></p>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border border-gray-300" [class.bg-gray-100]="mode === ModeType.VIEW" [class.bg-white]="mode === ModeType.NEW">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW">
+                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="mode == ModeType.VIEW" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.text-gray-400]="mode === ModeType.VIEW" [class.text-slate-700]="mode === ModeType.NEW" (input)="onTypeaheadInput()">
                         </div>
                         <div *ngIf="parentConceptInput.invalid && parentConceptInput.touched" class="text-red-500 text-sm">Parent Concept is required.</div>
                     </div>
+                    <ng-container *ngFor="let result of typeaheadResults">
+                        <p>{{result}}</p>
+                    </ng-container>
                 </div>
 
                 <div class="col-span-2 border-b border-gray-300 -mx-3"></div>
@@ -601,11 +605,16 @@
                         </ng-container>
                     </div>
                 </ng-container>
+
+                <div class="flex items-center rounded-md p-3 border border-gray-300 my-5">
+                    <textarea type="text" name="comment" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-24 font-medium" placeholder="Type your comment here..." [(ngModel)]="comment"></textarea>
+                </div>
+
                 <div class="justify-self-end">
-                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer justify-self-start" type="button">
+                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer justify-self-start" type="button" (click)="postComment()">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                        </svg>COMMENT</button>
+                        </svg>ADD COMMENT</button>
                 </div>
             </div>
         </ng-container>

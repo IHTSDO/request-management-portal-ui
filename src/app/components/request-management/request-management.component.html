@@ -17,21 +17,21 @@
         <table class="border-collapse table-auto w-full text-sm">
             <thead>
                 <tr class="overflow-hidden">
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">ID</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">REQUEST</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">TYPE</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">STATUS</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">DATE</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start">USER</th>
-                    <th class=" bg-gray-100 border-b border-gray-300 font-normal text-base py-2 text-start"></th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">ID</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">REQUEST</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">TYPE</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">STATUS</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">DATE</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">USER</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start"></th>
                 </tr>
             </thead>
             <tbody class="bg-white dark:bg-slate-800">
                 <tr *ngFor="let request of requests; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer">
-                    <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">#{{request.id}}</td>
-                    <td class="border-gray-300 font-normal text-sky-500 text-base py-2" [class.border-b]="!last">{{request.summary}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">#{{request.id}}</td>
+                    <td class="border-gray-300 font-normal text-sky-500 text-base p-2" [class.border-b]="!last">{{request.summary}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">
                         <span class="rounded-full text-white px-3 py-1 font-normal tracking-widest"
                               [class.bg-teal-500]="request.status === 'NEW'"
                               [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
@@ -41,8 +41,8 @@
                               [class.bg-slate-400]="request.status === 'ON_HOLD'"
                               [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                     </td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">{{request.created | date:'yyyy/MM/dd':'UTC'}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base py-2" [class.border-b]="!last">{{request.reporter}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.created | date:'yyyy/MM/dd':'UTC'}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.reporter}}</td>
                     <td class="border-gray-300 font-normal text-slate-700" [class.border-b]="!last">
                         <i class="fas fa-times text-2xl text-red-500" (click)="deleteOption = request; $event.stopPropagation()"></i>
                     </td>

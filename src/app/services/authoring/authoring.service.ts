@@ -1,24 +1,15 @@
 import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import {map, Observable, Subject} from 'rxjs';
 import {Request, RequestComment} from '../../models/request';
 
 @Injectable({ providedIn: 'root' })
 export class AuthoringService {
 
-    // public environmentEndpoint: string;
-    private uiConfiguration: Subject<UIConfiguration> = new Subject<UIConfiguration>();
+    uiConfig: UIConfiguration;
 
     constructor(private http: HttpClient) {
-    }
-
-    setUIConfiguration(uiConfiguration: UIConfiguration): void {
-        this.uiConfiguration.next(uiConfiguration);
-    }
-
-    getUIConfiguration(): Observable<UIConfiguration> {
-        return this.uiConfiguration.asObservable();
     }
 
     httpGetUIConfiguration(): Observable<UIConfiguration> {
@@ -60,7 +51,28 @@ export class AuthoringService {
         return this.http.get<RequestComment[]>('/authoring-services/rmp-tasks/' + id + '/comment');
     }
 
-    httpPostComment(id: string, comment: RequestComment): Observable<RequestComment> {
+    httpPostComment(id: number, comment: RequestComment): Observable<RequestComment> {
         return this.http.post<RequestComment>('/authoring-services/rmp-tasks/' + id + '/comment', comment);
+    }
+
+    httpGetTypeahead(text: string, country: string): Observable<any> {
+        const params = {
+            termFilter: text,
+            limit: 20,
+            expand: 'fsn()',
+            activeFilter: true,
+            termActive: true
+        };
+
+        return this.http.get(this.uiConfig.endpoints.terminologyServerEndpoint + 'MAIN/SNOMEDCT-' + country.toUpperCase() + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + text)
+            .pipe(map(responseData => {
+                const typeaheads = [];
+
+                responseData['items'].forEach((item) => {
+                    typeaheads.push(item.id + ' |' + item.fsn.term + '|');
+                });
+
+                return typeaheads;
+            }));
     }
 }
