@@ -119,6 +119,46 @@
       "existingRelationshipRequired": "Existing Relationship is required.",
       "relationshipChangeTypeRequired": "Relationship Change Type is required.",
       "relationshipChangeTargetRequired": "Relationship Change Target is required."
+    },
+    "typeOptions": {
+      "addConcept": "Add Concept",
+      "addDescription": "Add Description",
+      "addRelationship": "Add Relationship",
+      "addRefset": "Add Refset",
+      "changeDescription": "Change Description",
+      "changeRelationship": "Change Relationship",
+      "changeRefset": "Change Refset",
+      "inactivateDescription": "Inactivate Description",
+      "inactivateRelationship": "Inactivate Relationship",
+      "other": "Other"
+    },
+    "languageRefsets": {
+      "belgianDutch": "Belgian Dutch",
+      "belgianFrench": "Belgian French",
+      "danish": "Danish",
+      "french": "French",
+      "ieEnglish": "IE English",
+      "gbEnglish": "GB English",
+      "maori": "Maori",
+      "norwegianBokmal": "Norwegian Bokmal",
+      "norwegianNynorsk": "Norwegian Nynorsk",
+      "nzEnglish": "NZ English",
+      "swedish": "Swedish",
+      "swissGerman": "Swiss German",
+      "swissItalian": "Swiss Italian",
+      "swissFrench": "Swiss French",
+      "usEnglish": "US English"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE GP - Dutch",
+      "beGpFrench": "BE GP - French",
+      "nzPatientFriendly": "NZ Patient Friendly - English",
+      "seChiefComplaints": "SE Chief Complaints",
+      "seDoseUnitAbbr": "SE Dose Unit Abbr.",
+      "seLabMedicine": "SE Lab Medicine",
+      "seDoseUnitPlural": "SE Dose Unit Plural",
+      "seMedicationProf": "SE Medication Prof.",
+      "seMedicationCommon": "SE Medication Common"
     }
   }
 }

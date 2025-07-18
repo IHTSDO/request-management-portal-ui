@@ -173,16 +173,16 @@
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="request.id && isUser(user)">
                         <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formType" [class.disabled:text-gray-400]="request.id && isUser(user)">
-                            <option [value]="'add-concept'">Add Concept</option>
-                            <option [value]="'add-description'">Add Description</option>
-                            <option [value]="'add-relationship'">Add Relationship</option>
-                            <option [value]="'add-refset'">Add Refset</option>
-                            <option [value]="'change-description'">Change Description</option>
-                            <option [value]="'change-relationship'">Change Relationship</option>
-                            <option [value]="'change-refset'">Change Refset</option>
-                            <option [value]="'inactivate-description'">Inactivate Description</option>
-                            <option [value]="'inactivate-relationship'">Inactivate Relationship</option>
-                            <option [value]="'other'">Other</option>
+                            <option [value]="'add-concept'">{{ 'request.typeOptions.addConcept' | translate }}</option>
+                            <option [value]="'add-description'">{{ 'request.typeOptions.addDescription' | translate }}</option>
+                            <option [value]="'add-relationship'">{{ 'request.typeOptions.addRelationship' | translate }}</option>
+                            <option [value]="'add-refset'">{{ 'request.typeOptions.addRefset' | translate }}</option>
+                            <option [value]="'change-description'">{{ 'request.typeOptions.changeDescription' | translate }}</option>
+                            <option [value]="'change-relationship'">{{ 'request.typeOptions.changeRelationship' | translate }}</option>
+                            <option [value]="'change-refset'">{{ 'request.typeOptions.changeRefset' | translate }}</option>
+                            <option [value]="'inactivate-description'">{{ 'request.typeOptions.inactivateDescription' | translate }}</option>
+                            <option [value]="'inactivate-relationship'">{{ 'request.typeOptions.inactivateRelationship' | translate }}</option>
+                            <option [value]="'other'">{{ 'request.typeOptions.other' | translate }}</option>
                         </select>
                     </div>
                 </div>
@@ -192,21 +192,21 @@
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="request.id && isUser(user)">
-                            <option>Belgian Dutch</option>
-                            <option>Belgian French</option>
-                            <option>Danish</option>
-                            <option>French</option>
-                            <option>IE English</option>
-                            <option>GB English</option>
-                            <option>Maori</option>
-                            <option>Norwegian Bokmal</option>
-                            <option>Norwegian Nynorsk</option>
-                            <option>NZ English</option>
-                            <option>Swedish</option>
-                            <option>Swiss German</option>
-                            <option>Swiss Italian</option>
-                            <option>Swiss French</option>
-                            <option>US English</option>
+                            <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.danish' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.french' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.ieEnglish' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.gbEnglish' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.maori' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.norwegianBokmal' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.norwegianNynorsk' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.nzEnglish' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.swedish' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.swissGerman' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.swissItalian' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.swissFrench' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.usEnglish' | translate }}</option>
                         </select>
                     </div>
                 </div>
@@ -216,15 +216,15 @@
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <select name="Context Refset" id="contextRefset" [disabled]="request.id && isUser(user)" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
-                            <option>BE GP - Dutch</option>
-                            <option>BE GP - French</option>
-                            <option>NZ Patient Friendly - English</option>
-                            <option>SE Chief Complaints</option>
-                            <option>SE Dose Unit Abbr.</option>
-                            <option>SE Lab Medicine</option>
-                            <option>SE Dose Unit Plural</option>
-                            <option>SE Medication Prof.</option>
-                            <option>SE Medication Common</option>
+                            <option>{{ 'request.contextRefsets.beGpDutch' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.beGpFrench' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.nzPatientFriendly' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.seChiefComplaints' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.seDoseUnitAbbr' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.seLabMedicine' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.seDoseUnitPlural' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.seMedicationProf' | translate }}</option>
+                            <option>{{ 'request.contextRefsets.seMedicationCommon' | translate }}</option>
                         </select>
                     </div>
                 </div>

@@ -118,6 +118,46 @@
       "existingRelationshipRequired": "Eksisterende relation er påkrævet.",
       "relationshipChangeTypeRequired": "Relationstype (ændring) er påkrævet.",
       "relationshipChangeTargetRequired": "Relationens mål (ændring) er påkrævet."
+    },
+    "typeOptions": {
+      "addConcept": "Tilføj koncept",
+      "addDescription": "Tilføj beskrivelse",
+      "addRelationship": "Tilføj relation",
+      "addRefset": "Tilføj refset",
+      "changeDescription": "Skift beskrivelse",
+      "changeRelationship": "Skift relation",
+      "changeRefset": "Skift refset",
+      "inactivateDescription": "Inaktiver beskrivelse",
+      "inactivateRelationship": "Inaktiver relation",
+      "other": "Andet"
+    },
+    "languageRefsets": {
+      "belgianDutch": "Belgisk nederlandsk",
+      "belgianFrench": "Belgisk fransk",
+      "danish": "Dansk",
+      "french": "Fransk",
+      "ieEnglish": "Irsk engelsk",
+      "gbEnglish": "Britisk engelsk",
+      "maori": "Maori",
+      "norwegianBokmal": "Norsk Bokmål",
+      "norwegianNynorsk": "Norsk Nynorsk",
+      "nzEnglish": "Newzealandsk engelsk",
+      "swedish": "Svensk",
+      "swissGerman": "Schweizertysk",
+      "swissItalian": "Schweizisk italiensk",
+      "swissFrench": "Schweizisk fransk",
+      "usEnglish": "Amerikansk engelsk"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE GP - Nederlandsk",
+      "beGpFrench": "BE GP - Fransk",
+      "nzPatientFriendly": "NZ Patientvenlig - Engelsk",
+      "seChiefComplaints": "SE Hovedklager",
+      "seDoseUnitAbbr": "SE Dosenhed fork.",
+      "seLabMedicine": "SE Laboratoriemedicin",
+      "seDoseUnitPlural": "SE Dosenhed flertal",
+      "seMedicationProf": "SE Medicin professionel",
+      "seMedicationCommon": "SE Medicin almindelig"
     }
   }
 } 

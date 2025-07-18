@@ -118,6 +118,46 @@
       "existingRelationshipRequired": "Bestaande relatie is verplicht.",
       "relationshipChangeTypeRequired": "Relatietype (wijziging) is verplicht.",
       "relationshipChangeTargetRequired": "Relatiedoel (wijziging) is verplicht."
+    },
+    "typeOptions": {
+      "addConcept": "Concept toevoegen",
+      "addDescription": "Beschrijving toevoegen",
+      "addRelationship": "Relatie toevoegen",
+      "addRefset": "Refset toevoegen",
+      "changeDescription": "Beschrijving wijzigen",
+      "changeRelationship": "Relatie wijzigen",
+      "changeRefset": "Refset wijzigen",
+      "inactivateDescription": "Beschrijving inactiveren",
+      "inactivateRelationship": "Relatie inactiveren",
+      "other": "Overig"
+    },
+    "languageRefsets": {
+      "belgianDutch": "Belgisch Nederlands",
+      "belgianFrench": "Belgisch Frans",
+      "danish": "Deens",
+      "french": "Frans",
+      "ieEnglish": "Iers Engels",
+      "gbEnglish": "Brits Engels",
+      "maori": "Maori",
+      "norwegianBokmal": "Noors Bokmål",
+      "norwegianNynorsk": "Noors Nynorsk",
+      "nzEnglish": "Nieuw-Zeelands Engels",
+      "swedish": "Zweeds",
+      "swissGerman": "Zwitserduits",
+      "swissItalian": "Zwitser-Italiaans",
+      "swissFrench": "Zwitser-Frans",
+      "usEnglish": "Amerikaans Engels"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE HA - Nederlands",
+      "beGpFrench": "BE HA - Frans",
+      "nzPatientFriendly": "NZ Patiëntvriendelijk - Engels",
+      "seChiefComplaints": "SE Hoofdklachten",
+      "seDoseUnitAbbr": "SE Doseenheid afk.",
+      "seLabMedicine": "SE Laboratoriummedicijn",
+      "seDoseUnitPlural": "SE Doseenheid meervoud",
+      "seMedicationProf": "SE Medicatie prof.",
+      "seMedicationCommon": "SE Medicatie algemeen"
     }
   }
 } 

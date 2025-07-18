@@ -118,6 +118,46 @@
       "existingRelationshipRequired": "La relazione esistente è obbligatoria.",
       "relationshipChangeTypeRequired": "Il tipo di relazione (modifica) è obbligatorio.",
       "relationshipChangeTargetRequired": "La destinazione della relazione (modifica) è obbligatoria."
+    },
+    "typeOptions": {
+      "addConcept": "Aggiungi concetto",
+      "addDescription": "Aggiungi descrizione",
+      "addRelationship": "Aggiungi relazione",
+      "addRefset": "Aggiungi refset",
+      "changeDescription": "Modifica descrizione",
+      "changeRelationship": "Modifica relazione",
+      "changeRefset": "Modifica refset",
+      "inactivateDescription": "Disattiva descrizione",
+      "inactivateRelationship": "Disattiva relazione",
+      "other": "Altro"
+    },
+    "languageRefsets": {
+      "belgianDutch": "Fiammingo belga",
+      "belgianFrench": "Francese belga",
+      "danish": "Danese",
+      "french": "Francese",
+      "ieEnglish": "Inglese irlandese",
+      "gbEnglish": "Inglese britannico",
+      "maori": "Maori",
+      "norwegianBokmal": "Norvegese Bokmål",
+      "norwegianNynorsk": "Norvegese Nynorsk",
+      "nzEnglish": "Inglese neozelandese",
+      "swedish": "Svedese",
+      "swissGerman": "Tedesco svizzero",
+      "swissItalian": "Italiano svizzero",
+      "swissFrench": "Francese svizzero",
+      "usEnglish": "Inglese americano"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE MG - Olandese",
+      "beGpFrench": "BE MG - Francese",
+      "nzPatientFriendly": "NZ Patient Friendly - Inglese",
+      "seChiefComplaints": "SE Principali reclami",
+      "seDoseUnitAbbr": "SE Unitá dose abbr.",
+      "seLabMedicine": "SE Medicina di laboratorio",
+      "seDoseUnitPlural": "SE Unitá dose plurale",
+      "seMedicationProf": "SE Medicazione prof.",
+      "seMedicationCommon": "SE Medicazione comune"
     }
   }
 } 

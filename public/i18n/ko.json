@@ -118,6 +118,46 @@
       "existingRelationshipRequired": "기존 관계는 필수입니다.",
       "relationshipChangeTypeRequired": "관계 유형(변경)은 필수입니다.",
       "relationshipChangeTargetRequired": "관계 대상(변경)은 필수입니다."
+    },
+    "typeOptions": {
+      "addConcept": "개념 추가",
+      "addDescription": "설명 추가",
+      "addRelationship": "관계 추가",
+      "addRefset": "Refset 추가",
+      "changeDescription": "설명 변경",
+      "changeRelationship": "관계 변경",
+      "changeRefset": "Refset 변경",
+      "inactivateDescription": "설명 비활성화",
+      "inactivateRelationship": "관계 비활성화",
+      "other": "기타"
+    },
+    "languageRefsets": {
+      "belgianDutch": "벨기에 네덜란드어",
+      "belgianFrench": "벨기에 프랑스어",
+      "danish": "덴마크어",
+      "french": "프랑스어",
+      "ieEnglish": "아일랜드 영어",
+      "gbEnglish": "영국 영어",
+      "maori": "마오리어",
+      "norwegianBokmal": "노르웨이어 Bokmål",
+      "norwegianNynorsk": "노르웨이어 Nynorsk",
+      "nzEnglish": "뉴질랜드 영어",
+      "swedish": "스웨덴어",
+      "swissGerman": "스위스 독일어",
+      "swissItalian": "스위스 이탈리아어",
+      "swissFrench": "스위스 프랑스어",
+      "usEnglish": "미국 영어"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE GP - 네덜란드어",
+      "beGpFrench": "BE GP - 프랑스어",
+      "nzPatientFriendly": "NZ 환자 친화적 - 영어",
+      "seChiefComplaints": "SE 주요 불만",
+      "seDoseUnitAbbr": "SE 투여 단위 약어",
+      "seLabMedicine": "SE 검사 의학",
+      "seDoseUnitPlural": "SE 투여 단위 복수형",
+      "seMedicationProf": "SE 약물 전문",
+      "seMedicationCommon": "SE 일반 약물"
     }
   }
 } 

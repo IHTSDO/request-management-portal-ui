@@ -89,6 +89,46 @@
       "appealRejected": "APPEL REJETÉ",
       "appealClarification": "CLARIFICATION D'APPEL"
     },
+    "typeOptions": {
+      "addConcept": "Ajouter un concept",
+      "addDescription": "Ajouter une description",
+      "addRelationship": "Ajouter une relation",
+      "addRefset": "Ajouter un refset",
+      "changeDescription": "Modifier la description",
+      "changeRelationship": "Modifier la relation",
+      "changeRefset": "Modifier le refset",
+      "inactivateDescription": "Désactiver la description",
+      "inactivateRelationship": "Désactiver la relation",
+      "other": "Autre"
+    },
+    "languageRefsets": {
+      "belgianDutch": "Néerlandais belge",
+      "belgianFrench": "Français belge",
+      "danish": "Danois",
+      "french": "Français",
+      "ieEnglish": "Anglais irlandais",
+      "gbEnglish": "Anglais britannique",
+      "maori": "Maori",
+      "norwegianBokmal": "Norvégien Bokmål",
+      "norwegianNynorsk": "Norvégien Nynorsk",
+      "nzEnglish": "Anglais néo-zélandais",
+      "swedish": "Suédois",
+      "swissGerman": "Allemand suisse",
+      "swissItalian": "Italien suisse",
+      "swissFrench": "Français suisse",
+      "usEnglish": "Anglais américain"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE MG - Néerlandais",
+      "beGpFrench": "BE MG - Français",
+      "nzPatientFriendly": "NZ Patient Friendly - Anglais",
+      "seChiefComplaints": "SE Principales plaintes",
+      "seDoseUnitAbbr": "SE Unité de dose abrév.",
+      "seLabMedicine": "SE Médecine de laboratoire",
+      "seDoseUnitPlural": "SE Unité de dose pluriel",
+      "seMedicationProf": "SE Médication prof.",
+      "seMedicationCommon": "SE Médication courante"
+    },
     "labels": {
       "newFsn": "Nouveau FSN",
       "newPreferredTerm": "Nouveau terme préféré",

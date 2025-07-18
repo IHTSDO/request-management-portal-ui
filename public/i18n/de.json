@@ -118,7 +118,47 @@
       "relationshipTargetRequired": "Beziehungsziel ist erforderlich.",
       "existingRelationshipRequired": "Bestehende Beziehung ist erforderlich.",
       "relationshipChangeTypeRequired": "Beziehungstyp der Änderung ist erforderlich.",
-      "relationshipChangeTargetRequired": "Beziehungsziel der Änderung ist erforderlich."
+      "relationshipChangeTargetRequired": "Beziehungsziel (Änderung) ist erforderlich."
+    },
+    "typeOptions": {
+      "addConcept": "Konzept hinzufügen",
+      "addDescription": "Beschreibung hinzufügen",
+      "addRelationship": "Beziehung hinzufügen",
+      "addRefset": "Refset hinzufügen",
+      "changeDescription": "Beschreibung ändern",
+      "changeRelationship": "Beziehung ändern",
+      "changeRefset": "Refset ändern",
+      "inactivateDescription": "Beschreibung inaktivieren",
+      "inactivateRelationship": "Beziehung inaktivieren",
+      "other": "Sonstiges"
+    },
+    "languageRefsets": {
+      "belgianDutch": "Belgisches Niederländisch",
+      "belgianFrench": "Belgisches Französisch",
+      "danish": "Dänisch",
+      "french": "Französisch",
+      "ieEnglish": "Irisches Englisch",
+      "gbEnglish": "Britisches Englisch",
+      "maori": "Maori",
+      "norwegianBokmal": "Norwegisch Bokmål",
+      "norwegianNynorsk": "Norwegisch Nynorsk",
+      "nzEnglish": "Neuseeländisches Englisch",
+      "swedish": "Schwedisch",
+      "swissGerman": "Schweizerdeutsch",
+      "swissItalian": "Schweizer Italienisch",
+      "swissFrench": "Schweizer Französisch",
+      "usEnglish": "US-Englisch"
+    },
+    "contextRefsets": {
+      "beGpDutch": "BE GP - Niederländisch",
+      "beGpFrench": "BE GP - Französisch",
+      "nzPatientFriendly": "NZ Patient Friendly - Englisch",
+      "seChiefComplaints": "SE Hauptbeschwerden",
+      "seDoseUnitAbbr": "SE Dosiereinheit Abkz.",
+      "seLabMedicine": "SE Labormedizin",
+      "seDoseUnitPlural": "SE Dosiereinheit Plural",
+      "seMedicationProf": "SE Medikation Fach",
+      "seMedicationCommon": "SE Medikation Allgemein"
     }
   }
 }
