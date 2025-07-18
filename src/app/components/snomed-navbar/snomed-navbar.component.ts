@@ -29,7 +29,7 @@ export class SnomedNavbarComponent implements OnInit {
     constructor(private readonly authenticationService: AuthenticationService, private readonly router: Router, private translate: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         router.events.subscribe(() => this.closeMenus());
-        this.translate.addLangs(['de', 'en']);
+        this.translate.addLangs(['en', 'de', 'dk', 'fr', 'it', 'nl', 'ko']);
         this.translate.setDefaultLang('en');
     }
 
