@@ -6,7 +6,7 @@
     </div>
     <div class="flex justify-end items-center">
         <div *ngIf="user" class="inline-block">
-            <button (click)="expandedLanguageMenu ? expandedLanguageMenu = false : switchMenu('language')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="language-menu" aria-expanded="true" aria-haspopup="true">
+            <button (click)="expandedLanguageMenu ? expandedLanguageMenu = false : switchMenu('language')" data-cy="language-menu-button" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="language-menu" aria-expanded="true" aria-haspopup="true">
                 <div class="rounded-full size-5 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex">
                     <span class="fib fi-gb fis size-full"></span>
                 </div>
@@ -17,43 +17,43 @@
                     <h1 class="text-xl">{{ 'navbar.selectLanguage' | translate }}</h1>
                 </div>
                 <div class="grid grid-cols-6 gap-3 flex justify-items-center">
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('en')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('en')" data-cy="language-option-en">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-gb fis size-full"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.en' | translate }}</div>
                     </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('de')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('de')" data-cy="language-option-de">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-de fis size-full"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.de' | translate }}</div>
                     </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('dk')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('dk')" data-cy="language-option-dk">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-dk fis size-full"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.dk' | translate }}</div>
                     </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('fr')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('fr')" data-cy="language-option-fr">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-fr fis size-full"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.fr' | translate }}</div>
                     </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('it')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('it')" data-cy="language-option-it">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-it fis size-full"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.it' | translate }}</div>
                     </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('nl')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('nl')" data-cy="language-option-nl">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-nl fis size-full"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.nl' | translate }}</div>
                     </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('ko')">
+                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('ko')" data-cy="language-option-ko">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-kr fis size-full"></span>
                         </div>

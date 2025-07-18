@@ -2,7 +2,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
     </svg>{{ 'request.backButton' | translate }}</button>
-<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm mt-12">
+<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm mt-12" data-cy="request-form">
     <ng-container *ngIf="request">
         <div class="grid grid-cols-12 my-5">
             <div class="col-span-2 ms-5">
@@ -163,7 +163,7 @@
                 <label for="summary" class="text-sm text-slate-700 font-medium">{{ 'request.summary' | translate }}<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <input type="text" [disabled]="request.id && isUser(user)" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" />
+                        <input type="text" [disabled]="request.id && isUser(user)" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="summary-input" />
                     </div>
                     <div *ngIf="summaryInput.invalid && summaryInput.touched" class="text-red-500 text-sm">{{ 'request.validation.summaryRequired' | translate }}</div>
                 </div>
@@ -172,7 +172,7 @@
                 <label for="type" class="text-sm text-slate-700 font-medium">{{ 'request.type' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="request.id && isUser(user)">
-                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formType" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formType" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="type-select">
                             <option [value]="'add-concept'">{{ 'request.typeOptions.addConcept' | translate }}</option>
                             <option [value]="'add-description'">{{ 'request.typeOptions.addDescription' | translate }}</option>
                             <option [value]="'add-relationship'">{{ 'request.typeOptions.addRelationship' | translate }}</option>
@@ -191,7 +191,7 @@
                 <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.languageRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="language-refset-select">
                             <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
                             <option>{{ 'request.languageRefsets.danish' | translate }}</option>
@@ -215,7 +215,7 @@
                 <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.contextRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <select name="Context Refset" id="contextRefset" [disabled]="request.id && isUser(user)" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                        <select name="Context Refset" id="contextRefset" [disabled]="request.id && isUser(user)" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="context-refset-select">
                             <option>{{ 'request.contextRefsets.beGpDutch' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpFrench' | translate }}</option>
                             <option>{{ 'request.contextRefsets.nzPatientFriendly' | translate }}</option>
@@ -236,7 +236,7 @@
                     <label for="newFSN" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newFsn' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="New FSN" id="newFSN" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <input type="text" name="New FSN" id="newFSN" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-fsn-input">
                         </div>
                         <div *ngIf="newFSNInput.invalid && newFSNInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newFsnRequired' | translate }}</div>
                     </div>
@@ -245,7 +245,7 @@
                     <label for="newPT" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newPreferredTerm' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="New Preferred Term" id="newPT" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <input type="text" name="New Preferred Term" id="newPT" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-pt-input">
                         </div>
                         <div *ngIf="newPTInput.invalid && newPTInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newPtRequired' | translate }}</div>
                     </div>
@@ -254,7 +254,7 @@
                     <label for="newSynonyms" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newSynonyms' | translate }}</label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <textarea name="New Synonyms" id="newSynonyms" rows="3" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-synonyms-textarea"></textarea>
                         </div>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                     <label for="conceptId" class="text-sm text-slate-700 font-medium">{{ 'request.labels.conceptId' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="Concept ID" id="conceptId" [disabled]="request.id && isUser(user)" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <input type="text" name="Concept ID" id="conceptId" [disabled]="request.id && isUser(user)" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="concept-id-input">
                         </div>
                         <div *ngIf="conceptIdInput.invalid && conceptIdInput.touched" class="text-red-500 text-sm">{{ 'request.validation.conceptIdRequired' | translate }}</div>
                     </div>
@@ -310,7 +310,7 @@
                         <label for="newDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="New Description" id="newDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                                <input type="text" name="New Description" id="newDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-description-input">
                             </div>
                             <div *ngIf="newDescriptionInput.invalid && newDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newDescriptionRequired' | translate }}</div>
                         </div>
@@ -437,6 +437,18 @@
                 </div>
             </ng-container>
 
+            <ng-container *ngIf="formType === 'other'">
+                <div class="col-span-2">
+                    <label for="additionalInformation" class="text-sm text-slate-700 font-medium">{{ 'request.labels.additionalInformation' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                    <div class="mt-2">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <textarea name="Additional Information" id="additionalInformation" rows="3" [disabled]="request.id && isUser(user)" [(ngModel)]="request.additionalInformation" #additionalInformationInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="additional-information-textarea"></textarea>
+                        </div>
+                        <div *ngIf="additionalInformationInput.invalid && additionalInformationInput.touched" class="text-red-500 text-sm">{{ 'request.validation.additionalInformationRequired' | translate }}</div>
+                    </div>
+                </div>
+            </ng-container>
+
             <div class="col-span-2">
                 <label for="justification" class="text-sm text-slate-700 font-medium">{{ 'request.justification' | translate }}</label>
                 <div class="mt-2">
@@ -458,13 +470,13 @@
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW">
             <div class="justify-self-end">
                 <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5 cursor-pointer" (click)="resetForm(requestForm)" type="button">{{ 'request.resetButton' | translate }}</button>
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit">{{ 'request.submitButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit" data-cy="submit-button">{{ 'request.submitButton' | translate }}</button>
             </div>
         </div>
 
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="request.id">
             <div class="justify-self-end">
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer">{{ 'request.saveButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
             </div>
         </div>
 
@@ -490,11 +502,11 @@
                 </ng-container>
 
                 <div class="flex items-center rounded-md p-3 border border-gray-300 my-5">
-                    <textarea type="text" name="comment" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-24 font-medium" [placeholder]="'request.commentPlaceholder' | translate" [(ngModel)]="comment"></textarea>
+                    <textarea type="text" name="comment" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-24 font-medium" [placeholder]="'request.commentPlaceholder' | translate" [(ngModel)]="comment" data-cy="comment-textarea"></textarea>
                 </div>
 
                 <div class="justify-self-end">
-                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer justify-self-start" type="button" (click)="postComment()">
+                    <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer justify-self-start" type="button" (click)="postComment()" data-cy="add-comment-button">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                         </svg>{{ 'request.addCommentButton' | translate }}</button>

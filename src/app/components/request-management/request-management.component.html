@@ -7,7 +7,7 @@
             <input class="text-slate-500 text-base w-full bg-gray-100 border rounded-full py-2 px-3 border-gray-300" [(ngModel)]="searchText" [placeholder]="'requestManagement.search' | translate" (input)="onSearchInput()">
         </div>
         <div class="col-span-2 m-3 justify-self-end">
-            <button class="rounded-md bg-lime-600 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-lime-700" routerLink="/{{country}}/new-request">
+            <button class="rounded-md bg-lime-600 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-lime-700" routerLink="/{{country}}/new-request" data-cy="new-request-button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>{{ 'requestManagement.newRequestButton' | translate }}</button>
@@ -26,7 +26,7 @@
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start"></th>
                 </tr>
             </thead>
-            <tbody class="bg-white dark:bg-slate-800">
+            <tbody class="bg-white dark:bg-slate-800" data-cy="request-list">
                 <tr *ngFor="let request of requests | userRequests:user; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer">
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">#{{request.id}}</td>
                     <td class="border-gray-300 font-normal text-sky-500 text-base p-2" [class.border-b]="!last">{{request.summary}}</td>
