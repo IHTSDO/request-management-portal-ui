@@ -10,6 +10,7 @@ import {RequestTypeTransformPipe} from '../../pipes/request-type-transform/reque
 import {User} from '../../models/user';
 import {BehaviorSubject, debounceTime, of, Subscription, switchMap, tap} from 'rxjs';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 enum Mode {
     NEW,
@@ -19,7 +20,7 @@ enum Mode {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, NgIf, RouterLink, StatusTransformPipe, RequestTypeTransformPipe],
+    imports: [CommonModule, FormsModule, NgIf, RouterLink, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]

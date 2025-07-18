@@ -14,56 +14,56 @@
 
             <div *ngIf="expandedLanguageMenu" class="absolute right-0 left-0 top-0 z-10 w-full bg-gray-50 focus:outline-none pb-5" role="menu" aria-labelledby="user-menu" tabindex="-1">
                 <div class="p-10">
-                    <h1 class="text-xl">Select your language</h1>
+                    <h1 class="text-xl">{{ 'navbar.selectLanguage' | translate }}</h1>
                 </div>
                 <div class="grid grid-cols-6 gap-3 flex justify-items-center">
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('en')">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-gb fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">English</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.en' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('de')">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-de fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Deutsch</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.de' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-dk fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Dansk</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.dk' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-fr fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Français</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.fr' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-it fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Italiano</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.it' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-nl fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Nederlands</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.nl' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-cz fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Czech</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.cz' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600">
                         <div class="rounded-full size-8 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex inline-block border">
                             <span class="fib fi-gb-sct fis size-full"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">Scottish</div>
+                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.gb-sct' | translate }}</div>
                     </div>
                 </div>
             </div>
@@ -78,19 +78,19 @@
             <div *ngIf="expandedUserMenu" class="absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" tabindex="-1">
                 <div class="grid gap-x-3 p-2">
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="navigateTo('home')">
-                        <p class="text-slate-700">Home</p>
+                        <p class="text-slate-700">{{ 'navbar.menu.home' | translate }}</p>
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="navigateTo('user-information')">
-                        <p class="text-slate-700">Personal Information</p>
+                        <p class="text-slate-700">{{ 'navbar.menu.personalInfo' | translate }}</p>
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="navigateTo('security')">
-                        <p class="text-slate-700">Security</p>
+                        <p class="text-slate-700">{{ 'navbar.menu.security' | translate }}</p>
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="openRolesView()">
-                        <p class="text-slate-700">Roles</p>
+                        <p class="text-slate-700">{{ 'navbar.menu.roles' | translate }}</p>
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="logout()">
-                        <p class="text-slate-700">Logout</p>
+                        <p class="text-slate-700">{{ 'navbar.menu.logout' | translate }}</p>
                     </div>
                 </div>
             </div>
@@ -206,13 +206,13 @@
             <div *ngIf="expandedItemMenu" class="absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="items-menu" tabindex="-1">
                 <div class="grid gap-x-3 p-2">
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="redirectTo('https://snomed.statuspage.io/')">
-                        <p class="text-slate-700">SNOMED Status Page</p>
+                        <p class="text-slate-700">{{ 'navbar.external.statusPage' | translate }}</p>
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="redirectTo('https://www.snomed.org/')">
-                        <p class="text-slate-700">SNOMED International</p>
+                        <p class="text-slate-700">{{ 'navbar.external.snomedIntl' | translate }}</p>
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="redirectTo('https://www.iubenda.com/privacy-policy/46600952')">
-                        <p class="text-slate-700">SNOMED Privacy Policy</p>
+                        <p class="text-slate-700">{{ 'navbar.external.privacy' | translate }}</p>
                     </div>
                 </div>
             </div>

@@ -4,10 +4,11 @@ import {User} from '../../models/user';
 import {Subscription} from 'rxjs';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {NgIf} from '@angular/common';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-dashboard',
-    imports: [RouterLink, NgIf],
+    imports: [RouterLink, NgIf, TranslatePipe],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss'
 })

@@ -1,8 +1,8 @@
 <div class="background h-screen w-screen bg-cover" style="background-image: radial-gradient(circle, rgba(73,168,219,0.8) 0%, rgba(18,79,107,0.8) 100%), url('images/medical_bg.png')">
     <div class="grid gap-6 h-screen justify-self-center w-3/4 content-center">
         <div class="text-center">
-            <p class="text-center museo inline-block text-white text-6xl">SNOMED CT</p>
-            <p class="text-center text-lg text-white m-5 mx-40">This Request Portal is for submitting requests to add, update or change SNOMED content within the following National Extensions. Please select the relevant country from the options below.</p>
+            <p class="text-center museo inline-block text-white text-6xl">{{ 'dashboard.title' | translate }}</p>
+            <p class="text-center text-lg text-white m-5 mx-40">{{ 'dashboard.description' | translate }}</p>
         </div>
         <div *ngIf="user" class="grid grid-cols-4 gap-6">
             <ng-container *ngIf="user.roles.includes('ROLE_ms-belgium') || user.roles.includes('ROLE_rmp-be-requestor')">
@@ -11,7 +11,7 @@
                         <span class="fi fi-be size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Belgium</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.be' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -22,7 +22,7 @@
                         <span class="fi fi-dk size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Denmark</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.dk' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -33,7 +33,7 @@
                         <span class="fi fi-ee size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Estonia</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.ee' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -44,7 +44,7 @@
                         <span class="fi fi-ie size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Ireland</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.ie' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -55,7 +55,7 @@
                         <span class="fi fi-nz size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">New Zealand</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.nz' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -66,7 +66,7 @@
                         <span class="fi fi-fr size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">France</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.fr' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -77,7 +77,7 @@
                         <span class="fi fi-ch size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Switzerland</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.ch' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>
@@ -88,7 +88,7 @@
                         <span class="fi fi-kr size-16 ms-3"></span>
                     </div>
                     <div class="m-3 w-48 text-center content-center">
-                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">Korea</h2>
+                        <h2 class="text-xl text-slate-700 mt-2 mb-0 antialiased">{{ 'dashboard.countries.kr' | translate }}</h2>
                     </div>
                 </div>
             </ng-container>

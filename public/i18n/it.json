@@ -1,0 +1,44 @@
+{
+  "home": {
+    "title": "Portale di gestione delle richieste"
+  },
+  "dashboard": {
+    "title": "SNOMED CT",
+    "description": "Questo portale consente di inviare richieste per aggiungere, aggiornare o modificare i contenuti SNOMED nelle seguenti estensioni nazionali. Seleziona il paese pertinente qui sotto.",
+    "countries": {
+      "be": "Belgio",
+      "dk": "Danimarca",
+      "ee": "Estonia",
+      "ie": "Irlanda",
+      "nz": "Nuova Zelanda",
+      "fr": "Francia",
+      "ch": "Svizzera",
+      "kr": "Corea"
+    }
+  },
+  "navbar": {
+    "selectLanguage": "Seleziona la lingua",
+    "languages": {
+      "en": "Inglese",
+      "de": "Tedesco",
+      "dk": "Danese",
+      "fr": "Francese",
+      "it": "Italiano",
+      "nl": "Olandese",
+      "cz": "Ceco",
+      "gb-sct": "Scozzese"
+    },
+    "menu": {
+      "home": "Home",
+      "personalInfo": "Informazioni personali",
+      "security": "Sicurezza",
+      "roles": "Ruoli",
+      "logout": "Disconnetti"
+    },
+    "external": {
+      "statusPage": "Pagina stato SNOMED",
+      "snomedIntl": "SNOMED International",
+      "privacy": "Informativa sulla privacy SNOMED"
+    }
+  }
+} 

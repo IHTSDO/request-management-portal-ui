@@ -11,10 +11,11 @@ import {FormsModule} from '@angular/forms';
 import {UserRequestsPipe} from '../../pipes/user-requests/user-requests.pipe';
 import {User} from '../../models/user';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-request-management',
-    imports: [RouterLink, CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe],
+    imports: [RouterLink, CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe, TranslatePipe],
     templateUrl: './request-management.component.html',
     styleUrl: './request-management.component.scss'
 })

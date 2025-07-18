@@ -1,0 +1,44 @@
+{
+  "home": {
+    "title": "요청 관리 포털"
+  },
+  "dashboard": {
+    "title": "SNOMED CT",
+    "description": "이 포털을 통해 다음 국가 확장에서 SNOMED 콘텐츠를 추가, 업데이트 또는 변경하기 위한 요청을 제출할 수 있습니다. 아래에서 해당 국가를 선택하십시오.",
+    "countries": {
+      "be": "벨기에",
+      "dk": "덴마크",
+      "ee": "에스토니아",
+      "ie": "아일랜드",
+      "nz": "뉴질랜드",
+      "fr": "프랑스",
+      "ch": "스위스",
+      "kr": "대한민국"
+    }
+  },
+  "navbar": {
+    "selectLanguage": "언어 선택",
+    "languages": {
+      "en": "영어",
+      "de": "독일어",
+      "dk": "덴마크어",
+      "fr": "프랑스어",
+      "it": "이탈리아어",
+      "nl": "네덜란드어",
+      "cz": "체코어",
+      "gb-sct": "스코틀랜드어"
+    },
+    "menu": {
+      "home": "홈",
+      "personalInfo": "개인 정보",
+      "security": "보안",
+      "roles": "역할",
+      "logout": "로그아웃"
+    },
+    "external": {
+      "statusPage": "SNOMED 상태 페이지",
+      "snomedIntl": "SNOMED International",
+      "privacy": "SNOMED 개인정보 보호정책"
+    }
+  }
+} 

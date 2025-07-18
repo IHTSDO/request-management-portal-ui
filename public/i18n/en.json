@@ -1,5 +1,125 @@
 {
-    "home": {
-        "title": "Request Management Portal"
+  "home": {
+    "title": "Request Management Portal"
+  },
+  "dashboard": {
+    "title": "SNOMED CT",
+    "description": "This Request Portal is for submitting requests to add, update or change SNOMED content within the following National Extensions. Please select the relevant country from the options below.",
+    "countries": {
+      "be": "Belgium",
+      "dk": "Denmark",
+      "ee": "Estonia",
+      "ie": "Ireland",
+      "nz": "New Zealand",
+      "fr": "France",
+      "ch": "Switzerland",
+      "kr": "Korea"
     }
+  },
+  "navbar": {
+    "selectLanguage": "Select your language",
+    "languages": {
+      "en": "English",
+      "de": "Deutsch",
+      "dk": "Dansk",
+      "fr": "Français",
+      "it": "Italiano",
+      "nl": "Nederlands",
+      "cz": "Czech",
+      "gb-sct": "Scottish"
+    },
+    "menu": {
+      "home": "Home",
+      "personalInfo": "Personal Information",
+      "security": "Security",
+      "roles": "Roles",
+      "logout": "Logout"
+    },
+    "external": {
+      "statusPage": "SNOMED Status Page",
+      "snomedIntl": "SNOMED International",
+      "privacy": "SNOMED Privacy Policy"
+    }
+  },
+  "requestManagement": {
+    "heading": "{{country}}'s Requests",
+    "search": "Search...",
+    "newRequestButton": "NEW REQUEST",
+    "id": "ID",
+    "request": "REQUEST",
+    "type": "TYPE",
+    "status": "STATUS",
+    "date": "DATE",
+    "user": "USER",
+    "noRequests": "No requests found.",
+    "retrieving": "Retrieving requests...",
+    "loadMoreButton": "LOAD MORE",
+    "showing": "Showing {{visible}} of {{total}}",
+    "deleteTitle": "Delete Request #{{id}}",
+    "confirmDelete": "Are you sure you want to delete this request?",
+    "deleteButton": "DELETE",
+    "cancelButton": "CANCEL"
+  },
+  "request": {
+    "backButton": "BACK",
+    "newRequestButton": "New Request",
+    "workflowButton": "WORKFLOW",
+    "summary": "Summary",
+    "type": "Type",
+    "languageRefset": "Language Refset",
+    "contextRefset": "Context Refset",
+    "justification": "Justification",
+    "reference": "Reference",
+    "resetButton": "RESET",
+    "submitButton": "SUBMIT",
+    "saveButton": "SAVE",
+    "comments": "Comments",
+    "noComments": "- There are no comments on this request yet -",
+    "commentPlaceholder": "Type your comment here...",
+    "addCommentButton": "ADD COMMENT",
+    "workflow": {
+      "withdrawn": "WITHDRAWN",
+      "rejected": "REJECTED",
+      "accepted": "ACCEPTED",
+      "clarification": "CLARIFICATION",
+      "inProgress": "IN PROGRESS",
+      "closed": "CLOSED",
+      "onHold": "ON HOLD",
+      "readyForRelease": "READY FOR RELEASE",
+      "published": "PUBLISHED",
+      "appealed": "APPEALED",
+      "appealRejected": "APPEAL REJECTED",
+      "appealClarification": "APPEAL CLARIFICATION"
+    },
+    "labels": {
+      "newFsn": "New FSN",
+      "newPreferredTerm": "New Preferred Term",
+      "newSynonyms": "New Synonyms",
+      "parentConcept": "Parent Concept",
+      "concept": "Concept",
+      "conceptId": "Concept ID",
+      "conceptName": "Concept Name",
+      "existingDescription": "Existing Description",
+      "existingRelationship": "Existing Relationship",
+      "relationshipType": "Relationship Type",
+      "relationshipTarget": "Relationship Target",
+      "relationshipChangeType": "Relationship Type",
+      "relationshipChangeTarget": "Relationship Target"
+    },
+    "validation": {
+      "summaryRequired": "Summary is required.",
+      "newFsnRequired": "New FSN is required.",
+      "newPtRequired": "New Preferred Term is required.",
+      "parentConceptRequired": "Parent Concept is required.",
+      "conceptIdRequired": "Concept ID is required.",
+      "conceptNameRequired": "Concept Name is required.",
+      "newDescriptionRequired": "New Description is required.",
+      "existingDescriptionRequired": "Existing Description is required.",
+      "relationshipTypeRequired": "Relationship Type is required.",
+      "relationshipTargetRequired": "Relationship Target is required.",
+      "existingRelationshipRequired": "Existing Relationship is required.",
+      "relationshipChangeTypeRequired": "Relationship Change Type is required.",
+      "relationshipChangeTargetRequired": "Relationship Change Target is required."
+    }
+  }
 }

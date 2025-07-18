@@ -1,0 +1,44 @@
+{
+  "home": {
+    "title": "Verzoekbeheerportaal"
+  },
+  "dashboard": {
+    "title": "SNOMED CT",
+    "description": "Met deze portal kunt u verzoeken indienen om SNOMED-inhoud toe te voegen, bij te werken of te wijzigen binnen de volgende nationale extensies. Selecteer hieronder het betreffende land.",
+    "countries": {
+      "be": "België",
+      "dk": "Denemarken",
+      "ee": "Estland",
+      "ie": "Ierland",
+      "nz": "Nieuw-Zeeland",
+      "fr": "Frankrijk",
+      "ch": "Zwitserland",
+      "kr": "Korea"
+    }
+  },
+  "navbar": {
+    "selectLanguage": "Selecteer uw taal",
+    "languages": {
+      "en": "Engels",
+      "de": "Duits",
+      "dk": "Deens",
+      "fr": "Frans",
+      "it": "Italiaans",
+      "nl": "Nederlands",
+      "cz": "Tsjechisch",
+      "gb-sct": "Schots"
+    },
+    "menu": {
+      "home": "Home",
+      "personalInfo": "Persoonlijke informatie",
+      "security": "Beveiliging",
+      "roles": "Rollen",
+      "logout": "Uitloggen"
+    },
+    "external": {
+      "statusPage": "SNOMED statuspagina",
+      "snomedIntl": "SNOMED International",
+      "privacy": "SNOMED-privacybeleid"
+    }
+  }
+} 
