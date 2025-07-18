@@ -26,7 +26,12 @@ export class Request {
         public justification: string,
         public reference: string,
         public created: number,
-        public updated: number
+        public updated: number,
+        public additionalInformation: string,
+        public sourceId: string,
+        public destinationId: string,
+        public characteristicTypeId: string,
+        public memberId: string
     ) {}
 }
 

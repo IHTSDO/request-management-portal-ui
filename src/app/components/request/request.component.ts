@@ -162,7 +162,12 @@ export class RequestComponent implements OnInit {
             '', // justification
             '', // reference
             0,  // created timestamp placeholder
-            0   // updated timestamp placeholder
+            0,   // updated timestamp placeholder
+            '', // additionalInformation
+            '', // sourceId
+            '', // destinationId
+            '', // characteristicTypeId
+            '' // memberId
         );
     }
 
