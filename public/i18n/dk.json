@@ -116,8 +116,8 @@
       "relationshipTypeRequired": "Relationstype er påkrævet.",
       "relationshipTargetRequired": "Relationens mål er påkrævet.",
       "existingRelationshipRequired": "Eksisterende relation er påkrævet.",
-      "relationshipChangeTypeRequired": "Relationstype (ændring) er påkrævet.",
-      "relationshipChangeTargetRequired": "Relationens mål (ændring) er påkrævet."
+      "relationshipChangeTypeRequired": "Relationstypen for ændringen er påkrævet.",
+      "relationshipChangeTargetRequired": "Målet for relationsændringen er påkrævet."
     },
     "typeOptions": {
       "addConcept": "Tilføj koncept",

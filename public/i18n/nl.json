@@ -116,8 +116,8 @@
       "relationshipTypeRequired": "Relatietype is verplicht.",
       "relationshipTargetRequired": "Relatiedoel is verplicht.",
       "existingRelationshipRequired": "Bestaande relatie is verplicht.",
-      "relationshipChangeTypeRequired": "Relatietype (wijziging) is verplicht.",
-      "relationshipChangeTargetRequired": "Relatiedoel (wijziging) is verplicht."
+      "relationshipChangeTypeRequired": "Het relatietype voor de wijziging is verplicht.",
+      "relationshipChangeTargetRequired": "Het relatiedoel voor de wijziging is verplicht."
     },
     "typeOptions": {
       "addConcept": "Concept toevoegen",

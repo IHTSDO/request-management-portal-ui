@@ -116,8 +116,8 @@
       "relationshipTypeRequired": "Il tipo di relazione è obbligatorio.",
       "relationshipTargetRequired": "La destinazione della relazione è obbligatoria.",
       "existingRelationshipRequired": "La relazione esistente è obbligatoria.",
-      "relationshipChangeTypeRequired": "Il tipo di relazione (modifica) è obbligatorio.",
-      "relationshipChangeTargetRequired": "La destinazione della relazione (modifica) è obbligatoria."
+      "relationshipChangeTypeRequired": "Il tipo di relazione per la modifica è obbligatorio.",
+      "relationshipChangeTargetRequired": "La destinazione della relazione per la modifica è obbligatoria."
     },
     "typeOptions": {
       "addConcept": "Aggiungi concetto",

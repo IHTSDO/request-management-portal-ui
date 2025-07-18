@@ -83,12 +83,12 @@
       "clarification": "KLÄRUNG",
       "inProgress": "IN ARBEIT",
       "closed": "GESCHLOSSEN",
-      "onHold": "PAUSIERT",
-      "readyForRelease": "FÜR FREIGABE BEREIT",
+      "onHold": "IN SPERRE",
+      "readyForRelease": "BEREIT ZUR VERÖFFENTLICHUNG",
       "published": "VERÖFFENTLICHT",
-      "appealed": "ANGEFOCHTEN",
-      "appealRejected": "EINSRP. ABGELEHNT",
-      "appealClarification": "EINSRP. KLÄRUNG"
+      "appealed": "BERUFUNG EINGELEGT",
+      "appealRejected": "BERUFUNG ABGELEHNT",
+      "appealClarification": "BERUFUNG KLÄRUNG"
     },
     "labels": {
       "newFsn": "Neuer FSN",

@@ -81,7 +81,7 @@
       "accepted": "ACCEPTÉE",
       "clarification": "CLARIFICATION",
       "inProgress": "EN COURS",
-      "closed": "CLOTURÉE",
+      "closed": "CLÔTURÉE",
       "onHold": "EN ATTENTE",
       "readyForRelease": "PRÊTE À PUBLIER",
       "published": "PUBLIÉE",
@@ -156,8 +156,8 @@
       "relationshipTypeRequired": "Le type de relation est requis.",
       "relationshipTargetRequired": "La cible de la relation est requise.",
       "existingRelationshipRequired": "La relation existante est requise.",
-      "relationshipChangeTypeRequired": "Le type de relation (modification) est requis.",
-      "relationshipChangeTargetRequired": "La cible de la relation (modification) est requise."
+      "relationshipChangeTypeRequired": "Le type de relation pour la modification est requis.",
+      "relationshipChangeTargetRequired": "La cible de la relation pour la modification est requise."
     }
   }
 } 

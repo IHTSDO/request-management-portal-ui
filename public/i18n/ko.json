@@ -52,7 +52,7 @@
     "noRequests": "요청이 없습니다.",
     "retrieving": "요청을 가져오는 중...",
     "loadMoreButton": "더 보기",
-    "showing": "{{visible}} / {{total}} 표시",
+    "showing": "총 {{total}}개 중 {{visible}}개 표시",
     "deleteTitle": "요청 #{{id}} 삭제",
     "confirmDelete": "이 요청을 삭제하시겠습니까?",
     "deleteButton": "삭제",
@@ -116,8 +116,8 @@
       "relationshipTypeRequired": "관계 유형은 필수입니다.",
       "relationshipTargetRequired": "관계 대상은 필수입니다.",
       "existingRelationshipRequired": "기존 관계는 필수입니다.",
-      "relationshipChangeTypeRequired": "관계 유형(변경)은 필수입니다.",
-      "relationshipChangeTargetRequired": "관계 대상(변경)은 필수입니다."
+      "relationshipChangeTypeRequired": "관계 유형 변경은 필수입니다.",
+      "relationshipChangeTargetRequired": "관계 대상 변경은 필수입니다."
     },
     "typeOptions": {
       "addConcept": "개념 추가",
