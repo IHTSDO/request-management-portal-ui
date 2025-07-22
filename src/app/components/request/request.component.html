@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-span-10">
                     <ng-container *ngIf="isStaff(user)">
-                        <div class="justify-self-end">
+                        <div class="flex flex-wrap justify-end gap-y-4">
                             <button class="rounded-md bg-rose-400 hover:bg-rose-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('WITHDRAWN')">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-rose-200 me-2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -99,6 +99,10 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                     </svg>{{ 'request.workflow.onHold' | translate }}</button>
+                                <button class="rounded-md bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('CLARIFICATION_REQUESTED')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-amber-200 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>{{ 'request.workflow.clarification' | translate }}</button>
                                 <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest ms-5 cursor-pointer" type="button" (click)="moveTask('READY_FOR_RELEASE')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
