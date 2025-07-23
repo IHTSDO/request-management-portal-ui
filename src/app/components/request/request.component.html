@@ -28,6 +28,7 @@
                                 </th>
                                 <th class="font-normal text-slate-700 text-base py-2">{{request.created | date:'yyyy/MM/dd':'UTC'}}</th>
                                 <th class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</th>
+                                <th class="font-normal text-slate-700 text-base py-2">{{request.assignee ? request.assignee : '-'}}</th>
                             </tr>
                             </tbody>
                         </table>

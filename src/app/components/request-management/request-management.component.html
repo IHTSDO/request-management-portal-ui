@@ -22,7 +22,8 @@
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.type' | translate }}</th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.status' | translate }}</th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.date' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.user' | translate }}</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.reporter' | translate }}</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.assignee' | translate }}</th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start"></th>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@
                     </td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.created | date:'yyyy/MM/dd':'UTC'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.reporter}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.assignee ? request.assignee : '-'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700" [class.border-b]="!last">
                         <i class="fas fa-times text-2xl text-red-500" (click)="deleteOption = request; $event.stopPropagation()"></i>
                     </td>
