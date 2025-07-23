@@ -19,31 +19,108 @@
                 <tr class="overflow-hidden">
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('id')">
                         {{ 'requestManagement.id' | translate }}
-                        <span *ngIf="sortColumn === 'id'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'id'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('summary')">
                         {{ 'requestManagement.request' | translate }}
-                        <span *ngIf="sortColumn === 'summary'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'summary'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('type')">
                         {{ 'requestManagement.type' | translate }}
-                        <span *ngIf="sortColumn === 'type'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'type'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('status')">
                         {{ 'requestManagement.status' | translate }}
-                        <span *ngIf="sortColumn === 'status'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'status'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('updatedDate')">
                         {{ 'requestManagement.updated' | translate }}
-                        <span *ngIf="sortColumn === 'updatedDate'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'updatedDate'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('reporter')">
                         {{ 'requestManagement.reporter' | translate }}
-                        <span *ngIf="sortColumn === 'reporter'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'reporter'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('assignee')">
                         {{ 'requestManagement.assignee' | translate }}
-                        <span *ngIf="sortColumn === 'assignee'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                        <span *ngIf="sortColumn === 'assignee'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
                     </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start"></th>
                 </tr>
