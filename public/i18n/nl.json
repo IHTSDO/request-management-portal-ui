@@ -1,163 +1,165 @@
 {
-  "home": {
-    "title": "Verzoekbeheerportaal"
-  },
-  "dashboard": {
-    "title": "SNOMED CT",
-    "description": "Met deze portal kunt u verzoeken indienen om SNOMED-inhoud toe te voegen, bij te werken of te wijzigen binnen de volgende nationale extensies. Selecteer hieronder het betreffende land.",
-    "countries": {
-      "be": "België",
-      "dk": "Denemarken",
-      "ee": "Estland",
-      "ie": "Ierland",
-      "nz": "Nieuw-Zeeland",
-      "fr": "Frankrijk",
-      "ch": "Zwitserland",
-      "kr": "Korea"
+    "home": {
+        "title": "Verzoekbeheerportaal"
+    },
+    "dashboard": {
+        "title": "SNOMED CT",
+        "description": "Via dit portaal kunt u een aanvraag indienen om SNOMED CT-inhoud toe te voegen, bij te werken of te wijzigen. Selecteer uit de onderstaande opties het soort aanvraag dat u wenst te doen.",
+        "countries": {
+            "be": "België",
+            "dk": "Denemarken",
+            "ee": "Estland",
+            "ie": "Ierland",
+            "nz": "Nieuw-Zeeland",
+            "fr": "Frankrijk",
+            "ch": "Zwitserland",
+            "kr": "Korea"
+        }
+    },
+    "navbar": {
+        "selectLanguage": "Select your language",
+        "languages": {
+            "en": "English",
+            "de": "Deutsch",
+            "dk": "Dansk",
+            "fr": "Français",
+            "it": "Italiano",
+            "nl": "Nederlands",
+            "ko": "한국어"
+        },
+        "menu": {
+            "home": "Home",
+            "personalInfo": "Personal Information",
+            "security": "Security",
+            "roles": "Roles",
+            "logout": "Logout"
+        },
+        "external": {
+            "statusPage": "SNOMED Status Page",
+            "snomedIntl": "SNOMED International",
+            "privacy": "SNOMED Privacy Policy"
+        }
+    },
+    "requestManagement": {
+        "heading": "Verzoeken van {{country}}",
+        "search": "Zoeken...",
+        "newRequestButton": "NIEUW VERZOEK",
+        "id": "ID",
+        "request": "VERZOEK",
+        "type": "TYPE",
+        "status": "STATUS",
+        "date": "DATUM",
+        "user": "GEBRUIKER",
+        "noRequests": "Geen verzoeken gevonden.",
+        "retrieving": "Verzoeken ophalen...",
+        "loadMoreButton": "MEER LADEN",
+        "showing": "{{visible}} van {{total}} weergegeven",
+        "deleteTitle": "Verzoek #{{id}} verwijderen",
+        "confirmDelete": "Weet u zeker dat u dit verzoek wilt verwijderen?",
+        "deleteButton": "VERWIJDEREN",
+        "cancelButton": "ANNULEREN"
+    },
+    "request": {
+        "backButton": "TERUG",
+        "newRequestButton": "Nieuw verzoek",
+        "workflowButton": "WORKFLOW",
+        "summary": "Samenvatting",
+        "type": "Type",
+        "languageRefset": "Taal-refset",
+        "contextRefset": "Context-refset",
+        "justification": "Rechtvaardiging",
+        "reference": "Referentie",
+        "resetButton": "RESET",
+        "submitButton": "INDIENEN",
+        "saveButton": "OPSLAAN",
+        "comments": "Opmerkingen",
+        "noComments": "- Nog geen opmerkingen -",
+        "commentPlaceholder": "Typ hier uw opmerking...",
+        "addCommentButton": "OPMERKING TOEVOEGEN",
+        "workflow": {
+            "withdrawn": "INGETROKKEN",
+            "rejected": "AFGEWEZEN",
+            "accepted": "GEACCEPTEERD",
+            "clarification": "VERDUIDELIJKING",
+            "inProgress": "BEZIG",
+            "closed": "GESLOTEN",
+            "onHold": "IN WACHT",
+            "readyForRelease": "KLAAR VOOR RELEASE",
+            "published": "GEPUBLICEERD",
+            "appealed": "IN BEROEP",
+            "appealRejected": "BEROEP AFGEWEZEN",
+            "appealClarification": "BEROEP VERDUIDELIJKING"
+        },
+        "labels": {
+            "newFsn": "Nieuwe FSN",
+            "newPreferredTerm": "Nieuwe voorkeurs-term",
+            "newSynonyms": "Nieuwe synoniemen",
+            "parentConcept": "Bovenliggend concept",
+            "concept": "Concept",
+            "conceptId": "Concept-ID",
+            "conceptName": "Conceptnaam",
+            "existingDescription": "Bestaande beschrijving",
+            "existingRelationship": "Bestaande relatie",
+            "relationshipType": "Relatietype",
+            "relationshipTarget": "Relatiedoel"
+        },
+        "validation": {
+            "summaryRequired": "Omschrijving is vereist",
+            "newFsnRequired": "Nieuwe FSN is vereist",
+            "newPtRequired": "Nieuwe Preferred Term is vereist",
+            "parentConceptRequired": "Ouderconcept is vereist",
+            "conceptIdRequired": "Concept ID is vereist",
+            "conceptNameRequired": "Conceptnaam is vereist",
+            "newDescriptionRequired": "Nieuwe beschrijving is vereist",
+            "relationshipTypeRequired": "Type relatie is vereist",
+            "relationshipTargetRequired": "Relatie met Doelconcept is vereist",
+            "existingDescriptionRequired": "Bestaande beschrijving is vereist",
+            "existingRelationshipRequired": "Bestaande relatie is vereist"
+        },
+        "typeOptions": {
+            "addConcept": "Concept toevoegen",
+            "addDescription": "Beschrijving toevoegen",
+            "addRelationship": "Relatie toevoegen",
+            "addRefset": "Refset toevoegen",
+            "changeDescription": "Beschrijving wijzigen",
+            "changeRelationship": "Relatie wijzigen",
+            "changeRefset": "Refset wijzigen",
+            "inactivateDescription": "Beschrijving inactiveren",
+            "inactivateRelationship": "Relatie inactiveren",
+            "other": "Overig"
+        },
+        "languageRefsets": {
+            "none": "Geen",
+            "belgianDutch": "Belgian Dutch",
+            "belgianFrench": "Belgian French",
+            "danish": "Danish",
+            "estonian": "Estonian",
+            "french": "French",
+            "ieEnglish": "IE English",
+            "gbEnglish": "GB English",
+            "maori": "Māori",
+            "norwegianBokmal": "Norwegian Bokmål",
+            "norwegianNynorsk": "Norwegian Nynorsk",
+            "nzEnglish": "NZ English",
+            "swedish": "Swedish",
+            "swissGerman": "Swiss German",
+            "swissItalian": "Swiss Italian",
+            "swissFrench": "Swiss French",
+            "usEnglish": "US English",
+            "korean": "Korean"
+        },
+        "contextRefsets": {
+            "none": "Geen",
+            "beGpDutch": "BE GP - Dutch",
+            "beGpFrench": "BE GP - French",
+            "nzPatientFriendly": "NZ Patient Friendly - English",
+            "nzCanshareLRS": "NZ Canshare",
+            "seChiefComplaints": "SE Chief Complaints",
+            "seDoseUnitAbbr": "SE Dose Unit Abbr.",
+            "seLabMedicine": "SE Lab Medicine",
+            "seDoseUnitPlural": "SE Dose Unit Plural",
+            "seMedicationProf": "SE Medication Prof.",
+            "seMedicationCommon": "SE Medication Common"
+        }
     }
-  },
-  "navbar": {
-    "selectLanguage": "Selecteer uw taal",
-    "languages": {
-      "en": "Engels",
-      "de": "Duits",
-      "dk": "Deens",
-      "fr": "Frans",
-      "it": "Italiaans",
-      "nl": "Nederlands"
-    },
-    "menu": {
-      "home": "Home",
-      "personalInfo": "Persoonlijke informatie",
-      "security": "Beveiliging",
-      "roles": "Rollen",
-      "logout": "Uitloggen"
-    },
-    "external": {
-      "statusPage": "SNOMED statuspagina",
-      "snomedIntl": "SNOMED International",
-      "privacy": "SNOMED-privacybeleid"
-    }
-  },
-  "requestManagement": {
-    "heading": "Verzoeken van {{country}}",
-    "search": "Zoeken...",
-    "newRequestButton": "NIEUW VERZOEK",
-    "id": "ID",
-    "request": "VERZOEK",
-    "type": "TYPE",
-    "status": "STATUS",
-    "date": "DATUM",
-    "user": "GEBRUIKER",
-    "noRequests": "Geen verzoeken gevonden.",
-    "retrieving": "Verzoeken ophalen...",
-    "loadMoreButton": "MEER LADEN",
-    "showing": "{{visible}} van {{total}} weergegeven",
-    "deleteTitle": "Verzoek #{{id}} verwijderen",
-    "confirmDelete": "Weet u zeker dat u dit verzoek wilt verwijderen?",
-    "deleteButton": "VERWIJDEREN",
-    "cancelButton": "ANNULEREN"
-  },
-  "request": {
-    "backButton": "TERUG",
-    "newRequestButton": "Nieuw verzoek",
-    "workflowButton": "WORKFLOW",
-    "summary": "Samenvatting",
-    "type": "Type",
-    "languageRefset": "Taal-refset",
-    "contextRefset": "Context-refset",
-    "justification": "Rechtvaardiging",
-    "reference": "Referentie",
-    "resetButton": "RESET",
-    "submitButton": "INDIENEN",
-    "saveButton": "OPSLAAN",
-    "comments": "Opmerkingen",
-    "noComments": "- Nog geen opmerkingen -",
-    "commentPlaceholder": "Typ hier uw opmerking...",
-    "addCommentButton": "OPMERKING TOEVOEGEN",
-    "workflow": {
-      "withdrawn": "INGETROKKEN",
-      "rejected": "AFGEWEZEN",
-      "accepted": "GEACCEPTEERD",
-      "clarification": "VERDUIDELIJKING",
-      "inProgress": "BEZIG",
-      "closed": "GESLOTEN",
-      "onHold": "IN WACHT",
-      "readyForRelease": "KLAAR VOOR RELEASE",
-      "published": "GEPUBLICEERD",
-      "appealed": "IN BEROEP",
-      "appealRejected": "BEROEP AFGEWEZEN",
-      "appealClarification": "BEROEP VERDUIDELIJKING"
-    },
-    "labels": {
-      "newFsn": "Nieuwe FSN",
-      "newPreferredTerm": "Nieuwe voorkeurs-term",
-      "newSynonyms": "Nieuwe synoniemen",
-      "parentConcept": "Bovenliggend concept",
-      "concept": "Concept",
-      "conceptId": "Concept-ID",
-      "conceptName": "Conceptnaam",
-      "existingDescription": "Bestaande beschrijving",
-      "existingRelationship": "Bestaande relatie",
-      "relationshipType": "Relatietype",
-      "relationshipTarget": "Relatiedoel",
-      "relationshipChangeType": "Relatietype",
-      "relationshipChangeTarget": "Relatiedoel"
-    },
-    "validation": {
-      "summaryRequired": "Samenvatting is verplicht.",
-      "newFsnRequired": "Nieuwe FSN is verplicht.",
-      "newPtRequired": "Nieuwe voorkeurs-term is verplicht.",
-      "parentConceptRequired": "Bovenliggend concept is verplicht.",
-      "conceptIdRequired": "Concept-ID is verplicht.",
-      "conceptNameRequired": "Conceptnaam is verplicht.",
-      "newDescriptionRequired": "Nieuwe beschrijving is verplicht.",
-      "existingDescriptionRequired": "Bestaande beschrijving is verplicht.",
-      "relationshipTypeRequired": "Relatietype is verplicht.",
-      "relationshipTargetRequired": "Relatiedoel is verplicht.",
-      "existingRelationshipRequired": "Bestaande relatie is verplicht.",
-      "relationshipChangeTypeRequired": "Het relatietype voor de wijziging is verplicht.",
-      "relationshipChangeTargetRequired": "Het relatiedoel voor de wijziging is verplicht."
-    },
-    "typeOptions": {
-      "addConcept": "Concept toevoegen",
-      "addDescription": "Beschrijving toevoegen",
-      "addRelationship": "Relatie toevoegen",
-      "addRefset": "Refset toevoegen",
-      "changeDescription": "Beschrijving wijzigen",
-      "changeRelationship": "Relatie wijzigen",
-      "changeRefset": "Refset wijzigen",
-      "inactivateDescription": "Beschrijving inactiveren",
-      "inactivateRelationship": "Relatie inactiveren",
-      "other": "Overig"
-    },
-    "languageRefsets": {
-      "belgianDutch": "Belgisch Nederlands",
-      "belgianFrench": "Belgisch Frans",
-      "danish": "Deens",
-      "french": "Frans",
-      "ieEnglish": "Iers Engels",
-      "gbEnglish": "Brits Engels",
-      "maori": "Maori",
-      "norwegianBokmal": "Noors Bokmål",
-      "norwegianNynorsk": "Noors Nynorsk",
-      "nzEnglish": "Nieuw-Zeelands Engels",
-      "swedish": "Zweeds",
-      "swissGerman": "Zwitserduits",
-      "swissItalian": "Zwitser-Italiaans",
-      "swissFrench": "Zwitser-Frans",
-      "usEnglish": "Amerikaans Engels"
-    },
-    "contextRefsets": {
-      "beGpDutch": "BE HA - Nederlands",
-      "beGpFrench": "BE HA - Frans",
-      "nzPatientFriendly": "NZ Patiëntvriendelijk - Engels",
-      "seChiefComplaints": "SE Hoofdklachten",
-      "seDoseUnitAbbr": "SE Doseenheid afk.",
-      "seLabMedicine": "SE Laboratoriummedicijn",
-      "seDoseUnitPlural": "SE Doseenheid meervoud",
-      "seMedicationProf": "SE Medicatie prof.",
-      "seMedicationCommon": "SE Medicatie algemeen"
-    }
-  }
-} 
+}

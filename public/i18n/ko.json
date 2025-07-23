@@ -1,163 +1,164 @@
 {
-  "home": {
-    "title": "요청 관리 포털"
-  },
-  "dashboard": {
-    "title": "SNOMED CT",
-    "description": "이 포털을 통해 다음 국가 확장에서 SNOMED 콘텐츠를 추가, 업데이트 또는 변경하기 위한 요청을 제출할 수 있습니다. 아래에서 해당 국가를 선택하십시오.",
-    "countries": {
-      "be": "벨기에",
-      "dk": "덴마크",
-      "ee": "에스토니아",
-      "ie": "아일랜드",
-      "nz": "뉴질랜드",
-      "fr": "프랑스",
-      "ch": "스위스",
-      "kr": "대한민국"
+    "home": {
+        "title": "요청 관리 포털"
+    },
+    "dashboard": {
+        "title": "SNOMED CT",
+        "description": "이 포털은 SNOMED CT 콘텐츠의 추가, 수정 및 비활성화를 요청하는 포털입니다. 아래 제시된 콘텐츠 요청 유형을 선택해주세요.",
+        "countries": {
+            "be": "벨기에",
+            "dk": "덴마크",
+            "ee": "에스토니아",
+            "ie": "아일랜드",
+            "nz": "뉴질랜드",
+            "fr": "프랑스",
+            "ch": "스위스",
+            "kr": "대한민국"
+        }
+    },
+    "navbar": {
+        "selectLanguage": "Select your language",
+        "languages": {
+            "en": "English",
+            "de": "Deutsch",
+            "dk": "Dansk",
+            "fr": "Français",
+            "it": "Italiano",
+            "nl": "Nederlands",
+            "ko": "한국어"
+        },
+        "menu": {
+            "home": "Home",
+            "personalInfo": "Personal Information",
+            "security": "Security",
+            "roles": "Roles",
+            "logout": "Logout"
+        },
+        "external": {
+            "statusPage": "SNOMED Status Page",
+            "snomedIntl": "SNOMED International",
+            "privacy": "SNOMED Privacy Policy"
+        }
+    },
+    "requestManagement": {
+        "heading": "{{country}} 의 요청",
+        "search": "검색...",
+        "newRequestButton": "새 요청",
+        "id": "ID",
+        "request": "요청",
+        "type": "유형",
+        "status": "상태",
+        "date": "날짜",
+        "user": "사용자",
+        "noRequests": "요청이 없습니다.",
+        "retrieving": "요청을 가져오는 중...",
+        "loadMoreButton": "더 보기",
+        "showing": "총 {{total}}개 중 {{visible}}개 표시",
+        "deleteTitle": "요청 #{{id}} 삭제",
+        "confirmDelete": "이 요청을 삭제하시겠습니까?",
+        "deleteButton": "삭제",
+        "cancelButton": "취소"
+    },
+    "request": {
+        "backButton": "뒤로",
+        "newRequestButton": "새 요청",
+        "workflowButton": "워크플로",
+        "summary": "요약",
+        "type": "유형",
+        "languageRefset": "언어 참조셋",
+        "contextRefset": "컨텍스트 참조셋",
+        "justification": "근거",
+        "reference": "참조",
+        "resetButton": "초기화",
+        "submitButton": "제출",
+        "saveButton": "저장",
+        "comments": "댓글",
+        "noComments": "- 아직 댓글이 없습니다 -",
+        "commentPlaceholder": "댓글을 입력하세요...",
+        "addCommentButton": "댓글 추가",
+        "workflow": {
+            "withdrawn": "철회됨",
+            "rejected": "거부됨",
+            "accepted": "수락됨",
+            "clarification": "추가 설명",
+            "inProgress": "진행 중",
+            "closed": "종료됨",
+            "onHold": "보류 중",
+            "readyForRelease": "배포 준비 완료",
+            "published": "게시됨",
+            "appealed": "항소 중",
+            "appealRejected": "항소 거부",
+            "appealClarification": "항소 설명"
+        },
+        "labels": {
+            "newFsn": "새 FSN",
+            "newPreferredTerm": "새 선호 용어",
+            "newSynonyms": "새 동의어",
+            "parentConcept": "상위 컨셉",
+            "concept": "컨셉",
+            "conceptId": "컨셉 ID",
+            "conceptName": "컨셉 이름",
+            "existingDescription": "기존 설명",
+            "existingRelationship": "기존 관계",
+            "relationshipType": "관계 유형",
+            "relationshipTarget": "관계 대상"
+        },
+        "validation": {
+            "summaryRequired": "요청사항 작성 필수",
+            "newFsnRequired": "신규 FSN 입력 필수",
+            "newPtRequired": "신규 한글 대표용어 입력 필수",
+            "parentConceptRequired": "부모개념 입력 필수",
+            "conceptIdRequired": "개념 ID 입력 필수",
+            "conceptNameRequired": "개념명 입력 필수",
+            "newDescriptionRequired": "한글 동의어 입력 필수",
+            "relationshipTypeRequired": "속성값 입력 필수",
+            "relationshipTargetRequired": "수정 전 한글 용어 입력 필수",
+            "existingDescriptionRequired": "신규 관계명(속성) 입력 필수",
+            "existingRelationshipRequired": "수정 전 관계(속성) 입력 필수"
+        },
+        "typeOptions": {
+            "addConcept": "개념 추가",
+            "addDescription": "설명 추가",
+            "addRelationship": "관계 추가",
+            "addRefset": "Refset 추가",
+            "changeDescription": "설명 변경",
+            "changeRelationship": "관계 변경",
+            "changeRefset": "Refset 변경",
+            "inactivateDescription": "설명 비활성화",
+            "inactivateRelationship": "관계 비활성화",
+            "other": "기타"
+        },
+        "languageRefsets": {
+            "none": "무",
+            "belgianDutch": "벨기에 네덜란드어",
+            "belgianFrench": "벨기에 프랑스어",
+            "danish": "덴마크어",
+            "french": "프랑스어",
+            "ieEnglish": "아일랜드 영어",
+            "gbEnglish": "영국 영어",
+            "maori": "마오리어",
+            "norwegianBokmal": "노르웨이어 Bokmål",
+            "norwegianNynorsk": "노르웨이어 Nynorsk",
+            "nzEnglish": "뉴질랜드 영어",
+            "swedish": "스웨덴어",
+            "swissGerman": "스위스 독일어",
+            "swissItalian": "스위스 이탈리아어",
+            "swissFrench": "스위스 프랑스어",
+            "usEnglish": "미국 영어",
+            "korean": "Korean"
+        },
+        "contextRefsets": {
+            "none": "기타",
+            "beGpDutch": "BE GP - 네덜란드어",
+            "beGpFrench": "BE GP - 프랑스어",
+            "nzPatientFriendly": "NZ 환자 친화적 - 영어",
+            "nzCanshareLRS": "NZ Canshare",
+            "seChiefComplaints": "SE 주요 불만",
+            "seDoseUnitAbbr": "SE 투여 단위 약어",
+            "seLabMedicine": "SE 검사 의학",
+            "seDoseUnitPlural": "SE 투여 단위 복수형",
+            "seMedicationProf": "SE 약물 전문",
+            "seMedicationCommon": "SE 일반 약물"
+        }
     }
-  },
-  "navbar": {
-    "selectLanguage": "언어 선택",
-    "languages": {
-      "en": "영어",
-      "de": "독일어",
-      "dk": "덴마크어",
-      "fr": "프랑스어",
-      "it": "이탈리아어",
-      "nl": "네덜란드어"
-    },
-    "menu": {
-      "home": "홈",
-      "personalInfo": "개인 정보",
-      "security": "보안",
-      "roles": "역할",
-      "logout": "로그아웃"
-    },
-    "external": {
-      "statusPage": "SNOMED 상태 페이지",
-      "snomedIntl": "SNOMED International",
-      "privacy": "SNOMED 개인정보 보호정책"
-    }
-  },
-  "requestManagement": {
-    "heading": "{{country}} 의 요청",
-    "search": "검색...",
-    "newRequestButton": "새 요청",
-    "id": "ID",
-    "request": "요청",
-    "type": "유형",
-    "status": "상태",
-    "date": "날짜",
-    "user": "사용자",
-    "noRequests": "요청이 없습니다.",
-    "retrieving": "요청을 가져오는 중...",
-    "loadMoreButton": "더 보기",
-    "showing": "총 {{total}}개 중 {{visible}}개 표시",
-    "deleteTitle": "요청 #{{id}} 삭제",
-    "confirmDelete": "이 요청을 삭제하시겠습니까?",
-    "deleteButton": "삭제",
-    "cancelButton": "취소"
-  },
-  "request": {
-    "backButton": "뒤로",
-    "newRequestButton": "새 요청",
-    "workflowButton": "워크플로",
-    "summary": "요약",
-    "type": "유형",
-    "languageRefset": "언어 참조셋",
-    "contextRefset": "컨텍스트 참조셋",
-    "justification": "근거",
-    "reference": "참조",
-    "resetButton": "초기화",
-    "submitButton": "제출",
-    "saveButton": "저장",
-    "comments": "댓글",
-    "noComments": "- 아직 댓글이 없습니다 -",
-    "commentPlaceholder": "댓글을 입력하세요...",
-    "addCommentButton": "댓글 추가",
-    "workflow": {
-      "withdrawn": "철회됨",
-      "rejected": "거부됨",
-      "accepted": "수락됨",
-      "clarification": "추가 설명",
-      "inProgress": "진행 중",
-      "closed": "종료됨",
-      "onHold": "보류 중",
-      "readyForRelease": "배포 준비 완료",
-      "published": "게시됨",
-      "appealed": "항소 중",
-      "appealRejected": "항소 거부",
-      "appealClarification": "항소 설명"
-    },
-    "labels": {
-      "newFsn": "새 FSN",
-      "newPreferredTerm": "새 선호 용어",
-      "newSynonyms": "새 동의어",
-      "parentConcept": "상위 컨셉",
-      "concept": "컨셉",
-      "conceptId": "컨셉 ID",
-      "conceptName": "컨셉 이름",
-      "existingDescription": "기존 설명",
-      "existingRelationship": "기존 관계",
-      "relationshipType": "관계 유형",
-      "relationshipTarget": "관계 대상",
-      "relationshipChangeType": "관계 유형",
-      "relationshipChangeTarget": "관계 대상"
-    },
-    "validation": {
-      "summaryRequired": "요약은 필수입니다.",
-      "newFsnRequired": "새 FSN은 필수입니다.",
-      "newPtRequired": "새 선호 용어는 필수입니다.",
-      "parentConceptRequired": "상위 컨셉은 필수입니다.",
-      "conceptIdRequired": "컨셉 ID는 필수입니다.",
-      "conceptNameRequired": "컨셉 이름은 필수입니다.",
-      "newDescriptionRequired": "새 설명은 필수입니다.",
-      "existingDescriptionRequired": "기존 설명은 필수입니다.",
-      "relationshipTypeRequired": "관계 유형은 필수입니다.",
-      "relationshipTargetRequired": "관계 대상은 필수입니다.",
-      "existingRelationshipRequired": "기존 관계는 필수입니다.",
-      "relationshipChangeTypeRequired": "관계 유형 변경은 필수입니다.",
-      "relationshipChangeTargetRequired": "관계 대상 변경은 필수입니다."
-    },
-    "typeOptions": {
-      "addConcept": "개념 추가",
-      "addDescription": "설명 추가",
-      "addRelationship": "관계 추가",
-      "addRefset": "Refset 추가",
-      "changeDescription": "설명 변경",
-      "changeRelationship": "관계 변경",
-      "changeRefset": "Refset 변경",
-      "inactivateDescription": "설명 비활성화",
-      "inactivateRelationship": "관계 비활성화",
-      "other": "기타"
-    },
-    "languageRefsets": {
-      "belgianDutch": "벨기에 네덜란드어",
-      "belgianFrench": "벨기에 프랑스어",
-      "danish": "덴마크어",
-      "french": "프랑스어",
-      "ieEnglish": "아일랜드 영어",
-      "gbEnglish": "영국 영어",
-      "maori": "마오리어",
-      "norwegianBokmal": "노르웨이어 Bokmål",
-      "norwegianNynorsk": "노르웨이어 Nynorsk",
-      "nzEnglish": "뉴질랜드 영어",
-      "swedish": "스웨덴어",
-      "swissGerman": "스위스 독일어",
-      "swissItalian": "스위스 이탈리아어",
-      "swissFrench": "스위스 프랑스어",
-      "usEnglish": "미국 영어"
-    },
-    "contextRefsets": {
-      "beGpDutch": "BE GP - 네덜란드어",
-      "beGpFrench": "BE GP - 프랑스어",
-      "nzPatientFriendly": "NZ 환자 친화적 - 영어",
-      "seChiefComplaints": "SE 주요 불만",
-      "seDoseUnitAbbr": "SE 투여 단위 약어",
-      "seLabMedicine": "SE 검사 의학",
-      "seDoseUnitPlural": "SE 투여 단위 복수형",
-      "seMedicationProf": "SE 약물 전문",
-      "seMedicationCommon": "SE 일반 약물"
-    }
-  }
-} 
+}

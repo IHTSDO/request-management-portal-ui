@@ -1,163 +1,165 @@
 {
-  "home": {
-    "title": "Anmodningsportal"
-  },
-  "dashboard": {
-    "title": "SNOMED CT",
-    "description": "Denne portal bruges til at indsende anmodninger om at tilføje, opdatere eller ændre SNOMED-indhold i de følgende nationale udvidelser. Vælg det relevante land nedenfor.",
-    "countries": {
-      "be": "Belgien",
-      "dk": "Danmark",
-      "ee": "Estland",
-      "ie": "Irland",
-      "nz": "New Zealand",
-      "fr": "Frankrig",
-      "ch": "Schweiz",
-      "kr": "Korea"
+    "home": {
+        "title": "Anmodningsportal"
+    },
+    "dashboard": {
+        "title": "SNOMED CT",
+        "description": "Her kan du indsende anmodning om at få tilføjet eller ændret indhold i SNOMED CT. Vælg venligst den type forespørgsel du vil indsende blandt nedenstående muligheder.",
+        "countries": {
+            "be": "Belgien",
+            "dk": "Danmark",
+            "ee": "Estland",
+            "ie": "Irland",
+            "nz": "New Zealand",
+            "fr": "Frankrig",
+            "ch": "Schweiz",
+            "kr": "Korea"
+        }
+    },
+    "navbar": {
+        "selectLanguage": "Select your language",
+        "languages": {
+            "en": "English",
+            "de": "Deutsch",
+            "dk": "Dansk",
+            "fr": "Français",
+            "it": "Italiano",
+            "nl": "Nederlands",
+            "ko": "한국어"
+        },
+        "menu": {
+            "home": "Home",
+            "personalInfo": "Personal Information",
+            "security": "Security",
+            "roles": "Roles",
+            "logout": "Logout"
+        },
+        "external": {
+            "statusPage": "SNOMED Status Page",
+            "snomedIntl": "SNOMED International",
+            "privacy": "SNOMED Privacy Policy"
+        }
+    },
+    "requestManagement": {
+        "heading": "{{country}}'s anmodninger",
+        "search": "Søg...",
+        "newRequestButton": "NY ANMODNING",
+        "id": "ID",
+        "request": "ANMODNING",
+        "type": "TYPE",
+        "status": "STATUS",
+        "date": "DATO",
+        "user": "BRUGER",
+        "noRequests": "Ingen anmodninger fundet.",
+        "retrieving": "Henter anmodninger...",
+        "loadMoreButton": "HENT FLERE",
+        "showing": "Viser {{visible}} af {{total}}",
+        "deleteTitle": "Slet anmodning #{{id}}",
+        "confirmDelete": "Er du sikker på, at du vil slette denne anmodning?",
+        "deleteButton": "SLET",
+        "cancelButton": "ANNULLER"
+    },
+    "request": {
+        "backButton": "TILBAGE",
+        "newRequestButton": "Ny anmodning",
+        "workflowButton": "WORKFLOW",
+        "summary": "Resumé",
+        "type": "Type",
+        "languageRefset": "Sprog-refset",
+        "contextRefset": "Kontekst-refset",
+        "justification": "Begrundelse",
+        "reference": "Reference",
+        "resetButton": "NULSTIL",
+        "submitButton": "SEND",
+        "saveButton": "GEM",
+        "comments": "Kommentarer",
+        "noComments": "- Der er ingen kommentarer til denne anmodning endnu -",
+        "commentPlaceholder": "Skriv din kommentar her...",
+        "addCommentButton": "TILFØJ KOMMENTAR",
+        "workflow": {
+            "withdrawn": "TRUKKET TILBAGE",
+            "rejected": "AFVIST",
+            "accepted": "ACCEPTERET",
+            "clarification": "AFKLARING",
+            "inProgress": "IGANG",
+            "closed": "LUKKET",
+            "onHold": "PÅ HOLD",
+            "readyForRelease": "KLAR TIL UDGIVELSE",
+            "published": "UDGIVET",
+            "appealed": "APPELLERET",
+            "appealRejected": "APPEL AFVIST",
+            "appealClarification": "APPEL AFKLARING"
+        },
+        "labels": {
+            "newFsn": "Ny FSN",
+            "newPreferredTerm": "Nyt foretrukket term",
+            "newSynonyms": "Nye synonymer",
+            "parentConcept": "Forældrekoncept",
+            "concept": "Koncept",
+            "conceptId": "Koncept-ID",
+            "conceptName": "Konceptnavn",
+            "existingDescription": "Eksisterende beskrivelse",
+            "existingRelationship": "Eksisterende relation",
+            "relationshipType": "Relationstype",
+            "relationshipTarget": "Relationens mål"
+        },
+        "validation": {
+            "summaryRequired": "Resumé er påkrævet",
+            "newFsnRequired": "Ny FSN er påkrævet",
+            "newPtRequired": "Ny foretrukken term er påkrævet",
+            "parentConceptRequired": "Overbegreb er påkrævet",
+            "conceptIdRequired": "Begreb ID er påkrævet",
+            "conceptNameRequired": "Begreb er påkrævet",
+            "newDescriptionRequired": "Forslag til ny term er påkrævet",
+            "relationshipTypeRequired": "Relationstype er påkrævet",
+            "relationshipTargetRequired": "Relationens målbegreb er påkrævet",
+            "existingDescriptionRequired": "Eksisterende term er påkrævet",
+            "existingRelationshipRequired": "Eksisterende relation er påkrævet"
+        },
+        "typeOptions": {
+            "addConcept": "Tilføj koncept",
+            "addDescription": "Tilføj beskrivelse",
+            "addRelationship": "Tilføj relation",
+            "addRefset": "Tilføj refset",
+            "changeDescription": "Skift beskrivelse",
+            "changeRelationship": "Skift relation",
+            "changeRefset": "Skift refset",
+            "inactivateDescription": "Inaktiver beskrivelse",
+            "inactivateRelationship": "Inaktiver relation",
+            "other": "Andet"
+        },
+        "languageRefsets": {
+            "none": "ingen",
+            "belgianDutch": "Belgisk nederlandsk",
+            "belgianFrench": "Belgisk fransk",
+            "danish": "Dansk",
+            "estonian": "Estisk",
+            "french": "Fransk",
+            "ieEnglish": "IE engelsk",
+            "gbEnglish": "GB engelsk",
+            "maori": "Māori",
+            "norwegianBokmal": "Norsk bokmål",
+            "norwegianNynorsk": "Norsk nynorsk",
+            "nzEnglish": "NZ engelsk",
+            "swedish": "Svensk",
+            "swissGerman": "Schweizisk tysk",
+            "swissItalian": "Schweizisk italiensk",
+            "swissFrench": "Schweizisk fransk",
+            "usEnglish": "US engelsk",
+            "korean": "Korean"
+        },
+        "contextRefsets": {
+            "none": "ingen",
+            "beGpDutch": "BE GP - nederlandsk",
+            "beGpFrench": "BE GP - fransk",
+            "nzPatientFriendly": "NZ patientvenligt engelsk",
+            "nzCanshareLRS": "NZ Canshare",
+            "seChiefComplaints": "SE Chief Complaints",
+            "seDoseUnitAbbr": "SE dosisenhed fork",
+            "seLabMedicine": "SE Lab-medicin",
+            "seDoseUnitPlural": "SE dosisenhed flertal",
+            "seMedicationProf": "SE Medication Prof.",
+            "seMedicationCommon": "SE Medication Common"
+        }
     }
-  },
-  "navbar": {
-    "selectLanguage": "Vælg sprog",
-    "languages": {
-      "en": "Engelsk",
-      "de": "Tysk",
-      "dk": "Dansk",
-      "fr": "Fransk",
-      "it": "Italiensk",
-      "nl": "Hollandsk"
-    },
-    "menu": {
-      "home": "Hjem",
-      "personalInfo": "Personlige oplysninger",
-      "security": "Sikkerhed",
-      "roles": "Roller",
-      "logout": "Log ud"
-    },
-    "external": {
-      "statusPage": "SNOMED status side",
-      "snomedIntl": "SNOMED International",
-      "privacy": "SNOMED privatlivspolitik"
-    }
-  },
-  "requestManagement": {
-    "heading": "{{country}}'s anmodninger",
-    "search": "Søg...",
-    "newRequestButton": "NY ANMODNING",
-    "id": "ID",
-    "request": "ANMODNING",
-    "type": "TYPE",
-    "status": "STATUS",
-    "date": "DATO",
-    "user": "BRUGER",
-    "noRequests": "Ingen anmodninger fundet.",
-    "retrieving": "Henter anmodninger...",
-    "loadMoreButton": "HENT FLERE",
-    "showing": "Viser {{visible}} af {{total}}",
-    "deleteTitle": "Slet anmodning #{{id}}",
-    "confirmDelete": "Er du sikker på, at du vil slette denne anmodning?",
-    "deleteButton": "SLET",
-    "cancelButton": "ANNULLER"
-  },
-  "request": {
-    "backButton": "TILBAGE",
-    "newRequestButton": "Ny anmodning",
-    "workflowButton": "WORKFLOW",
-    "summary": "Resumé",
-    "type": "Type",
-    "languageRefset": "Sprog-refset",
-    "contextRefset": "Kontekst-refset",
-    "justification": "Begrundelse",
-    "reference": "Reference",
-    "resetButton": "NULSTIL",
-    "submitButton": "SEND",
-    "saveButton": "GEM",
-    "comments": "Kommentarer",
-    "noComments": "- Der er ingen kommentarer til denne anmodning endnu -",
-    "commentPlaceholder": "Skriv din kommentar her...",
-    "addCommentButton": "TILFØJ KOMMENTAR",
-    "workflow": {
-      "withdrawn": "TRUKKET TILBAGE",
-      "rejected": "AFVIST",
-      "accepted": "ACCEPTERET",
-      "clarification": "AFKLARING",
-      "inProgress": "IGANG",
-      "closed": "LUKKET",
-      "onHold": "PÅ HOLD",
-      "readyForRelease": "KLAR TIL UDGIVELSE",
-      "published": "UDGIVET",
-      "appealed": "APPELLERET",
-      "appealRejected": "APPEL AFVIST",
-      "appealClarification": "APPEL AFKLARING"
-    },
-    "labels": {
-      "newFsn": "Ny FSN",
-      "newPreferredTerm": "Nyt foretrukket term",
-      "newSynonyms": "Nye synonymer",
-      "parentConcept": "Forældrekoncept",
-      "concept": "Koncept",
-      "conceptId": "Koncept-ID",
-      "conceptName": "Konceptnavn",
-      "existingDescription": "Eksisterende beskrivelse",
-      "existingRelationship": "Eksisterende relation",
-      "relationshipType": "Relationstype",
-      "relationshipTarget": "Relationens mål",
-      "relationshipChangeType": "Relationstype",
-      "relationshipChangeTarget": "Relationens mål"
-    },
-    "validation": {
-      "summaryRequired": "Resumé er påkrævet.",
-      "newFsnRequired": "Ny FSN er påkrævet.",
-      "newPtRequired": "Nyt foretrukket term er påkrævet.",
-      "parentConceptRequired": "Forældrekoncept er påkrævet.",
-      "conceptIdRequired": "Koncept-ID er påkrævet.",
-      "conceptNameRequired": "Konceptnavn er påkrævet.",
-      "newDescriptionRequired": "Ny beskrivelse er påkrævet.",
-      "existingDescriptionRequired": "Eksisterende beskrivelse er påkrævet.",
-      "relationshipTypeRequired": "Relationstype er påkrævet.",
-      "relationshipTargetRequired": "Relationens mål er påkrævet.",
-      "existingRelationshipRequired": "Eksisterende relation er påkrævet.",
-      "relationshipChangeTypeRequired": "Relationstypen for ændringen er påkrævet.",
-      "relationshipChangeTargetRequired": "Målet for relationsændringen er påkrævet."
-    },
-    "typeOptions": {
-      "addConcept": "Tilføj koncept",
-      "addDescription": "Tilføj beskrivelse",
-      "addRelationship": "Tilføj relation",
-      "addRefset": "Tilføj refset",
-      "changeDescription": "Skift beskrivelse",
-      "changeRelationship": "Skift relation",
-      "changeRefset": "Skift refset",
-      "inactivateDescription": "Inaktiver beskrivelse",
-      "inactivateRelationship": "Inaktiver relation",
-      "other": "Andet"
-    },
-    "languageRefsets": {
-      "belgianDutch": "Belgisk nederlandsk",
-      "belgianFrench": "Belgisk fransk",
-      "danish": "Dansk",
-      "french": "Fransk",
-      "ieEnglish": "Irsk engelsk",
-      "gbEnglish": "Britisk engelsk",
-      "maori": "Maori",
-      "norwegianBokmal": "Norsk Bokmål",
-      "norwegianNynorsk": "Norsk Nynorsk",
-      "nzEnglish": "Newzealandsk engelsk",
-      "swedish": "Svensk",
-      "swissGerman": "Schweizertysk",
-      "swissItalian": "Schweizisk italiensk",
-      "swissFrench": "Schweizisk fransk",
-      "usEnglish": "Amerikansk engelsk"
-    },
-    "contextRefsets": {
-      "beGpDutch": "BE GP - Nederlandsk",
-      "beGpFrench": "BE GP - Fransk",
-      "nzPatientFriendly": "NZ Patientvenlig - Engelsk",
-      "seChiefComplaints": "SE Hovedklager",
-      "seDoseUnitAbbr": "SE Dosenhed fork.",
-      "seLabMedicine": "SE Laboratoriemedicin",
-      "seDoseUnitPlural": "SE Dosenhed flertal",
-      "seMedicationProf": "SE Medicin professionel",
-      "seMedicationCommon": "SE Medicin almindelig"
-    }
-  }
-} 
+}

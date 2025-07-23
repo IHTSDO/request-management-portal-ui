@@ -1,163 +1,165 @@
 {
-  "home": {
-    "title": "Portale di gestione delle richieste"
-  },
-  "dashboard": {
-    "title": "SNOMED CT",
-    "description": "Questo portale consente di inviare richieste per aggiungere, aggiornare o modificare i contenuti SNOMED nelle seguenti estensioni nazionali. Seleziona il paese pertinente qui sotto.",
-    "countries": {
-      "be": "Belgio",
-      "dk": "Danimarca",
-      "ee": "Estonia",
-      "ie": "Irlanda",
-      "nz": "Nuova Zelanda",
-      "fr": "Francia",
-      "ch": "Svizzera",
-      "kr": "Corea"
+    "home": {
+        "title": "Portale di gestione delle richieste"
+    },
+    "dashboard": {
+        "title": "SNOMED CT",
+        "description": "Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.",
+        "countries": {
+            "be": "Belgio",
+            "dk": "Danimarca",
+            "ee": "Estonia",
+            "ie": "Irlanda",
+            "nz": "Nuova Zelanda",
+            "fr": "Francia",
+            "ch": "Svizzera",
+            "kr": "Corea"
+        }
+    },
+    "navbar": {
+        "selectLanguage": "Select your language",
+        "languages": {
+            "en": "English",
+            "de": "Deutsch",
+            "dk": "Dansk",
+            "fr": "Français",
+            "it": "Italiano",
+            "nl": "Nederlands",
+            "ko": "한국어"
+        },
+        "menu": {
+            "home": "Home",
+            "personalInfo": "Personal Information",
+            "security": "Security",
+            "roles": "Roles",
+            "logout": "Logout"
+        },
+        "external": {
+            "statusPage": "SNOMED Status Page",
+            "snomedIntl": "SNOMED International",
+            "privacy": "SNOMED Privacy Policy"
+        }
+    },
+    "requestManagement": {
+        "heading": "Richieste di {{country}}",
+        "search": "Cerca...",
+        "newRequestButton": "NUOVA RICHIESTA",
+        "id": "ID",
+        "request": "RICHIESTA",
+        "type": "TIPO",
+        "status": "STATO",
+        "date": "DATA",
+        "user": "UTENTE",
+        "noRequests": "Nessuna richiesta trovata.",
+        "retrieving": "Recupero delle richieste...",
+        "loadMoreButton": "CARICA ALTRO",
+        "showing": "Mostrando {{visible}} di {{total}}",
+        "deleteTitle": "Elimina richiesta #{{id}}",
+        "confirmDelete": "Sei sicuro di voler eliminare questa richiesta?",
+        "deleteButton": "ELIMINA",
+        "cancelButton": "ANNULLA"
+    },
+    "request": {
+        "backButton": "INDIETRO",
+        "newRequestButton": "Nuova richiesta",
+        "workflowButton": "FLUSSO DI LAVORO",
+        "summary": "Sommario",
+        "type": "Tipo",
+        "languageRefset": "Refset di lingua",
+        "contextRefset": "Refset di contesto",
+        "justification": "Giustificazione",
+        "reference": "Riferimento",
+        "resetButton": "RESET",
+        "submitButton": "INVIA",
+        "saveButton": "SALVA",
+        "comments": "Commenti",
+        "noComments": "- Nessun commento per ora -",
+        "commentPlaceholder": "Digita qui il tuo commento...",
+        "addCommentButton": "AGGIUNGI COMMENTO",
+        "workflow": {
+            "withdrawn": "RITIRATA",
+            "rejected": "RESPINTA",
+            "accepted": "ACCETTATA",
+            "clarification": "CHIARIMENTO",
+            "inProgress": "IN CORSO",
+            "closed": "CHIUSA",
+            "onHold": "IN ATTESA",
+            "readyForRelease": "PRONTA PER IL RILASCIO",
+            "published": "PUBBLICATA",
+            "appealed": "IN APPELLO",
+            "appealRejected": "APPELLO RESPINTO",
+            "appealClarification": "CHIARIMENTO APPELLO"
+        },
+        "labels": {
+            "newFsn": "Nuovo FSN",
+            "newPreferredTerm": "Nuovo termine preferito",
+            "newSynonyms": "Nuovi sinonimi",
+            "parentConcept": "Concetto genitore",
+            "concept": "Concetto",
+            "conceptId": "ID concetto",
+            "conceptName": "Nome concetto",
+            "existingDescription": "Descrizione esistente",
+            "existingRelationship": "Relazione esistente",
+            "relationshipType": "Tipo di relazione",
+            "relationshipTarget": "Destinazione relazione"
+        },
+        "validation": {
+            "summaryRequired": "Riassunto è obbligatorio",
+            "newFsnRequired": "New FSN è obbligatorio",
+            "newPtRequired": "New Preferred Term è obbligatorio",
+            "parentConceptRequired": "Parent Concept è obbligatorio",
+            "conceptIdRequired": "Concept ID è obbligatorio",
+            "conceptNameRequired": "Concept Name è obbligatorio",
+            "newDescriptionRequired": "New Description è obbligatorio",
+            "relationshipTypeRequired": "Relationship Type è obbligatorio",
+            "relationshipTargetRequired": "Relationship Target è obbligatorio",
+            "existingDescriptionRequired": "Existing Description è obbligatorio",
+            "existingRelationshipRequired": "Existing Relationship è obbligatorio"
+        },
+        "typeOptions": {
+            "addConcept": "Aggiungi concetto",
+            "addDescription": "Aggiungi descrizione",
+            "addRelationship": "Aggiungi relazione",
+            "addRefset": "Aggiungi refset",
+            "changeDescription": "Modifica descrizione",
+            "changeRelationship": "Modifica relazione",
+            "changeRefset": "Modifica refset",
+            "inactivateDescription": "Disattiva descrizione",
+            "inactivateRelationship": "Disattiva relazione",
+            "other": "Altro"
+        },
+        "languageRefsets": {
+            "none": "Nessuna",
+            "belgianDutch": "Belgian Dutch",
+            "belgianFrench": "Belgian French",
+            "danish": "Danish",
+            "estonian": "Estonian",
+            "french": "French",
+            "ieEnglish": "IE English",
+            "gbEnglish": "GB English",
+            "maori": "Māori",
+            "norwegianBokmal": "Norwegian Bokmål",
+            "norwegianNynorsk": "Norwegian Nynorsk",
+            "nzEnglish": "NZ English",
+            "swedish": "Swedish",
+            "swissGerman": "Swiss German",
+            "swissItalian": "Swiss Italian",
+            "swissFrench": "Swiss French",
+            "usEnglish": "US English",
+            "korean": "Korean"
+        },
+        "contextRefsets": {
+            "none": "Nessuna",
+            "beGpDutch": "BE GP - Dutch",
+            "beGpFrench": "BE GP - French",
+            "nzPatientFriendly": "NZ Patient Friendly - English",
+            "nzCanshareLRS": "NZ Canshare",
+            "seChiefComplaints": "SE Chief Complaints",
+            "seDoseUnitAbbr": "SE Dose Unit Abbr.",
+            "seLabMedicine": "SE Lab Medicine",
+            "seDoseUnitPlural": "SE Dose Unit Plural",
+            "seMedicationProf": "SE Medication Prof.",
+            "seMedicationCommon": "SE Medication Common"
+        }
     }
-  },
-  "navbar": {
-    "selectLanguage": "Seleziona la lingua",
-    "languages": {
-      "en": "Inglese",
-      "de": "Tedesco",
-      "dk": "Danese",
-      "fr": "Francese",
-      "it": "Italiano",
-      "nl": "Olandese"
-    },
-    "menu": {
-      "home": "Home",
-      "personalInfo": "Informazioni personali",
-      "security": "Sicurezza",
-      "roles": "Ruoli",
-      "logout": "Disconnetti"
-    },
-    "external": {
-      "statusPage": "Pagina stato SNOMED",
-      "snomedIntl": "SNOMED International",
-      "privacy": "Informativa sulla privacy SNOMED"
-    }
-  },
-  "requestManagement": {
-    "heading": "Richieste di {{country}}",
-    "search": "Cerca...",
-    "newRequestButton": "NUOVA RICHIESTA",
-    "id": "ID",
-    "request": "RICHIESTA",
-    "type": "TIPO",
-    "status": "STATO",
-    "date": "DATA",
-    "user": "UTENTE",
-    "noRequests": "Nessuna richiesta trovata.",
-    "retrieving": "Recupero delle richieste...",
-    "loadMoreButton": "CARICA ALTRO",
-    "showing": "Mostrando {{visible}} di {{total}}",
-    "deleteTitle": "Elimina richiesta #{{id}}",
-    "confirmDelete": "Sei sicuro di voler eliminare questa richiesta?",
-    "deleteButton": "ELIMINA",
-    "cancelButton": "ANNULLA"
-  },
-  "request": {
-    "backButton": "INDIETRO",
-    "newRequestButton": "Nuova richiesta",
-    "workflowButton": "FLUSSO DI LAVORO",
-    "summary": "Sommario",
-    "type": "Tipo",
-    "languageRefset": "Refset di lingua",
-    "contextRefset": "Refset di contesto",
-    "justification": "Giustificazione",
-    "reference": "Riferimento",
-    "resetButton": "RESET",
-    "submitButton": "INVIA",
-    "saveButton": "SALVA",
-    "comments": "Commenti",
-    "noComments": "- Nessun commento per ora -",
-    "commentPlaceholder": "Digita qui il tuo commento...",
-    "addCommentButton": "AGGIUNGI COMMENTO",
-    "workflow": {
-      "withdrawn": "RITIRATA",
-      "rejected": "RESPINTA",
-      "accepted": "ACCETTATA",
-      "clarification": "CHIARIMENTO",
-      "inProgress": "IN CORSO",
-      "closed": "CHIUSA",
-      "onHold": "IN ATTESA",
-      "readyForRelease": "PRONTA PER IL RILASCIO",
-      "published": "PUBBLICATA",
-      "appealed": "IN APPELLO",
-      "appealRejected": "APPELLO RESPINTO",
-      "appealClarification": "CHIARIMENTO APPELLO"
-    },
-    "labels": {
-      "newFsn": "Nuovo FSN",
-      "newPreferredTerm": "Nuovo termine preferito",
-      "newSynonyms": "Nuovi sinonimi",
-      "parentConcept": "Concetto genitore",
-      "concept": "Concetto",
-      "conceptId": "ID concetto",
-      "conceptName": "Nome concetto",
-      "existingDescription": "Descrizione esistente",
-      "existingRelationship": "Relazione esistente",
-      "relationshipType": "Tipo di relazione",
-      "relationshipTarget": "Destinazione relazione",
-      "relationshipChangeType": "Tipo di relazione",
-      "relationshipChangeTarget": "Destinazione relazione"
-    },
-    "validation": {
-      "summaryRequired": "Il sommario è obbligatorio.",
-      "newFsnRequired": "Il nuovo FSN è obbligatorio.",
-      "newPtRequired": "Il nuovo termine preferito è obbligatorio.",
-      "parentConceptRequired": "Il concetto genitore è obbligatorio.",
-      "conceptIdRequired": "L'ID concetto è obbligatorio.",
-      "conceptNameRequired": "Il nome concetto è obbligatorio.",
-      "newDescriptionRequired": "La nuova descrizione è obbligatoria.",
-      "existingDescriptionRequired": "La descrizione esistente è obbligatoria.",
-      "relationshipTypeRequired": "Il tipo di relazione è obbligatorio.",
-      "relationshipTargetRequired": "La destinazione della relazione è obbligatoria.",
-      "existingRelationshipRequired": "La relazione esistente è obbligatoria.",
-      "relationshipChangeTypeRequired": "Il tipo di relazione per la modifica è obbligatorio.",
-      "relationshipChangeTargetRequired": "La destinazione della relazione per la modifica è obbligatoria."
-    },
-    "typeOptions": {
-      "addConcept": "Aggiungi concetto",
-      "addDescription": "Aggiungi descrizione",
-      "addRelationship": "Aggiungi relazione",
-      "addRefset": "Aggiungi refset",
-      "changeDescription": "Modifica descrizione",
-      "changeRelationship": "Modifica relazione",
-      "changeRefset": "Modifica refset",
-      "inactivateDescription": "Disattiva descrizione",
-      "inactivateRelationship": "Disattiva relazione",
-      "other": "Altro"
-    },
-    "languageRefsets": {
-      "belgianDutch": "Fiammingo belga",
-      "belgianFrench": "Francese belga",
-      "danish": "Danese",
-      "french": "Francese",
-      "ieEnglish": "Inglese irlandese",
-      "gbEnglish": "Inglese britannico",
-      "maori": "Maori",
-      "norwegianBokmal": "Norvegese Bokmål",
-      "norwegianNynorsk": "Norvegese Nynorsk",
-      "nzEnglish": "Inglese neozelandese",
-      "swedish": "Svedese",
-      "swissGerman": "Tedesco svizzero",
-      "swissItalian": "Italiano svizzero",
-      "swissFrench": "Francese svizzero",
-      "usEnglish": "Inglese americano"
-    },
-    "contextRefsets": {
-      "beGpDutch": "BE MG - Olandese",
-      "beGpFrench": "BE MG - Francese",
-      "nzPatientFriendly": "NZ Patient Friendly - Inglese",
-      "seChiefComplaints": "SE Principali reclami",
-      "seDoseUnitAbbr": "SE Unitá dose abbr.",
-      "seLabMedicine": "SE Medicina di laboratorio",
-      "seDoseUnitPlural": "SE Unitá dose plurale",
-      "seMedicationProf": "SE Medicazione prof.",
-      "seMedicationCommon": "SE Medicazione comune"
-    }
-  }
-} 
+}
