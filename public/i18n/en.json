@@ -60,16 +60,10 @@
         "cancelButton": "CANCEL"
     },
     "request": {
-        "newRequestButton": "New Request",
-        "summary": "Summary",
-        "type": "Type",
-        "languageRefset": "Language Refset",
-        "contextRefset": "Context Refset",
-        "justification": "Justification",
-        "reference": "Reference",
+        "newRequest": "New Request",
         "comments": "Comments",
         "noComments": "- There are no comments on this request yet -",
-        "commentPlaceholder": "Type your comment here...",
+        "commentPlaceholder": "Comment here...",
         "backButton": "BACK",
         "resetButton": "RESET",
         "submitButton": "SUBMIT",
@@ -91,17 +85,26 @@
             "appealClarification": "APPEAL CLARIFICATION"
         },
         "labels": {
+            "summary": "Summary",
+            "type": "Type",
+            "languageRefset": "Language Refset",
+            "contextRefset": "Context Refset",
             "newFsn": "New FSN",
             "newPreferredTerm": "New Preferred Term",
             "newSynonyms": "New Synonyms",
             "parentConcept": "Parent Concept",
+            "justification": "Justification",
+            "reference": "Reference",
             "concept": "Concept",
             "conceptId": "Concept ID",
             "conceptName": "Concept Name",
+            "newDescription": "New Description",
+            "relationshipType": "Relationship Type",
+            "relationshipTarget": "Relationship Target",
             "existingDescription": "Existing Description",
             "existingRelationship": "Existing Relationship",
-            "relationshipType": "Relationship Type",
-            "relationshipTarget": "Relationship Target"
+            "eclQuery": "ECL Query (for intensional refsets only)",
+            "membersList": "Member Concept Ids (for extensional refsets only)"
         },
         "validation": {
             "summaryRequired": "Summary is required",
@@ -133,6 +136,7 @@
             "belgianDutch": "Belgian Dutch",
             "belgianFrench": "Belgian French",
             "danish": "Danish",
+            "estonian": "Estonian",
             "french": "French",
             "ieEnglish": "IE English",
             "gbEnglish": "GB English",
@@ -159,7 +163,35 @@
             "seDoseUnitPlural": "SE Dose Unit Plural",
             "seMedicationProf": "SE Medication Prof.",
             "seMedicationCommon": "SE Medication Common"
-
+        },
+        "relationshipType": {
+            "isA": "Is A",
+            "associatedMorphology": "Associated Morphology",
+            "findingSite": "Finding Site",
+            "procedureSite": "Procedure Site",
+            "unknown": "Unknown",
+            "other": "Other"
+        },
+        "tooltip": {
+            "summary": "The content of the request in one sentence",
+            "languageRefset": "Select the language the request is for",
+            "contextRefset": "Select the context the request is for",
+            "newFSN": "The FSN must be in English",
+            "newPreferredTerm": "This is the PT in the extension language",
+            "newSynonyms": "Please enter synonyms separated by comma",
+            "parentConcept": "Please add SCT ID if known",
+            "justification": "Detailed description of clinical or administrative need for the request",
+            "reference": "Add one or more sources where the concept is described",
+            "concept": "Search for concepts",
+            "conceptID": "Is auto filled when searched",
+            "conceptName": "Is auto filled when searched",
+            "newDescription": "The new description in the extension language",
+            "relationshipType": "If 'Other' please explain in Justification below",
+            "relationshipTarget": "Search for concepts",
+            "existingDescription": "The description to be changed",
+            "existingRelationship": "The relationship to be changed",
+            "eclQuery": "Paste an ECL Query here for an Intensional Refset",
+            "membersList": "Enter a list of concept IDs here, separated by commas"
         }
     }
 }

@@ -164,7 +164,7 @@
 
         <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-sky-50 rounded-lg p-3" *ngIf="mode === ModeType.NEW || request.id">
             <div>
-                <label for="summary" class="text-sm text-slate-700 font-medium">{{ 'request.summary' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                <label for="summary" class="text-sm text-slate-700 font-medium">{{ 'request.labels.summary' | translate }}<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <input type="text" [disabled]="request.id && isUser(user)" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="summary-input" />
@@ -173,7 +173,7 @@
                 </div>
             </div>
             <div>
-                <label for="type" class="text-sm text-slate-700 font-medium">{{ 'request.type' | translate }}</label>
+                <label for="type" class="text-sm text-slate-700 font-medium">{{ 'request.labels.type' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="request.id && isUser(user)">
                         <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formType" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="type-select">
@@ -192,10 +192,11 @@
                 </div>
             </div>
             <div>
-                <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.languageRefset' | translate }}</label>
+                <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.languageRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="language-refset-select">
+                            <option>{{ 'request.languageRefsets.none' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
                             <option>{{ 'request.languageRefsets.danish' | translate }}</option>
@@ -216,10 +217,11 @@
                 </div>
             </div>
             <div>
-                <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.contextRefset' | translate }}</label>
+                <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.contextRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <select name="Context Refset" id="contextRefset" [disabled]="request.id && isUser(user)" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="context-refset-select">
+                            <option>{{ 'request.contextRefsets.none' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpDutch' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpFrench' | translate }}</option>
                             <option>{{ 'request.contextRefsets.nzPatientFriendly' | translate }}</option>
@@ -326,7 +328,14 @@
                         <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" required [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                                <select name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="context-refset-select">
+                                    <option>{{ 'request.relationshipType.isA' | translate }}</option>
+                                    <option>{{ 'request.relationshipType.associatedMorphology' | translate }}</option>
+                                    <option>{{ 'request.relationshipType.findingSite' | translate }}</option>
+                                    <option>{{ 'request.relationshipType.procedureSite' | translate }}</option>
+                                    <option>{{ 'request.relationshipType.unknown' | translate }}</option>
+                                    <option>{{ 'request.relationshipType.other' | translate }}</option>
+                                </select>
                             </div>
                             <div *ngIf="relationshipTypeInput.invalid && relationshipTypeInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipTypeRequired' | translate }}</div>
                         </div>
@@ -454,7 +463,7 @@
             </ng-container>
 
             <div class="col-span-2">
-                <label for="justification" class="text-sm text-slate-700 font-medium">{{ 'request.justification' | translate }}</label>
+                <label for="justification" class="text-sm text-slate-700 font-medium">{{ 'request.labels.justification' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <textarea type="text" name="Justification" id="justification" [disabled]="request.id && isUser(user)" [(ngModel)]="request.justification" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
@@ -462,7 +471,7 @@
                 </div>
             </div>
             <div class="col-span-2">
-                <label for="reference" class="text-sm text-slate-700 font-medium">{{ 'request.reference' | translate }}</label>
+                <label for="reference" class="text-sm text-slate-700 font-medium">{{ 'request.labels.reference' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
                         <textarea type="text" name="Reference" id="reference" [disabled]="request.id && isUser(user)" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
