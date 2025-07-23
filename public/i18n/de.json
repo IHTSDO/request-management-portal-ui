@@ -48,7 +48,7 @@
         "request": "ANFRAGE",
         "type": "TYP",
         "status": "STATUS",
-        "date": "DATUM",
+        "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
         "noRequests": "Keine Anfragen gefunden.",

@@ -36,6 +36,9 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     searchQuery = new BehaviorSubject<string>('');
     private readonly subscription: Subscription;
 
+    sortColumn: string = 'updatedDate';
+    sortDirection: 'asc' | 'desc' = 'desc';
+
     constructor(private readonly authoringService: AuthoringService,
                 private readonly activatedRoute: ActivatedRoute,
                 private readonly authenticationService: AuthenticationService,
@@ -48,7 +51,11 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 this.requestLoading = true;
                 this.requests = [];
             }),
-            switchMap(searchText => this.authoringService.searchRMPTask(this.country, searchText)) // Switch to the new observable, cancels the previous one
+            switchMap(searchText => {
+                this.searchText = searchText;
+                const sortParam = `${this.sortColumn},${this.sortDirection}`;
+                return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam);
+            })
         ).subscribe((response: any) => {
             if (response?.content) {
                 this.requests = response.content as Request[];
@@ -94,15 +101,26 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         });
     }
 
+    sortRequests(column: string): void {
+        if (this.sortColumn === column) {
+            this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            this.sortColumn = column;
+            this.sortDirection = 'asc';
+        }
+        this.searchRequests(this.searchText);
+    }
+
     private searchRequests(searchText: string): void {
         this.requestLoading = true;
         this.requests = [];
         let httpRequest = null;
+        const sortParam = `${this.sortColumn},${this.sortDirection}`;
         if (!searchText || searchText.trim().length === 0) {
-            httpRequest = this.authoringService.httpGetRMPRequests(this.country, this.visibleRequests);
+            httpRequest = this.authoringService.httpGetRMPRequests(this.country, this.visibleRequests, 0, sortParam);
         } else {
             searchText = searchText.trim();
-            httpRequest = this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests);
+            httpRequest = this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam);
         }
         httpRequest.subscribe(response => {
             if (response?.content) {

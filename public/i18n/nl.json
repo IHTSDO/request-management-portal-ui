@@ -48,7 +48,7 @@
         "request": "VERZOEK",
         "type": "TYPE",
         "status": "STATUS",
-        "date": "DATUM",
+        "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
         "noRequests": "Geen verzoeken gevonden.",

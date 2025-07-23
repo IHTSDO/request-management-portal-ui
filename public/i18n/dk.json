@@ -48,7 +48,7 @@
         "request": "ANMODNING",
         "type": "TYPE",
         "status": "STATUS",
-        "date": "DATO",
+        "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
         "noRequests": "Ingen anmodninger fundet.",

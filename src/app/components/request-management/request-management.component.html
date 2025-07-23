@@ -17,13 +17,34 @@
         <table class="border-collapse table-auto w-full text-sm">
             <thead>
                 <tr class="overflow-hidden">
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.id' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.request' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.type' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.status' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.date' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.reporter' | translate }}</th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start">{{ 'requestManagement.assignee' | translate }}</th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('id')">
+                        {{ 'requestManagement.id' | translate }}
+                        <span *ngIf="sortColumn === 'id'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('summary')">
+                        {{ 'requestManagement.request' | translate }}
+                        <span *ngIf="sortColumn === 'summary'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('type')">
+                        {{ 'requestManagement.type' | translate }}
+                        <span *ngIf="sortColumn === 'type'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('status')">
+                        {{ 'requestManagement.status' | translate }}
+                        <span *ngIf="sortColumn === 'status'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('updatedDate')">
+                        {{ 'requestManagement.updated' | translate }}
+                        <span *ngIf="sortColumn === 'updatedDate'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('reporter')">
+                        {{ 'requestManagement.reporter' | translate }}
+                        <span *ngIf="sortColumn === 'reporter'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('assignee')">
+                        {{ 'requestManagement.assignee' | translate }}
+                        <span *ngIf="sortColumn === 'assignee'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                    </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start"></th>
                 </tr>
             </thead>
@@ -42,7 +63,7 @@
                               [class.bg-slate-400]="request.status === 'ON_HOLD'"
                               [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                     </td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.created | date:'yyyy/MM/dd':'UTC'}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.reporter}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.assignee ? request.assignee : '-'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700" [class.border-b]="!last">

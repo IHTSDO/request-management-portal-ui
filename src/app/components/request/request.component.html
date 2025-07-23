@@ -26,7 +26,7 @@
                                           [class.bg-slate-400]="request.status === 'ON_HOLD'"
                                           [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                                 </th>
-                                <th class="font-normal text-slate-700 text-base py-2">{{request.created | date:'yyyy/MM/dd':'UTC'}}</th>
+                                <th class="font-normal text-slate-700 text-base py-2">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</th>
                                 <th class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</th>
                                 <th class="font-normal text-slate-700 text-base py-2">{{request.assignee ? request.assignee : '-'}}</th>
                             </tr>

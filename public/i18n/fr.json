@@ -48,7 +48,7 @@
         "request": "DEMANDE",
         "type": "TYPE",
         "status": "STATUT",
-        "date": "DATE",
+        "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
         "noRequests": "Aucune demande trouvée.",

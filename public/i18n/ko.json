@@ -48,7 +48,7 @@
         "request": "요청",
         "type": "유형",
         "status": "상태",
-        "date": "날짜",
+        "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
         "noRequests": "요청이 없습니다.",
