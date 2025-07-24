@@ -208,7 +208,8 @@ export class RequestComponent implements OnInit {
     }
 
     isStaff(user: User): boolean {
-        return user.roles.includes('ROLE_ms-belgium')
+        return !!user
+            || user.roles.includes('ROLE_ms-belgium')
             || user.roles.includes('ROLE_ms-denmark')
             || user.roles.includes('ROLE_ms-estonia')
             || user.roles.includes('ROLE_ms-ireland')
@@ -219,7 +220,8 @@ export class RequestComponent implements OnInit {
     }
 
     isUser(user: User): boolean {
-        return user.roles.includes('ROLE_rmp-be-requestor')
+        return !!user
+            || user.roles.includes('ROLE_rmp-be-requestor')
             || user.roles.includes('ROLE_rmp-dk-requestor')
             || user.roles.includes('ROLE_rmp-ee-requestor')
             || user.roles.includes('ROLE_rmp-ie-requestor')

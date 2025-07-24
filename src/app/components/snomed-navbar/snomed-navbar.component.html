@@ -7,8 +7,8 @@
     <div class="flex justify-end items-center">
         <div *ngIf="user" class="inline-block">
             <button (click)="expandedLanguageMenu ? expandedLanguageMenu = false : switchMenu('language')" data-cy="language-menu-button" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="language-menu" aria-expanded="true" aria-haspopup="true">
-                <div class="rounded-full size-5 my-auto rounded-full overflow-hidden bg-contain bg-no-repeat flex">
-                    <span class="fib fi-gb fis size-full"></span>
+                <div class="rounded-full size-5 my-auto overflow-hidden flex p-0">
+                    <span class="fib fi-gb fis w-full h-full object-cover block m-0 p-0"></span>
                 </div>
             </button>
 
@@ -16,46 +16,46 @@
                 <div class="p-10">
                     <h1 class="text-xl">{{ 'navbar.selectLanguage' | translate }}</h1>
                 </div>
-                <div class="grid grid-cols-6 gap-3 flex justify-items-center">
+                <div class="grid grid-cols-5 gap-3 flex justify-self-center w-3/4">
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('en')" data-cy="language-option-en">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-gb"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-gb w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.en' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('de')" data-cy="language-option-de">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-de"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-de w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.de' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('dk')" data-cy="language-option-dk">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-dk"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-dk w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.dk' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('fr')" data-cy="language-option-fr">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-fr"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-fr w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.fr' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('it')" data-cy="language-option-it">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-it"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-it w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.it' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('nl')" data-cy="language-option-nl">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-nl"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-nl w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.nl' | translate }}</div>
                     </div>
                     <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('ko')" data-cy="language-option-ko">
-                        <div class="rounded-full size-8 my-auto overflow-hidden bg-contain bg-no-repeat flex inline-block border">
-                            <span class="fi fi-kr"></span>
+                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                            <span class="fi fi-kr w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block content-center ps-3">{{ 'navbar.languages.ko' | translate }}</div>
                     </div>
