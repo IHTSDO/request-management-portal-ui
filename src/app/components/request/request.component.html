@@ -261,7 +261,7 @@
                     <label for="newSynonyms" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newSynonyms' | translate }}</label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <textarea name="New Synonyms" id="newSynonyms" rows="3" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-synonyms-textarea"></textarea>
+                            <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-synonyms-textarea">
                         </div>
                     </div>
                 </div>
