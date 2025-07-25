@@ -4,6 +4,7 @@ import {SnomedNavbarComponent} from "./components/snomed-navbar/snomed-navbar.co
 import {AuthenticationService} from "./services/authentication/authentication.service";
 import {DOCUMENT} from "@angular/common";
 import {AuthoringService} from './services/authoring/authoring.service';
+import {ConfigService} from './services/config/config.service';
 
 @Component({
     selector: 'app-root',
@@ -15,12 +16,17 @@ export class AppComponent implements OnInit {
     title = 'request-management';
 
     environment: string = '';
+    country: string = '';
 
-    constructor(private readonly authenticationService: AuthenticationService, private readonly authoringService: AuthoringService, @Inject(DOCUMENT) private readonly document: Document) {
+    constructor(private readonly authenticationService: AuthenticationService,
+                private readonly authoringService: AuthoringService,
+                private readonly configService: ConfigService,
+                @Inject(DOCUMENT) private readonly document: Document) {
     }
 
     ngOnInit() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+
         this.assignFavicon();
 
         this.authoringService.httpGetUIConfiguration().subscribe(config => {
@@ -33,6 +39,7 @@ export class AppComponent implements OnInit {
             },
             error: () => {}
         });
+
     }
 
     assignFavicon() {

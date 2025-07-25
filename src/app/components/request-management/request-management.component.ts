@@ -12,6 +12,8 @@ import {UserRequestsPipe} from '../../pipes/user-requests/user-requests.pipe';
 import {User} from '../../models/user';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {TranslatePipe} from '@ngx-translate/core';
+import * as data from 'public/config/config.json';
+import {ConfigService} from '../../services/config/config.service';
 
 @Component({
     selector: 'app-request-management',
@@ -32,6 +34,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     totalRequests: number = 0;
     visibleRequests: number = 100;
     searchText: string = '';
+    config: any = data;
 
     searchQuery = new BehaviorSubject<string>('');
     private readonly subscription: Subscription;
@@ -42,6 +45,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     constructor(private readonly authoringService: AuthoringService,
                 private readonly activatedRoute: ActivatedRoute,
                 private readonly authenticationService: AuthenticationService,
+                private readonly configService: ConfigService,
                 private readonly toastr: ToastrService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
 
@@ -69,6 +73,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
+        this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
         this.searchRequests(this.searchText);
     }
 

@@ -55,6 +55,10 @@ export class AuthoringService {
         return this.http.post<RequestComment>('/authoring-services/rmp-tasks/' + id + '/comment', comment);
     }
 
+    httpGetUsersByRole(roleName: string): Observable<any> {
+        return this.http.get('/authoring-services/users?groupName=' + roleName + '&offset=0&limit=100');
+    }
+
     httpGetTypeahead(text: string, country: string): Observable<any> {
         const params = {
             termFilter: text,

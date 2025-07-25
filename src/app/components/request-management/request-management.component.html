@@ -142,7 +142,10 @@
                     </td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.reporter}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.assignee ? request.assignee : '-'}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">
+                        <ng-container *ngIf="request.assignee">{{request.assignee}}</ng-container>
+                        <ng-container *ngIf="!request.assignee"><span class="text-gray-400">unassigned</span></ng-container>
+                    </td>
                     <td class="border-gray-300 font-normal text-slate-700" [class.border-b]="!last">
                         <i class="fas fa-times text-2xl text-red-500" (click)="deleteOption = request; $event.stopPropagation()"></i>
                     </td>

@@ -1,0 +1,90 @@
+{
+    "extensions": [
+        {
+            "shortCode": "be",
+            "flagCode": "be",
+            "name": "Belgium",
+            "defaultLang": "nl",
+            "projectKey": "BERMP"
+        },
+        {
+            "shortCode": "dk",
+            "flagCode": "dk",
+            "name": "Denmark",
+            "defaultLang": "dk",
+            "projectKey": "DKRMP"
+        },
+        {
+            "shortCode": "ee",
+            "flagCode": "ee",
+            "name": "Estonia",
+            "defaultLang": "en",
+            "projectKey": "EERMP"
+        },
+        {
+            "shortCode": "ie",
+            "flagCode": "ie",
+            "name": "Ireland",
+            "defaultLang": "en",
+            "projectKey": "IERMP"
+        },
+        {
+            "shortCode": "nz",
+            "flagCode": "nz",
+            "name": "New Zealand",
+            "defaultLang": "en",
+            "projectKey": "NZRMP"
+        },
+        {
+            "shortCode": "fr",
+            "flagCode": "fr",
+            "name": "France",
+            "defaultLang": "fr",
+            "projectKey": "FRRMP"
+        },
+        {
+            "shortCode": "ch",
+            "flagCode": "ch",
+            "name": "Switzerland",
+            "defaultLang": "de",
+            "projectKey": "CHRMP"
+        },
+        {
+            "shortCode": "kr",
+            "flagCode": "kr",
+            "name": "Korea",
+            "defaultLang": "ko",
+            "projectKey": "KRRMP"
+        }
+    ],
+    "languages": [
+        {
+            "languageFlag": "gb",
+            "languageName": "English"
+        },
+        {
+            "languageFlag": "it",
+            "languageName": "Italiano"
+        },
+        {
+            "languageFlag": "dk",
+            "languageName": "Dansk"
+        },
+        {
+            "languageFlag": "de",
+            "languageName": "Deutsch"
+        },
+        {
+            "languageFlag": "nl",
+            "languageName": "Nederlands"
+        },
+        {
+            "languageFlag": "fr",
+            "languageName": "Français"
+        },
+        {
+            "languageFlag": "ko",
+            "languageName": "Korean"
+        }
+    ]
+}

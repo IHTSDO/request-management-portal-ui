@@ -9,29 +9,32 @@
             </div>
             <div class="col-span-8">
                 <ng-container *ngIf="request?.id">
-                    <div class="border border-gray-300 overflow-auto w-full justify-self-center rounded-lg">
-                        <table class="border-collapse table-auto w-full text-sm">
-                            <tbody class="bg-white dark:bg-slate-800">
-                            <tr class="bg-sky-50">
-                                <th class="font-normal text-slate-700 text-base py-2">#{{request.id}}</th>
-                                <th class="font-normal text-sky-500 text-base py-2">{{request.summary}}</th>
-                                <th class="font-normal text-slate-700 text-base py-2">{{request.type | requestTypeTransform}}</th>
-                                <th class="font-normal text-slate-700 text-base py-2">
-                                    <span class="rounded-full text-white px-3 py-1 font-normal tracking-widest"
-                                          [class.bg-teal-500]="request.status === 'NEW'"
-                                          [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
-                                          [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
-                                          [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
-                                          [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
-                                          [class.bg-slate-400]="request.status === 'ON_HOLD'"
-                                          [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
-                                </th>
-                                <th class="font-normal text-slate-700 text-base py-2">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</th>
-                                <th class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</th>
-                                <th class="font-normal text-slate-700 text-base py-2">{{request.assignee ? request.assignee : '-'}}</th>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div class="w-full justify-self-center">
+                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-around">
+                            <div class="font-normal text-slate-700 text-base py-2">#{{request.id}}</div>
+                            <div class="font-normal text-slate-700 text-base py-2">{{request.summary}}</div>
+                            <div class="font-normal text-slate-700 text-base py-2">{{request.type | requestTypeTransform}}</div>
+                            <div class="font-normal text-slate-700 text-base py-2">
+                                <span class="rounded-full text-white px-3 py-1 font-normal tracking-widest"
+                                      [class.bg-teal-500]="request.status === 'NEW'"
+                                      [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
+                                      [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
+                                      [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
+                                      [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
+                                      [class.bg-slate-400]="request.status === 'ON_HOLD'"
+                                      [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
+                            </div>
+                            <div class="font-normal text-slate-700 text-base py-2">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
+                            <div class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</div>
+                            <div class="font-normal text-slate-700 text-base py-1 relative inline-block">
+                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user)">
+                                    <select name="Assignees" id="assignee" class="grow  text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-7 font-medium" [(ngModel)]="request.assignee" (ngModelChange)="saveAssignee()" [disabled]="isUser(user)">
+                                        <option></option>
+                                        <option *ngFor="let assignee of assignees">{{ assignee.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </ng-container>
                 <ng-container *ngIf="!request?.id">
@@ -42,7 +45,7 @@
             </div>
         </div>
 
-        <div *ngIf="request.id" class="grid max-w-2/3 justify-self-center my-5">
+        <div *ngIf="request.id" class="grid w-2/3 justify-self-center my-5">
             <div class="grid grid-cols-12">
                 <div class="col-span-2">
                     <button class="rounded-md bg-blue-400 hover:bg-blue-500 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="button" (click)="displayWorkflowDiagram = true">
@@ -163,12 +166,12 @@
             </div>
         </div>
 
-        <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-sky-50 rounded-lg p-3" *ngIf="mode === ModeType.NEW || request.id">
+        <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-sky-50 rounded-lg p-3">
             <div>
                 <label for="summary" class="text-sm text-slate-700 font-medium">{{ 'request.labels.summary' | translate }}<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <input type="text" [disabled]="request.id && isUser(user)" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="summary-input" />
+                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                        <input type="text" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="summary-input" />
                     </div>
                     <div *ngIf="summaryInput.invalid && summaryInput.touched" class="text-red-500 text-sm">{{ 'request.validation.summaryRequired' | translate }}</div>
                 </div>
@@ -176,8 +179,8 @@
             <div>
                 <label for="type" class="text-sm text-slate-700 font-medium">{{ 'request.labels.type' | translate }}</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="request.id && isUser(user)">
-                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formType" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="type-select">
+                    <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="formType" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="type-select">
                             <option [value]="'add-concept'">{{ 'request.typeOptions.addConcept' | translate }}</option>
                             <option [value]="'add-description'">{{ 'request.typeOptions.addDescription' | translate }}</option>
                             <option [value]="'add-relationship'">{{ 'request.typeOptions.addRelationship' | translate }}</option>
@@ -195,8 +198,8 @@
             <div>
                 <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.languageRefset' | translate }}</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="request.id && isUser(user)" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="language-refset-select">
+                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="language-refset-select">
                             <option>{{ 'request.languageRefsets.none' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
@@ -220,8 +223,8 @@
             <div>
                 <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.contextRefset' | translate }}</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <select name="Context Refset" id="contextRefset" [disabled]="request.id && isUser(user)" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="context-refset-select">
+                    <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                        <select name="Context Refset" id="contextRefset" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="context-refset-select">
                             <option>{{ 'request.contextRefsets.none' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpDutch' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpFrench' | translate }}</option>
@@ -242,8 +245,8 @@
                 <div>
                     <label for="newFSN" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newFsn' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="New FSN" id="newFSN" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-fsn-input">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <input type="text" name="New FSN" id="newFSN" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="new-fsn-input">
                         </div>
                         <div *ngIf="newFSNInput.invalid && newFSNInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newFsnRequired' | translate }}</div>
                     </div>
@@ -251,8 +254,8 @@
                 <div>
                     <label for="newPT" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newPreferredTerm' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="New Preferred Term" id="newPT" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-pt-input">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <input type="text" name="New Preferred Term" id="newPT" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="new-pt-input">
                         </div>
                         <div *ngIf="newPTInput.invalid && newPTInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newPtRequired' | translate }}</div>
                     </div>
@@ -260,8 +263,8 @@
                 <div>
                     <label for="newSynonyms" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newSynonyms' | translate }}</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-synonyms-textarea">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="new-synonyms-textarea"/>
                         </div>
                     </div>
                 </div>
@@ -269,9 +272,9 @@
                     <label for="parentConcept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.parentConcept' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <p></p>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="request.id && isUser(user)" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)" (input)="onTypeaheadInput()">
+                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onTypeaheadInput()">
                         </div>
                         <div *ngIf="parentConceptInput.invalid && parentConceptInput.touched" class="text-red-500 text-sm">{{ 'request.validation.parentConceptRequired' | translate }}</div>
                     </div>
@@ -288,17 +291,17 @@
                 <div class="col-span-2">
                     <label for="concept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.concept' | translate }}</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Concept" id="concept" [disabled]="request.id && isUser(user)" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <input type="text" name="Concept" id="concept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                         </div>
                     </div>
                 </div>
                 <div>
                     <label for="conceptId" class="text-sm text-slate-700 font-medium">{{ 'request.labels.conceptId' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="Concept ID" id="conceptId" [disabled]="request.id && isUser(user)" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="concept-id-input">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <input type="text" name="Concept ID" id="conceptId" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="concept-id-input">
                         </div>
                         <div *ngIf="conceptIdInput.invalid && conceptIdInput.touched" class="text-red-500 text-sm">{{ 'request.validation.conceptIdRequired' | translate }}</div>
                     </div>
@@ -306,8 +309,8 @@
                 <div>
                     <label for="conceptName" class="text-sm text-slate-700 font-medium">{{ 'request.labels.conceptName' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <input type="text" name="Concept Name" id="conceptName" [disabled]="request.id && isUser(user)" [(ngModel)]="request.conceptName" #conceptNameInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <input type="text" name="Concept Name" id="conceptName" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.conceptName" #conceptNameInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                         </div>
                         <div *ngIf="conceptNameInput.invalid && conceptNameInput.touched" class="text-red-500 text-sm">{{ 'request.validation.conceptNameRequired' | translate }}</div>
                     </div>
@@ -316,8 +319,8 @@
                     <div class="col-span-2">
                         <label for="newDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="New Description" id="newDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="new-description-input">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="New Description" id="newDescription" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="new-description-input">
                             </div>
                             <div *ngIf="newDescriptionInput.invalid && newDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newDescriptionRequired' | translate }}</div>
                         </div>
@@ -328,8 +331,8 @@
                     <div>
                         <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <select name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="context-refset-select">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <select name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipType" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="context-refset-select">
                                     <option>{{ 'request.relationshipType.isA' | translate }}</option>
                                     <option>{{ 'request.relationshipType.associatedMorphology' | translate }}</option>
                                     <option>{{ 'request.relationshipType.findingSite' | translate }}</option>
@@ -344,9 +347,9 @@
                     <div>
                         <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                                 <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)">
+                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="relationshipTargetInput.invalid && relationshipTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipTargetRequired' | translate }}</div>
                         </div>
@@ -357,8 +360,8 @@
                     <div>
                         <label for="existingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="Exisiting Description" id="existingDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="Exisiting Description" id="existingDescription" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="existingDescriptionInput.invalid && existingDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingDescriptionRequired' | translate }}</div>
                         </div>
@@ -366,8 +369,8 @@
                     <div>
                         <label for="newChangeDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="New Description" id="newChangeDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="New Description" id="newChangeDescription" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="newDescriptionInput.invalid && newDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.newDescriptionRequired' | translate }}</div>
                         </div>
@@ -378,8 +381,8 @@
                     <div class="col-span-2">
                         <label for="existingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="Exisiting Relationship" id="existingRelationship" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="Exisiting Relationship" id="existingRelationship" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="existingRelationshipInput.invalid && existingRelationshipInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingRelationshipRequired' | translate }}</div>
                         </div>
@@ -387,8 +390,8 @@
                     <div>
                         <label for="relationshipChangeType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="Relationship Change Type" id="relationshipChangeType" [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipType" #relationshipChangeTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="Relationship Change Type" id="relationshipChangeType" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipType" #relationshipChangeTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="relationshipChangeTypeInput.invalid && relationshipChangeTypeInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipChangeTypeRequired' | translate }}</div>
                         </div>
@@ -396,9 +399,9 @@
                     <div>
                         <label for="relationshipChangeTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                                 <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="request.id && isUser(user)" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="request.id && isUser(user)">
+                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="relationshipChangeTargetInput.invalid && relationshipChangeTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipChangeTargetRequired' | translate }}</div>
                         </div>
@@ -409,8 +412,8 @@
                     <div class="col-span-2">
                         <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="Exisiting Description" id="inactivateExistingDescription" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="Exisiting Description" id="inactivateExistingDescription" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="existingDescriptionInput.invalid && existingDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingDescriptionRequired' | translate }}</div>
                         </div>
@@ -421,8 +424,8 @@
                     <div class="col-span-2">
                         <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
-                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                                <input type="text" name="Exisiting Relationship" id="inactivateExistingRelationship" [disabled]="request.id && isUser(user)" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)">
+                            <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="Exisiting Relationship" id="inactivateExistingRelationship" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="existingRelationshipInput.invalid && existingRelationshipInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingRelationshipRequired' | translate }}</div>
                         </div>
@@ -436,16 +439,16 @@
                 <div class="col-span-2">
                     <label for="memberConceptIds" class="text-sm text-slate-700 font-medium">{{ 'request.labels.memberConceptIds' | translate }}</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <textarea type="text" name="Member Concept Ids" id="memberConceptIds" [disabled]="request.id && isUser(user)" [(ngModel)]="request.memberConceptIds" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
+                        <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <textarea type="text" name="Member Concept Ids" id="memberConceptIds" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.memberConceptIds" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-2">
                     <label for="eclQuery" class="text-sm text-slate-700 font-medium">{{ 'request.labels.eclQuery' | translate }}</label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <textarea type="text" name="ECL Query" id="eclQuery" [disabled]="request.id && isUser(user)" [(ngModel)]="request.eclQuery" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
+                        <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <textarea type="text" name="ECL Query" id="eclQuery" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.eclQuery" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"></textarea>
                         </div>
                     </div>
                 </div>
@@ -455,8 +458,8 @@
                 <div class="col-span-2">
                     <label for="additionalInformation" class="text-sm text-slate-700 font-medium">{{ 'request.labels.additionalInformation' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                            <textarea name="Additional Information" id="additionalInformation" rows="3" [disabled]="request.id && isUser(user)" [(ngModel)]="request.additionalInformation" #additionalInformationInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)" data-cy="additional-information-textarea"></textarea>
+                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <textarea name="Additional Information" id="additionalInformation" rows="3" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.additionalInformation" #additionalInformationInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="additional-information-textarea"></textarea>
                         </div>
                         <div *ngIf="additionalInformationInput.invalid && additionalInformationInput.touched" class="text-red-500 text-sm">{{ 'request.validation.additionalInformationRequired' | translate }}</div>
                     </div>
@@ -466,16 +469,16 @@
             <div class="col-span-2">
                 <label for="justification" class="text-sm text-slate-700 font-medium">{{ 'request.labels.justification' | translate }}</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <textarea type="text" name="Justification" id="justification" [disabled]="request.id && isUser(user)" [(ngModel)]="request.justification" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
+                    <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                        <textarea type="text" name="Justification" id="justification" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.justification" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"></textarea>
                     </div>
                 </div>
             </div>
             <div class="col-span-2">
                 <label for="reference" class="text-sm text-slate-700 font-medium">{{ 'request.labels.reference' | translate }}</label>
                 <div class="mt-2">
-                    <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="request.id && isUser(user)">
-                        <textarea type="text" name="Reference" id="reference" [disabled]="request.id && isUser(user)" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="request.id && isUser(user)"></textarea>
+                    <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                        <textarea type="text" name="Reference" id="reference" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"></textarea>
                     </div>
                 </div>
             </div>
@@ -488,9 +491,9 @@
             </div>
         </div>
 
-        <div class="grid w-2/3 justify-self-center my-5" *ngIf="request.id">
+        <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode !== ModeType.NEW && (isStaff(user) || (isUser(user) && request.status === 'NEW'))">
             <div class="justify-self-end">
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" (click)="updateRequest()" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
             </div>
         </div>
 
