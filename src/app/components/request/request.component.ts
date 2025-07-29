@@ -79,10 +79,7 @@ export class RequestComponent implements OnInit {
                 private readonly activatedRoute: ActivatedRoute,
                 private readonly statusPipe: StatusTransformPipe) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
-        this.extensionSubscription = this.configService.getExtension().subscribe(extension => {
-            this.extension = extension;
-            console.log('extension: ', extension);
-        });
+        this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
     }
 
     ngOnInit(): void {

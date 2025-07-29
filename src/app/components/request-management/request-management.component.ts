@@ -14,6 +14,7 @@ import {AuthenticationService} from '../../services/authentication/authenticatio
 import {TranslatePipe} from '@ngx-translate/core';
 import * as data from 'public/config/config.json';
 import {ConfigService} from '../../services/config/config.service';
+import {Extension} from '../../models/extension';
 
 @Component({
     selector: 'app-request-management',
@@ -27,7 +28,8 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     user!: User;
     userSubscription: Subscription;
-
+    extension: Extension;
+    extensionSubscription: Subscription;
     requests: Request[] = [];
     country: string;
     requestLoading: boolean = false;
@@ -48,6 +50,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 private readonly configService: ConfigService,
                 private readonly toastr: ToastrService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
+        this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
         this.subscription = this.searchQuery.pipe(
             debounceTime(300), // Delay for 300ms after the last event

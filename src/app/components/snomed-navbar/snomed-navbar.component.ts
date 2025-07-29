@@ -3,13 +3,13 @@ import {User} from "../../models/user";
 import {Subscription} from "rxjs";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from '@angular/router';
 import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-snomed-navbar',
     standalone: true,
-    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe],
+    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe, RouterLink],
     templateUrl: './snomed-navbar.component.html',
     styleUrl: './snomed-navbar.component.scss'
 })
