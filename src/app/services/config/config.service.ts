@@ -15,7 +15,6 @@ export class ConfigService {
 
     setExtension(extension: Extension) {
         this.extension.next(extension);
-        console.log(extension);
     }
 
     getExtension() {

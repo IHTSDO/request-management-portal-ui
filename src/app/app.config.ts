@@ -7,11 +7,8 @@ import {contentTypeInterceptor} from "./interceptors/content-type.interceptor";
 import {authenticationInterceptor} from './interceptors/authentication.interceptor';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideToastr} from "ngx-toastr";
-import {provideTranslateService, TranslateLoader} from "@ngx-translate/core";
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
-const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-    new TranslateHttpLoader(http, './i18n/', '.json');
+import {provideTranslateService} from "@ngx-translate/core";
+import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -25,12 +22,12 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         provideToastr(),
         provideTranslateService({
-            defaultLanguage: 'en',
-            loader: {
-                provide: TranslateLoader,
-                useFactory: httpLoaderFactory,
-                deps: [HttpClient],
-            }
+            loader: provideTranslateHttpLoader({
+                prefix: '/i18n/',
+                suffix: '.json'
+            }),
+            fallbackLang: 'en',
+            lang: 'en'
         })
     ]
 };

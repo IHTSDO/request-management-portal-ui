@@ -59,31 +59,38 @@
     ],
     "languages": [
         {
+            "languageCode": "en",
             "languageFlag": "gb",
             "languageName": "English"
         },
         {
+            "languageCode": "it",
             "languageFlag": "it",
             "languageName": "Italiano"
         },
         {
+            "languageCode": "dk",
             "languageFlag": "dk",
             "languageName": "Dansk"
         },
         {
+            "languageCode": "de",
             "languageFlag": "de",
             "languageName": "Deutsch"
         },
         {
+            "languageCode": "nl",
             "languageFlag": "nl",
             "languageName": "Nederlands"
         },
         {
+            "languageCode": "fr",
             "languageFlag": "fr",
             "languageName": "Français"
         },
         {
-            "languageFlag": "ko",
+            "languageCode": "ko",
+            "languageFlag": "kr",
             "languageName": "Korean"
         }
     ]

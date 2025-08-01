@@ -5,6 +5,9 @@ import {AuthenticationService} from "../../services/authentication/authenticatio
 import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
 import {Router, RouterLink} from '@angular/router';
 import {TranslateService, TranslatePipe} from "@ngx-translate/core";
+import {Extension} from '../../models/extension';
+import {ConfigService} from '../../services/config/config.service';
+import * as data from 'public/config/config.json';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -19,27 +22,39 @@ export class SnomedNavbarComponent implements OnInit {
 
     user!: User;
     userSubscription: Subscription;
-
+    extension: Extension;
+    extensionSubscription: Subscription;
     expandedUserMenu: boolean = false;
     expandedAppMenu: boolean = false;
     expandedItemMenu: boolean = false;
     expandedLanguageMenu: boolean = false;
     rolesView: boolean = false;
+    config: any = data;
 
-    constructor(private readonly authenticationService: AuthenticationService, private readonly router: Router, private translate: TranslateService) {
+    constructor(private readonly authenticationService: AuthenticationService,
+                private readonly router: Router,
+                private readonly configService: ConfigService,
+                public translate: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
+        this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
         router.events.subscribe(() => this.closeMenus());
         this.translate.addLangs(['en', 'de', 'dk', 'fr', 'it', 'nl', 'ko']);
-        this.translate.setDefaultLang('en');
+        this.translate.setFallbackLang('en');
+        this.translate.use('en');
     }
 
     ngOnInit() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+        console.log(this.translate.getCurrentLang());
     }
 
     setTranslation(language: string): void {
         this.translate.use(language);
         this.expandedLanguageMenu = false;
+    }
+
+    getFlagFromLanguage(): string {
+        return this.config.languages.find(lang => lang.languageCode === this.translate.getCurrentLang()).languageFlag;
     }
 
     switchMenu(name: string): void {

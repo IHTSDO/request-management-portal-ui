@@ -25,7 +25,8 @@ import {Extension} from '../../models/extension';
 export class RequestManagementComponent implements OnInit, OnDestroy {
 
     deleteOption: Request | null;
-
+    filterMenu: boolean = false;
+    activeFilter: string = '';
     user!: User;
     userSubscription: Subscription;
     extension: Extension;

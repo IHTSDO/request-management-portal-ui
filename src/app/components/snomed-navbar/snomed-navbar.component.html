@@ -8,7 +8,7 @@
         <div *ngIf="user" class="inline-block">
             <button (click)="expandedLanguageMenu ? expandedLanguageMenu = false : switchMenu('language')" data-cy="language-menu-button" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="language-menu" aria-expanded="true" aria-haspopup="true">
                 <div class="rounded-full size-5 my-auto overflow-hidden flex p-0">
-                    <span class="fib fi-gb fis w-full h-full object-cover block m-0 p-0"></span>
+                    <span class="fi fi-{{getFlagFromLanguage()}} w-full h-full object-cover block m-0 p-0"></span>
                 </div>
             </button>
 

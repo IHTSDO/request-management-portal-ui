@@ -47,7 +47,7 @@
         "id": "ID",
         "request": "DEMANDE",
         "type": "TYPE",
-        "status": "STATUT",
+        "status": "STATUS",
         "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
