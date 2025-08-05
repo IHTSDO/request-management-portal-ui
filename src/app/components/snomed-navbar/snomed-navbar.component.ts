@@ -8,6 +8,7 @@ import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 import {Extension} from '../../models/extension';
 import {ConfigService} from '../../services/config/config.service';
 import * as data from 'public/config/config.json';
+import {AuthoringService} from '../../services/authoring/authoring.service';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -33,6 +34,7 @@ export class SnomedNavbarComponent implements OnInit {
 
     constructor(private readonly authenticationService: AuthenticationService,
                 private readonly router: Router,
+                private readonly authoringService: AuthoringService,
                 private readonly configService: ConfigService,
                 public translate: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
@@ -113,7 +115,7 @@ export class SnomedNavbarComponent implements OnInit {
     }
 
     navigateTo(location: string): void {
-        this.router.navigate([location]);
+        window.location.href = this.authoringService.uiConfig.endpoints.imsEndpoint + location;
     }
 
     redirectTo(url: string): void {
@@ -124,7 +126,7 @@ export class SnomedNavbarComponent implements OnInit {
         this.authenticationService.httpLogout().subscribe({
             next: () => {
                 this.authenticationService.setUser(undefined!);
-                this.router.navigate(['/']);
+                window.location.href = this.authoringService.uiConfig.endpoints.imsEndpoint;
             },
             error: (e) => console.error('error: ', e)
         });
