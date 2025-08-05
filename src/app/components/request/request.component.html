@@ -28,9 +28,9 @@
                             <div class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</div>
                             <div class="font-normal text-slate-700 text-base py-1 relative inline-block">
                                 <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user)">
-                                    <select name="Assignees" id="assignee" class="grow  text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-7 font-medium" [(ngModel)]="request.assignee" (ngModelChange)="saveAssignee()" [disabled]="isUser(user)">
-                                        <option></option>
-                                        <option *ngFor="let assignee of assignees">{{ assignee.name }}</option>
+                                    <select name="Assignees" id="assignee" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-7 font-medium" [(ngModel)]="request.assignee" [disabled]="isUser(user)">
+                                        <option [ngValue]="null"></option>
+                                        <option *ngFor="let assignee of assignees" [ngValue]="assignee.name">{{ assignee.name }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                 <label for="type" class="text-sm text-slate-700 font-medium">{{ 'request.labels.type' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="formType" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="type-select">
+                        <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.type" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="type-select">
                             <option [value]="'add-concept'">{{ 'request.typeOptions.addConcept' | translate }}</option>
                             <option [value]="'add-description'">{{ 'request.typeOptions.addDescription' | translate }}</option>
                             <option [value]="'add-relationship'">{{ 'request.typeOptions.addRelationship' | translate }}</option>
@@ -199,7 +199,7 @@
                 <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.languageRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="formLangageRefset" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="language-refset-select">
+                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.languageRefset" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="language-refset-select">
                             <option>{{ 'request.languageRefsets.none' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
@@ -224,7 +224,7 @@
                 <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.contextRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                        <select name="Context Refset" id="contextRefset" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="formContextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="context-refset-select">
+                        <select name="Context Refset" id="contextRefset" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.contextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="context-refset-select">
                             <option>{{ 'request.contextRefsets.none' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpDutch' | translate }}</option>
                             <option>{{ 'request.contextRefsets.beGpFrench' | translate }}</option>
@@ -241,7 +241,7 @@
             </div>
             <div class="col-span-2 border-b border-gray-300 -mx-3"></div>
 
-            <ng-container *ngIf="formType === 'add-concept'">
+            <ng-container *ngIf="request.type === 'add-concept'">
                 <div>
                     <label for="newFSN" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newFsn' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2">
@@ -287,7 +287,7 @@
             </ng-container>
 
             <ng-container
-                *ngIf="formType === 'add-description' || formType === 'add-relationship' || formType === 'change-description' || formType === 'change-relationship' || formType === 'inactivate-description' || formType === 'inactivate-relationship'">
+                *ngIf="request.type === 'add-description' || request.type === 'add-relationship' || request.type === 'change-description' || request.type === 'change-relationship' || request.type === 'inactivate-description' || request.type === 'inactivate-relationship'">
                 <div class="col-span-2">
                     <label for="concept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.concept' | translate }}</label>
                     <div class="mt-2">
@@ -315,7 +315,7 @@
                         <div *ngIf="conceptNameInput.invalid && conceptNameInput.touched" class="text-red-500 text-sm">{{ 'request.validation.conceptNameRequired' | translate }}</div>
                     </div>
                 </div>
-                <ng-container *ngIf="formType === 'add-description'">
+                <ng-container *ngIf="request.type === 'add-description'">
                     <div class="col-span-2">
                         <label for="newDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
@@ -327,7 +327,7 @@
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="formType === 'add-relationship'">
+                <ng-container *ngIf="request.type === 'add-relationship'">
                     <div>
                         <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
@@ -356,7 +356,7 @@
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="formType === 'change-description'">
+                <ng-container *ngIf="request.type === 'change-description'">
                     <div>
                         <label for="existingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
@@ -377,7 +377,7 @@
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="formType === 'change-relationship'">
+                <ng-container *ngIf="request.type === 'change-relationship'">
                     <div class="col-span-2">
                         <label for="existingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
@@ -408,7 +408,7 @@
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="formType === 'inactivate-description'">
+                <ng-container *ngIf="request.type === 'inactivate-description'">
                     <div class="col-span-2">
                         <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
@@ -420,7 +420,7 @@
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="formType === 'inactivate-relationship'">
+                <ng-container *ngIf="request.type === 'inactivate-relationship'">
                     <div class="col-span-2">
                         <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
@@ -435,9 +435,9 @@
                 <div class="col-span-2 border-b border-gray-300 -mx-3"></div>
             </ng-container>
 
-            <ng-container *ngIf="formType === 'add-refset' || formType === 'change-refset'">
+            <ng-container *ngIf="request.type === 'add-refset' || request.type === 'change-refset'">
                 <div class="col-span-2">
-                    <label for="memberConceptIds" class="text-sm text-slate-700 font-medium">{{ 'request.labels.memberConceptIds' | translate }}</label>
+                    <label for="memberConceptIds" class="text-sm text-slate-700 font-medium">{{ 'request.labels.membersList' | translate }}</label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             <textarea type="text" name="Member Concept Ids" id="memberConceptIds" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.memberConceptIds" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"></textarea>
@@ -450,18 +450,6 @@
                         <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             <textarea type="text" name="ECL Query" id="eclQuery" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.eclQuery" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"></textarea>
                         </div>
-                    </div>
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="formType === 'other'">
-                <div class="col-span-2">
-                    <label for="additionalInformation" class="text-sm text-slate-700 font-medium">{{ 'request.labels.additionalInformation' | translate }}<span class="text-red-500 ps-1">*</span></label>
-                    <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                            <textarea name="Additional Information" id="additionalInformation" rows="3" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.additionalInformation" #additionalInformationInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="additional-information-textarea"></textarea>
-                        </div>
-                        <div *ngIf="additionalInformationInput.invalid && additionalInformationInput.touched" class="text-red-500 text-sm">{{ 'request.validation.additionalInformationRequired' | translate }}</div>
                     </div>
                 </div>
             </ng-container>
@@ -487,7 +475,7 @@
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW">
             <div class="justify-self-end">
                 <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5 cursor-pointer" (click)="resetForm(requestForm)" type="button">{{ 'request.resetButton' | translate }}</button>
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit" data-cy="submit-button">{{ 'request.submitButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit" data-cy="submit-button" [disabled]="!request.type">{{ 'request.submitButton' | translate }}</button>
             </div>
         </div>
 

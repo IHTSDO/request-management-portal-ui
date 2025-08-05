@@ -45,7 +45,6 @@ export class SnomedNavbarComponent implements OnInit {
 
     ngOnInit() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
-        console.log(this.translate.getCurrentLang());
     }
 
     setTranslation(language: string): void {

@@ -17,8 +17,7 @@ import * as data from 'public/config/config.json';
 
 enum Mode {
     NEW,
-    VIEW,
-    EDIT
+    VIEW
 }
 
 @Component({
@@ -39,6 +38,9 @@ export class RequestComponent implements OnInit {
     comment: string = '';
     assignees: any[] = [];
     config: any = data;
+    request: Request;
+    requestId: string;
+    country: string;
 
     searchText: string = '';
     typeahead = new BehaviorSubject<string>('');
@@ -46,14 +48,6 @@ export class RequestComponent implements OnInit {
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
-
-    public formType: string = 'add-concept';
-    public formLangageRefset: string = '';
-    public formContextRefset: string = '';
-
-    request: Request;
-    requestId: string;
-    country: string;
 
     typeaheadSubscription = this.typeahead.pipe(
         debounceTime(300), // Delay for 300ms after the last event
@@ -109,11 +103,8 @@ export class RequestComponent implements OnInit {
                 return;
             }
 
-            this.request.type = this.formType; // Set the type based on the form type
             this.request.country = this.country; // Set the country from the route parameter
             this.request.status = 'NEW'; // Default status for new requests
-            this.request.languageRefset = this.formLangageRefset; // Set language refset
-            this.request.contextRefset = this.formContextRefset; // Set context refset
 
             this.toastr.info('Creating new request...', 'Please wait');
             this.authoringService.httpCreateRMPRequest(this.request).subscribe(response => {
@@ -132,16 +123,16 @@ export class RequestComponent implements OnInit {
     }
 
     resetForm(form: NgForm): void {
-        const currentFormType = this.formType; // Store current form type
+        // const currentFormType = this.formType; // Store current form type
         form.resetForm(); // Reset the form state
         this.resetFormValues(); // Reset form values to defaults
         this.toastr.clear(); // Clear any previous toastr messages
 
-        setTimeout(() => {
-            this.formType = currentFormType;
-            this.formLangageRefset = ''; // Reset language refset
-            this.formContextRefset = ''; // Reset context refset
-        }, 0);
+        // setTimeout(() => {
+        //     this.formType = currentFormType;
+        //     this.formLangageRefset = ''; // Reset language refset
+        //     this.formContextRefset = ''; // Reset context refset
+        // }, 0);
     }
 
     private resetFormValues(): void {
@@ -248,9 +239,5 @@ export class RequestComponent implements OnInit {
                 this.toastr.error('#' + updatedRequest.id + ' Not saved', 'ERROR');
             }
         });
-    }
-
-    saveAssignee(): void {
-
     }
 }
