@@ -26,7 +26,13 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     deleteOption: Request | null;
     filterMenu: boolean = false;
-    activeFilter: string = '';
+    statusList: string[] = ['NEW', 'ACCEPTED', 'IN_PROGRESS', 'ON_HOLD', 'CLARIFICATION_REQUESTED', 'APPEAL_CLARIFICATION_REQUESTED', 'UNDER_APPEAL', 'READY_FOR_RELEASE'];
+    openRequests: boolean = true;
+    closedRequests: boolean = false;
+    assignedRequests: boolean = false;
+    myRequests: boolean = false;
+    reporters: string[] = [];
+    assignees: string[] = [];
     user!: User;
     userSubscription: Subscription;
     extension: Extension;
@@ -50,7 +56,13 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 private readonly authenticationService: AuthenticationService,
                 private readonly configService: ConfigService,
                 private readonly toastr: ToastrService) {
-        this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
+        this.userSubscription = this.authenticationService.getUser().subscribe(data => {
+            this.user = data;
+            if (data) {
+                this.reporters = [data.username];
+                this.assignees = [data.username];
+            }
+        });
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
         this.subscription = this.searchQuery.pipe(
@@ -62,7 +74,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             switchMap(searchText => {
                 this.searchText = searchText;
                 const sortParam = `${this.sortColumn},${this.sortDirection}`;
-                return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam);
+                return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList);
             })
         ).subscribe((response: any) => {
             if (response?.content) {
@@ -78,7 +90,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
-        this.searchRequests(this.searchText);
+        this.searchRequests();
     }
 
     ngOnDestroy() {
@@ -91,7 +103,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     loadMore(): void {
         this.visibleRequests += 100;
-        this.searchRequests(this.searchText);
+        this.searchRequests();
     }
 
     deleteRequest(request: Request): void {
@@ -99,7 +111,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             next: () => {
                 this.toastr.clear();
                 this.toastr.success('Request with ID: ' + request.id + ' has been deleted successfully.', 'Request Deleted');
-                this.searchRequests(this.searchQuery.getValue()); // Refresh the list after deletion
+                this.searchRequests();
                 this.deleteOption = null;
             },
             error: error => {
@@ -117,19 +129,18 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             this.sortColumn = column;
             this.sortDirection = 'asc';
         }
-        this.searchRequests(this.searchText);
+        this.searchRequests();
     }
 
-    private searchRequests(searchText: string): void {
+    searchRequests(): void {
         this.requestLoading = true;
         this.requests = [];
         let httpRequest = null;
         const sortParam = `${this.sortColumn},${this.sortDirection}`;
-        if (!searchText || searchText.trim().length === 0) {
+        if (!this.searchText || this.searchText.trim().length === 0) {
             httpRequest = this.authoringService.httpGetRMPRequests(this.country, this.visibleRequests, 0, sortParam);
         } else {
-            searchText = searchText.trim();
-            httpRequest = this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam);
+            httpRequest = this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList);
         }
         httpRequest.subscribe(response => {
             if (response?.content) {
@@ -139,14 +150,29 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         });
     }
 
+    searchRequests2(): void {
+        this.requestLoading = true;
+        this.requests = [];
+
+        this.statusList = this.calculateStatus();
+
+        const sortParam = this.sortColumn + ',' + this.sortDirection;
+        this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList, this.assignedRequests ? this.assignees : null, this.myRequests ? this.reporters : null).subscribe({
+            next: (response) => {
+                this.requests = response.content as Request[];
+                this.requestLoading = false;
+            }
+        });
+    }
+
+    calculateStatus(): string[] {
+        if (this.openRequests && this.closedRequests) return ['NEW', 'ACCEPTED', 'IN_PROGRESS', 'ON_HOLD', 'CLARIFICATION_REQUESTED', 'APPEAL_CLARIFICATION_REQUESTED', 'UNDER_APPEAL', 'READY_FOR_RELEASE', 'CLOSED', 'REJECTED', 'WITHDRAWN', 'APPEAL_REJECTED', 'PUBLISHED'];
+        if (this.openRequests) return ['NEW', 'ACCEPTED', 'IN_PROGRESS', 'ON_HOLD', 'CLARIFICATION_REQUESTED', 'APPEAL_CLARIFICATION_REQUESTED', 'UNDER_APPEAL', 'READY_FOR_RELEASE'];
+        if (this.closedRequests) return ['CLOSED', 'REJECTED', 'WITHDRAWN', 'APPEAL_REJECTED', 'PUBLISHED'];
+        return [];
+    }
+
     isUser(user: User): boolean {
-        return user.roles.includes('ROLE_rmp-be-requestor')
-            || user.roles.includes('ROLE_rmp-dk-requestor')
-            || user.roles.includes('ROLE_rmp-ee-requestor')
-            || user.roles.includes('ROLE_rmp-ie-requestor')
-            || user.roles.includes('ROLE_rmp-nz-requestor')
-            || user.roles.includes('ROLE_rmp-fr-requestor')
-            || user.roles.includes('ROLE_rmp-ch-requestor')
-            || user.roles.includes('ROLE_rmp-kr-requestor');
+        return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-requestor') : false;
     }
 }

@@ -16,12 +16,18 @@ export class AuthoringService {
         return this.http.get<UIConfiguration>('/authoring-services/ui-configuration');
     }
 
-    httpGetRMPRequests(country, pageSize = 100,  pageIndex = 0, sort: string = 'updatedDate,desc'): Observable<any> {
-        return this.http.get<any>('/authoring-services/rmp-tasks?country=' + country + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
+    httpGetRMPRequests(country, pageSize = 100,  pageIndex = 0, sort: string = 'updatedDate,desc', status?: string[]): Observable<any> {
+        let url = '/authoring-services/rmp-tasks?country=' + country + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort;
+        if (status?.length > 0) url += '&statuses=' + status.join(',');
+        return this.http.get<any>(url);
     }
 
-    searchRMPTask(country: string, searchText: string, pageSize = 100, pageIndex = 0, sort: string = 'updatedDate,desc'): any {
-        return this.http.get<any>('/authoring-services/rmp-tasks/search?country=' + country + '&criteria=' + searchText + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort);
+    searchRMPTask(country: string, searchText: string, pageSize = 100, pageIndex = 0, sort: string = 'updatedDate,desc', status?: string[], assignees?: string[], reporters?: string[]): any {
+        let url = '/authoring-services/rmp-tasks/search?country=' + country + '&criteria=' + searchText + '&page=' + pageIndex + '&size=' + pageSize + '&sort=' + sort;
+        if (status?.length > 0) url += '&statuses=' + status.join(',');
+        if (assignees?.length > 0) url += '&assignees=' + assignees.join(',');
+        if (reporters?.length > 0) url += '&reporters=' + reporters.join(',');
+        return this.http.get<any>(url);
     }
 
     httpGetRMPRequestDetails(requestId): Observable<any> {
