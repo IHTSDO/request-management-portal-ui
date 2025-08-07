@@ -276,6 +276,9 @@
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
                             <input type="text" name="Parent Concept" id="parentConcept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onTypeaheadInput()">
                         </div>
+<!--                        <div class="absolute h-32 w-full bg-gray-50 rounded-lg border border-gray-300">-->
+<!--                            Typeahead-->
+<!--                        </div>-->
                         <div *ngIf="parentConceptInput.invalid && parentConceptInput.touched" class="text-red-500 text-sm">{{ 'request.validation.parentConceptRequired' | translate }}</div>
                     </div>
                     <ng-container *ngFor="let result of typeaheadResults">

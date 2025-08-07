@@ -85,4 +85,35 @@ export class AuthoringService {
                 return typeaheads;
             }));
     }
+
+    getTypeahead(country: string, term: string) {
+        const params = {
+            termFilter: term,
+            limit: 20,
+            expand: 'fsn()',
+            activeFilter: true,
+            termActive: true
+        };
+
+        let branchPath: string = '';
+
+        if (country) {
+            branchPath = '/SNOMEDCT-' + country.toUpperCase();
+        }
+
+        return this.http.get(this.uiConfig.endpoints.terminologyServerEndpoint + 'MAIN' + branchPath + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + term)
+            .pipe(map(responseData => {
+                const typeaheads = [];
+
+                responseData['items'].forEach((item) => {
+                    typeaheads.push(this.convertShortConceptToString(item));
+                });
+
+                return typeaheads;
+            }));
+    }
+
+    convertShortConceptToString(input): string {
+        return input.id + ' |' + input.fsn.term + '|';
+    }
 }
