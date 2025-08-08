@@ -13,9 +13,9 @@ export class HeaderInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!request.headers.has('Content-Type')) {
+        // if (!request.headers.has('Content-Type')) {
             request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
-        }
+        // }
 
         if (!request.headers.has('Accept')) {
             request = request.clone({headers: request.headers.set('Accept', 'application/json')});
