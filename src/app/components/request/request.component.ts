@@ -212,20 +212,22 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     postComment(): void {
-        let requestComment = new RequestComment(this.request.id, this.comment)
+        if (this.comment !== '') {
+            let requestComment = new RequestComment(this.request.id, this.comment);
 
-        this.authoringService.httpPostComment(this.request.id, requestComment).subscribe({
-            next: () => {
-                this.toastr.success('#' + this.request.id + ' Comment Added', 'SUCCESS');
-                this.comment = '';
-                this.authoringService.httpGetComments(this.requestId).subscribe(response => {
-                    this.requestComments = response;
-                });
-            },
-            error: () => {
-                this.toastr.error('#' + this.request.id + ' Comment Failed', 'ERROR');
-            }
-        })
+            this.authoringService.httpPostComment(this.request.id, requestComment).subscribe({
+                next: () => {
+                    this.toastr.success('#' + this.request.id + ' Comment Added', 'SUCCESS');
+                    this.comment = '';
+                    this.authoringService.httpGetComments(this.requestId).subscribe(response => {
+                        this.requestComments = response;
+                    });
+                },
+                error: () => {
+                    this.toastr.error('#' + this.request.id + ' Comment Failed', 'ERROR');
+                }
+            });
+        }
     }
 
 
