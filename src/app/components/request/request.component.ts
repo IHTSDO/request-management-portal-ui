@@ -1,6 +1,6 @@
 import {FormsModule, NgForm} from '@angular/forms';
 import {NgIf, CommonModule} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Request, RequestComment} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
@@ -27,7 +27,7 @@ enum Mode {
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]
 })
-export class RequestComponent implements OnInit {
+export class RequestComponent implements OnInit, OnDestroy {
 
     requestComments: RequestComment[] = [];
     user!: User;
@@ -42,28 +42,14 @@ export class RequestComponent implements OnInit {
     requestId: string;
     country: string;
 
-    searchText: string = '';
-    typeahead = new BehaviorSubject<string>('');
+    // Typeahead properties
     typeaheadResults: string[] = [];
+    showTypeahead: boolean = false;
+    typeaheadSubject = new BehaviorSubject<string>('');
+    typeaheadSubscription: Subscription;
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
-
-    typeaheadSubscription = this.typeahead.pipe(
-        debounceTime(300), // Delay for 300ms after the last event
-        tap(() => {
-            this.typeaheadResults = [];
-        }),
-        switchMap(searchText => {
-            if (searchText !== '') {
-                return this.authoringService.httpGetTypeahead(searchText, this.country)
-            } else {
-                return of();
-            }
-        }) // Switch to the new observable, cancels the previous one
-    ).subscribe((response: any) => {
-        this.typeaheadResults = response;
-    });
 
     constructor(private readonly authoringService: AuthoringService,
                 private readonly toastr: ToastrService,
@@ -74,6 +60,32 @@ export class RequestComponent implements OnInit {
                 private readonly statusPipe: StatusTransformPipe) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
+
+        // Initialize typeahead subscription
+        this.typeaheadSubscription = this.typeaheadSubject.pipe(
+            debounceTime(300), // Delay for 300ms after the last event
+            tap(() => {
+                this.typeaheadResults = [];
+                this.showTypeahead = false;
+            }),
+            switchMap(searchText => {
+                if (searchText && searchText.trim() !== '' && searchText.length >= 2) {
+                    return this.authoringService.getTypeahead(this.country, searchText);
+                } else {
+                    return of([]);
+                }
+            })
+        ).subscribe({
+            next: (response: string[]) => {
+                this.typeaheadResults = response;
+                this.showTypeahead = response.length > 0;
+            },
+            error: (error) => {
+                console.error('Typeahead error:', error);
+                this.typeaheadResults = [];
+                this.showTypeahead = false;
+            }
+        });
     }
 
     ngOnInit(): void {
@@ -93,6 +105,18 @@ export class RequestComponent implements OnInit {
             this.populateAssignees();
         } else {
             this.resetFormValues(); // Reset form values to defaults
+        }
+    }
+
+    ngOnDestroy(): void {
+        if (this.userSubscription) {
+            this.userSubscription.unsubscribe();
+        }
+        if (this.extensionSubscription) {
+            this.extensionSubscription.unsubscribe();
+        }
+        if (this.typeaheadSubscription) {
+            this.typeaheadSubscription.unsubscribe();
         }
     }
 
@@ -204,8 +228,17 @@ export class RequestComponent implements OnInit {
         })
     }
 
-    onTypeaheadInput() {
-        this.typeahead.next(this.searchText);
+
+
+    onParentConceptInput(event: any): void {
+        const searchText = event.target.value;
+        this.typeaheadSubject.next(searchText);
+    }
+
+    selectTypeaheadResult(result: string, field: string): void {
+        this.request[field] = result;
+        this.showTypeahead = false;
+        this.typeaheadResults = [];
     }
 
     isStaff(user: User): boolean {

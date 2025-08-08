@@ -270,20 +270,19 @@
                 </div>
                 <div>
                     <label for="parentConcept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.parentConcept' | translate }}<span class="text-red-500 ps-1">*</span></label>
-                    <p></p>
-                    <div class="mt-2">
+                    <div class="mt-2 relative">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onTypeaheadInput()">
+                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
                         </div>
-<!--                        <div class="absolute h-32 w-full bg-gray-50 rounded-lg border border-gray-300">-->
-<!--                            Typeahead-->
-<!--                        </div>-->
+                        <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                            <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'parentConcept')">
+                                {{ result }}
+                            </div>
+                        </div>
+
                         <div *ngIf="parentConceptInput.invalid && parentConceptInput.touched" class="text-red-500 text-sm">{{ 'request.validation.parentConceptRequired' | translate }}</div>
                     </div>
-                    <ng-container *ngFor="let result of typeaheadResults">
-                        <p>{{result}}</p>
-                    </ng-container>
                 </div>
 
                 <div class="col-span-2 border-b border-gray-300 -mx-3"></div>
@@ -293,10 +292,15 @@
                 *ngIf="request.type === 'add-description' || request.type === 'add-relationship' || request.type === 'change-description' || request.type === 'change-relationship' || request.type === 'inactivate-description' || request.type === 'inactivate-relationship'">
                 <div class="col-span-2">
                     <label for="concept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.concept' | translate }}</label>
-                    <div class="mt-2">
+                    <div class="mt-2 relative">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Concept" id="concept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                            <input type="text" name="Concept" id="concept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"  [(ngModel)]="request.concept" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
+                        </div>
+                        <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                            <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'concept')">
+                                {{ result }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -349,10 +353,15 @@
                     </div>
                     <div>
                         <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
-                        <div class="mt-2">
+                        <div class="mt-2 relative">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                                 <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
+                            </div>
+                            <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'relationshipTarget')">
+                                    {{ result }}
+                                </div>
                             </div>
                             <div *ngIf="relationshipTargetInput.invalid && relationshipTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipTargetRequired' | translate }}</div>
                         </div>

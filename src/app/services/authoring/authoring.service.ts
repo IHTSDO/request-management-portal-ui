@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
-import {map, Observable, Subject} from 'rxjs';
+import {map, Observable, Subject, of} from 'rxjs';
 import {Request, RequestComment} from '../../models/request';
 
 @Injectable({ providedIn: 'root' })
@@ -87,6 +87,11 @@ export class AuthoringService {
     }
 
     getTypeahead(country: string, term: string) {
+        if (!this.uiConfig || !this.uiConfig.endpoints || !this.uiConfig.endpoints.terminologyServerEndpoint) {
+            console.warn('UI configuration not loaded yet');
+            return of([]);
+        }
+
         const params = {
             termFilter: term,
             limit: 20,
@@ -105,9 +110,11 @@ export class AuthoringService {
             .pipe(map(responseData => {
                 const typeaheads = [];
 
-                responseData['items'].forEach((item) => {
-                    typeaheads.push(this.convertShortConceptToString(item));
-                });
+                if (responseData && responseData['items']) {
+                    responseData['items'].forEach((item) => {
+                        typeaheads.push(this.convertShortConceptToString(item));
+                    });
+                }
 
                 return typeaheads;
             }));
