@@ -261,8 +261,13 @@ export class RequestComponent implements OnInit, OnDestroy {
         });
     }
 
-    updateRequest(): void {
+    updateRequest(form: NgForm): void {
         let updatedRequest: Request = this.request;
+
+        if (!form.valid) {
+            this.toastr.error('Please fill in all required fields before submitting.', 'Form Incomplete');
+            return;
+        }
 
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {
