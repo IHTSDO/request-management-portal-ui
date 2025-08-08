@@ -65,52 +65,18 @@ export class AuthoringService {
         return this.http.get('/authoring-services/users?groupName=' + roleName + '&offset=0&limit=100');
     }
 
-    httpGetTypeahead(text: string, country: string): Observable<any> {
-        const params = {
-            termFilter: text,
-            limit: 20,
-            expand: 'fsn()',
-            activeFilter: true,
-            termActive: true
-        };
-
-        return this.http.get(this.uiConfig.endpoints.terminologyServerEndpoint + 'MAIN/SNOMEDCT-' + country.toUpperCase() + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + text)
-            .pipe(map(responseData => {
-                const typeaheads = [];
-
-                responseData['items'].forEach((item) => {
-                    typeaheads.push(item.id + ' |' + item.fsn.term + '|');
-                });
-
-                return typeaheads;
-            }));
-    }
-
     getTypeahead(country: string, term: string) {
-        if (!this.uiConfig || !this.uiConfig.endpoints || !this.uiConfig.endpoints.terminologyServerEndpoint) {
-            console.warn('UI configuration not loaded yet');
-            return of([]);
-        }
-
-        const params = {
-            termFilter: term,
-            limit: 20,
-            expand: 'fsn()',
-            activeFilter: true,
-            termActive: true
-        };
-
         let branchPath: string = '';
 
         if (country) {
             branchPath = '/SNOMEDCT-' + country.toUpperCase();
         }
 
-        return this.http.get(this.uiConfig.endpoints.terminologyServerEndpoint + 'MAIN' + branchPath + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + term)
+        return this.http.get('/term-server/snomed-ct/MAIN' + branchPath + '/concepts?activeFilter=true&termActive=true&limit=20&term=' + term)
             .pipe(map(responseData => {
                 const typeaheads = [];
 
-                if (responseData && responseData['items']) {
+                if (responseData['items']) {
                     responseData['items'].forEach((item) => {
                         typeaheads.push(this.convertShortConceptToString(item));
                     });

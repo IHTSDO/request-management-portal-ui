@@ -41,7 +41,7 @@
         }
     },
     "requestManagement": {
-        "heading": "Anfragen von {{country}}",
+        "heading": "Anfragen",
         "search": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
         "id": "ID",

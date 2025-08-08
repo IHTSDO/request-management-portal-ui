@@ -41,7 +41,7 @@
         }
     },
     "requestManagement": {
-        "heading": "Verzoeken van {{country}}",
+        "heading": "Verzoeken",
         "search": "Zoeken...",
         "newRequestButton": "NIEUW VERZOEK",
         "id": "ID",

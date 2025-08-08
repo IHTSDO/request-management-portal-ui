@@ -41,7 +41,7 @@
         }
     },
     "requestManagement": {
-        "heading": "{{country}}'s anmodninger",
+        "heading": "Anmodninger",
         "search": "Søge...",
         "newRequestButton": "NY ANMODNING",
         "id": "ID",

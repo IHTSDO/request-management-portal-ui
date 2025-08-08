@@ -2,7 +2,7 @@
 <div class="text-sm mt-16">
     <div class="grid grid-cols-8 m-5">
         <div class="col-span-2 m-3">
-            <h2 class="text-xl text-slate-700 p-2">{{ 'requestManagement.heading' | translate:{country: extension.name} }}</h2>
+            <h2 class="text-xl text-slate-700 p-2">{{ 'requestManagement.heading' | translate }}</h2>
         </div>
         <div class="col-span-4 m-3">
             <input class="text-slate-500 text-base w-full bg-gray-100 border rounded-full py-2 px-3 border-gray-300" [(ngModel)]="searchText" [placeholder]="'requestManagement.search' | translate" (input)="onSearchInput()">

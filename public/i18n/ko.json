@@ -41,7 +41,7 @@
         }
     },
     "requestManagement": {
-        "heading": "{{country}} 의 요청",
+        "heading": "의 요청",
         "search": "검색어...",
         "newRequestButton": "새 요청",
         "id": "ID",
