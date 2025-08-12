@@ -15,47 +15,53 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:application",
+                    "builder": "@angular-devkit/build-angular:application",
                     "options": {
                         "outputPath": "dist/request-management-portal-ui",
                         "index": "src/index.html",
+                        "browser": "src/main.ts",
+                        "polyfills": [
+                            "zone.js"
+                        ],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            },
                             "src/favicon.ico",
                             "src/favicon_grey.ico",
                             "src/favicon_red.ico",
                             "src/favicon_green.ico",
-                            "src/favicon_yellow.ico",
-                            "src/assets",
-                            "src/dashboard"
+                            "src/favicon_yellow.ico"
                         ],
                         "styles": [
-                            "@angular/material/prebuilt-themes/indigo-pink.css",
-                            "bootstrap/dist/css/bootstrap.min.css",
                             "@fortawesome/fontawesome-free/css/all.css",
+                            "node_modules/ngx-toastr/toastr.css",
+                            "node_modules/flag-icons/css/flag-icons.min.css",
                             "src/styles.scss"
                         ],
-                        "scripts": [
-                            "@popperjs/core/dist/umd/popper.min.js",
-                            "bootstrap/dist/js/bootstrap.min.js",
-                            "./src/assets/js/iubenda-cookies.js"
-                        ],
-                        "browser": "src/main.ts"
+                        "scripts": [],
+                        "server": "src/main.server.ts",
+                        "prerender": true,
+                        "ssr": {
+                            "entry": "server.ts"
+                        },
+                        "outputHashing": "media"
                     },
                     "configurations": {
                         "production": {
-                            "baseHref": "/",
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "4mb"
+                                    "maximumWarning": "500kB",
+                                    "maximumError": "1MB"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "250kb",
-                                    "maximumError": "500kb"
+                                    "maximumWarning": "2kB",
+                                    "maximumError": "4kB"
                                 }
                             ],
                             "outputHashing": "all"
@@ -64,16 +70,14 @@
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true,
-                            "namedChunks": true
+                            "ssr": false,
+                            "prerender": false
                         }
                     },
                     "defaultConfiguration": "production"
                 },
                 "serve": {
-                    "builder": "@angular/build:dev-server",
-                    "options": {
-                        "liveReload": false
-                    },
+                    "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
                             "buildTarget": "request-management-portal-ui:build:production"
@@ -85,12 +89,33 @@
                     "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
-                    "builder": "@angular/build:extract-i18n",
+                    "builder": "@angular-devkit/build-angular:extract-i18n"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "buildTarget": "request-management-portal-ui:build"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ],
+                        "tsConfig": "tsconfig.spec.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            }
+                        ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
+                        "scripts": []
                     }
                 }
             }
         }
+    },
+    "cli": {
+      "analytics": false
     }
 }

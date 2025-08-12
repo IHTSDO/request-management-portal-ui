@@ -1,40 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../models/user';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import {Login, User} from '../../models/user';
+import {BehaviorSubject, Subject, Subscription} from 'rxjs';
+import { AuthoringService } from '../authoring/authoring.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticationService {
 
-    private user = new BehaviorSubject<User>({username: '', password: ''});
-    private authenticated = new BehaviorSubject<boolean>(false);
+    private user = new BehaviorSubject<User>(undefined!);
+    private referer = new BehaviorSubject<string>('');
 
-    private account: User;
-    private accountSubscription: Subscription;
-
-    constructor(private http: HttpClient) {
-        this.accountSubscription = this.getUser().subscribe(data => this.account = data);
+    constructor(private http: HttpClient, private authoringService: AuthoringService) {
     }
 
-    setUser(user) {
+    setUser(user: User) {
         this.user.next(user);
     }
 
-    getUser(): Observable<User> {
+    getUser() {
         return this.user.asObservable();
     }
 
-    setAuthenticated(status) {
-        this.authenticated.next(status);
+    setReferer(referer: string) {
+        this.referer.next(referer);
     }
 
-    getAuthenticated(): Observable<boolean> {
-        return this.authenticated.asObservable();
+    getReferer() {
+        return this.referer.asObservable();
     }
 
-    getLoggedInUser() {
-        return this.http.post<User>('/auth', this.account);
+    httpGetUser() {
+        return this.http.get<User>('/auth');
+    }
+
+    httpUpdateUser(user: User) {
+        return this.http.put<User>('/api/user?username=' + user.login, user);
+    }
+
+    httpLogin(loginInformation: Login) {
+        return this.http.post<Login>('/api/authenticate', loginInformation);
+    }
+
+    httpLogout() {
+        return this.http.post<Login>('/api/account/logout', {});
+    }
+
+    httpUpdatePassword(password: string) {
+        return this.http.put('/api/user/password', { newPassword: password });
     }
 }

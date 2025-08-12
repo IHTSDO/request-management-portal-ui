@@ -1,0 +1,97 @@
+<div class="background h-screen w-screen bg-cover" style="background-image: radial-gradient(circle, rgba(73,168,219,0.8) 0%, rgba(18,79,107,0.8) 100%), url('images/medical_bg.png')">
+    <div class="grid gap-6 h-screen justify-self-center w-3/4 content-center">
+        <div class="text-center">
+            <p class="text-center museo inline-block text-white text-6xl" data-cy="dashboard-title">{{ 'dashboard.title' | translate }}</p>
+            <p class="text-center text-lg text-white m-5 mx-40">{{ 'dashboard.description' | translate }}</p>
+        </div>
+        <div *ngIf="user" class="grid grid-cols-4 gap-6">
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-belgium') || user.roles.includes('ROLE_rmp-be-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/be">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-be ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.be' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-denmark') || user.roles.includes('ROLE_rmp-dk-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/dk">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-dk ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.dk' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-estonia') || user.roles.includes('ROLE_rmp-ee-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ee">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-ee ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.ee' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-ireland') || user.roles.includes('ROLE_rmp-ie-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ie">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-ie ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.ie' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-newzealand') || user.roles.includes('ROLE_rmp-nz-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/nz">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-nz ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.nz' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-france') || user.roles.includes('ROLE_rmp-fr-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/fr">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-fr ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.fr' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-switzerland') || user.roles.includes('ROLE_rmp-ch-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ch">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-ch ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.ch' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="user.roles.includes('ROLE_ms-korea') || user.roles.includes('ROLE_rmp-kr-requestor')">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/kr">
+                    <div class="m-3 w-16 flex items-center justify-center">
+                        <span class="fi fi-kr ms-3 text-5xl align-middle"></span>
+                    </div>
+                    <div class="m-3 w-48 text-center content-center">
+                        <h2 class="text-xl text-slate-700 mb-0 antialiased">{{ 'dashboard.countries.kr' | translate }}</h2>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
