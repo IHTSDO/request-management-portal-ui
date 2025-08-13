@@ -37,6 +37,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     displayWorkflowDiagram: boolean = false;
     comment: string = '';
     assignees: any[] = [];
+    userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     config: any = data;
     request: Request;
     requestId: string;
@@ -47,6 +48,12 @@ export class RequestComponent implements OnInit, OnDestroy {
     showTypeahead: boolean = false;
     typeaheadSubject = new BehaviorSubject<string>('');
     typeaheadSubscription: Subscription;
+
+    // Assignee typeahead properties
+    assigneeTypeaheadResults: any[] = [];
+    showAssigneeTypeahead: boolean = false;
+    assigneeTypeaheadSubject = new BehaviorSubject<string>('');
+    assigneeTypeaheadSubscription: Subscription;
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
@@ -86,6 +93,36 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.showTypeahead = false;
             }
         });
+
+        // Initialize assignee typeahead subscription
+        this.assigneeTypeaheadSubscription = this.assigneeTypeaheadSubject.pipe(
+            debounceTime(300),
+            tap(() => {
+                this.assigneeTypeaheadResults = [];
+                this.showAssigneeTypeahead = false;
+            }),
+            switchMap(searchText => {
+                if (searchText && searchText.trim() !== '' && searchText.length >= 1) {
+                    const filtered = this.assignees.filter(assignee => {
+                        const displayName = this.getDisplayFromUserObject(assignee);
+                        return displayName.toLowerCase().includes(searchText.toLowerCase());
+                    });
+                    return of(filtered);
+                } else {
+                    return of(this.assignees || []);
+                }
+            })
+        ).subscribe({
+            next: (results: any[]) => {
+                this.assigneeTypeaheadResults = results;
+                this.showAssigneeTypeahead = results.length > 0;
+            },
+            error: (error) => {
+                console.error('Assignee typeahead error:', error);
+                this.assigneeTypeaheadResults = [];
+                this.showAssigneeTypeahead = false;
+            }
+        });
     }
 
     ngOnInit(): void {
@@ -118,6 +155,25 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (this.typeaheadSubscription) {
             this.typeaheadSubscription.unsubscribe();
         }
+        if (this.assigneeTypeaheadSubscription) {
+            this.assigneeTypeaheadSubscription.unsubscribe();
+        }
+    }
+
+    getDisplayName(identifier: string): string {
+        if (!identifier) {
+            return '';
+        }
+        if (this.user) {
+            const selfKeys: string[] = [this.user?.username, this.user?.login, this.user?.email].filter(Boolean);
+            if (selfKeys.includes(identifier)) {
+                const selfDisplay = this.user?.displayName || [this.user?.firstName, this.user?.lastName].filter(Boolean).join(' ').trim();
+                if (selfDisplay) {
+                    return selfDisplay;
+                }
+            }
+        }
+        return this.userDisplayNameByUsername?.get(identifier) ?? identifier;
     }
 
     saveRequest(form: NgForm): void {
@@ -243,6 +299,24 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.typeaheadResults = [];
     }
 
+    onAssigneeInput(event: any): void {
+        const searchText = event.target.value;
+        this.assigneeTypeaheadSubject.next(searchText);
+    }
+
+    selectAssigneeResult(assignee: any): void {
+        this.request.assignee = assignee.name;
+        this.showAssigneeTypeahead = false;
+        this.assigneeTypeaheadResults = [];
+    }
+
+    getAssigneeDisplayValue(): string {
+        if (!this.request.assignee) {
+            return '';
+        }
+        return this.getDisplayName(this.request.assignee);
+    }
+
     isStaff(user: User): boolean {
         return user ? user.roles.includes('ROLE_ms-' + this.extension.name.toLowerCase()) : false;
     }
@@ -258,9 +332,30 @@ export class RequestComponent implements OnInit, OnDestroy {
         ]).subscribe({
             next: ([staff, requestors]) => {
                 this.assignees = staff.users.items.concat(requestors.users.items);
+                // Build a display name map from the fetched users
+                const allUsers: any[] = this.assignees ?? [];
+                allUsers.forEach((u: any) => {
+                    const computedFullName = [u?.firstName, u?.lastName].filter(Boolean).join(' ').trim();
+                    const display: string = u?.displayName || (computedFullName || undefined) || u?.name;
+                    const keys: string[] = [u?.username, u?.login, u?.id, u?.name, u?.email].filter(Boolean);
+                    keys.forEach((k: string) => {
+                        if (display) {
+                            this.userDisplayNameByUsername.set(k, display);
+                        }
+                    });
+                });
             },
             error: () => {}
         });
+    }
+
+    getDisplayFromUserObject(userObj: any): string {
+        if (!userObj) {
+            return '';
+        }
+        const computedFullName = [userObj?.firstName, userObj?.lastName].filter(Boolean).join(' ').trim();
+        const display = userObj?.displayName || (computedFullName || undefined) || userObj?.name;
+        return display || '';
     }
 
     updateRequest(form: NgForm): void {
@@ -280,4 +375,6 @@ export class RequestComponent implements OnInit, OnDestroy {
             }
         });
     }
+
+
 }
