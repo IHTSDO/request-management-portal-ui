@@ -40,6 +40,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     config: any = data;
     request: Request;
+    originalRequest!: Request;
     requestId: string;
     country: string;
 
@@ -134,6 +135,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.authoringService.httpGetRMPRequestDetails(this.requestId).subscribe(response => {
                 if (response) {
                     this.request = response as Request;
+                    this.originalRequest = JSON.parse(JSON.stringify(this.request));
                 }
             });
             this.authoringService.httpGetComments(this.requestId).subscribe(response => {
@@ -358,17 +360,33 @@ export class RequestComponent implements OnInit, OnDestroy {
         return display || '';
     }
 
-    updateRequest(form: NgForm): void {
-        let updatedRequest: Request = this.request;
+    hasRequestChanged(): boolean {
+        // Ignore server-managed fields:
+        const normalize = (r: Request) => {
+            const { created, updated, ...rest } = r as any;
+            return rest;
+        };
+        return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
+    }
 
+    updateRequest(form: NgForm): void {
         if (!form.valid) {
             this.toastr.error('Please fill in all required fields before submitting.', 'Form Incomplete');
             return;
         }
+        
+        if (!this.hasRequestChanged()) {
+            this.toastr.info('No changes detected.', 'Nothing to update');
+            return;
+        }
+
+        const updatedRequest: Request = this.request;
 
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {
                 this.toastr.success('#' + updatedRequest.id + ' Saved', 'SUCCESS');
+                this.originalRequest = JSON.parse(JSON.stringify(this.request));
+                form.form.markAsPristine();
             },
             error: () => {
                 this.toastr.error('#' + updatedRequest.id + ' Not saved', 'ERROR');
