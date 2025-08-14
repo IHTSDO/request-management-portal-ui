@@ -1,7 +1,7 @@
 import {FormsModule, NgForm} from '@angular/forms';
 import {NgIf, CommonModule} from '@angular/common';
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Request, RequestComment} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
@@ -14,6 +14,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
 import * as data from 'public/config/config.json';
+import {LanguageService} from '../../services/language/language.service';
+import {NavigationService} from '../../services/navigation/navigation.service';
 
 enum Mode {
     NEW,
@@ -22,7 +24,7 @@ enum Mode {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, NgIf, RouterLink, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, NgIf, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]
@@ -65,7 +67,9 @@ export class RequestComponent implements OnInit, OnDestroy {
                 private readonly configService: ConfigService,
                 private readonly router: Router,
                 private readonly activatedRoute: ActivatedRoute,
-                private readonly statusPipe: StatusTransformPipe) {
+                private readonly statusPipe: StatusTransformPipe,
+                private readonly languageService: LanguageService,
+                private readonly navigationService: NavigationService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
@@ -127,6 +131,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.languageService.initializeLanguageFromUrl();
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
@@ -191,7 +196,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.toastr.info('Creating new request...', 'Please wait');
             this.authoringService.httpCreateRMPRequest(this.request).subscribe(response => {
                     if (response) {
-                        this.router.navigate([this.country]); // Navigate to the country page after creation
+                        this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
                         this.request = response as Request;
                         this.toastr.clear(); // Clear any previous toastr messages
                         this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
@@ -392,6 +397,10 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.toastr.error('#' + updatedRequest.id + ' Not saved', 'ERROR');
             }
         });
+    }
+
+    navigateBack(): void {
+        this.navigationService.navigateWithLanguage([this.country]);
     }
 
 

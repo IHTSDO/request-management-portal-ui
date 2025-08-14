@@ -1,6 +1,6 @@
 <div *ngIf="expandedAppMenu || expandedItemMenu || expandedUserMenu || rolesView || expandedLanguageMenu" class="fixed left-0 top-0 bottom-0 overflow-auto w-screen h-screen bg-zinc-900 opacity-0" (click)="closeMenus()"></div>
 <nav class="w-screen fixed bg-zinc-800 p-2 flex items-center justify-between z-10">
-    <div class="flex justify-start items-center" routerLink="/">
+    <div class="flex justify-start items-center" (click)="navigateToHome()">
         <img class="size-10" src="logos/snomed-logo-small.png" alt="SNOMED International Logo">
         <span class="text-gray-200 text-lg pl-3">{{ 'home.title' | translate }}</span>
     </div>

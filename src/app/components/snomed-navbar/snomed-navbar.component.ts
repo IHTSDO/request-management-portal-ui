@@ -3,17 +3,20 @@ import {User} from "../../models/user";
 import {Subscription} from "rxjs";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 import {Extension} from '../../models/extension';
 import {ConfigService} from '../../services/config/config.service';
 import * as data from 'public/config/config.json';
 import {AuthoringService} from '../../services/authoring/authoring.service';
+import {LanguageService} from '../../services/language/language.service';
+import {SUPPORTED_LANGUAGES} from '../../constants/languages';
+import {NavigationService} from '../../services/navigation/navigation.service';
 
 @Component({
     selector: 'app-snomed-navbar',
     standalone: true,
-    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe, RouterLink],
+    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe],
     templateUrl: './snomed-navbar.component.html',
     styleUrl: './snomed-navbar.component.scss'
 })
@@ -36,21 +39,22 @@ export class SnomedNavbarComponent implements OnInit {
                 private readonly router: Router,
                 private readonly authoringService: AuthoringService,
                 private readonly configService: ConfigService,
-                public translate: TranslateService) {
+                public translate: TranslateService,
+                private readonly languageService: LanguageService,
+                private readonly navigationService: NavigationService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
-        router.events.subscribe(() => this.closeMenus());
-        this.translate.addLangs(['en', 'de', 'dk', 'fr', 'it', 'nl', 'ko']);
-        this.translate.setFallbackLang('en');
-        this.translate.use('en');
+        this.router.events.subscribe(() => this.closeMenus());
+        this.translate.addLangs(SUPPORTED_LANGUAGES);
     }
 
     ngOnInit() {
         this.environment = window.location.host.split(/[.]/)[0].split(/[-]/)[0];
+        this.languageService.initializeLanguageFromUrl();
     }
 
     setTranslation(language: string): void {
-        this.translate.use(language);
+        this.languageService.setLanguage(language);
         this.expandedLanguageMenu = false;
     }
 
@@ -130,5 +134,9 @@ export class SnomedNavbarComponent implements OnInit {
             },
             error: (e) => console.error('error: ', e)
         });
+    }
+
+    navigateToHome(): void {
+        this.navigationService.navigateWithLanguage(['']);
     }
 }

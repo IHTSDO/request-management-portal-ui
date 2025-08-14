@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Request} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
@@ -15,10 +15,12 @@ import {TranslatePipe} from '@ngx-translate/core';
 import * as data from 'public/config/config.json';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
+import {LanguageService} from '../../services/language/language.service';
+import {NavigationService} from '../../services/navigation/navigation.service';
 
 @Component({
     selector: 'app-request-management',
-    imports: [RouterLink, CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe, TranslatePipe],
     templateUrl: './request-management.component.html',
     styleUrl: './request-management.component.scss'
 })
@@ -56,7 +58,9 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 private readonly activatedRoute: ActivatedRoute,
                 private readonly authenticationService: AuthenticationService,
                 private readonly configService: ConfigService,
-                private readonly toastr: ToastrService) {
+                private readonly toastr: ToastrService,
+                private readonly languageService: LanguageService,
+                private readonly navigationService: NavigationService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => {
             this.user = data;
             if (data) {
@@ -94,9 +98,18 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.languageService.initializeLanguageFromUrl();
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
         this.searchRequests();
+    }
+
+    navigateToNewRequest(): void {
+        this.navigationService.navigateWithLanguage([this.country, 'new-request']);
+    }
+
+    navigateToRequest(requestId: number): void {
+        this.navigationService.navigateWithLanguage([this.country, requestId]);
     }
 
     ngOnDestroy() {
