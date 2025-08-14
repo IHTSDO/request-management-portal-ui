@@ -18,7 +18,7 @@
         <table class="border-collapse table-auto w-full text-sm">
             <thead>
                 <tr class="overflow-hidden">
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('id')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('id')">
                         {{ 'requestManagement.id' | translate }}
                         <span *ngIf="sortColumn === 'id'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -33,7 +33,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('summary')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('summary')">
                         {{ 'requestManagement.request' | translate }}
                         <span *ngIf="sortColumn === 'summary'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -48,7 +48,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('type')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('type')">
                         {{ 'requestManagement.type' | translate }}
                         <span *ngIf="sortColumn === 'type'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -63,7 +63,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('status')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('status')">
                         {{ 'requestManagement.status' | translate }}
                         <span *ngIf="sortColumn === 'status'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -78,7 +78,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('updatedDate')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('updatedDate')">
                         {{ 'requestManagement.updated' | translate }}
                         <span *ngIf="sortColumn === 'updatedDate'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -93,7 +93,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('reporter')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('reporter')">
                         {{ 'requestManagement.reporter' | translate }}
                         <span *ngIf="sortColumn === 'reporter'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -108,7 +108,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('assignee')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('assignee')">
                         {{ 'requestManagement.assignee' | translate }}
                         <span *ngIf="sortColumn === 'assignee'">
                             <ng-container *ngIf="sortDirection === 'asc'">
