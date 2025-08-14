@@ -168,10 +168,10 @@
             </thead>
             <tbody class="bg-white dark:bg-slate-800" data-cy="request-list">
                 <tr *ngFor="let request of requests | userRequests:user; let last = last" (click)="navigateToRequest(request.id)" class="hover:bg-sky-50 hover:cursor-pointer">
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">#{{request.id}}</td>
-                    <td class="border-gray-300 font-normal text-sky-500 text-base p-2" [class.border-b]="!last">{{request.summary}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">#{{request.id}}</td>
+                    <td class="border-gray-300 font-normal text-sky-500 text-sm p-2" [class.border-b]="!last">{{request.summary}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
                         <span class="rounded-full text-white px-3 py-1 font-normal tracking-widest"
                               [class.bg-teal-500]="request.status === 'NEW'"
                               [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
@@ -181,9 +181,9 @@
                               [class.bg-slate-400]="request.status === 'ON_HOLD'"
                               [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                     </td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{ getDisplayName(request.reporter) }}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{ getDisplayName(request.reporter) }}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
                         <ng-container *ngIf="request.assignee"><span class="text-slate-700">{{ getDisplayName(request.assignee) }}</span></ng-container>
                         <ng-container *ngIf="!request.assignee"><span class="text-slate-700">unassigned</span></ng-container>
                     </td>
