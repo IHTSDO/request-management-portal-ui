@@ -43,7 +43,7 @@
     "requestManagement": {
         "heading": "Anfragen",
         "search": "Suche...",
-        "typeToSearch": "Typ om te zoeken...",
+        "typeToSearch": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
         "id": "ID",
         "request": "ANFRAGE",
