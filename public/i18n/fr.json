@@ -43,6 +43,7 @@
     "requestManagement": {
         "heading": "Demandes",
         "search": "Rechercher...",
+        "typeToSearch": "Tapez pour rechercher...",
         "newRequestButton": "NOUVELLE DEMANDE",
         "id": "ID",
         "request": "DEMANDE",

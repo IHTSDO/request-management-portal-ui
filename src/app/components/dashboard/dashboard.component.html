@@ -6,7 +6,7 @@
         </div>
         <div *ngIf="user" class="grid grid-cols-4 gap-6">
             <ng-container *ngIf="user.roles.includes('ROLE_ms-belgium') || user.roles.includes('ROLE_rmp-be-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/be">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('be')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-be ms-3 text-5xl align-middle"></span>
                     </div>
@@ -17,7 +17,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-denmark') || user.roles.includes('ROLE_rmp-dk-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/dk">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('dk')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-dk ms-3 text-5xl align-middle"></span>
                     </div>
@@ -28,7 +28,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-estonia') || user.roles.includes('ROLE_rmp-ee-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ee">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('ee')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-ee ms-3 text-5xl align-middle"></span>
                     </div>
@@ -39,7 +39,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-ireland') || user.roles.includes('ROLE_rmp-ie-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ie">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('ie')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-ie ms-3 text-5xl align-middle"></span>
                     </div>
@@ -50,7 +50,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-newzealand') || user.roles.includes('ROLE_rmp-nz-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/nz">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('nz')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-nz ms-3 text-5xl align-middle"></span>
                     </div>
@@ -61,7 +61,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-france') || user.roles.includes('ROLE_rmp-fr-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/fr">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('fr')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-fr ms-3 text-5xl align-middle"></span>
                     </div>
@@ -72,7 +72,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-switzerland') || user.roles.includes('ROLE_rmp-ch-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/ch">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('ch')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-ch ms-3 text-5xl align-middle"></span>
                     </div>
@@ -83,7 +83,7 @@
             </ng-container>
 
             <ng-container *ngIf="user.roles.includes('ROLE_ms-korea') || user.roles.includes('ROLE_rmp-kr-requestor')">
-                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" routerLink="/kr">
+                <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('kr')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-kr ms-3 text-5xl align-middle"></span>
                     </div>

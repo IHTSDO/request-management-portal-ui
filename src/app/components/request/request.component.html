@@ -1,4 +1,4 @@
-<button class="rounded-md bg-slate-400 text-white px-3 py-1.5 absolute top-18 left-6 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" routerLink="/be">
+<button class="rounded-md bg-slate-400 text-white px-3 py-1.5 absolute top-18 left-6 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" (click)="navigateBack()">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
     </svg>{{ 'request.backButton' | translate }}</button>
@@ -10,8 +10,8 @@
             <div class="col-span-8">
                 <ng-container *ngIf="request?.id">
                     <div class="w-full justify-self-center">
-                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-around">
-                            <div class="font-normal text-slate-700 text-base py-2">#{{request.id}}</div>
+                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-between items-center">
+                            <div class="font-normal text-slate-700 text-base py-2 ms-2">#{{request.id}}</div>
                             <div class="font-normal text-slate-700 text-base py-2">{{request.summary}}</div>
                             <div class="font-normal text-slate-700 text-base py-2">{{request.type | requestTypeTransform}}</div>
                             <div class="font-normal text-slate-700 text-base py-2">
@@ -25,13 +25,18 @@
                                       [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                             </div>
                             <div class="font-normal text-slate-700 text-base py-2">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
-                            <div class="font-normal text-slate-700 text-base py-2">{{request.reporter}}</div>
-                            <div class="font-normal text-slate-700 text-base py-1 relative inline-block">
+                            <div class="font-normal text-slate-700 text-base py-2">{{ getDisplayName(request.reporter) }}</div>
+                            <div class="font-normal text-slate-700 text-base py-1 me-1 relative inline-block">
                                 <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user)">
-                                    <select name="Assignees" id="assignee" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-7 font-medium" [(ngModel)]="request.assignee" [disabled]="isUser(user)">
-                                        <option [ngValue]="null"></option>
-                                        <option *ngFor="let assignee of assignees" [ngValue]="assignee.name">{{ assignee.name }}</option>
-                                    </select>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
+                                        <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+                                    </svg>
+                                    <input type="text" name="Assignee" id="assignee" [disabled]="isUser(user)" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="isUser(user)" (input)="onAssigneeInput($event)">
+                                </div>
+                                <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                    <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
+                                        {{ getDisplayFromUserObject(assignee) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -272,8 +277,10 @@
                     <label for="parentConcept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.parentConcept' | translate }}<span class="text-red-500 ps-1">*</span></label>
                     <div class="mt-2 relative">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                            <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
+                                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+                            </svg>
+                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
                         </div>
                         <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                             <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'parentConcept')">
@@ -294,8 +301,10 @@
                     <label for="concept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.concept' | translate }}</label>
                     <div class="mt-2 relative">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                            <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                            <input type="text" name="Concept" id="concept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"  [(ngModel)]="request.concept" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
+                                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+                            </svg>
+                            <input type="text" name="Concept" id="concept" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'"  [(ngModel)]="request.concept" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
                         </div>
                         <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                             <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'concept')">
@@ -355,8 +364,10 @@
                         <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2 relative">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                                <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
+                                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+                                </svg>
+                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" (input)="onParentConceptInput($event)">
                             </div>
                             <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                                 <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'relationshipTarget')">
@@ -412,8 +423,10 @@
                         <label for="relationshipChangeTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
-                                <i class="fa-solid text-slate-700 fa-search text-lg pe-2"></i>
-                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" placeholder="Type to search..." [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
+                                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+                                </svg>
+                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'">
                             </div>
                             <div *ngIf="relationshipChangeTargetInput.invalid && relationshipChangeTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipChangeTargetRequired' | translate }}</div>
                         </div>
@@ -493,7 +506,7 @@
 
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode !== ModeType.NEW && (isStaff(user) || (isUser(user) && request.status === 'NEW'))">
             <div class="justify-self-end">
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" (click)="updateRequest(requestForm)" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" [disabled]="!hasRequestChanged()" [class.disabled:bg-slate-300]="!hasRequestChanged()" (click)="updateRequest(requestForm)" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
             </div>
         </div>
 
@@ -504,13 +517,13 @@
                 <ng-container *ngFor="let comment of requestComments">
                     <div class="my-3">
                         <ng-container *ngIf="user.login === comment.user">
-                            <p class="ms-3 font-medium">{{comment.user}} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
+                            <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
                             <div class="border border-lime-300 bg-lime-100 rounded-lg">
                                 <p class="p-3">{{comment.body}}</p>
                             </div>
                         </ng-container>
                         <ng-container *ngIf="user.login !== comment.user">
-                            <p class="ms-3 font-medium">{{comment.user}} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
+                            <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
                             <div class="border border-sky-200 bg-sky-100 rounded-lg">
                                 <p class="p-3">{{comment.body}}</p>
                             </div>

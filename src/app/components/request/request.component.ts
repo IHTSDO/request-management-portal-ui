@@ -1,7 +1,7 @@
 import {FormsModule, NgForm} from '@angular/forms';
 import {NgIf, CommonModule} from '@angular/common';
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Request, RequestComment} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
@@ -14,6 +14,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
 import * as data from 'public/config/config.json';
+import {LanguageService} from '../../services/language/language.service';
+import {NavigationService} from '../../services/navigation/navigation.service';
 
 enum Mode {
     NEW,
@@ -22,7 +24,7 @@ enum Mode {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, NgIf, RouterLink, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, NgIf, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]
@@ -37,8 +39,10 @@ export class RequestComponent implements OnInit, OnDestroy {
     displayWorkflowDiagram: boolean = false;
     comment: string = '';
     assignees: any[] = [];
+    userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     config: any = data;
     request: Request;
+    originalRequest!: Request;
     requestId: string;
     country: string;
 
@@ -47,6 +51,12 @@ export class RequestComponent implements OnInit, OnDestroy {
     showTypeahead: boolean = false;
     typeaheadSubject = new BehaviorSubject<string>('');
     typeaheadSubscription: Subscription;
+
+    // Assignee typeahead properties
+    assigneeTypeaheadResults: any[] = [];
+    showAssigneeTypeahead: boolean = false;
+    assigneeTypeaheadSubject = new BehaviorSubject<string>('');
+    assigneeTypeaheadSubscription: Subscription;
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
@@ -57,7 +67,9 @@ export class RequestComponent implements OnInit, OnDestroy {
                 private readonly configService: ConfigService,
                 private readonly router: Router,
                 private readonly activatedRoute: ActivatedRoute,
-                private readonly statusPipe: StatusTransformPipe) {
+                private readonly statusPipe: StatusTransformPipe,
+                private readonly languageService: LanguageService,
+                private readonly navigationService: NavigationService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
@@ -86,9 +98,40 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.showTypeahead = false;
             }
         });
+
+        // Initialize assignee typeahead subscription
+        this.assigneeTypeaheadSubscription = this.assigneeTypeaheadSubject.pipe(
+            debounceTime(300),
+            tap(() => {
+                this.assigneeTypeaheadResults = [];
+                this.showAssigneeTypeahead = false;
+            }),
+            switchMap(searchText => {
+                if (searchText && searchText.trim() !== '' && searchText.length >= 1) {
+                    const filtered = this.assignees.filter(assignee => {
+                        const displayName = this.getDisplayFromUserObject(assignee);
+                        return displayName.toLowerCase().includes(searchText.toLowerCase());
+                    });
+                    return of(filtered);
+                } else {
+                    return of(this.assignees || []);
+                }
+            })
+        ).subscribe({
+            next: (results: any[]) => {
+                this.assigneeTypeaheadResults = results;
+                this.showAssigneeTypeahead = results.length > 0;
+            },
+            error: (error) => {
+                console.error('Assignee typeahead error:', error);
+                this.assigneeTypeaheadResults = [];
+                this.showAssigneeTypeahead = false;
+            }
+        });
     }
 
     ngOnInit(): void {
+        this.languageService.initializeLanguageFromUrl();
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
@@ -97,6 +140,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.authoringService.httpGetRMPRequestDetails(this.requestId).subscribe(response => {
                 if (response) {
                     this.request = response as Request;
+                    this.originalRequest = JSON.parse(JSON.stringify(this.request));
                 }
             });
             this.authoringService.httpGetComments(this.requestId).subscribe(response => {
@@ -118,6 +162,25 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (this.typeaheadSubscription) {
             this.typeaheadSubscription.unsubscribe();
         }
+        if (this.assigneeTypeaheadSubscription) {
+            this.assigneeTypeaheadSubscription.unsubscribe();
+        }
+    }
+
+    getDisplayName(identifier: string): string {
+        if (!identifier) {
+            return '';
+        }
+        if (this.user) {
+            const selfKeys: string[] = [this.user?.username, this.user?.login, this.user?.email].filter(Boolean);
+            if (selfKeys.includes(identifier)) {
+                const selfDisplay = this.user?.displayName || [this.user?.firstName, this.user?.lastName].filter(Boolean).join(' ').trim();
+                if (selfDisplay) {
+                    return selfDisplay;
+                }
+            }
+        }
+        return this.userDisplayNameByUsername?.get(identifier) ?? identifier;
     }
 
     saveRequest(form: NgForm): void {
@@ -133,7 +196,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.toastr.info('Creating new request...', 'Please wait');
             this.authoringService.httpCreateRMPRequest(this.request).subscribe(response => {
                     if (response) {
-                        this.router.navigate([this.country]); // Navigate to the country page after creation
+                        this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
                         this.request = response as Request;
                         this.toastr.clear(); // Clear any previous toastr messages
                         this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
@@ -243,6 +306,24 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.typeaheadResults = [];
     }
 
+    onAssigneeInput(event: any): void {
+        const searchText = event.target.value;
+        this.assigneeTypeaheadSubject.next(searchText);
+    }
+
+    selectAssigneeResult(assignee: any): void {
+        this.request.assignee = assignee.name;
+        this.showAssigneeTypeahead = false;
+        this.assigneeTypeaheadResults = [];
+    }
+
+    getAssigneeDisplayValue(): string {
+        if (!this.request.assignee) {
+            return '';
+        }
+        return this.getDisplayName(this.request.assignee);
+    }
+
     isStaff(user: User): boolean {
         return user ? user.roles.includes('ROLE_ms-' + this.extension.name.toLowerCase()) : false;
     }
@@ -258,26 +339,69 @@ export class RequestComponent implements OnInit, OnDestroy {
         ]).subscribe({
             next: ([staff, requestors]) => {
                 this.assignees = staff.users.items.concat(requestors.users.items);
+                // Build a display name map from the fetched users
+                const allUsers: any[] = this.assignees ?? [];
+                allUsers.forEach((u: any) => {
+                    const computedFullName = [u?.firstName, u?.lastName].filter(Boolean).join(' ').trim();
+                    const display: string = u?.displayName || (computedFullName || undefined) || u?.name;
+                    const keys: string[] = [u?.username, u?.login, u?.id, u?.name, u?.email].filter(Boolean);
+                    keys.forEach((k: string) => {
+                        if (display) {
+                            this.userDisplayNameByUsername.set(k, display);
+                        }
+                    });
+                });
             },
             error: () => {}
         });
     }
 
-    updateRequest(form: NgForm): void {
-        let updatedRequest: Request = this.request;
+    getDisplayFromUserObject(userObj: any): string {
+        if (!userObj) {
+            return '';
+        }
+        const computedFullName = [userObj?.firstName, userObj?.lastName].filter(Boolean).join(' ').trim();
+        const display = userObj?.displayName || (computedFullName || undefined) || userObj?.name;
+        return display || '';
+    }
 
+    hasRequestChanged(): boolean {
+        // Ignore server-managed fields:
+        const normalize = (r: Request) => {
+            const { created, updated, ...rest } = r as any;
+            return rest;
+        };
+        return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
+    }
+
+    updateRequest(form: NgForm): void {
         if (!form.valid) {
             this.toastr.error('Please fill in all required fields before submitting.', 'Form Incomplete');
             return;
         }
+        
+        if (!this.hasRequestChanged()) {
+            this.toastr.info('No changes detected.', 'Nothing to update');
+            return;
+        }
+
+        const updatedRequest: Request = this.request;
 
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {
                 this.toastr.success('#' + updatedRequest.id + ' Saved', 'SUCCESS');
+                this.originalRequest = JSON.parse(JSON.stringify(this.request));
+                form.form.markAsPristine();
             },
             error: () => {
                 this.toastr.error('#' + updatedRequest.id + ' Not saved', 'ERROR');
             }
         });
     }
+
+    navigateBack(): void {
+        this.navigationService.navigateWithLanguage([this.country]);
+    }
+
+
 }

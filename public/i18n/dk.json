@@ -43,6 +43,7 @@
     "requestManagement": {
         "heading": "Anmodninger",
         "search": "Søge...",
+        "typeToSearch": "Tast for at søge...",
         "newRequestButton": "NY ANMODNING",
         "id": "ID",
         "request": "ANMODNING",

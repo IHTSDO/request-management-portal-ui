@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Request} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
@@ -15,10 +15,12 @@ import {TranslatePipe} from '@ngx-translate/core';
 import * as data from 'public/config/config.json';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
+import {LanguageService} from '../../services/language/language.service';
+import {NavigationService} from '../../services/navigation/navigation.service';
 
 @Component({
     selector: 'app-request-management',
-    imports: [RouterLink, CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, UserRequestsPipe, TranslatePipe],
     templateUrl: './request-management.component.html',
     styleUrl: './request-management.component.scss'
 })
@@ -33,6 +35,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     myRequests: boolean = false;
     reporters: string[] = [];
     assignees: string[] = [];
+    userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     user!: User;
     userSubscription: Subscription;
     extension: Extension;
@@ -55,7 +58,9 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 private readonly activatedRoute: ActivatedRoute,
                 private readonly authenticationService: AuthenticationService,
                 private readonly configService: ConfigService,
-                private readonly toastr: ToastrService) {
+                private readonly toastr: ToastrService,
+                private readonly languageService: LanguageService,
+                private readonly navigationService: NavigationService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => {
             this.user = data;
             if (data) {
@@ -63,7 +68,12 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 this.assignees = [data.username];
             }
         });
-        this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
+        this.extensionSubscription = this.configService.getExtension().subscribe(extension => {
+            this.extension = extension;
+            if (extension) {
+                this.populateUserDisplayMap();
+            }
+        });
 
         this.subscription = this.searchQuery.pipe(
             debounceTime(300), // Delay for 300ms after the last event
@@ -88,9 +98,18 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.languageService.initializeLanguageFromUrl();
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
         this.searchRequests();
+    }
+
+    navigateToNewRequest(): void {
+        this.navigationService.navigateWithLanguage([this.country, 'new-request']);
+    }
+
+    navigateToRequest(requestId: number): void {
+        this.navigationService.navigateWithLanguage([this.country, requestId]);
     }
 
     ngOnDestroy() {
@@ -174,5 +193,59 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     isUser(user: User): boolean {
         return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-requestor') : false;
+    }
+
+    getDisplayName(identifier: string): string {
+        if (!identifier) {
+            return '';
+        }
+        if (this.user) {
+            const selfKeys: string[] = [this.user?.username, this.user?.login, this.user?.email].filter(Boolean);
+            if (selfKeys.includes(identifier)) {
+                const selfDisplay = this.user?.displayName || [this.user?.firstName, this.user?.lastName].filter(Boolean).join(' ').trim();
+                if (selfDisplay) {
+                    return selfDisplay;
+                }
+            }
+        }
+        return this.userDisplayNameByUsername?.get(identifier) ?? identifier;
+    }
+
+    private populateUserDisplayMap(): void {
+        if (!this.extension) {
+            return;
+        }
+        this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase()).subscribe({
+            next: (staff: any) => {
+                const staffUsers: any[] = staff?.users?.items ?? [];
+                staffUsers.forEach((u: any) => {
+                    const computedFullName = [u?.firstName, u?.lastName].filter(Boolean).join(' ').trim();
+                    const display: string = u?.displayName || (computedFullName || undefined) || u?.name;
+                    const keys: string[] = [u?.username, u?.login, u?.id, u?.name, u?.email].filter(Boolean);
+                    keys.forEach((k: string) => {
+                        if (display) {
+                            this.userDisplayNameByUsername.set(k, display);
+                        }
+                    });
+                });
+            },
+            error: () => {}
+        });
+        this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-requestor').subscribe({
+            next: (requestors: any) => {
+                const reqUsers: any[] = requestors?.users?.items ?? [];
+                reqUsers.forEach((u: any) => {
+                    const computedFullName = [u?.firstName, u?.lastName].filter(Boolean).join(' ').trim();
+                    const display: string = u?.displayName || (computedFullName || undefined) || u?.name;
+                    const keys: string[] = [u?.username, u?.login, u?.id, u?.name, u?.email].filter(Boolean);
+                    keys.forEach((k: string) => {
+                        if (display) {
+                            this.userDisplayNameByUsername.set(k, display);
+                        }
+                    });
+                });
+            },
+            error: () => {}
+        });
     }
 }

@@ -8,7 +8,7 @@
             <input class="text-slate-500 text-base w-full bg-gray-100 border rounded-full py-2 px-3 border-gray-300" [(ngModel)]="searchText" [placeholder]="'requestManagement.search' | translate" (input)="onSearchInput()">
         </div>
         <div class="col-span-2 m-3 justify-self-end">
-            <button class="rounded-md bg-lime-600 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-lime-700" routerLink="/{{country}}/new-request" data-cy="new-request-button">
+            <button class="rounded-md bg-lime-600 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer hover:bg-lime-700" (click)="navigateToNewRequest()" data-cy="new-request-button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-lime-400 me-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>{{ 'requestManagement.newRequestButton' | translate }}</button>
@@ -18,7 +18,7 @@
         <table class="border-collapse table-auto w-full text-sm">
             <thead>
                 <tr class="overflow-hidden">
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('id')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('id')">
                         {{ 'requestManagement.id' | translate }}
                         <span *ngIf="sortColumn === 'id'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -33,7 +33,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('summary')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('summary')">
                         {{ 'requestManagement.request' | translate }}
                         <span *ngIf="sortColumn === 'summary'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -48,7 +48,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('type')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('type')">
                         {{ 'requestManagement.type' | translate }}
                         <span *ngIf="sortColumn === 'type'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -63,7 +63,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('status')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('status')">
                         {{ 'requestManagement.status' | translate }}
                         <span *ngIf="sortColumn === 'status'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -78,7 +78,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('updatedDate')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('updatedDate')">
                         {{ 'requestManagement.updated' | translate }}
                         <span *ngIf="sortColumn === 'updatedDate'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -93,7 +93,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('reporter')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('reporter')">
                         {{ 'requestManagement.reporter' | translate }}
                         <span *ngIf="sortColumn === 'reporter'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -108,7 +108,7 @@
                             </ng-container>
                         </span>
                     </th>
-                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-base p-2 text-start cursor-pointer" (click)="sortRequests('assignee')">
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer" (click)="sortRequests('assignee')">
                         {{ 'requestManagement.assignee' | translate }}
                         <span *ngIf="sortColumn === 'assignee'">
                             <ng-container *ngIf="sortDirection === 'asc'">
@@ -167,12 +167,12 @@
                 </tr>
             </thead>
             <tbody class="bg-white dark:bg-slate-800" data-cy="request-list">
-                <tr *ngFor="let request of requests | userRequests:user; let last = last" routerLink="/{{country}}/{{request.id}}" class="hover:bg-sky-50 hover:cursor-pointer">
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">#{{request.id}}</td>
-                    <td class="border-gray-300 font-normal text-sky-500 text-base p-2" [class.border-b]="!last">{{request.summary}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">
-                        <span class="rounded-full text-white px-3 py-1 font-normal tracking-widest"
+                <tr *ngFor="let request of requests | userRequests:user; let last = last" (click)="navigateToRequest(request.id)" class="hover:bg-sky-50 hover:cursor-pointer">
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">#{{request.id}}</td>
+                    <td class="border-gray-300 font-normal text-sky-500 text-sm p-2" [class.border-b]="!last">{{request.summary}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
+                        <span class="rounded-full text-white px-3 py-1 font-normal"
                               [class.bg-teal-500]="request.status === 'NEW'"
                               [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
                               [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
@@ -181,10 +181,10 @@
                               [class.bg-slate-400]="request.status === 'ON_HOLD'"
                               [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                     </td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">{{request.reporter}}</td>
-                    <td class="border-gray-300 font-normal text-slate-700 text-base p-2" [class.border-b]="!last">
-                        <ng-container *ngIf="request.assignee"><span class="text-slate-700">{{request.assignee}}</span></ng-container>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{ getDisplayName(request.reporter) }}</td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
+                        <ng-container *ngIf="request.assignee"><span class="text-slate-700">{{ getDisplayName(request.assignee) }}</span></ng-container>
                         <ng-container *ngIf="!request.assignee"><span class="text-slate-700">unassigned</span></ng-container>
                     </td>
                     <td class="border-gray-300 font-normal text-slate-700 text-end" [class.border-b]="!last">

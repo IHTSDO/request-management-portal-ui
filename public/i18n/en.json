@@ -43,6 +43,7 @@
     "requestManagement": {
         "heading": "Requests",
         "search": "Search...",
+        "typeToSearch": "Type to search...",
         "newRequestButton": "NEW REQUEST",
         "id": "ID",
         "request": "REQUEST",
