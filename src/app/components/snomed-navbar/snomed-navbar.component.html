@@ -5,59 +5,56 @@
         <span class="text-gray-200 text-lg pl-3">{{ 'home.title' | translate }}</span>
     </div>
     <div class="flex justify-end items-center">
-        <div *ngIf="user" class="inline-block">
+        <div *ngIf="user" class="relative inline-block">
             <button (click)="expandedLanguageMenu ? expandedLanguageMenu = false : switchMenu('language')" data-cy="language-menu-button" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="language-menu" aria-expanded="true" aria-haspopup="true">
                 <div class="rounded-full size-5 my-auto overflow-hidden flex p-0">
                     <span class="fi fi-{{getFlagFromLanguage()}} w-full h-full object-cover block m-0 p-0"></span>
                 </div>
             </button>
 
-            <div *ngIf="expandedLanguageMenu" class="absolute right-0 left-0 top-0 z-10 w-full bg-gray-50 focus:outline-none pb-5" role="menu" aria-labelledby="user-menu" tabindex="-1">
-                <div class="p-10">
-                    <h1 class="text-xl">{{ 'navbar.selectLanguage' | translate }}</h1>
-                </div>
-                <div class="grid grid-cols-5 gap-3 flex justify-self-center w-3/4">
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('en')" data-cy="language-option-en">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+            <div *ngIf="expandedLanguageMenu" class="absolute right-0 z-10 mt-2 w-50 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="items-menu" tabindex="-1">
+                <div class="grid gap-x-3 p-2">
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('en')" data-cy="language-option-en">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-gb w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.en' | translate }}</div>
-                    </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('de')" data-cy="language-option-de">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                        <div class="inline-block ps-5">{{ 'navbar.languages.en' | translate }}</div>
+                    </div>		
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('de')" data-cy="language-option-de">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-de w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.de' | translate }}</div>
-                    </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('dk')" data-cy="language-option-dk">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                        <div class="inline-block ps-5">{{ 'navbar.languages.de' | translate }}</div>
+                    </div>		
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('dk')" data-cy="language-option-dk">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-dk w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.dk' | translate }}</div>
-                    </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('fr')" data-cy="language-option-fr">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                        <div class="inline-block ps-5">{{ 'navbar.languages.dk' | translate }}</div>
+                    </div>		
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('fr')" data-cy="language-option-fr">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-fr w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.fr' | translate }}</div>
-                    </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('it')" data-cy="language-option-it">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                        <div class="inline-block ps-5">{{ 'navbar.languages.fr' | translate }}</div>
+                    </div>		
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('it')" data-cy="language-option-it">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-it w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.it' | translate }}</div>
-                    </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('nl')" data-cy="language-option-nl">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                        <div class="inline-block ps-5">{{ 'navbar.languages.it' | translate }}</div>
+                    </div>		
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('nl')" data-cy="language-option-nl">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-nl w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.nl' | translate }}</div>
-                    </div>
-                    <div class="flex p-5 hover:cursor-pointer hover:text-sky-600" (click)="setTranslation('ko')" data-cy="language-option-ko">
-                        <div class="rounded-full size-8 my-auto overflow-hidden flex inline-block border p-0">
+                        <div class="inline-block ps-5">{{ 'navbar.languages.nl' | translate }}</div>
+                    </div>		
+                    <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('ko')" data-cy="language-option-ko">
+                        <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-kr w-full h-full object-cover block m-0 p-0"></span>
                         </div>
-                        <div class="inline-block content-center ps-3">{{ 'navbar.languages.ko' | translate }}</div>
+                        <div class="inline-block ps-5">{{ 'navbar.languages.ko' | translate }}</div>
                     </div>
                 </div>
             </div>
@@ -89,109 +86,6 @@
                 </div>
             </div>
         </div>
-
-<!--        <div *ngIf="user" class="relative inline-block end">-->
-<!--            <button (click)="expandedAppMenu ? expandedAppMenu = false : switchMenu('app')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="app-menu" aria-expanded="true" aria-haspopup="true">-->
-<!--                <i class="fa-solid fa-grip text-lg m-auto"></i>-->
-<!--            </button>-->
-
-<!--            <div *ngIf="expandedAppMenu" class="absolute right-0 z-10 mt-2 w-96 origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="app-menu" tabindex="-1">-->
-<!--                <div class="grid grid-cols-4 gap-3 p-2">-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-sky-400 fa-earth-americas text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Browser</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-cyan-400 fa-chart-line text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Statistics</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-sky-400 fa-magnifying-glass text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Lookup</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-blue-400 fa-folder-tree text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">MLDS</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-green-400 fa-pen-to-square text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Authoring</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-lime-500 fa-clipboard-list text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Reporting</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-emerald-400 fa-share-from-square text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Templates</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-teal-400 fa-graduation-cap text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Validation</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-lime-500 fa-network-wired text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">MRCM</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-violet-400 fa-clipboard-list text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">RT2</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-fuchsia-400 fa-link text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Mapping</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-indigo-400 fa-2 text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Snap</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-violet-400 fa-clipboard text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">RST</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-purple-400 fa-graduation-cap text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Weblate</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-amber-400 fa-box text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">CRS</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-yellow-500 fa-box text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">US CRS</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-orange-400 fa-box-open text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">RMP</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="grid grid-cols-4 gap-3 border-t p-2">-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-rose-400 fa-right-from-bracket text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Release</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-red-400 fa-toolbox text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Admin</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-pink-400 fa-note-sticky text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">RNMS</p>-->
-<!--                    </div>-->
-<!--                    <div class="hover:bg-gray-100 p-2 rounded-lg justify-items-center cursor-pointer">-->
-<!--                        <i class="fa-solid text-rose-400 fa-hard-drive text-4xl pb-2 text-center"></i>-->
-<!--                        <p class="text-center text-slate-700">Simplex</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
 
         <div class="relative inline-block mr-5">
             <button (click)="expandedItemMenu ? expandedItemMenu = false : switchMenu('item')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="items-menu" aria-expanded="true" aria-haspopup="true">
