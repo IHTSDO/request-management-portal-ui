@@ -34,20 +34,9 @@ export class AuthenticationService {
     httpGetUser() {
         return this.http.get<User>('/auth');
     }
-
-    httpUpdateUser(user: User) {
-        return this.http.put<User>('/api/user?username=' + user.login, user);
-    }
-
-    httpLogin(loginInformation: Login) {
-        return this.http.post<Login>('/api/authenticate', loginInformation);
-    }
-
-    httpLogout() {
-        return this.http.post<Login>('/api/account/logout', {});
-    }
-
-    httpUpdatePassword(password: string) {
-        return this.http.put('/api/user/password', { newPassword: password });
-    }
+   
+    logout() {
+        window.location.href =
+            this.authoringService.uiConfig.endpoints.imsEndpoint + 'logout?serviceReferer=' + window.location.href;
+    }   
 }

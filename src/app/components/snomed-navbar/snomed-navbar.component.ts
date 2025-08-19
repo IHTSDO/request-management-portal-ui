@@ -127,13 +127,7 @@ export class SnomedNavbarComponent implements OnInit {
     }
 
     logout(): void {
-        this.authenticationService.httpLogout().subscribe({
-            next: () => {
-                this.authenticationService.setUser(undefined!);
-                window.location.href = this.authoringService.uiConfig.endpoints.imsEndpoint;
-            },
-            error: (e) => console.error('error: ', e)
-        });
+        this.authenticationService.logout();
     }
 
     navigateToHome(): void {
