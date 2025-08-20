@@ -31,6 +31,8 @@ enum Mode {
 })
 export class RequestComponent implements OnInit, OnDestroy {
 
+    deleteOption: RequestComment | null;
+
     requestComments: RequestComment[] = [];
     user!: User;
     userSubscription: Subscription;
@@ -276,7 +278,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     postComment(): void {
         if (this.comment !== '') {
-            let requestComment = new RequestComment(this.request.id, this.comment);
+            let requestComment = new RequestComment(null, this.comment);
 
             this.authoringService.httpPostComment(this.request.id, requestComment).subscribe({
                 next: () => {
@@ -287,13 +289,27 @@ export class RequestComponent implements OnInit, OnDestroy {
                     });
                 },
                 error: () => {
-                    this.toastr.error('#' + this.request.id + ' Comment Failed', 'ERROR');
+                    this.toastr.error('#' + this.request.id + ' Comment Addition Failed', 'ERROR');
                 }
             });
         }
     }
 
-
+    deleteComment(commentId: number): void {
+        this.authoringService.httpDeleteComment(commentId).subscribe({
+            next: () => {
+                this.toastr.success('Comment Deleted', 'SUCCESS');
+                this.authoringService.httpGetComments(this.requestId).subscribe(response => {
+                    this.requestComments = response;
+                });
+                this.deleteOption = null; // Clear the delete option after successful deletion
+            },
+            error: () => {
+                this.toastr.error('Comment Deletion Failed', 'ERROR');
+                this.deleteOption = null; // Clear the delete option on error
+            }
+        });
+    }
 
     onParentConceptInput(event: any): void {
         const searchText = event.target.value;

@@ -57,6 +57,10 @@ export class AuthoringService {
         return this.http.get<RequestComment[]>('/authoring-services/rmp-tasks/' + id + '/comment');
     }
 
+    httpDeleteComment(commentId: number) {
+        return this.http.delete('/authoring-services/rmp-tasks/comments/' + commentId + '/');
+    }
+
     httpPostComment(id: number, comment: RequestComment): Observable<RequestComment> {
         return this.http.post<RequestComment>('/authoring-services/rmp-tasks/' + id + '/comment', comment);
     }
