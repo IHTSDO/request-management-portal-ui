@@ -384,7 +384,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     hasRequestChanged(): boolean {
         // Ignore server-managed fields:
         const normalize = (r: Request) => {
-            const { created, updated, ...rest } = r as any;
+            const { created, updated, status, ...rest } = r as any;
             return rest;
         };
         return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
