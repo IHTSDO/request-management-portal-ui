@@ -138,6 +138,7 @@
         "languageRefsets": {
             "none": "None",
             "belgianDutch": "Belgian Dutch",
+            "belgianGerman": "Belgian German",
             "belgianFrench": "Belgian French",
             "danish": "Danish",
             "estonian": "Estonian",

@@ -207,6 +207,7 @@
                         <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" [(ngModel)]="request.languageRefset" [class.disabled:text-gray-400]="isUser(user) && mode !== ModeType.NEW && request.status !== 'NEW'" data-cy="language-refset-select">
                             <option>{{ 'request.languageRefsets.none' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
+                            <option>{{ 'request.languageRefsets.belgianGerman' | translate }}</option>
                             <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
                             <option>{{ 'request.languageRefsets.danish' | translate }}</option>
                             <option>{{ 'request.languageRefsets.french' | translate }}</option>
