@@ -33,11 +33,10 @@ export class AppComponent implements OnInit {
             this.authoringService.uiConfig = config;
         });
 
-        this.authenticationService.httpGetUser().subscribe({
-            next: (user) => {
+        this.configService.loadConfig().subscribe(data => {
+            this.authenticationService.httpGetUser().subscribe(user => {
                 this.authenticationService.setUser(user);
-            },
-            error: () => {}
+            });
         });
 
     }

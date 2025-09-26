@@ -6,12 +6,12 @@ import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/com
 import {Router} from '@angular/router';
 import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 import {Extension} from '../../models/extension';
-import {ConfigService} from '../../services/config/config.service';
 import * as data from 'public/config/config.json';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {LanguageService} from '../../services/language/language.service';
 import {SUPPORTED_LANGUAGES} from '../../constants/languages';
 import {NavigationService} from '../../services/navigation/navigation.service';
+import {ConfigService, LauncherApp} from '../../services/config/config.service';
 
 @Component({
     selector: 'app-snomed-navbar',
@@ -35,6 +35,8 @@ export class SnomedNavbarComponent implements OnInit {
     rolesView: boolean = false;
     config: any = data;
 
+    apps: LauncherApp[] = [];
+
     constructor(private readonly authenticationService: AuthenticationService,
                 private readonly router: Router,
                 private readonly authoringService: AuthoringService,
@@ -42,7 +44,11 @@ export class SnomedNavbarComponent implements OnInit {
                 public translate: TranslateService,
                 private readonly languageService: LanguageService,
                 private readonly navigationService: NavigationService) {
-        this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
+        this.userSubscription = this.authenticationService.getUser().subscribe(data => {
+            this.user = data;
+            const allApps = this.configService.getLauncherApps();
+            this.apps = allApps.filter(a => !a.clientName || this.user.clientAccess.includes(a.clientName));
+        });
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
         this.router.events.subscribe(() => this.closeMenus());
         this.translate.addLangs(SUPPORTED_LANGUAGES);
@@ -116,6 +122,10 @@ export class SnomedNavbarComponent implements OnInit {
         }
 
         return initials;
+    }
+
+    appsByGroup(group: number): LauncherApp[] {
+        return this.apps.filter(a => (a.group ?? 4) === group);
     }
 
     navigateTo(location: string): void {

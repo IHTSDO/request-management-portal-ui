@@ -1,4 +1,4 @@
-<div *ngIf="expandedAppMenu || expandedItemMenu || expandedUserMenu || rolesView || expandedLanguageMenu" class="fixed left-0 top-0 bottom-0 overflow-auto w-screen h-screen bg-zinc-900 opacity-0" (click)="closeMenus()"></div>
+<div *ngIf="expandedAppMenu || expandedItemMenu || expandedUserMenu || rolesView || expandedLanguageMenu" class="fixed left-0 top-0 bottom-0 overflow-auto w-screen h-screen bg-zinc-900 opacity-20" (click)="closeMenus()"></div>
 <nav class="w-screen fixed bg-zinc-800 p-2 flex items-center justify-between z-10">
     <div class="flex justify-start items-center" (click)="navigateToHome()">
         <img class="size-10" src="logos/snomed-logo-small.png" alt="SNOMED International Logo">
@@ -19,37 +19,37 @@
                             <span class="fi fi-gb w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block ps-5">{{ 'navbar.languages.en' | translate }}</div>
-                    </div>		
+                    </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('de')" data-cy="language-option-de">
                         <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-de w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block ps-5">{{ 'navbar.languages.de' | translate }}</div>
-                    </div>		
+                    </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('dk')" data-cy="language-option-dk">
                         <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-dk w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block ps-5">{{ 'navbar.languages.dk' | translate }}</div>
-                    </div>		
+                    </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('fr')" data-cy="language-option-fr">
                         <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-fr w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block ps-5">{{ 'navbar.languages.fr' | translate }}</div>
-                    </div>		
+                    </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('it')" data-cy="language-option-it">
                         <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-it w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block ps-5">{{ 'navbar.languages.it' | translate }}</div>
-                    </div>		
+                    </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('nl')" data-cy="language-option-nl">
                         <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-nl w-full h-full object-cover block m-0 p-0"></span>
                         </div>
                         <div class="inline-block ps-5">{{ 'navbar.languages.nl' | translate }}</div>
-                    </div>		
+                    </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer flex items-center" (click)="setTranslation('ko')" data-cy="language-option-ko">
                         <div class="rounded-full size-5 my-auto overflow-hidden flex inline-block border p-0">
                             <span class="fi fi-kr w-full h-full object-cover block m-0 p-0"></span>
@@ -62,7 +62,6 @@
 
         <div *ngIf="user" class="relative inline-block">
             <button (click)="expandedUserMenu ? expandedUserMenu = false : switchMenu('user')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="user-menu" aria-expanded="true" aria-haspopup="true">
-<!--                <img class="rounded-full size-8 m-auto" src="https://picsum.photos/200/200" alt="User Avatar">-->
                 <div class="rounded-full size-8 m-auto bg-sky-500 pt-1.5 font-semibold museo antialiased">{{getInitials(user)}}</div>
             </button>
 
@@ -82,6 +81,50 @@
                     </div>
                     <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="logout()">
                         <p class="text-slate-700">{{ 'navbar.menu.logout' | translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="user" class="relative inline-block">
+            <button (click)="expandedAppMenu ? expandedAppMenu = false : switchMenu('app')" type="button" class="inline-flex justify-center rounded-full size-10 ms-2 text-sm font-semibold text-gray-200 hover:bg-gray-700" id="app-menu" aria-expanded="true" aria-haspopup="true">
+                <i class="fa-solid fa-grip text-lg m-auto"></i>
+            </button>
+
+            <div *ngIf="expandedAppMenu" class="fixed inset-x-4 sm:left-auto sm:right-4 sm:w-96 top-14 z-10 origin-top sm:origin-top-right rounded-lg bg-gray-50 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="app-menu" tabindex="-1">
+                <!-- Group 1 -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 p-2" *ngIf="appsByGroup(1).length">
+                    <div *ngFor="let app of appsByGroup(1)" class="hover:bg-gray-100 p-3 rounded-lg cursor-pointer flex flex-col items-center justify-center text-center min-h-[80px]" (click)="redirectTo(app.link)" [title]="app.description">
+                        <i class="fa-solid text-3xl mb-2 text-sky-500" [class]="'fa-solid ' + app.faIcon"></i>
+                        <p class="text-slate-700 text-xs leading-tight font-medium" [style]="app.textStyle">{{app.Application}}</p>
+                    </div>
+                </div>
+                <!-- Group 2 -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 border-t border-gray-200 p-2" *ngIf="appsByGroup(2).length">
+                    <div *ngFor="let app of appsByGroup(2)" class="hover:bg-gray-100 p-3 rounded-lg cursor-pointer flex flex-col items-center justify-center text-center min-h-[80px]" (click)="redirectTo(app.link)" [title]="app.description">
+                        <i class="fa-solid text-3xl mb-2 text-violet-500" [class]="'fa-solid ' + app.faIcon"></i>
+                        <p class="text-slate-700 text-xs leading-tight font-medium" [style]="app.textStyle">{{app.Application}}</p>
+                    </div>
+                </div>
+                <!-- Group 3 -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 border-t border-gray-200 p-2" *ngIf="appsByGroup(3).length">
+                    <div *ngFor="let app of appsByGroup(3)" class="hover:bg-gray-100 p-3 rounded-lg cursor-pointer flex flex-col items-center justify-center text-center min-h-[80px]" (click)="redirectTo(app.link)" [title]="app.description">
+                        <i class="fa-solid text-3xl mb-2 text-green-500" [class]="'fa-solid ' + app.faIcon"></i>
+                        <p class="text-slate-700 text-xs leading-tight font-medium" [style]="app.textStyle">{{app.Application}}</p>
+                    </div>
+                </div>
+                <!-- Group 4 -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 border-t border-gray-200 p-2" *ngIf="appsByGroup(4).length">
+                    <div *ngFor="let app of appsByGroup(4)" class="hover:bg-gray-100 p-3 rounded-lg cursor-pointer flex flex-col items-center justify-center text-center min-h-[80px]" (click)="redirectTo(app.link)" [title]="app.description">
+                        <i class="fa-solid text-3xl mb-2 text-amber-500" [class]="'fa-solid ' + app.faIcon"></i>
+                        <p class="text-slate-700 text-xs leading-tight font-medium" [style]="app.textStyle">{{app.Application}}</p>
+                    </div>
+                </div>
+                <!-- Group 5 -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 border-t border-gray-200 p-2" *ngIf="appsByGroup(5).length">
+                    <div *ngFor="let app of appsByGroup(5)" class="hover:bg-gray-100 p-3 rounded-lg cursor-pointer flex flex-col items-center justify-center text-center min-h-[80px]" (click)="redirectTo(app.link)" [title]="app.description">
+                        <i class="fa-solid text-3xl mb-2 text-rose-500" [class]="'fa-solid ' + app.faIcon"></i>
+                        <p class="text-slate-700 text-xs leading-tight font-medium" [style]="app.textStyle">{{app.Application}}</p>
                     </div>
                 </div>
             </div>

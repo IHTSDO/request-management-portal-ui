@@ -34,9 +34,9 @@ export class AuthenticationService {
     httpGetUser() {
         return this.http.get<User>('/auth');
     }
-   
+
     logout() {
         window.location.href =
             this.authoringService.uiConfig.endpoints.imsEndpoint + 'logout?serviceReferer=' + window.location.href;
-    }   
+    }
 }
