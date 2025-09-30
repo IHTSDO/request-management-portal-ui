@@ -11,21 +11,37 @@
                 <ng-container *ngIf="request?.id">
                     <div class="w-full justify-self-center">
                         <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-between items-center">
-                            <div class="font-normal text-slate-700 text-base py-2 ms-2">#{{request.id}}</div>
-                            <div class="font-normal text-slate-700 text-base py-2">{{request.summary}}</div>
-                            <div class="font-normal text-slate-700 text-base py-2">{{request.type | requestTypeTransform}}</div>
-                            <div class="font-normal text-slate-700 text-base py-2">
-                                <span class="rounded-full text-white px-3 py-1 font-normal tracking-widest"
-                                      [class.bg-teal-500]="request.status === 'NEW'"
-                                      [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
-                                      [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
-                                      [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
-                                      [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
-                                      [class.bg-slate-400]="request.status === 'ON_HOLD'"
-                                      [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
+                            <div class="font-normal text-slate-700 text-base p-2 pr-0 pl-0 ms-2">#{{request.id}}</div>
+                            <div class="font-normal text-slate-700 text-base p-2 pr-0 pl-0 ms-2">
+                                <span #summarySpanElement [ngClass]="{'line-clamp-3': !expandedSummary && summarySpanLines > 3}" class="block overflow-hidden"
+                                    style="display: -webkit-box;">
+                                    {{request.summary}}
+                                </span>
+                                <button *ngIf="expandedSummary" class="text-blue-500 underline text-xs ml-1"
+                                    type="button" (click)="expandedSummary = false">
+                                    {{ 'request.showLess' | translate }}
+                                </button>
+                                <button *ngIf="request.summary && summarySpanLines > 3 && !expandedSummary"
+                                    class="text-blue-500 underline text-xs ml-1" type="button"
+                                    (click)="expandedSummary = true">
+                                    {{ 'request.showMore' | translate }}
+                                </button>
                             </div>
-                            <div class="font-normal text-slate-700 text-base py-2">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
-                            <div class="font-normal text-slate-700 text-base py-2">{{ getDisplayName(request.reporter) }}</div>
+                            <div class="font-normal text-slate-700 text-base p-2 pr-0">{{request.type | requestTypeTransform}}</div>
+                            <div class="font-normal text-slate-700 text-base p-2 pr-0">
+                                <span
+                                    class="rounded-full text-white text-sm px-3 py-1 font-normal tracking-widest whitespace-nowrap"
+                                    [class.bg-teal-500]="request.status === 'NEW'"
+                                    [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
+                                    [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
+                                    [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
+                                    [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
+                                    [class.bg-slate-400]="request.status === 'ON_HOLD'"
+                                    [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status
+                                    | statusTransform}}</span>
+                            </div>
+                            <div class="font-normal text-slate-700 text-base p-2 pr-0">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
+                            <div class="font-normal text-slate-700 text-base p-2">{{ getDisplayName(request.reporter) }}</div>
                             <div class="font-normal text-slate-700 text-base py-1 me-1 relative inline-block">
                                 <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user)">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">

@@ -67,6 +67,8 @@
         "noComments": "- Nog geen opmerkingen -",
         "commentPlaceholder": "Typ hier uw opmerking...",
         "backButton": "BACK",
+        "showMore": "meer weergeven",
+        "showLess": "minder weergeven",
         "resetButton": "RESET",
         "submitButton": "BEVESTIG",
         "saveButton": "SAVE",

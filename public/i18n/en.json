@@ -69,6 +69,8 @@
         "noComments": "- There are no comments on this request yet -",
         "commentPlaceholder": "Comment here...",
         "backButton": "BACK",
+        "showMore": "show more",
+        "showLess": "show less",
         "resetButton": "RESET",
         "submitButton": "SUBMIT",
         "saveButton": "SAVE",

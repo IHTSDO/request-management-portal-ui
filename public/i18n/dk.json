@@ -67,6 +67,8 @@
         "noComments": "- Der er ingen kommentarer til denne anmodning endnu -",
         "commentPlaceholder": "Skriv din kommentar her...",
         "backButton": "BACK",
+        "showMore": "vis mere",
+        "showLess": "vis mindre",
         "resetButton": "SLET ALT",
         "submitButton": "INDSEND",
         "saveButton": "SAVE",

@@ -67,6 +67,8 @@
         "noComments": "- Nessun commento per ora -",
         "commentPlaceholder": "Digita qui il tuo commento...",
         "backButton": "BACK",
+        "showMore": "mostra di più",
+        "showLess": "mostra di meno",
         "resetButton": "REIMPOSTA",
         "submitButton": "INVIA",
         "saveButton": "SAVE",

@@ -67,6 +67,8 @@
         "noComments": "- 아직 댓글이 없습니다 -",
         "commentPlaceholder": "댓글을 입력하세요...",
         "backButton": "BACK",
+        "showMore": "더 보기",
+        "showLess": "간단히 보기",
         "resetButton": "초기화",
         "submitButton": "제출",
         "saveButton": "SAVE",

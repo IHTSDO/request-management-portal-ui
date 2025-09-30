@@ -1,21 +1,21 @@
-import {FormsModule, NgForm} from '@angular/forms';
-import {NgIf, CommonModule} from '@angular/common';
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Request, RequestComment} from '../../models/request';
-import {AuthoringService} from '../../services/authoring/authoring.service';
-import {ToastrService} from 'ngx-toastr';
-import {StatusTransformPipe} from '../../pipes/status-transform/status-transform.pipe';
-import {RequestTypeTransformPipe} from '../../pipes/request-type-transform/request-type-transform.pipe';
-import {User} from '../../models/user';
-import {BehaviorSubject, debounceTime, forkJoin, of, Subscription, switchMap, tap} from 'rxjs';
-import {AuthenticationService} from '../../services/authentication/authentication.service';
+import { FormsModule, NgForm } from '@angular/forms';
+import { NgIf, CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Request, RequestComment } from '../../models/request';
+import { AuthoringService } from '../../services/authoring/authoring.service';
+import { ToastrService } from 'ngx-toastr';
+import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
+import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
+import { User } from '../../models/user';
+import { BehaviorSubject, debounceTime, forkJoin, of, Subscription, switchMap, tap } from 'rxjs';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import {ConfigService} from '../../services/config/config.service';
-import {Extension} from '../../models/extension';
+import { ConfigService } from '../../services/config/config.service';
+import { Extension } from '../../models/extension';
 import * as data from 'public/config/config.json';
-import {LanguageService} from '../../services/language/language.service';
-import {NavigationService} from '../../services/navigation/navigation.service';
+import { LanguageService } from '../../services/language/language.service';
+import { NavigationService } from '../../services/navigation/navigation.service';
 
 enum Mode {
     NEW,
@@ -30,6 +30,8 @@ enum Mode {
     providers: [StatusTransformPipe]
 })
 export class RequestComponent implements OnInit, OnDestroy {
+
+    @ViewChild('summarySpanElement') summarySpanElement!: ElementRef;
 
     deleteOption: RequestComment | null;
 
@@ -47,6 +49,8 @@ export class RequestComponent implements OnInit, OnDestroy {
     originalRequest!: Request;
     requestId: string;
     country: string;
+    expandedSummary: boolean = false;
+    summarySpanLines: number = 0;
 
     // Typeahead properties
     typeaheadResults: string[] = [];
@@ -64,14 +68,14 @@ export class RequestComponent implements OnInit, OnDestroy {
     mode: Mode = Mode.NEW; // Default mode is NEW
 
     constructor(private readonly authoringService: AuthoringService,
-                private readonly toastr: ToastrService,
-                private readonly authenticationService: AuthenticationService,
-                private readonly configService: ConfigService,
-                private readonly router: Router,
-                private readonly activatedRoute: ActivatedRoute,
-                private readonly statusPipe: StatusTransformPipe,
-                private readonly languageService: LanguageService,
-                private readonly navigationService: NavigationService) {
+        private readonly toastr: ToastrService,
+        private readonly authenticationService: AuthenticationService,
+        private readonly configService: ConfigService,
+        private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute,
+        private readonly statusPipe: StatusTransformPipe,
+        private readonly languageService: LanguageService,
+        private readonly navigationService: NavigationService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
@@ -152,6 +156,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         } else {
             this.resetFormValues(); // Reset form values to defaults
         }
+        this.getSummarySpanLines();
     }
 
     ngOnDestroy(): void {
@@ -197,16 +202,16 @@ export class RequestComponent implements OnInit, OnDestroy {
 
             this.toastr.info('Creating new request...', 'Please wait');
             this.authoringService.httpCreateRMPRequest(this.request).subscribe(response => {
-                    if (response) {
-                        this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
-                        this.request = response as Request;
-                        this.toastr.clear(); // Clear any previous toastr messages
-                        this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
-                    }
-                }, error => {
+                if (response) {
+                    this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
+                    this.request = response as Request;
                     this.toastr.clear(); // Clear any previous toastr messages
-                    this.toastr.error('Failed to create request: ' + error.message, 'Error');
+                    this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
                 }
+            }, error => {
+                this.toastr.clear(); // Clear any previous toastr messages
+                this.toastr.error('Failed to create request: ' + error.message, 'Error');
+            }
             );
         }
     }
@@ -368,7 +373,7 @@ export class RequestComponent implements OnInit, OnDestroy {
                     });
                 });
             },
-            error: () => {}
+            error: () => { }
         });
     }
 
@@ -395,7 +400,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.toastr.error('Please fill in all required fields before submitting.', 'Form Incomplete');
             return;
         }
-        
+
         if (!this.hasRequestChanged()) {
             this.toastr.info('No changes detected.', 'Nothing to update');
             return;
@@ -419,5 +424,25 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.navigationService.navigateWithLanguage([this.country]);
     }
 
+    getSummarySpanLines(): void {
+        let attempts = 0;
+        const maxAttempts = 100;
+        const interval = setInterval(() => {
+            if (this.summarySpanElement) {
+                const spanElement = this.summarySpanElement.nativeElement;
+                if (spanElement.textContent && spanElement.textContent.trim().length > 0) {
+                    const computedStyle = window.getComputedStyle(spanElement);
+                    const lineHeight = parseFloat(computedStyle.lineHeight);
+                    const totalHeight = spanElement.getBoundingClientRect().height;
+                    if (lineHeight > 0 && this.summarySpanLines === 0) {
+                        this.summarySpanLines = Math.round(totalHeight / lineHeight);
+                    }
+                }
+                clearInterval(interval);
+            } else if (++attempts >= maxAttempts) {
+                clearInterval(interval);
+            }
+        }, 100);
+    }
 
 }

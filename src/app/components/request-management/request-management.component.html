@@ -172,7 +172,7 @@
                     <td class="border-gray-300 font-normal text-sky-500 text-sm p-2" [class.border-b]="!last">{{request.summary}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
-                        <span class="rounded-full text-white px-3 py-1 font-normal"
+                        <span class="rounded-full text-white px-3 py-1 font-normal whitespace-nowrap"
                               [class.bg-teal-500]="request.status === 'NEW'"
                               [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
                               [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"

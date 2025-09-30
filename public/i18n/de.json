@@ -67,6 +67,8 @@
         "noComments": "- Es gibt noch keine Kommentare zu dieser Anfrage -",
         "commentPlaceholder": "Geben Sie hier Ihren Kommentar ein...",
         "backButton": "BACK",
+        "showMore": "mehr anzeigen",
+        "showLess": "weniger anzeigen",
         "resetButton": "ZURÜCKSETZEN",
         "submitButton": "EINREICHEN",
         "saveButton": "SAVE",
