@@ -341,7 +341,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     isStaff(user: User): boolean {
-        return user ? user.roles.includes('ROLE_ms-' + this.extension.name.toLowerCase()) : false;
+        return user ? user.roles.includes('ROLE_ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")) : false;
     }
 
     isUser(user: User): boolean {
@@ -350,15 +350,15 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     populateAssignees(): void {
         forkJoin([
-            this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase()),
+            this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")),
             this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-requestor')
         ]).subscribe({
             next: ([staff, requestors]) => {
                 const staffItems = staff?.users?.items ?? [];
                 const requestorItems = requestors?.users?.items ?? [];
-                this.assignees = staffItems.concat(requestorItems);
+                this.assignees = staffItems;
                 // Build a display name map from the fetched users
-                const allUsers: any[] = this.assignees ?? [];
+                const allUsers = staffItems.concat(requestorItems)
                 allUsers.forEach((u: any) => {
                     const computedFullName = [u?.firstName, u?.lastName].filter(Boolean).join(' ').trim();
                     const display: string = u?.displayName || (computedFullName || undefined) || u?.name;

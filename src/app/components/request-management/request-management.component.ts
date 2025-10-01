@@ -215,7 +215,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         if (!this.extension) {
             return;
         }
-        this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase()).subscribe({
+        this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")).subscribe({
             next: (staff: any) => {
                 const staffUsers: any[] = staff?.users?.items ?? [];
                 staffUsers.forEach((u: any) => {
