@@ -92,6 +92,8 @@
         },
         "labels": {
             "summary": "Summary",
+            "reporter": "Reporter",
+            "assignee": "Assignee",
             "type": "Type",
             "languageRefset": "Language Refset",
             "contextRefset": "Context Refset",
