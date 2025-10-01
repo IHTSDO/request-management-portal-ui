@@ -1,6 +1,6 @@
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgIf, CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
 import { AuthoringService } from '../../services/authoring/authoring.service';
@@ -31,8 +31,6 @@ enum Mode {
 })
 export class RequestComponent implements OnInit, OnDestroy {
 
-    @ViewChild('summarySpanElement') summarySpanElement!: ElementRef;
-
     deleteOption: RequestComment | null;
 
     requestComments: RequestComment[] = [];
@@ -49,8 +47,6 @@ export class RequestComponent implements OnInit, OnDestroy {
     originalRequest!: Request;
     requestId: string;
     country: string;
-    expandedSummary: boolean = false;
-    summarySpanLines: number = 0;
 
     // Typeahead properties
     typeaheadResults: string[] = [];
@@ -156,7 +152,6 @@ export class RequestComponent implements OnInit, OnDestroy {
         } else {
             this.resetFormValues(); // Reset form values to defaults
         }
-        this.getSummarySpanLines();
     }
 
     ngOnDestroy(): void {
@@ -359,7 +354,9 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-requestor')
         ]).subscribe({
             next: ([staff, requestors]) => {
-                this.assignees = staff.users.items.concat(requestors.users.items);
+                const staffItems = staff?.users?.items ?? [];
+                const requestorItems = requestors?.users?.items ?? [];
+                this.assignees = staffItems.concat(requestorItems);
                 // Build a display name map from the fetched users
                 const allUsers: any[] = this.assignees ?? [];
                 allUsers.forEach((u: any) => {
@@ -423,26 +420,4 @@ export class RequestComponent implements OnInit, OnDestroy {
     navigateBack(): void {
         this.navigationService.navigateWithLanguage([this.country]);
     }
-
-    getSummarySpanLines(): void {
-        let attempts = 0;
-        const maxAttempts = 100;
-        const interval = setInterval(() => {
-            if (this.summarySpanElement) {
-                const spanElement = this.summarySpanElement.nativeElement;
-                if (spanElement.textContent && spanElement.textContent.trim().length > 0) {
-                    const computedStyle = window.getComputedStyle(spanElement);
-                    const lineHeight = parseFloat(computedStyle.lineHeight);
-                    const totalHeight = spanElement.getBoundingClientRect().height;
-                    if (lineHeight > 0 && this.summarySpanLines === 0) {
-                        this.summarySpanLines = Math.round(totalHeight / lineHeight);
-                    }
-                }
-                clearInterval(interval);
-            } else if (++attempts >= maxAttempts) {
-                clearInterval(interval);
-            }
-        }, 100);
-    }
-
 }

@@ -11,24 +11,9 @@
                 <ng-container *ngIf="request?.id">
                     <div class="w-full justify-self-center">
                         <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-between items-center">
-                            <div class="font-normal text-slate-700 text-base p-2 pr-0 pl-0 ms-2">#{{request.id}}</div>
-                            <div class="font-normal text-slate-700 text-base p-2 pr-0 pl-0 ms-2">
-                                <span #summarySpanElement [ngClass]="{'line-clamp-3': !expandedSummary && summarySpanLines > 3}" class="block overflow-hidden"
-                                    style="display: -webkit-box;">
-                                    {{request.summary}}
-                                </span>
-                                <button *ngIf="expandedSummary" class="text-blue-500 underline text-xs ml-1"
-                                    type="button" (click)="expandedSummary = false">
-                                    {{ 'request.showLess' | translate }}
-                                </button>
-                                <button *ngIf="request.summary && summarySpanLines > 3 && !expandedSummary"
-                                    class="text-blue-500 underline text-xs ml-1" type="button"
-                                    (click)="expandedSummary = true">
-                                    {{ 'request.showMore' | translate }}
-                                </button>
-                            </div>
-                            <div class="font-normal text-slate-700 text-base p-2 pr-0">{{request.type | requestTypeTransform}}</div>
-                            <div class="font-normal text-slate-700 text-base p-2 pr-0">
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0 pl-0 ms-2">#{{request.id}}</div>                            
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.type | requestTypeTransform}}</div>
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">
                                 <span
                                     class="rounded-full text-white text-sm px-3 py-1 font-normal tracking-widest whitespace-nowrap"
                                     [class.bg-teal-500]="request.status === 'NEW'"
@@ -40,20 +25,26 @@
                                     [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status
                                     | statusTransform}}</span>
                             </div>
-                            <div class="font-normal text-slate-700 text-base p-2 pr-0">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
-                            <div class="font-normal text-slate-700 text-base p-2">{{ getDisplayName(request.reporter) }}</div>
-                            <div class="font-normal text-slate-700 text-base py-1 me-1 relative inline-block">
-                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="isUser(user)">
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
+                            <div class="font-normal text-slate-700 text-sm p-2">{{ getDisplayName(request.reporter) }}</div>
+                            <div class="font-normal text-slate-700 text-sm py-1 me-1 relative inline-block">
+                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="!isStaff(user)">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
                                         <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
                                     </svg>
-                                    <input type="text" name="Assignee" id="assignee" [disabled]="isUser(user)" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="isUser(user)" (input)="onAssigneeInput($event)">
+                                    <input type="text" name="Assignee" id="assignee" [disabled]="!isStaff(user)" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)">
                                 </div>
                                 <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                                     <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
                                         {{ getDisplayFromUserObject(assignee) }}
                                     </div>
                                 </div>
+                            </div>                            
+                        </div>
+                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-between items-center mt-1">
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0 pl-0 ms-2">
+                                <label for="summary" class="text-base text-slate-700 font-medium">{{ 'request.labels.summary' | translate }}:</label>&nbsp;
+                                <span>{{request.summary}}</span>                                
                             </div>
                         </div>
                     </div>
@@ -533,14 +524,14 @@
                 <p *ngIf="requestComments.length === 0" class="p-5 text-center text-gray-500">{{ 'request.noComments' | translate }}</p>
                 <ng-container *ngFor="let comment of requestComments">
                     <div class="my-3">
-                        <ng-container *ngIf="user.login === comment.user">
+                        <ng-container *ngIf="user && user.login === comment.user">
                             <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
                             <i class="fa-solid fa-trash float-right mt-2 mr-2 text-red-400" (click)="deleteOption = comment; $event.stopPropagation()"></i>
                             <div class="border border-lime-300 bg-lime-100 rounded-lg">
                                 <p class="p-3">{{comment.body}}</p>
                             </div>
                         </ng-container>
-                        <ng-container *ngIf="user.login !== comment.user">
+                        <ng-container *ngIf="user &&user.login !== comment.user">
                             <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
                             <div class="border border-sky-200 bg-sky-100 rounded-lg">
                                 <p class="p-3">{{comment.body}}</p>
