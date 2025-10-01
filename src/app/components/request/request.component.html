@@ -26,15 +26,13 @@
                                     | statusTransform}}</span>
                             </div>
                             <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
-                            <div class="font-normal text-slate-700 text-sm p-2">{{ getDisplayName(request.reporter) }}</div>
+                            <div class="font-normal text-slate-700 text-sm p-2"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
                             <div class="font-normal text-slate-700 text-sm py-1 me-1 relative inline-block">
-                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="!isStaff(user)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
-                                        <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
-                                    </svg>
-                                    <input type="text" name="Assignee" id="assignee" [disabled]="!isStaff(user)" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)">
+                                <label for="assignee" class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}&nbsp;</label>
+                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300 inline-block" [class.disabled:bg-gray-100]="!isStaff(user)">                                    
+                                    <input type="text" name="Assignee" id="assignee" [disabled]="!isStaff(user)" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
                                 </div>
-                                <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                <div *ngIf="showAssigneeTypeahead && isStaff(user) && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 -right-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                                     <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
                                         {{ getDisplayFromUserObject(assignee) }}
                                     </div>

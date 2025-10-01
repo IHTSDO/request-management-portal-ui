@@ -1,7 +1,7 @@
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgIf, CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
 import { AuthoringService } from '../../services/authoring/authoring.service';
 import { ToastrService } from 'ngx-toastr';
@@ -67,7 +67,6 @@ export class RequestComponent implements OnInit, OnDestroy {
         private readonly toastr: ToastrService,
         private readonly authenticationService: AuthenticationService,
         private readonly configService: ConfigService,
-        private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
         private readonly statusPipe: StatusTransformPipe,
         private readonly languageService: LanguageService,
@@ -327,10 +326,41 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.assigneeTypeaheadSubject.next(searchText);
     }
 
+    onAssigneeFocus(event: any): void {
+        this.showAssigneeTypeahead = true;
+        this.assigneeTypeaheadSubject.next('');
+    }
+
+    onAssigneeBlur(event: any): void {
+        setTimeout(() => {
+            this.showAssigneeTypeahead = false;
+            this.assigneeTypeaheadResults = [];
+        }, 200); // Delay to allow click event to register
+    }
+
     selectAssigneeResult(assignee: any): void {
+        if (this.request.assignee === assignee.name) {
+            this.showAssigneeTypeahead = false;
+            this.assigneeTypeaheadResults = [];
+            return; // No change, do nothing
+        }
         this.request.assignee = assignee.name;
         this.showAssigneeTypeahead = false;
         this.assigneeTypeaheadResults = [];
+        
+        const updatedRequest: Request = this.request;
+        this.toastr.info('Updating assignee...', 'INFO');
+        this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
+            next: () => {
+                this.toastr.clear(); // Clear any previous toastr messages
+                this.toastr.success('Assignee updated successfully', 'SUCCESS');
+                this.originalRequest = JSON.parse(JSON.stringify(this.request));                
+            },
+            error: () => {
+                this.toastr.clear(); // Clear any previous toastr messages
+                this.toastr.error('Assignee update failed', 'ERROR');
+            }
+        });
     }
 
     getAssigneeDisplayValue(): string {
@@ -386,7 +416,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     hasRequestChanged(): boolean {
         // Ignore server-managed fields:
         const normalize = (r: Request) => {
-            const { created, updated, status, ...rest } = r as any;
+            const { created, updated, status, assignee, ...rest } = r as any;
             return rest;
         };
         return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
