@@ -345,6 +345,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             return; // No change, do nothing
         }
         if (assignee.name === 'unassigned') {
+            if (!this.request.assignee) return; // Already unassigned, do nothing
             this.request.assignee = '';
         } else {
             this.request.assignee = assignee.name;
