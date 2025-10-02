@@ -344,7 +344,11 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.assigneeTypeaheadResults = [];
             return; // No change, do nothing
         }
-        this.request.assignee = assignee.name;
+        if (assignee.name === 'unassigned') {
+            this.request.assignee = '';
+        } else {
+            this.request.assignee = assignee.name;
+        }
         this.showAssigneeTypeahead = false;
         this.assigneeTypeaheadResults = [];
         
@@ -353,7 +357,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {
                 this.toastr.clear(); // Clear any previous toastr messages
-                this.toastr.success('Assignee updated successfully', 'SUCCESS');
+                this.toastr.success(assignee.name === 'unassigned' ? 'Assignee removed successfully' : 'Assignee updated successfully', 'SUCCESS');
                 this.originalRequest = JSON.parse(JSON.stringify(this.request));                
             },
             error: () => {
@@ -386,7 +390,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             next: ([staff, requestors]) => {
                 const staffItems = staff?.users?.items ?? [];
                 const requestorItems = requestors?.users?.items ?? [];
-                this.assignees = staffItems;
+                this.assignees = [{name: 'unassigned', displayName: 'Unassigned'}, ...staffItems];
                 // Build a display name map from the fetched users
                 const allUsers = staffItems.concat(requestorItems)
                 allUsers.forEach((u: any) => {
