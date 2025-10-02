@@ -185,7 +185,7 @@
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{ getDisplayName(request.reporter) }}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
                         <ng-container *ngIf="request.assignee"><span class="text-slate-700">{{ getDisplayName(request.assignee) }}</span></ng-container>
-                        <ng-container *ngIf="!request.assignee"><span class="text-slate-700">unassigned</span></ng-container>
+                        <ng-container *ngIf="!request.assignee"><span class="text-slate-700">Unassigned</span></ng-container>
                     </td>
                     <td class="border-gray-300 font-normal text-slate-700 text-end" [class.border-b]="!last">
                         <i class="fas fa-times text-2xl text-red-500 me-3" (click)="deleteOption = request; $event.stopPropagation()"></i>
