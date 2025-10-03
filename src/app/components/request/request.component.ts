@@ -383,6 +383,10 @@ export class RequestComponent implements OnInit, OnDestroy {
         return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-requestor') : false;
     }
 
+    isRequestOwner(): boolean {
+        return this.request.reporter === this.user.username;
+    }
+
     populateAssignees(): void {
         forkJoin([
             this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")),

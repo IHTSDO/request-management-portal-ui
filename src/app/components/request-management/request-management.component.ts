@@ -84,6 +84,8 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             switchMap(searchText => {
                 this.searchText = searchText;
                 const sortParam = `${this.sortColumn},${this.sortDirection}`;
+                this.visibleRequests = 100; // Reset visible requests on new search
+                this.totalRequests = 0; // Reset total requests on new search
                 return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList);
             })
         ).subscribe((response: any) => {
@@ -92,6 +94,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 this.totalRequests = response.totalElements as number;
             } else {
                 this.requests = [];
+                this.totalRequests = 0;
             }
             this.requestLoading = false; // Reset loading state after the request completes
         });
@@ -101,7 +104,6 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.languageService.initializeLanguageFromUrl();
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
-        this.searchRequests();
     }
 
     navigateToNewRequest(): void {
@@ -151,25 +153,12 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.searchRequests();
     }
 
-    searchRequests(): void {
-        this.requestLoading = true;
-        this.requests = [];
-        let httpRequest = null;
-        const sortParam = `${this.sortColumn},${this.sortDirection}`;
-        if (!this.searchText || this.searchText.trim().length === 0) {
-            httpRequest = this.authoringService.httpGetRMPRequests(this.country, this.visibleRequests, 0, sortParam);
-        } else {
-            httpRequest = this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList);
-        }
-        httpRequest.subscribe(response => {
-            if (response?.content) {
-                this.requests = response.content as Request[];
-            }
-            this.requestLoading = false;
-        });
+    resetVisibleRequests(): void {
+        this.visibleRequests = 100;
+        this.totalRequests = 0;
     }
 
-    searchRequests2(): void {
+    searchRequests(): void {
         this.requestLoading = true;
         this.requests = [];
 
@@ -179,6 +168,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList, this.assignedRequests ? this.assignees : null, this.myRequests ? this.reporters : null).subscribe({
             next: (response) => {
                 this.requests = response.content as Request[];
+                this.totalRequests = response.totalElements as number;
                 this.requestLoading = false;
             }
         });
