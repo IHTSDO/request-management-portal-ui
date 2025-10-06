@@ -210,7 +210,7 @@
                     </svg>{{ 'requestManagement.loadMoreButton' | translate }}</button>
             </div>
             <div class="col-span-2 me-3 justify-self-end" *ngIf="totalRequests > 0">
-                <h2 class="text-base text-gray-500">{{ 'requestManagement.showing' | translate:{visible:  requests?.length ? requests.length : 0, total: totalRequests} }}</h2>
+                <h2 class="text-base text-gray-500">{{ 'requestManagement.showing' | translate:{visible:  (requests | userRequests:user)?.length ? (requests | userRequests:user).length : 0, total: totalRequests} }}</h2>
             </div>
         </div>
     </ng-container>
