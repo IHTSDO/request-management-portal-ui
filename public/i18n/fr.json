@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "Ce portail de requête est destiné à soumettre des demandes d'ajout, de mise à jour ou de modification du contenu SNOMED CT. Veuillez sélectionner le type de demande souhaité parmi les options ci-dessous.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "Belgique",
             "dk": "Danemark",

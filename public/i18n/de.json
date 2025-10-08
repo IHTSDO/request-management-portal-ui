@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "Über das SNOMED CT Request Management Portal können neue Inhalte angefragt bzw. Änderungsvorschläge für bestehende Inhalte gemacht werden. Bitte wählen Sie die Art der Anfrage aus den unten stehenden Optionen aus.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "Belgien",
             "dk": "Dänemark",

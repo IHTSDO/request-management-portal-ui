@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "Via dit portaal kunt u een aanvraag indienen om SNOMED CT-inhoud toe te voegen, bij te werken of te wijzigen. Selecteer uit de onderstaande opties het soort aanvraag dat u wenst te doen.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "België",
             "dk": "Denemarken",

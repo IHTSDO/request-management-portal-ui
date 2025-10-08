@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "Questo portale per la gestione delle richieste serve a presentare le richieste di aggiunta, aggiornamento o modifica dei contenuti di SNOMED CT. Selezionare il tipo di richiesta desiderato dalle opzioni sottostanti.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "Belgio",
             "dk": "Danimarca",

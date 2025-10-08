@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "이 포털은 SNOMED CT 콘텐츠의 추가, 수정 및 비활성화를 요청하는 포털입니다. 아래 제시된 콘텐츠 요청 유형을 선택해주세요.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "벨기에",
             "dk": "덴마크",
