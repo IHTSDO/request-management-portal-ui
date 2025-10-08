@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "Her kan du indsende anmodning om at få tilføjet eller ændret indhold i SNOMED CT. Vælg venligst den type forespørgsel du vil indsende blandt nedenstående muligheder.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "Belgien",
             "dk": "Danmark",

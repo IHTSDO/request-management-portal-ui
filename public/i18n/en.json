@@ -5,6 +5,11 @@
     "dashboard": {
         "title": "SNOMED CT",
         "description": "This Request Portal is for submitting requests to add, update or change SNOMED content within the following National Extensions. Please select the relevant country from the options below.",
+        "account": {
+            "pre": "To apply for an account to submit requests for an NRC please click",
+            "here": "here",
+            "post": "."
+        },
         "countries": {
             "be": "Belgium",
             "dk": "Denmark",
