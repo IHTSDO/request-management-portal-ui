@@ -186,6 +186,18 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     saveRequest(form: NgForm): void {
         if (this.mode === Mode.NEW) {
+            // Check if type is selected
+            if (!this.request.type || this.request.type.trim() === '') {
+                this.toastr.error('Please select a request type before submitting.', 'Type Required');
+                return;
+            }
+
+            // Check if summary is provided
+            if (!this.request.summary || this.request.summary.trim() === '') {
+                this.toastr.error('Please provide a summary before submitting.', 'Summary Required');
+                return;
+            }
+
             if (!form.valid) {
                 this.toastr.error('Please fill in all required fields before submitting.', 'Form Incomplete');
                 return;
@@ -432,6 +444,18 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     updateRequest(form: NgForm): void {
+        // Check if type is selected
+        if (!this.request.type || this.request.type.trim() === '') {
+            this.toastr.error('Please select a request type before saving.', 'Type Required');
+            return;
+        }
+
+        // Check if summary is provided
+        if (!this.request.summary || this.request.summary.trim() === '') {
+            this.toastr.error('Please provide a summary before saving.', 'Summary Required');
+            return;
+        }
+
         if (!form.valid) {
             this.toastr.error('Please fill in all required fields before submitting.', 'Form Incomplete');
             return;

@@ -117,6 +117,7 @@
         },
         "validation": {
             "summaryRequired": "Bitte Zusammenfassung eingeben",
+            "typeRequired": "Bitte Typ eingeben",
             "newFsnRequired": "Bitte FSN eingeben",
             "newPtRequired": "Bitte Preferred Term eingeben",
             "parentConceptRequired": "Bitte übergeordnetes Konzept eingeben",
@@ -129,6 +130,7 @@
             "existingRelationshipRequired": "Bitte Relationship eingeben"
         },
         "typeOptions": {
+            "pleaseSelect": "Bitte Typ auswählen",
             "addConcept": "Konzept hinzufügen",
             "addDescription": "Term hinzufügen",
             "addRelationship": "Relationship hinzufügen",

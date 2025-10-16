@@ -117,6 +117,7 @@
         },
         "validation": {
             "summaryRequired": "Riassunto è obbligatorio",
+            "typeRequired": "Tipo è obbligatorio",
             "newFsnRequired": "New FSN è obbligatorio",
             "newPtRequired": "New Preferred Term è obbligatorio",
             "parentConceptRequired": "Parent Concept è obbligatorio",
@@ -129,6 +130,7 @@
             "existingRelationshipRequired": "Existing Relationship è obbligatorio"
         },
         "typeOptions": {
+            "pleaseSelect": "Seleziona un tipo",
             "addConcept": "Aggiungi Concetto",
             "addDescription": "Aggiungi Descrizione",
             "addRelationship": "Aggiungi Relazione",

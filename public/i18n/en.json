@@ -121,6 +121,7 @@
         },
         "validation": {
             "summaryRequired": "Summary is required",
+            "typeRequired": "Type is required",
             "newFsnRequired": "New FSN is required",
             "newPtRequired": "New Preferred Term is required",
             "parentConceptRequired": "Parent Concept is required",
@@ -133,6 +134,7 @@
             "existingRelationshipRequired": "Existing Relationship is required"
         },
         "typeOptions": {
+            "pleaseSelect": "Please select a type",
             "addConcept": "Add Concept",
             "addDescription": "Add Description",
             "addRelationship": "Add Relationship",

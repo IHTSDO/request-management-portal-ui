@@ -117,6 +117,7 @@
         },
         "validation": {
             "summaryRequired": "Résumé est requise",
+            "typeRequired": "Type est requis",
             "newFsnRequired": "Nouveau FSN est requise",
             "newPtRequired": "Nouveau Preferred Term est requise",
             "parentConceptRequired": "Concept parent est requise",
@@ -129,6 +130,7 @@
             "existingRelationshipRequired": "Relation existante est requise"
         },
         "typeOptions": {
+            "pleaseSelect": "Veuillez sélectionner un type",
             "addConcept": "Ajouter Concept",
             "addDescription": "Ajouter Description",
             "addRelationship": "Ajouter Relation",

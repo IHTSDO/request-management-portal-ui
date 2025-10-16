@@ -117,6 +117,7 @@
         },
         "validation": {
             "summaryRequired": "Resumé er påkrævet",
+            "typeRequired": "Type er påkrævet",
             "newFsnRequired": "Ny FSN er påkrævet",
             "newPtRequired": "Ny foretrukken term er påkrævet",
             "parentConceptRequired": "Overbegreb er påkrævet",
@@ -129,6 +130,7 @@
             "existingRelationshipRequired": "Eksisterende relation er påkrævet"
         },
         "typeOptions": {
+            "pleaseSelect": "Vælg venligst en type",
             "addConcept": "Tilføj Begreb",
             "addDescription": "Tilføj Term",
             "addRelationship": "Tilføj Relation",
