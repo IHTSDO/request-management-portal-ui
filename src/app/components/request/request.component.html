@@ -26,7 +26,18 @@
                                     | statusTransform}}</span>
                             </div>
                             <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
-                            <div class="font-normal text-slate-700 text-sm p-2"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
+                            <div class="font-normal text-slate-700 text-sm p-2 relative inline-block">
+                                <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
+                                <label *ngIf="isStaff(user)" for="reporter" class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}&nbsp;</label>
+                                <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300 inline-block">
+                                    <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
+                                </div>
+                                <div *ngIf="showReporterTypeahead && reporterTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 -right-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                    <div *ngFor="let reporter of reporterTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectReporterResult(reporter)">
+                                        {{ getDisplayFromUserObject(reporter) }}
+                                    </div>
+                                </div>
+                            </div>
                             <div class="font-normal text-slate-700 text-sm py-1 me-1 relative inline-block">
                                 <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}:</label>&nbsp;<span>{{ getAssigneeDisplayValue() != '' ? getAssigneeDisplayValue() : 'Unassigned' }}</span></div>
                                 <label *ngIf="isStaff(user)" for="assignee" class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}&nbsp;</label>

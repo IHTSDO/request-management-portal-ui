@@ -40,6 +40,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     extensionSubscription: Subscription;
     displayWorkflowDiagram: boolean = false;
     comment: string = '';
+    reporters: any[] = [];
     assignees: any[] = [];
     userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     config: any = data;
@@ -59,6 +60,12 @@ export class RequestComponent implements OnInit, OnDestroy {
     showAssigneeTypeahead: boolean = false;
     assigneeTypeaheadSubject = new BehaviorSubject<string>('');
     assigneeTypeaheadSubscription: Subscription;
+
+    // Reporter typeahead properties
+    reporterTypeaheadResults: any[] = [];
+    showReporterTypeahead: boolean = false;
+    reporterTypeaheadSubject = new BehaviorSubject<string>('');
+    reporterTypeaheadSubscription: Subscription;
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
@@ -129,6 +136,36 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.showAssigneeTypeahead = false;
             }
         });
+
+        // Initialize reporter typeahead subscription
+        this.reporterTypeaheadSubscription = this.reporterTypeaheadSubject.pipe(
+            debounceTime(300),
+            tap(() => {
+                this.reporterTypeaheadResults = [];
+                this.showReporterTypeahead = false;
+            }),
+            switchMap(searchText => {
+                if (searchText && searchText.trim() !== '' && searchText.length >= 1) {
+                    const filtered = this.reporters.filter(reporter => {
+                        const displayName = this.getDisplayFromUserObject(reporter);
+                        return displayName.toLowerCase().includes(searchText.toLowerCase());
+                    });
+                    return of(filtered);
+                } else {
+                    return of(this.reporters || []);
+                }
+            })
+        ).subscribe({
+            next: (results: any[]) => {
+                this.reporterTypeaheadResults = results;
+                this.showReporterTypeahead = results.length > 0;
+            },
+            error: (error) => {
+                console.error('Reporter typeahead error:', error);
+                this.reporterTypeaheadResults = [];
+                this.showReporterTypeahead = false;
+            }
+        });
     }
 
     ngOnInit(): void {
@@ -165,6 +202,9 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
         if (this.assigneeTypeaheadSubscription) {
             this.assigneeTypeaheadSubscription.unsubscribe();
+        }
+        if (this.reporterTypeaheadSubscription) {
+            this.reporterTypeaheadSubscription.unsubscribe();
         }
     }
 
@@ -364,18 +404,61 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
         this.showAssigneeTypeahead = false;
         this.assigneeTypeaheadResults = [];
-        
+
         const updatedRequest: Request = this.request;
         this.toastr.info('Updating assignee...', 'INFO');
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {
                 this.toastr.clear(); // Clear any previous toastr messages
                 this.toastr.success(assignee.name === 'unassigned' ? 'Assignee removed successfully' : 'Assignee updated successfully', 'SUCCESS');
-                this.originalRequest = JSON.parse(JSON.stringify(this.request));                
+                this.originalRequest = JSON.parse(JSON.stringify(this.request));
             },
             error: () => {
                 this.toastr.clear(); // Clear any previous toastr messages
                 this.toastr.error('Assignee update failed', 'ERROR');
+            }
+        });
+    }
+
+    onReporterInput(event: any): void {
+        const searchText = event.target.value;
+        this.reporterTypeaheadSubject.next(searchText);
+    }
+
+    onReporterFocus(event: any): void {
+        this.showReporterTypeahead = true;
+        this.reporterTypeaheadSubject.next('');
+    }
+
+    onReporterBlur(event: any): void {
+        setTimeout(() => {
+            this.showReporterTypeahead = false;
+            this.reporterTypeaheadResults = [];
+        }, 200); // Delay to allow click event to register
+    }
+
+    selectReporterResult(reporter: any): void {
+        if (this.request.reporter === reporter.name) {
+            this.showReporterTypeahead = false;
+            this.reporterTypeaheadResults = [];
+            return; // No change, do nothing
+        }
+
+        this.request.reporter = reporter.name;
+        this.showReporterTypeahead = false;
+        this.reporterTypeaheadResults = [];
+
+        const updatedRequest: Request = this.request;
+        this.toastr.info('Updating reporter...', 'INFO');
+        this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
+            next: () => {
+                this.toastr.clear(); // Clear any previous toastr messages
+                this.toastr.success('Reporter updated successfully', 'SUCCESS');
+                this.originalRequest = JSON.parse(JSON.stringify(this.request));
+            },
+            error: () => {
+                this.toastr.clear(); // Clear any previous toastr messages
+                this.toastr.error('Reporter update failed', 'ERROR');
             }
         });
     }
@@ -385,6 +468,13 @@ export class RequestComponent implements OnInit, OnDestroy {
             return '';
         }
         return this.getDisplayName(this.request.assignee);
+    }
+
+    getReporterDisplayValue(): string {
+        if (!this.request.reporter) {
+            return '';
+        }
+        return this.getDisplayName(this.request.reporter);
     }
 
     isStaff(user: User): boolean {
@@ -408,8 +498,9 @@ export class RequestComponent implements OnInit, OnDestroy {
                 const staffItems = staff?.users?.items ?? [];
                 const requestorItems = requestors?.users?.items ?? [];
                 this.assignees = [{name: 'unassigned', displayName: 'Unassigned'}, ...staffItems];
+                this.reporters = staffItems.concat(requestorItems);
                 // Build a display name map from the fetched users
-                const allUsers = staffItems.concat(requestorItems)
+                const allUsers = staffItems.concat(requestorItems);
                 allUsers.forEach((u: any) => {
                     const computedFullName = [u?.firstName, u?.lastName].filter(Boolean).join(' ').trim();
                     const display: string = u?.displayName || (computedFullName || undefined) || u?.name;
@@ -437,7 +528,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     hasRequestChanged(): boolean {
         // Ignore server-managed fields:
         const normalize = (r: Request) => {
-            const { created, updated, status, assignee, ...rest } = r as any;
+            const { created, updated, status, assignee, reporter, ...rest } = r as any;
             return rest;
         };
         return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
