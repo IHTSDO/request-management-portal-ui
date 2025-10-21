@@ -5,13 +5,13 @@ import {Request} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
 import {debounceTime, BehaviorSubject, Subscription, switchMap, tap} from 'rxjs';
-import {StatusTransformPipe} from '../../pipes/status-transform/status-transform.pipe';
-import {RequestTypeTransformPipe} from '../../pipes/request-type-transform/request-type-transform.pipe';
+import {StatusTransformPipe, StatusEnum} from '../../pipes/status-transform/status-transform.pipe';
+import {RequestTypeTransformPipe, RequestTypeEnum} from '../../pipes/request-type-transform/request-type-transform.pipe';
 import {FormsModule} from '@angular/forms';
 import {UserRequestsPipe} from '../../pipes/user-requests/user-requests.pipe';
 import {User} from '../../models/user';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
-import {TranslatePipe} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import * as data from 'public/config/config.json';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
@@ -60,7 +60,8 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 private readonly configService: ConfigService,
                 private readonly toastr: ToastrService,
                 private readonly languageService: LanguageService,
-                private readonly navigationService: NavigationService) {
+                private readonly navigationService: NavigationService,
+                private readonly translateService: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => {
             this.user = data;
             if (data) {
@@ -131,13 +132,13 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.authoringService.httpDeleteRMPRequest(request.id).subscribe({
             next: () => {
                 this.toastr.clear();
-                this.toastr.success('Request with ID: ' + request.id + ' has been deleted successfully.', 'Request Deleted');
+                this.toastr.success(this.translateService.instant('requestManagement.delete.successMessage', {id: request.id}), this.translateService.instant('requestManagement.delete.successTitle'));
                 this.searchRequests();
                 this.deleteOption = null;
             },
             error: error => {
                 this.toastr.clear();
-                this.toastr.error('Error deleting request: ' + error, 'Error');
+                this.toastr.error(this.translateService.instant('requestManagement.delete.errorMessage', {error: error}), this.translateService.instant('requestManagement.delete.errorTitle'));
                 this.deleteOption = null;
             }
         });
@@ -199,6 +200,146 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             }
         }
         return this.userDisplayNameByUsername?.get(identifier) ?? identifier;
+    }
+
+    downloadRequestsAsTSV(): void {
+        if (this.requestLoading) {
+            this.toastr.warning(this.translateService.instant('requestManagement.download.waitForRequest'), this.translateService.instant('requestManagement.download.requestInProgress'));
+            return;
+        }
+
+        this.toastr.info(this.translateService.instant('requestManagement.download.fetchingRequests'), this.translateService.instant('requestManagement.download.pleaseWait'));
+
+        // Fetch all requests from server with current filters using pagination
+        const sortParam = `${this.sortColumn},${this.sortDirection}`;
+        const statusList = this.calculateStatus();
+        const pageSize = 500;
+        let allRequests: Request[] = [];
+        let currentPage = 0;
+        let totalElements = 0;
+        let hasMorePages = true;
+
+        const fetchAllRequests = (): void => {
+            this.authoringService.searchRMPTask(
+                this.country,
+                this.searchText.trim(),
+                pageSize,
+                currentPage,
+                sortParam,
+                statusList,
+                this.assignedRequests ? this.assignees : null,
+                this.myRequests ? this.reporters : null
+            ).subscribe({
+                next: (response) => {
+                    const pageRequests = response.content as Request[];
+                    const totalElementsFromResponse = response.totalElements as number;
+                    
+                    if (currentPage === 0) {
+                        totalElements = totalElementsFromResponse;
+                    }
+
+                    if (pageRequests && pageRequests.length > 0) {
+                        allRequests = allRequests.concat(pageRequests);
+                    }
+
+                    // Check if we have more pages to fetch
+                    hasMorePages = (currentPage + 1) * pageSize < totalElements;
+                    currentPage++;
+
+                    if (hasMorePages) {
+                        // Continue fetching next page
+                        fetchAllRequests();
+                    } else {
+                        // All pages fetched, proceed with download
+                        this.processDownload(allRequests);
+                    }
+                },
+                error: (error) => {
+                    this.toastr.clear();
+                    this.toastr.error(this.translateService.instant('requestManagement.download.fetchFailed'), this.translateService.instant('requestManagement.download.downloadError'));
+                    console.error('Error fetching requests for download:', error);
+                }
+            });
+        };
+
+        // Start fetching all requests
+        fetchAllRequests();
+    }
+
+    private processDownload(allRequests: Request[]): void {
+        if (!allRequests || allRequests.length === 0) {
+            this.toastr.warning(this.translateService.instant('requestManagement.download.noRequestsFound'), this.translateService.instant('requestManagement.download.noData'));
+            return;
+        }
+
+        // Create TSV headers
+        const headers = [
+            this.translateService.instant('requestManagement.tsvHeaders.id'),
+            this.translateService.instant('requestManagement.tsvHeaders.summary'),
+            this.translateService.instant('requestManagement.tsvHeaders.type'),
+            this.translateService.instant('requestManagement.tsvHeaders.status'),
+            this.translateService.instant('requestManagement.tsvHeaders.createdDate'),
+            this.translateService.instant('requestManagement.tsvHeaders.updatedDate'),
+            this.translateService.instant('requestManagement.tsvHeaders.reporter'),
+            this.translateService.instant('requestManagement.tsvHeaders.assignee')
+        ];
+
+        // Create TSV rows
+        const rows = allRequests.map(request => [
+            request.id?.toString() || '',
+            this.escapeTSVField(request.summary || ''),
+            this.transformRequestType(request.type || ''),
+            this.transformStatus(request.status || ''),
+            request.created ? new Date(request.created).toISOString().split('T')[0] : '',
+            request.updated ? new Date(request.updated).toISOString().split('T')[0] : '',
+            this.escapeTSVField(this.getDisplayName(request.reporter) || ''),
+            this.escapeTSVField(this.getDisplayName(request.assignee) || 'Unassigned')                    
+        ]);
+
+        // Combine headers and rows
+        const tsvContent = [headers.join('\t'), ...rows.map(row => row.join('\t'))].join('\n');
+
+        // Create and trigger download
+        const blob = new Blob([tsvContent], { type: 'text/tab-separated-values;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+
+        link.setAttribute('href', url);
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const timestamp = `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+        link.setAttribute('download', `requests_${this.country}_${timestamp}.tsv`);
+        link.style.visibility = 'hidden';
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+
+        this.toastr.clear();
+        this.toastr.success(this.translateService.instant('requestManagement.download.downloadedSuccessfully', {count: allRequests.length}), this.translateService.instant('requestManagement.download.downloadComplete'));
+    }
+
+    private escapeTSVField(field: string): string {
+        if (!field) return '';
+        // Escape tabs, newlines, and double quotes in TSV fields
+        return field.replace(/\t/g, ' ').replace(/\n/g, ' ').replace(/\r/g, ' ').replace(/"/g, '""');
+    }
+
+    private transformStatus(status: string): string {
+        if (!status) return '';
+        return StatusEnum[status] || status;
+    }
+
+    private transformRequestType(type: string): string {
+        if (!type) return '';
+        return RequestTypeEnum[type.replace('-', '_').toLowerCase()] || type;
     }
 
     private populateUserDisplayMap(): void {

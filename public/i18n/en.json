@@ -50,6 +50,7 @@
         "search": "Search...",
         "typeToSearch": "Type to search...",
         "newRequestButton": "NEW REQUEST",
+        "downloadButton": "DOWNLOAD TSV",
         "id": "ID",
         "request": "REQUEST",
         "type": "TYPE",
@@ -66,7 +67,36 @@
         "confirmDelete": "Are you sure you want to delete this request?",
         "confirmDeleteComment": "Are you sure you want to delete this comment?",
         "deleteButton": "DELETE",
-        "cancelButton": "CANCEL"
+        "cancelButton": "CANCEL",
+        "delete": {
+            "successMessage": "Request with ID: {{id}} has been deleted successfully.",
+            "successTitle": "Request Deleted",
+            "errorMessage": "Error deleting request: {{error}}",
+            "errorTitle": "Error"
+        },
+        "download": {
+            "waitForRequest": "Please wait for current request to complete.",
+            "requestInProgress": "Request in Progress",
+            "fetchingRequests": "Fetching all requests for download...",
+            "pleaseWait": "Please wait",
+            "noRequestsFound": "No requests found to download.",
+            "noData": "No Data",
+            "downloadedSuccessfully": "Downloaded {{count}} requests successfully.",
+            "downloadComplete": "Download Complete",
+            "fetchFailed": "Failed to fetch requests for download.",
+            "downloadError": "Download Error",
+            "rmpi116Error": "Server error RMPI-116: Unable to process download request. Please try with a smaller dataset or contact support."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "Summary",
+            "type": "Type",
+            "status": "Status",
+            "createdDate": "Created Date",
+            "updatedDate": "Updated Date",
+            "reporter": "Reporter",
+            "assignee": "Assignee"
+        }
     },
     "request": {
         "newRequest": "New Request",

@@ -50,6 +50,7 @@
         "search": "Ricerca...",
         "typeToSearch": "Immettere una chiave di ricerca...",
         "newRequestButton": "NUOVA RICHIESTA",
+        "downloadButton": "SCARICA TSV",
         "id": "ID",
         "request": "RICHIESTA",
         "type": "TIPO",
@@ -64,7 +65,36 @@
         "deleteTitle": "Elimina richiesta #{{id}}",
         "confirmDelete": "Sei sicuro di voler eliminare questa richiesta?",
         "deleteButton": "ELIMINA",
-        "cancelButton": "ANNULLA"
+        "cancelButton": "ANNULLA",
+        "delete": {
+            "successMessage": "La richiesta con ID: {{id}} è stata eliminata con successo.",
+            "successTitle": "Richiesta eliminata",
+            "errorMessage": "Errore durante l'eliminazione della richiesta: {{error}}",
+            "errorTitle": "Errore"
+        },
+        "download": {
+            "waitForRequest": "Attendere il completamento della richiesta corrente.",
+            "requestInProgress": "Richiesta in corso",
+            "fetchingRequests": "Recupero di tutte le richieste per il download...",
+            "pleaseWait": "Attendere prego",
+            "noRequestsFound": "Nessuna richiesta trovata per il download.",
+            "noData": "Nessun dato",
+            "downloadedSuccessfully": "{{count}} richieste scaricate con successo.",
+            "downloadComplete": "Download completato",
+            "fetchFailed": "Impossibile recuperare le richieste per il download.",
+            "downloadError": "Errore di download",
+            "rmpi116Error": "Errore server RMPI-116: Impossibile elaborare la richiesta di download. Provare con un dataset più piccolo o contattare il supporto."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "Riassunto",
+            "type": "Tipo",
+            "status": "Stato",
+            "createdDate": "Data di creazione",
+            "updatedDate": "Data di aggiornamento",
+            "reporter": "Segnalatore",
+            "assignee": "Assegnato"
+        }
     },
     "request": {
         "newRequest": "Nuova richiesta",

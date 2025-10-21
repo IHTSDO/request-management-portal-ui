@@ -50,6 +50,7 @@
         "search": "Søge...",
         "typeToSearch": "Tast for at søge...",
         "newRequestButton": "NY ANMODNING",
+        "downloadButton": "DOWNLOAD TSV",
         "id": "ID",
         "request": "ANMODNING",
         "type": "TYPE",
@@ -64,7 +65,36 @@
         "deleteTitle": "Slet anmodning #{{id}}",
         "confirmDelete": "Er du sikker på, at du vil slette denne anmodning?",
         "deleteButton": "SLET",
-        "cancelButton": "ANNULLER"
+        "cancelButton": "ANNULLER",
+        "delete": {
+            "successMessage": "Anmodning med ID: {{id}} er blevet slettet succesfuldt.",
+            "successTitle": "Anmodning slettet",
+            "errorMessage": "Fejl ved sletning af anmodning: {{error}}",
+            "errorTitle": "Fejl"
+        },
+        "download": {
+            "waitForRequest": "Vent venligst, indtil den aktuelle anmodning er færdig.",
+            "requestInProgress": "Anmodning i gang",
+            "fetchingRequests": "Henter alle anmodninger til download...",
+            "pleaseWait": "Vent venligst",
+            "noRequestsFound": "Ingen anmodninger fundet til download.",
+            "noData": "Ingen data",
+            "downloadedSuccessfully": "{{count}} anmodninger hentet succesfuldt.",
+            "downloadComplete": "Download færdig",
+            "fetchFailed": "Kunne ikke hente anmodninger til download.",
+            "downloadError": "Download-fejl",
+            "rmpi116Error": "Server-fejl RMPI-116: Kan ikke behandle download-anmodning. Prøv med et mindre datasæt eller kontakt support."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "Resumé",
+            "type": "Type",
+            "status": "Status",
+            "createdDate": "Oprettet den",
+            "updatedDate": "Opdateret den",
+            "reporter": "Rapportør",
+            "assignee": "Tildelt"
+        }
     },
     "request": {
         "newRequest": "Ny anmodning",
