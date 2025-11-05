@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/user";
 import {Subscription} from "rxjs";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
+import {CommonModule} from "@angular/common";
 import {Router} from '@angular/router';
 import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 import {Extension} from '../../models/extension';
@@ -16,7 +16,7 @@ import {ConfigService, LauncherApp} from '../../services/config/config.service';
 @Component({
     selector: 'app-snomed-navbar',
     standalone: true,
-    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe],
+    imports: [CommonModule, TranslatePipe],
     templateUrl: './snomed-navbar.component.html',
     styleUrl: './snomed-navbar.component.scss'
 })

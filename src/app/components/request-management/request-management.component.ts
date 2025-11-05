@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {Request} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
@@ -11,12 +11,12 @@ import {FormsModule} from '@angular/forms';
 import {UserRequestsPipe} from '../../pipes/user-requests/user-requests.pipe';
 import {User} from '../../models/user';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
-import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import * as data from 'public/config/config.json';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
 import {LanguageService} from '../../services/language/language.service';
 import {NavigationService} from '../../services/navigation/navigation.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-request-management',

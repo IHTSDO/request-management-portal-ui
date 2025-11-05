@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, DOCUMENT} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {SnomedNavbarComponent} from "./components/snomed-navbar/snomed-navbar.component";
 import {AuthenticationService} from "./services/authentication/authentication.service";
-import {DOCUMENT} from "@angular/common";
+
 import {AuthoringService} from './services/authoring/authoring.service';
 import {ConfigService} from './services/config/config.service';
 
