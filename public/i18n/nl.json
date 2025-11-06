@@ -50,6 +50,7 @@
         "search": "Zoeken...",
         "typeToSearch": "Typ om te zoeken...",
         "newRequestButton": "NIEUW VERZOEK",
+        "downloadButton": "DOWNLOADEN",
         "id": "ID",
         "request": "VERZOEK",
         "type": "TYPE",
@@ -64,7 +65,36 @@
         "deleteTitle": "Verzoek #{{id}} verwijderen",
         "confirmDelete": "Weet u zeker dat u dit verzoek wilt verwijderen?",
         "deleteButton": "VERWIJDEREN",
-        "cancelButton": "ANNULEREN"
+        "cancelButton": "ANNULEREN",
+        "delete": {
+            "successMessage": "Verzoek met ID: {{id}} is succesvol verwijderd.",
+            "successTitle": "Verzoek verwijderd",
+            "errorMessage": "Fout bij het verwijderen van verzoek: {{error}}",
+            "errorTitle": "Fout"
+        },
+        "download": {
+            "waitForRequest": "Wacht tot het huidige verzoek is voltooid.",
+            "requestInProgress": "Verzoek in behandeling",
+            "fetchingRequests": "Alle verzoeken voor download worden opgehaald...",
+            "pleaseWait": "Even geduld",
+            "noRequestsFound": "Geen verzoeken gevonden om te downloaden.",
+            "noData": "Geen gegevens",
+            "downloadedSuccessfully": "{{count}} verzoeken succesvol gedownload.",
+            "downloadComplete": "Download voltooid",
+            "fetchFailed": "Kon verzoeken niet ophalen voor download.",
+            "downloadError": "Download-fout",
+            "rmpi116Error": "Server-fout RMPI-116: Kan download-verzoek niet verwerken. Probeer met een kleinere dataset of neem contact op met ondersteuning."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "Samenvatting",
+            "type": "Type",
+            "status": "Status",
+            "createdDate": "Aangemaakt op",
+            "updatedDate": "Bijgewerkt op",
+            "reporter": "Melder",
+            "assignee": "Toegewezen"
+        }
     },
     "request": {
         "newRequest": "Nieuw verzoek",
@@ -117,6 +147,7 @@
         },
         "validation": {
             "summaryRequired": "Omschrijving is vereist",
+            "typeRequired": "Type is vereist",
             "newFsnRequired": "Nieuwe FSN is vereist",
             "newPtRequired": "Nieuwe Preferred Term is vereist",
             "parentConceptRequired": "Ouderconcept is vereist",
@@ -129,6 +160,7 @@
             "existingRelationshipRequired": "Bestaande relatie is vereist"
         },
         "typeOptions": {
+            "pleaseSelect": "Selecteer een type",
             "addConcept": "Concept Toevoegen",
             "addDescription": "Beschrijving Toevoegen",
             "addRelationship": "Relatie Toevoegen",

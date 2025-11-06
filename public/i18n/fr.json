@@ -50,6 +50,7 @@
         "search": "Rechercher...",
         "typeToSearch": "Tapez pour rechercher...",
         "newRequestButton": "NOUVELLE DEMANDE",
+        "downloadButton": "TÉLÉCHARGER",
         "id": "ID",
         "request": "DEMANDE",
         "type": "TYPE",
@@ -64,7 +65,36 @@
         "deleteTitle": "Supprimer la demande #{{id}}",
         "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette demande ?",
         "deleteButton": "SUPPRIMER",
-        "cancelButton": "ANNULER"
+        "cancelButton": "ANNULER",
+        "delete": {
+            "successMessage": "La demande avec l'ID : {{id}} a été supprimée avec succès.",
+            "successTitle": "Demande supprimée",
+            "errorMessage": "Erreur lors de la suppression de la demande : {{error}}",
+            "errorTitle": "Erreur"
+        },
+        "download": {
+            "waitForRequest": "Veuillez attendre que la demande actuelle soit terminée.",
+            "requestInProgress": "Demande en cours",
+            "fetchingRequests": "Récupération de toutes les demandes pour téléchargement...",
+            "pleaseWait": "Veuillez patienter",
+            "noRequestsFound": "Aucune demande trouvée pour téléchargement.",
+            "noData": "Aucune donnée",
+            "downloadedSuccessfully": "{{count}} demandes téléchargées avec succès.",
+            "downloadComplete": "Téléchargement terminé",
+            "fetchFailed": "Échec de la récupération des demandes pour téléchargement.",
+            "downloadError": "Erreur de téléchargement",
+            "rmpi116Error": "Erreur serveur RMPI-116: Impossible de traiter la demande de téléchargement. Veuillez essayer avec un ensemble de données plus petit ou contacter le support."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "Demande",
+            "type": "Type",
+            "status": "Statut",
+            "createdDate": "Date de création",
+            "updatedDate": "Date de mise à jour",
+            "reporter": "Déclarant",
+            "assignee": "Assigné"
+        }
     },
     "request": {
         "newRequest": "Nouvelle demande",
@@ -117,6 +147,7 @@
         },
         "validation": {
             "summaryRequired": "Résumé est requise",
+            "typeRequired": "Type est requis",
             "newFsnRequired": "Nouveau FSN est requise",
             "newPtRequired": "Nouveau Preferred Term est requise",
             "parentConceptRequired": "Concept parent est requise",
@@ -129,6 +160,7 @@
             "existingRelationshipRequired": "Relation existante est requise"
         },
         "typeOptions": {
+            "pleaseSelect": "Veuillez sélectionner un type",
             "addConcept": "Ajouter Concept",
             "addDescription": "Ajouter Description",
             "addRelationship": "Ajouter Relation",

@@ -50,6 +50,7 @@
         "search": "검색어...",
         "typeToSearch": "검색어를 입력하세요...",
         "newRequestButton": "새 요청",
+        "downloadButton": "다운로드",
         "id": "ID",
         "request": "요청",
         "type": "유형",
@@ -64,7 +65,36 @@
         "deleteTitle": "요청 #{{id}} 삭제",
         "confirmDelete": "이 요청을 삭제하시겠습니까?",
         "deleteButton": "삭제",
-        "cancelButton": "취소"
+        "cancelButton": "취소",
+        "delete": {
+            "successMessage": "ID {{id}}인 요청이 성공적으로 삭제되었습니다.",
+            "successTitle": "요청 삭제됨",
+            "errorMessage": "요청 삭제 중 오류 발생: {{error}}",
+            "errorTitle": "오류"
+        },
+        "download": {
+            "waitForRequest": "현재 요청이 완료될 때까지 기다려주세요.",
+            "requestInProgress": "요청 진행 중",
+            "fetchingRequests": "다운로드를 위한 모든 요청을 가져오는 중...",
+            "pleaseWait": "잠시만 기다려주세요",
+            "noRequestsFound": "다운로드할 요청이 없습니다.",
+            "noData": "데이터 없음",
+            "downloadedSuccessfully": "{{count}}개의 요청이 성공적으로 다운로드되었습니다.",
+            "downloadComplete": "다운로드 완료",
+            "fetchFailed": "다운로드를 위한 요청을 가져오는데 실패했습니다.",
+            "downloadError": "다운로드 오류",
+            "rmpi116Error": "서버 오류 RMPI-116: 다운로드 요청을 처리할 수 없습니다. 더 작은 데이터 세트로 시도하거나 지원팀에 문의하세요."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "요약",
+            "type": "유형",
+            "status": "상태",
+            "createdDate": "생성일",
+            "updatedDate": "업데이트일",
+            "reporter": "신고자",
+            "assignee": "담당자"
+        }
     },
     "request": {
         "newRequest": "새 요청",
@@ -117,6 +147,7 @@
         },
         "validation": {
             "summaryRequired": "요청사항 작성 필수",
+            "typeRequired": "유형 선택 필수",
             "newFsnRequired": "신규 FSN 입력 필수",
             "newPtRequired": "신규 한글 대표용어 입력 필수",
             "parentConceptRequired": "부모개념 입력 필수",
@@ -129,6 +160,7 @@
             "existingRelationshipRequired": "수정 전 관계(속성) 입력 필수"
         },
         "typeOptions": {
+            "pleaseSelect": "유형을 선택해주세요",
             "addDescription": "용어 추가",
             "addConcept": "개념 추가",
             "addRelationship": "관계 추가",

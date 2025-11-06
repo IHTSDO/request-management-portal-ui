@@ -50,6 +50,7 @@
         "search": "Suche...",
         "typeToSearch": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
+        "downloadButton": "HERUNTERLADEN",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",
@@ -64,7 +65,36 @@
         "deleteTitle": "Anfrage #{{id}} löschen",
         "confirmDelete": "Sind Sie sicher, dass Sie diese Anfrage löschen möchten?",
         "deleteButton": "LÖSCHEN",
-        "cancelButton": "ABBRECHEN"
+        "cancelButton": "ABBRECHEN",
+        "delete": {
+            "successMessage": "Anfrage mit ID: {{id}} wurde erfolgreich gelöscht.",
+            "successTitle": "Anfrage gelöscht",
+            "errorMessage": "Fehler beim Löschen der Anfrage: {{error}}",
+            "errorTitle": "Fehler"
+        },
+        "download": {
+            "waitForRequest": "Bitte warten Sie, bis die aktuelle Anfrage abgeschlossen ist.",
+            "requestInProgress": "Anfrage läuft",
+            "fetchingRequests": "Alle Anfragen für den Download werden abgerufen...",
+            "pleaseWait": "Bitte warten",
+            "noRequestsFound": "Keine Anfragen zum Download gefunden.",
+            "noData": "Keine Daten",
+            "downloadedSuccessfully": "{{count}} Anfragen erfolgreich heruntergeladen.",
+            "downloadComplete": "Download abgeschlossen",
+            "fetchFailed": "Fehler beim Abrufen der Anfragen für den Download.",
+            "downloadError": "Download-Fehler",
+            "rmpi116Error": "Server-Fehler RMPI-116: Download-Anfrage kann nicht verarbeitet werden. Bitte versuchen Sie es mit einem kleineren Datensatz oder kontaktieren Sie den Support."
+        },
+        "tsvHeaders": {
+            "id": "ID",
+            "summary": "Zusammenfassung",
+            "type": "Typ",
+            "status": "Status",
+            "createdDate": "Erstellt am",
+            "updatedDate": "Aktualisiert am",
+            "reporter": "Melder",
+            "assignee": "Zugewiesen"
+        }
     },
     "request": {
         "newRequest": "Neue Anfrage",
@@ -117,6 +147,7 @@
         },
         "validation": {
             "summaryRequired": "Bitte Zusammenfassung eingeben",
+            "typeRequired": "Bitte Typ eingeben",
             "newFsnRequired": "Bitte FSN eingeben",
             "newPtRequired": "Bitte Preferred Term eingeben",
             "parentConceptRequired": "Bitte übergeordnetes Konzept eingeben",
@@ -129,6 +160,7 @@
             "existingRelationshipRequired": "Bitte Relationship eingeben"
         },
         "typeOptions": {
+            "pleaseSelect": "Bitte Typ auswählen",
             "addConcept": "Konzept hinzufügen",
             "addDescription": "Term hinzufügen",
             "addRelationship": "Relationship hinzufügen",
