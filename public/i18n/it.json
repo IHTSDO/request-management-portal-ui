@@ -160,7 +160,6 @@
             "existingRelationshipRequired": "Existing Relationship è obbligatorio"
         },
         "typeOptions": {
-            "pleaseSelect": "Seleziona un tipo",
             "addConcept": "Aggiungi Concetto",
             "addDescription": "Aggiungi Descrizione",
             "addRelationship": "Aggiungi Relazione",

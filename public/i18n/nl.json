@@ -160,7 +160,6 @@
             "existingRelationshipRequired": "Bestaande relatie is vereist"
         },
         "typeOptions": {
-            "pleaseSelect": "Selecteer een type",
             "addConcept": "Concept Toevoegen",
             "addDescription": "Beschrijving Toevoegen",
             "addRelationship": "Relatie Toevoegen",

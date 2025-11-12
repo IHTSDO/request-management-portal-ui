@@ -278,7 +278,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     private resetFormValues(): void {
         this.request = new Request(
             null, // id
-            '', // type
+            'add-concept', // type
             'NEW', // status
             this.country, // country
             '', // reporter

@@ -160,7 +160,6 @@
             "existingRelationshipRequired": "Bitte Relationship eingeben"
         },
         "typeOptions": {
-            "pleaseSelect": "Bitte Typ auswählen",
             "addConcept": "Konzept hinzufügen",
             "addDescription": "Term hinzufügen",
             "addRelationship": "Relationship hinzufügen",

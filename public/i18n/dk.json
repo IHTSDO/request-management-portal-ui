@@ -160,7 +160,6 @@
             "existingRelationshipRequired": "Eksisterende relation er påkrævet"
         },
         "typeOptions": {
-            "pleaseSelect": "Vælg venligst en type",
             "addConcept": "Tilføj Begreb",
             "addDescription": "Tilføj Term",
             "addRelationship": "Tilføj Relation",

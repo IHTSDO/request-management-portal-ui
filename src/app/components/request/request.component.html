@@ -203,7 +203,6 @@
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.type" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" #typeInput="ngModel" required data-cy="type-select">
-                            <option value="">{{ 'request.typeOptions.pleaseSelect' | translate }}</option>
                             <option [value]="'add-concept'">{{ 'request.typeOptions.addConcept' | translate }}</option>
                             <option [value]="'add-description'">{{ 'request.typeOptions.addDescription' | translate }}</option>
                             <option [value]="'add-relationship'">{{ 'request.typeOptions.addRelationship' | translate }}</option>

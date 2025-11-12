@@ -160,7 +160,6 @@
             "existingRelationshipRequired": "수정 전 관계(속성) 입력 필수"
         },
         "typeOptions": {
-            "pleaseSelect": "유형을 선택해주세요",
             "addDescription": "용어 추가",
             "addConcept": "개념 추가",
             "addRelationship": "관계 추가",
