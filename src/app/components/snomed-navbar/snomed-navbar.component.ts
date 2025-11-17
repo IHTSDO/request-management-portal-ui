@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/user";
 import {Subscription} from "rxjs";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import {TranslateService, TranslatePipe} from "@ngx-translate/core";
 import {Extension} from '../../models/extension';
 import * as data from 'public/config/config.json';
@@ -12,11 +11,12 @@ import {LanguageService} from '../../services/language/language.service';
 import {SUPPORTED_LANGUAGES} from '../../constants/languages';
 import {NavigationService} from '../../services/navigation/navigation.service';
 import {ConfigService, LauncherApp} from '../../services/config/config.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-snomed-navbar',
     standalone: true,
-    imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, TranslatePipe],
+    imports: [CommonModule, TranslatePipe],
     templateUrl: './snomed-navbar.component.html',
     styleUrl: './snomed-navbar.component.scss'
 })
