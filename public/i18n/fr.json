@@ -94,7 +94,9 @@
             "updatedDate": "Date de mise à jour",
             "reporter": "Déclarant",
             "assignee": "Assigné"
-        }
+        },
+        "confirmDeleteComment": "Êtes-vous sûr de vouloir supprimer ce commentaire ?",
+        "deleteCommentTitle": "Supprimer le commentaire"
     },
     "request": {
         "newRequest": "Nouvelle demande",
