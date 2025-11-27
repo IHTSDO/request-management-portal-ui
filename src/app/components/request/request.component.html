@@ -431,24 +431,24 @@
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipChangeType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                                <input type="text" name="Relationship Change Type" id="relationshipChangeType" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipType" #relationshipChangeTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <input type="text" name="Relationship Type" id="relationshipType" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipType" #relationshipTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             </div>
-                            <div *ngIf="relationshipChangeTypeInput.invalid && relationshipChangeTypeInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipChangeTypeRequired' | translate }}</div>
+                            <div *ngIf="relationshipTypeInput.invalid && relationshipTypeInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipTypeRequired' | translate }}</div>
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipChangeTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
                                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
                                 </svg>
-                                <input type="text" name="Relationship Change Target" id="relationshipChangeTarget" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipTarget" #relationshipChangeTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <input type="text" name="Relationship Target" id="relationshipTarget" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipTarget" #relationshipTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             </div>
-                            <div *ngIf="relationshipChangeTargetInput.invalid && relationshipChangeTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipChangeTargetRequired' | translate }}</div>
+                            <div *ngIf="relationshipTargetInput.invalid && relationshipTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipTargetRequired' | translate }}</div>
                         </div>
                     </div>
                 </ng-container>
