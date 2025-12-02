@@ -534,6 +534,83 @@ export class RequestComponent implements OnInit, OnDestroy {
         return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
     }
 
+    areMandatoryFieldsPopulated(): boolean {
+        if (!this.request) {
+            return false;
+        }
+
+        // Common mandatory fields
+        if (!this.request.type || this.request.type.trim() === '') {
+            return false;
+        }
+
+        if (!this.request.summary || this.request.summary.trim() === '') {
+            return false;
+        }
+
+        // Type-specific mandatory fields
+        switch (this.request.type) {
+            case 'add-concept':
+                if (!this.request.newFSN || this.request.newFSN.trim() === '') return false;
+                if (!this.request.newPT || this.request.newPT.trim() === '') return false;
+                if (!this.request.parentConcept || this.request.parentConcept.trim() === '') return false;
+                break;
+
+            case 'add-description':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.newDescription || this.request.newDescription.trim() === '') return false;
+                break;
+
+            case 'add-relationship':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.relationshipType || this.request.relationshipType.trim() === '') return false;
+                if (!this.request.relationshipTarget || this.request.relationshipTarget.trim() === '') return false;
+                break;
+
+            case 'change-description':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingDescription || this.request.existingDescription.trim() === '') return false;
+                if (!this.request.newDescription || this.request.newDescription.trim() === '') return false;
+                break;
+
+            case 'change-relationship':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingRelationship || this.request.existingRelationship.trim() === '') return false;
+                if (!this.request.relationshipType || this.request.relationshipType.trim() === '') return false;
+                if (!this.request.relationshipTarget || this.request.relationshipTarget.trim() === '') return false;
+                break;
+
+            case 'inactivate-description':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingDescription || this.request.existingDescription.trim() === '') return false;
+                break;
+
+            case 'inactivate-relationship':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingRelationship || this.request.existingRelationship.trim() === '') return false;
+                break;
+
+            // For 'add-refset', 'change-refset', and 'other', only common fields are mandatory
+            case 'add-refset':
+            case 'change-refset':
+            case 'other':
+                // Only common mandatory fields (already checked above)
+                break;
+
+            default:
+                // For unknown types, only validate common fields
+                break;
+        }
+
+        return true;
+    }
+
     updateRequest(form: NgForm): void {
         // Check if type is selected
         if (!this.request.type || this.request.type.trim() === '') {

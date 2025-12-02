@@ -520,13 +520,13 @@
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW">
             <div class="justify-self-end">
                 <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5 cursor-pointer" (click)="resetForm(requestForm)" type="button">{{ 'request.resetButton' | translate }}</button>
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit" data-cy="submit-button" [disabled]="!request.type || request.type.trim() === '' || !request.summary || request.summary.trim() === ''" [class.disabled:bg-slate-300]="!request.type || request.type.trim() === '' || !request.summary || request.summary.trim() === ''">{{ 'request.submitButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" type="submit" data-cy="submit-button" [disabled]="!areMandatoryFieldsPopulated()" [class.disabled:bg-slate-300]="!areMandatoryFieldsPopulated()">{{ 'request.submitButton' | translate }}</button>
             </div>
         </div>
 
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode !== ModeType.NEW && (isStaff(user) || (isUser(user) && request.status === 'NEW'))">
             <div class="justify-self-end">
-                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" [disabled]="!hasRequestChanged()" [class.disabled:bg-slate-300]="!hasRequestChanged()" (click)="updateRequest(requestForm)" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
+                <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" [disabled]="!hasRequestChanged() || !areMandatoryFieldsPopulated()" [class.disabled:bg-slate-300]="!hasRequestChanged() || !areMandatoryFieldsPopulated()" (click)="updateRequest(requestForm)" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
             </div>
         </div>
 
