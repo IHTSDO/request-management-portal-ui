@@ -222,25 +222,8 @@
                 <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.languageRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.languageRefset" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="language-refset-select">
-                            <option>{{ 'request.languageRefsets.none' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.belgianDutch' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.belgianGerman' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.belgianFrench' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.danish' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.french' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.ieEnglish' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.gbEnglish' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.korean' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.maori' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.norwegianBokmal' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.norwegianNynorsk' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.nzEnglish' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.swedish' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.swissGerman' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.swissItalian' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.swissFrench' | translate }}</option>
-                            <option>{{ 'request.languageRefsets.usEnglish' | translate }}</option>
+                        <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.languageRefset" (ngModelChange)="onLanguageRefsetChange()" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="language-refset-select">
+                            <option *ngFor="let refset of languageRefsets">{{ refset.translationKey | translate }}</option>
                         </select>
                     </div>
                 </div>
@@ -250,16 +233,7 @@
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <select name="Context Refset" id="contextRefset" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.contextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="context-refset-select">
-                            <option>{{ 'request.contextRefsets.none' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.beGpDutch' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.beGpFrench' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.nzPatientFriendly' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.seChiefComplaints' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.seDoseUnitAbbr' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.seLabMedicine' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.seDoseUnitPlural' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.seMedicationProf' | translate }}</option>
-                            <option>{{ 'request.contextRefsets.seMedicationCommon' | translate }}</option>
+                            <option *ngFor="let refset of filteredContextRefsets">{{ refset.translationKey | translate }}</option>
                         </select>
                     </div>
                 </div>

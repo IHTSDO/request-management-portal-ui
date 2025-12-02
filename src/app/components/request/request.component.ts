@@ -8,9 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 import { User } from '../../models/user';
-import { BehaviorSubject, debounceTime, forkJoin, of, Subscription, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, debounceTime, forkJoin, of, Subscription, switchMap, tap, firstValueFrom } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../services/config/config.service';
 import { Extension } from '../../models/extension';
 import * as data from 'public/config/config.json';
@@ -44,6 +44,11 @@ export class RequestComponent implements OnInit, OnDestroy {
     assignees: any[] = [];
     userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     config: any = data;
+    languageRefsets: any[] = [];
+    filteredContextRefsets: any[] = [];
+    allContextRefsets: any[] = [];
+    noneLanguageRefsetValue: string = '';
+    noneContextRefsetValue: string = '';
     request: Request;
     originalRequest!: Request;
     requestId: string;
@@ -77,7 +82,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         private readonly activatedRoute: ActivatedRoute,
         private readonly statusPipe: StatusTransformPipe,
         private readonly languageService: LanguageService,
-        private readonly navigationService: NavigationService) {
+        private readonly navigationService: NavigationService,
+        private readonly translateService: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
@@ -173,12 +179,46 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
+        
+        // Wait for translations to be loaded before proceeding
+        this.initializeTranslations().then(() => {
+            // Load and filter language refsets from config by country code
+            this.filterLanguageRefsetsByCountry();
+            // Load and filter context refsets from config by country code
+            this.filterContextRefsetsByCountry();
+            this.loadRequestData();
+        });
+    }
+
+    async initializeTranslations(): Promise<void> {
+        // Wait for translations to be loaded and store "None" values
+        try {
+            const [noneLanguageRefset, noneContextRefset] = await Promise.all([
+                firstValueFrom(this.translateService.get('request.languageRefsets.none')),
+                firstValueFrom(this.translateService.get('request.contextRefsets.none'))
+            ]);
+            this.noneLanguageRefsetValue = noneLanguageRefset;
+            this.noneContextRefsetValue = noneContextRefset;
+        } catch (error) {
+            console.error('Error loading translations:', error);
+            // Fallback to instant
+            this.noneLanguageRefsetValue = this.translateService.instant('request.languageRefsets.none');
+            this.noneContextRefsetValue = this.translateService.instant('request.contextRefsets.none');
+        }
+    }
+
+    loadRequestData(): void {
         if (this.requestId) {
             this.mode = Mode.VIEW; // Set mode to view if requestId is present
             this.authoringService.httpGetRMPRequestDetails(this.requestId).subscribe(response => {
                 if (response) {
                     this.request = response as Request;
+                    // Normalize empty refsets to "None" for display
+                    this.normalizeRefsetsForDisplay();
+                    // Store normalized request as original for change detection
                     this.originalRequest = JSON.parse(JSON.stringify(this.request));
+                    // Re-filter context refsets based on the loaded request's language refset
+                    this.filterContextRefsetsByLanguageRefset();
                 }
             });
             this.authoringService.httpGetComments(this.requestId).subscribe(response => {
@@ -187,6 +227,8 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.populateAssignees();
         } else {
             this.resetFormValues(); // Reset form values to defaults
+            // Normalize empty refsets to "None" for display
+            this.normalizeRefsetsForDisplay();
         }
     }
 
@@ -246,11 +288,28 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.request.country = this.country; // Set the country from the route parameter
             this.request.status = 'NEW'; // Default status for new requests
 
+            // Create a copy of the request for saving
+            const requestToSave: Request = JSON.parse(JSON.stringify(this.request));
+            
+            // Normalize "None" values back to empty in the copy before saving
+            // Use stored values if available, otherwise use instant (may be translation key if not loaded)
+            const noneLanguageRefsetValue = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+            const noneContextRefsetValue = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+            
+            if (requestToSave.languageRefset === noneLanguageRefsetValue) {
+                requestToSave.languageRefset = '';
+            }
+            if (requestToSave.contextRefset === noneContextRefsetValue) {
+                requestToSave.contextRefset = '';
+            }
+
             this.toastr.info('Creating new request...', 'Please wait');
-            this.authoringService.httpCreateRMPRequest(this.request).subscribe(response => {
+            this.authoringService.httpCreateRMPRequest(requestToSave).subscribe(response => {
                 if (response) {
                     this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
                     this.request = response as Request;
+                    // Normalize empty refsets to "None" for display
+                    this.normalizeRefsetsForDisplay();
                     this.toastr.clear(); // Clear any previous toastr messages
                     this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
                 }
@@ -266,6 +325,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         // const currentFormType = this.formType; // Store current form type
         form.resetForm(); // Reset the form state
         this.resetFormValues(); // Reset form values to defaults
+        // Normalize empty refsets to "None" for display
+        this.normalizeRefsetsForDisplay();
         this.toastr.clear(); // Clear any previous toastr messages
 
         // setTimeout(() => {
@@ -611,6 +672,172 @@ export class RequestComponent implements OnInit, OnDestroy {
         return true;
     }
 
+    filterLanguageRefsetsByCountry(): void {
+        if (!this.config?.languageRefsets || !this.country) {
+            this.languageRefsets = this.config?.languageRefsets || [];
+            return;
+        }
+
+        // Filter language refsets based on country code
+        // If countries array is empty or not present, the refset is available for all countries
+        // If countries array contains the current country code, include it
+        // Always include "none"
+        this.languageRefsets = this.config.languageRefsets.filter((refset: any) => {
+            // Always include "none"
+            if (refset.translationKey === 'request.languageRefsets.none') {
+                return true;
+            }
+            
+            // If no countries array or empty array, available for all countries
+            if (!refset.countries || refset.countries.length === 0) {
+                return true;
+            }
+            
+            // Check if current country is in the countries array
+            return refset.countries.includes(this.country.toLowerCase());
+        });
+    }
+
+    filterContextRefsetsByCountry(): void {
+        if (!this.config?.contextRefsets || !this.country) {
+            this.allContextRefsets = this.config?.contextRefsets || [];
+            this.filterContextRefsetsByLanguageRefset();
+            return;
+        }
+
+        // Filter context refsets based on country code
+        // If countries array is empty or not present, the refset is available for all countries
+        // If countries array contains the current country code, include it
+        // Always include "none"
+        this.allContextRefsets = this.config.contextRefsets.filter((refset: any) => {
+            // Always include "none"
+            if (refset.translationKey === 'request.contextRefsets.none') {
+                return true;
+            }
+            
+            // If no countries array or empty array, available for all countries
+            if (!refset.countries || refset.countries.length === 0) {
+                return true;
+            }
+            
+            // Check if current country is in the countries array
+            return refset.countries.includes(this.country.toLowerCase());
+        });
+        
+        // Now filter by language refset as well
+        this.filterContextRefsetsByLanguageRefset();
+    }
+
+    filterContextRefsetsByLanguageRefset(): void {
+        if (!this.allContextRefsets || this.allContextRefsets.length === 0) {
+            this.filteredContextRefsets = [];
+            return;
+        }
+
+        // If no language refset is selected, show None context refset only
+        if (!this.request?.languageRefset || this.request.languageRefset.trim() === '') {
+            this.filteredContextRefsets = this.allContextRefsets.filter((refset: any) => {
+                if (refset.translationKey === 'request.contextRefsets.none') {
+                    return true;
+                }
+                return false;
+            });
+            return;
+        }
+
+        // Get the translated value of the selected language refset to match against linkedLanguageRefsets
+        const selectedLanguageRefsetValue = this.request.languageRefset;
+
+        // Filter context refsets based on selected language refset
+        // If linkedLanguageRefsets is empty or not present, the context refset is available for all language refsets
+        // If linkedLanguageRefsets contains the selected language refset translation key, include it
+        // Always include "none"
+        this.filteredContextRefsets = this.allContextRefsets.filter((refset: any) => {
+            // Always include "none"
+            if (refset.translationKey === 'request.contextRefsets.none') {
+                return true;
+            }
+            
+            // If no linkedLanguageRefsets array or empty array, available for all language refsets
+            if (!refset.linkedLanguageRefsets || refset.linkedLanguageRefsets.length === 0) {
+                return true;
+            }
+            
+            // Check if any linked language refset matches the selected language refset
+            // We need to compare translated values
+            return refset.linkedLanguageRefsets.some((linkedTranslationKey: string) => {
+                // Translate the linked translation key and compare with selected value
+                // For now, we'll use a simpler approach - check if the translation key exists in the linked list
+                // and compare using the request's language refset value
+                // This requires translating the linkedTranslationKey to compare with selectedLanguageRefsetValue
+                return this.isLanguageRefsetMatch(linkedTranslationKey, selectedLanguageRefsetValue);
+            });
+        });
+    }
+
+    isLanguageRefsetMatch(linkedTranslationKey: string, selectedValue: string): boolean {
+        // Try to get translated value using get() which waits for translations
+        // For now, use instant with fallback - in practice this should work once translations are loaded
+        // The comparison happens after translations are loaded in the filter method
+        const translatedLinkedValue = this.translateService.instant(linkedTranslationKey);
+        
+        // Compare the translated value with the selected value
+        return translatedLinkedValue === selectedValue;
+    }
+
+    onLanguageRefsetChange(): void {
+        // When language refset changes, re-filter context refsets
+        this.filterContextRefsetsByLanguageRefset();
+        
+        // If the current context refset is no longer valid, clear it
+        if (this.request.contextRefset && this.request.contextRefset !== '') {
+            const currentContextRefsetTranslated = this.request.contextRefset;
+            const isValid = this.filteredContextRefsets.some((refset: any) => {
+                const refsetTranslated = this.translateService.instant(refset.translationKey);
+                return refsetTranslated === currentContextRefsetTranslated;
+            });
+            
+            if (!isValid) {
+                // Use stored value if available, otherwise use instant (may be translation key if not loaded)
+                this.request.contextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+            }
+        }
+    }
+
+    normalizeRefsetsForDisplay(): void {
+        // Use stored translation values (loaded in initializeTranslations)
+        // Fallback to instant if not yet loaded (will be translation key if translations not ready)
+        const noneLanguageRefset = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+        const noneContextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+        
+        // Convert empty language refset to "None" for display
+        if (!this.request.languageRefset || this.request.languageRefset.trim() === '') {
+            this.request.languageRefset = noneLanguageRefset;
+        }
+        
+        // Convert empty context refset to "None" for display
+        if (!this.request.contextRefset || this.request.contextRefset.trim() === '') {
+            this.request.contextRefset = noneContextRefset;
+        }
+    }
+
+    normalizeRefsetsForSave(): void {
+        // Use stored translation values (loaded in initializeTranslations)  
+        // Fallback to instant if not yet loaded
+        const noneLanguageRefset = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+        const noneContextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+        
+        // Convert "None" language refset back to empty for saving
+        if (this.request.languageRefset === noneLanguageRefset) {
+            this.request.languageRefset = '';
+        }
+        
+        // Convert "None" context refset back to empty for saving
+        if (this.request.contextRefset === noneContextRefset) {
+            this.request.contextRefset = '';
+        }
+    }
+
     updateRequest(form: NgForm): void {
         // Check if type is selected
         if (!this.request.type || this.request.type.trim() === '') {
@@ -634,7 +861,20 @@ export class RequestComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const updatedRequest: Request = this.request;
+        // Create a copy of the request for saving
+        const updatedRequest: Request = JSON.parse(JSON.stringify(this.request));
+        
+        // Normalize "None" values back to empty in the copy before saving
+        // Use stored values if available, otherwise use instant (may be translation key if not loaded)
+        const noneLanguageRefsetValue = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+        const noneContextRefsetValue = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+        
+        if (updatedRequest.languageRefset === noneLanguageRefsetValue) {
+            updatedRequest.languageRefset = '';
+        }
+        if (updatedRequest.contextRefset === noneContextRefsetValue) {
+            updatedRequest.contextRefset = '';
+        }
 
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {
