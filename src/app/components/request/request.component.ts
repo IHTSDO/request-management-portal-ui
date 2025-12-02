@@ -3,6 +3,7 @@ import { NgIf, CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
+import { Description } from '../../models/description';
 import { AuthoringService } from '../../services/authoring/authoring.service';
 import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
@@ -49,6 +50,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     allContextRefsets: any[] = [];
     noneLanguageRefsetValue: string = '';
     noneContextRefsetValue: string = '';
+    availableDescriptions: Description[] = [];
     request: Request;
     originalRequest!: Request;
     requestId: string;
@@ -219,6 +221,10 @@ export class RequestComponent implements OnInit, OnDestroy {
                     this.originalRequest = JSON.parse(JSON.stringify(this.request));
                     // Re-filter context refsets based on the loaded request's language refset
                     this.filterContextRefsetsByLanguageRefset();
+                    // Load descriptions if concept ID is already set
+                    if (this.request.conceptId) {
+                        this.loadConceptDescriptions(this.request.conceptId);
+                    }
                 }
             });
             this.authoringService.httpGetComments(this.requestId).subscribe(response => {
@@ -432,6 +438,72 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.request[field] = result;
         this.showTypeahead = false;
         this.typeaheadResults = [];
+        
+        // If concept field is selected, automatically populate conceptId, conceptName, and load descriptions
+        if (field === 'concept') {
+            this.loadConceptDetails(result);
+        }
+    }
+
+    loadConceptDetails(conceptString: string): void {
+        // Parse the concept string format: "id |FSN term|"
+        const match = conceptString.match(/^(\d+)\s*\|\s*(.+?)\s*\|$/);
+        if (match) {
+            const conceptId = match[1];
+            const conceptName = match[2];
+            
+            // Clear existing description when concept changes
+            this.request.existingDescription = '';
+            this.availableDescriptions = [];
+            
+            // Update concept ID and name
+            this.request.conceptId = conceptId;
+            this.request.conceptName = conceptName;
+            
+            // Load descriptions for this concept
+            this.loadConceptDescriptions(conceptId);
+        }
+    }
+
+    loadConceptDescriptions(conceptId: string): void {
+        if (!conceptId || !this.country) {
+            return;
+        }
+        
+                this.authoringService.getConceptDescriptions(this.country, conceptId).subscribe({
+            next: (response) => {
+                this.availableDescriptions = [];
+                if (response.conceptDescriptions && Array.isArray(response.conceptDescriptions)) {
+                    response.conceptDescriptions.forEach((item: any) => {
+                        if (item.term) {
+                            this.availableDescriptions.push(new Description(
+                                item.descriptionId, // descriptionId
+                                item.term, // term
+                                item.active, // active
+                                item.conceptId, // conceptId
+                                item.type // type
+                            ));
+                        }
+                    });
+                }
+            },
+            error: (error) => {
+                console.error('Error loading concept descriptions:', error);
+                this.availableDescriptions = [];
+            }
+        });
+    }
+
+    getActiveDescriptions(): Description[] {
+        // For 'inactivate-description' request type, filter only active descriptions
+        if (this.request?.type === 'inactivate-description') {
+            return this.availableDescriptions
+                .filter((item: Description) => {
+                    return item.active && item.term;
+                });
+        }
+        // For other request types, return all descriptions
+        return this.availableDescriptions;
     }
 
     onAssigneeInput(event: any): void {

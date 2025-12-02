@@ -378,7 +378,9 @@
                         <label for="existingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                                <input type="text" name="Exisiting Description" id="existingDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <select name="Existing Description" id="existingDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                    <option *ngFor="let description of availableDescriptions" [value]="description.term">{{ description.term }}</option>
+                                </select>
                             </div>
                             <div *ngIf="existingDescriptionInput.invalid && existingDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingDescriptionRequired' | translate }}</div>
                         </div>
@@ -432,7 +434,9 @@
                         <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                                <input type="text" name="Exisiting Description" id="inactivateExistingDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <select name="Existing Description" id="inactivateExistingDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                   <option *ngFor="let description of getActiveDescriptions()" [value]="description.term">{{ description.term }}</option>
+                                </select>
                             </div>
                             <div *ngIf="existingDescriptionInput.invalid && existingDescriptionInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingDescriptionRequired' | translate }}</div>
                         </div>
