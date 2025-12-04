@@ -94,7 +94,9 @@
             "updatedDate": "Opdateret den",
             "reporter": "Rapportør",
             "assignee": "Tildelt"
-        }
+        },
+        "deleteCommentTitle": "",
+        "confirmDeleteComment": ""
     },
     "request": {
         "newRequest": "Ny anmodning",
@@ -145,7 +147,9 @@
             "existingDescription": "Eksisterende term",
             "existingRelationship": "Eksisterende relation",
             "eclQuery": "ECL-forespørgsel (kun intensionelle refsets)",
-            "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)"
+            "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)",
+            "reporter": "",
+            "assignee": ""
         },
         "validation": {
             "summaryRequired": "Resumé er påkrævet",
