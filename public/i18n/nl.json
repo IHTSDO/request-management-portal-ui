@@ -140,6 +140,8 @@
             "newDescription": "Nieuwe beschrijving",
             "relationshipType": "Type relatie",
             "relationshipTarget": "Relatie met Doelconcept",
+            "newRelationshipType": "Nieuw Type Relatie",
+            "newRelationshipTarget": "Nieuw Doelconcept Relatie",
             "existingDescription": "Bestaande beschrijving",
             "existingRelationship": "Bestaande relatie",
             "eclQuery": "ECL Query (enkel voor intensionele refsets)",

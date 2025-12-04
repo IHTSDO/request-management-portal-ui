@@ -274,9 +274,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
                                 <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
                             </svg>
-                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput($event)">
+                            <input type="text" name="Parent Concept" id="parentConcept" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.parentConcept" #parentConceptInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput('parentConcept', $event)">
                         </div>
-                        <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                        <div *ngIf="forTypeaheadProperty === 'parentConcept' && showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                             <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'parentConcept')">
                                 {{ result }}
                             </div>
@@ -298,9 +298,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
                                 <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
                             </svg>
-                            <input type="text" name="Concept" id="concept" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"  [(ngModel)]="request.concept" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput($event)">
+                            <input type="text" name="Concept" id="concept" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"  [(ngModel)]="request.concept" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput('concept', $event)">
                         </div>
-                        <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                        <div *ngIf="forTypeaheadProperty === 'concept' && showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                             <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'concept')">
                                 {{ result }}
                             </div>
@@ -361,9 +361,9 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
                                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
                                 </svg>
-                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput($event)">
+                                <input type="text" name="Relationship Target" id="relationshipTarget" #relationshipTargetInput="ngModel" required [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipTarget" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput('relationshipTarget', $event)">
                             </div>
-                            <div *ngIf="showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                            <div *ngIf="forTypeaheadProperty === 'relationshipTarget' && showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                                 <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'relationshipTarget')">
                                     {{ result }}
                                 </div>
@@ -401,13 +401,15 @@
                         <label for="existingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                                <input type="text" name="Exisiting Relationship" id="existingRelationship" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <select name="Existing Relationship" id="existingRelationship" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                    <option *ngFor="let relationship of availableRelationships" [value]="formatRelationshipForDisplay(relationship)">{{ formatRelationshipForDisplay(relationship) }}</option>
+                                </select>
                             </div>
                             <div *ngIf="existingRelationshipInput.invalid && existingRelationshipInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingRelationshipRequired' | translate }}</div>
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newRelationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <input type="text" name="Relationship Type" id="relationshipType" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipType" #relationshipTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -416,13 +418,18 @@
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newRelationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
                                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
                                 </svg>
-                                <input type="text" name="Relationship Target" id="relationshipTarget" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipTarget" #relationshipTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <input type="text" name="New Relationship Target" id="relationshipTarget" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipTarget" #relationshipTargetInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" (input)="onParentConceptInput('newRelationshipTarget', $event)">
+                            </div>
+                            <div *ngIf="forTypeaheadProperty === 'newRelationshipTarget' && showTypeahead && typeaheadResults.length > 0" class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                <div *ngFor="let result of typeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectTypeaheadResult(result, 'relationshipTarget')">
+                                    {{ result }}
+                                </div>
                             </div>
                             <div *ngIf="relationshipTargetInput.invalid && relationshipTargetInput.touched" class="text-red-500 text-sm">{{ 'request.validation.relationshipTargetRequired' | translate }}</div>
                         </div>
@@ -448,7 +455,9 @@
                         <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                                <input type="text" name="Exisiting Relationship" id="inactivateExistingRelationship" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                <select name="Existing Relationship" id="inactivateExistingRelationship" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                                   <option *ngFor="let relationship of availableRelationships" [value]="formatRelationshipForDisplay(relationship)">{{ formatRelationshipForDisplay(relationship) }}</option>
+                                </select>
                             </div>
                             <div *ngIf="existingRelationshipInput.invalid && existingRelationshipInput.touched" class="text-red-500 text-sm">{{ 'request.validation.existingRelationshipRequired' | translate }}</div>
                         </div>

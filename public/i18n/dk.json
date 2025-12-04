@@ -140,6 +140,8 @@
             "newDescription": "Forslag til ny term",
             "relationshipType": "Relationstype",
             "relationshipTarget": "Relationens målbegreb",
+            "newRelationshipType": "Ny Relationstype",
+            "newRelationshipTarget": "Nyt Målbegreb for Relation",
             "existingDescription": "Eksisterende term",
             "existingRelationship": "Eksisterende relation",
             "eclQuery": "ECL-forespørgsel (kun intensionelle refsets)",

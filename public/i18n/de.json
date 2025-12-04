@@ -140,6 +140,8 @@
             "newDescription": "Neuer Term",
             "relationshipType": "Relationship Type",
             "relationshipTarget": "Relationship Target",
+            "newRelationshipType": "Neuer Relationship Type",
+            "newRelationshipTarget": "Neues Relationship Target",
             "existingDescription": "Bestehender Term",
             "existingRelationship": "Bestehende Relationship",
             "eclQuery": "ECL-Abfrage (nur für intentionale Refsets)",

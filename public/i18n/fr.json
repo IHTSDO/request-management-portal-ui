@@ -142,6 +142,8 @@
             "newDescription": "Nouvelle description",
             "relationshipType": "Type de relation",
             "relationshipTarget": "(concept) cible de la relation",
+            "newRelationshipType": "Nouveau Type de Relation",
+            "newRelationshipTarget": "Nouvelle Cible de Relation",
             "existingDescription": "Description existante",
             "existingRelationship": "Relation existante",
             "eclQuery": "ECL Query (uniquement pour les Refsets intensionnels)",

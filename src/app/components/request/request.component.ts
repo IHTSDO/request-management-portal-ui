@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
 import { Description } from '../../models/description';
+import { Relationship } from '../../models/relationship';
 import { AuthoringService } from '../../services/authoring/authoring.service';
 import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
@@ -51,12 +52,14 @@ export class RequestComponent implements OnInit, OnDestroy {
     noneLanguageRefsetValue: string = '';
     noneContextRefsetValue: string = '';
     availableDescriptions: Description[] = [];
+    availableRelationships: Relationship[] = [];
     request: Request;
     originalRequest!: Request;
     requestId: string;
     country: string;
 
     // Typeahead properties
+    forTypeaheadProperty: string = '';
     typeaheadResults: string[] = [];
     showTypeahead: boolean = false;
     typeaheadSubject = new BehaviorSubject<string>('');
@@ -181,7 +184,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
-        
+
         // Wait for translations to be loaded before proceeding
         this.initializeTranslations().then(() => {
             // Load and filter language refsets from config by country code
@@ -221,9 +224,9 @@ export class RequestComponent implements OnInit, OnDestroy {
                     this.originalRequest = JSON.parse(JSON.stringify(this.request));
                     // Re-filter context refsets based on the loaded request's language refset
                     this.filterContextRefsetsByLanguageRefset();
-                    // Load descriptions if concept ID is already set
+                    // Load descriptions and relationships if concept ID is already set
                     if (this.request.conceptId) {
-                        this.loadConceptDescriptions(this.request.conceptId);
+                        this.loadConcept(this.request.conceptId);
                     }
                 }
             });
@@ -296,12 +299,12 @@ export class RequestComponent implements OnInit, OnDestroy {
 
             // Create a copy of the request for saving
             const requestToSave: Request = JSON.parse(JSON.stringify(this.request));
-            
+
             // Normalize "None" values back to empty in the copy before saving
             // Use stored values if available, otherwise use instant (may be translation key if not loaded)
             const noneLanguageRefsetValue = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
             const noneContextRefsetValue = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
-            
+
             if (requestToSave.languageRefset === noneLanguageRefsetValue) {
                 requestToSave.languageRefset = '';
             }
@@ -429,7 +432,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         });
     }
 
-    onParentConceptInput(event: any): void {
+    onParentConceptInput(forTypeaheadProperty: string, event: any): void {
+        this.forTypeaheadProperty = forTypeaheadProperty;
         const searchText = event.target.value;
         this.typeaheadSubject.next(searchText);
     }
@@ -438,7 +442,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.request[field] = result;
         this.showTypeahead = false;
         this.typeaheadResults = [];
-        
+
         // If concept field is selected, automatically populate conceptId, conceptName, and load descriptions
         if (field === 'concept') {
             this.loadConceptDetails(result);
@@ -451,30 +455,32 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (match) {
             const conceptId = match[1];
             const conceptName = match[2];
-            
-            // Clear existing description when concept changes
+
+            // Clear existing description and relationship when concept changes
             this.request.existingDescription = '';
+            this.request.existingRelationship = '';
             this.availableDescriptions = [];
-            
+            this.availableRelationships = [];
+
             // Update concept ID and name
             this.request.conceptId = conceptId;
             this.request.conceptName = conceptName;
-            
-            // Load descriptions for this concept
-            this.loadConceptDescriptions(conceptId);
+
+            // Load descriptions and relationships for this concept
+            this.loadConcept(conceptId);
         }
     }
 
-    loadConceptDescriptions(conceptId: string): void {
+    loadConcept(conceptId: string): void {
         if (!conceptId || !this.country) {
             return;
         }
-        
-                this.authoringService.getConceptDescriptions(this.country, conceptId).subscribe({
+
+        this.authoringService.getConcept(this.country, conceptId).subscribe({
             next: (response) => {
                 this.availableDescriptions = [];
-                if (response.conceptDescriptions && Array.isArray(response.conceptDescriptions)) {
-                    response.conceptDescriptions.forEach((item: any) => {
+                if (response.descriptions && Array.isArray(response.descriptions)) {
+                    response.descriptions.forEach((item: any) => {
                         if (item.term) {
                             this.availableDescriptions.push(new Description(
                                 item.descriptionId, // descriptionId
@@ -486,9 +492,26 @@ export class RequestComponent implements OnInit, OnDestroy {
                         }
                     });
                 }
+
+                this.availableRelationships = [];
+                if (response.relationships && Array.isArray(response.relationships)) {
+                    response.relationships.forEach((item: any) => {
+                        if (item.typeId && item.destinationId && item.active) {
+                            this.availableRelationships.push(new Relationship(
+                                item.relationshipId, // relationshipId
+                                item.typeId, // type
+                                item.destinationId, // destinationId
+                                item.active, // active
+                                item.sourceId, // conceptId
+                                item?.type?.fsn?.term, // type FSN
+                                item?.target?.fsn?.term // destination FSN
+                            ));
+                        }
+                    });
+                }
             },
             error: (error) => {
-                console.error('Error loading concept descriptions:', error);
+                console.error('Error loading concept details:', error);
                 this.availableDescriptions = [];
             }
         });
@@ -504,6 +527,13 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
         // For other request types, return all descriptions
         return this.availableDescriptions;
+    }    
+
+    formatRelationshipForDisplay(relationship: Relationship): string {
+        if (relationship.typeFsn && relationship.destinationFsn) {
+            return `${relationship.typeFsn} - ${relationship.destinationFsn}`;
+        }
+        return  `${relationship.type} - ${relationship.destinationId}`;
     }
 
     onAssigneeInput(event: any): void {
@@ -759,12 +789,12 @@ export class RequestComponent implements OnInit, OnDestroy {
             if (refset.translationKey === 'request.languageRefsets.none') {
                 return true;
             }
-            
+
             // If no countries array or empty array, available for all countries
             if (!refset.countries || refset.countries.length === 0) {
                 return true;
             }
-            
+
             // Check if current country is in the countries array
             return refset.countries.includes(this.country.toLowerCase());
         });
@@ -786,16 +816,16 @@ export class RequestComponent implements OnInit, OnDestroy {
             if (refset.translationKey === 'request.contextRefsets.none') {
                 return true;
             }
-            
+
             // If no countries array or empty array, available for all countries
             if (!refset.countries || refset.countries.length === 0) {
                 return true;
             }
-            
+
             // Check if current country is in the countries array
             return refset.countries.includes(this.country.toLowerCase());
         });
-        
+
         // Now filter by language refset as well
         this.filterContextRefsetsByLanguageRefset();
     }
@@ -829,12 +859,12 @@ export class RequestComponent implements OnInit, OnDestroy {
             if (refset.translationKey === 'request.contextRefsets.none') {
                 return true;
             }
-            
+
             // If no linkedLanguageRefsets array or empty array, available for all language refsets
             if (!refset.linkedLanguageRefsets || refset.linkedLanguageRefsets.length === 0) {
                 return true;
             }
-            
+
             // Check if any linked language refset matches the selected language refset
             // We need to compare translated values
             return refset.linkedLanguageRefsets.some((linkedTranslationKey: string) => {
@@ -852,7 +882,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         // For now, use instant with fallback - in practice this should work once translations are loaded
         // The comparison happens after translations are loaded in the filter method
         const translatedLinkedValue = this.translateService.instant(linkedTranslationKey);
-        
+
         // Compare the translated value with the selected value
         return translatedLinkedValue === selectedValue;
     }
@@ -860,7 +890,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     onLanguageRefsetChange(): void {
         // When language refset changes, re-filter context refsets
         this.filterContextRefsetsByLanguageRefset();
-        
+
         // If the current context refset is no longer valid, clear it
         if (this.request.contextRefset && this.request.contextRefset !== '') {
             const currentContextRefsetTranslated = this.request.contextRefset;
@@ -868,7 +898,7 @@ export class RequestComponent implements OnInit, OnDestroy {
                 const refsetTranslated = this.translateService.instant(refset.translationKey);
                 return refsetTranslated === currentContextRefsetTranslated;
             });
-            
+
             if (!isValid) {
                 // Use stored value if available, otherwise use instant (may be translation key if not loaded)
                 this.request.contextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
@@ -881,12 +911,12 @@ export class RequestComponent implements OnInit, OnDestroy {
         // Fallback to instant if not yet loaded (will be translation key if translations not ready)
         const noneLanguageRefset = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
         const noneContextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
-        
+
         // Convert empty language refset to "None" for display
         if (!this.request.languageRefset || this.request.languageRefset.trim() === '') {
             this.request.languageRefset = noneLanguageRefset;
         }
-        
+
         // Convert empty context refset to "None" for display
         if (!this.request.contextRefset || this.request.contextRefset.trim() === '') {
             this.request.contextRefset = noneContextRefset;
@@ -894,16 +924,16 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     normalizeRefsetsForSave(): void {
-        // Use stored translation values (loaded in initializeTranslations)  
+        // Use stored translation values (loaded in initializeTranslations)
         // Fallback to instant if not yet loaded
         const noneLanguageRefset = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
         const noneContextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
-        
+
         // Convert "None" language refset back to empty for saving
         if (this.request.languageRefset === noneLanguageRefset) {
             this.request.languageRefset = '';
         }
-        
+
         // Convert "None" context refset back to empty for saving
         if (this.request.contextRefset === noneContextRefset) {
             this.request.contextRefset = '';
@@ -935,12 +965,12 @@ export class RequestComponent implements OnInit, OnDestroy {
 
         // Create a copy of the request for saving
         const updatedRequest: Request = JSON.parse(JSON.stringify(this.request));
-        
+
         // Normalize "None" values back to empty in the copy before saving
         // Use stored values if available, otherwise use instant (may be translation key if not loaded)
         const noneLanguageRefsetValue = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
         const noneContextRefsetValue = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
-        
+
         if (updatedRequest.languageRefset === noneLanguageRefsetValue) {
             updatedRequest.languageRefset = '';
         }

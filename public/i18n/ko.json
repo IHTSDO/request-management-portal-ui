@@ -141,6 +141,8 @@
             "conceptName": "개념명",
             "relationshipType": "관계명(속성)",
             "relationshipTarget": "속성값",
+            "newRelationshipType": "새 관계명(속성)",
+            "newRelationshipTarget": "새 속성값",
             "existingDescription": "수정 전 한글용어",
             "existingRelationship": "수정 전 관계(속성)",
             "membersList": "참조세트 구성 개념 ID(개념추가 방식: 열거형)",

@@ -144,6 +144,8 @@
             "newDescription": "New Description",
             "relationshipType": "Relationship Type",
             "relationshipTarget": "Relationship Target",
+            "newRelationshipType": "New Relationship Type",
+            "newRelationshipTarget": "New Relationship Target",
             "existingDescription": "Existing Description",
             "existingRelationship": "Existing Relationship",
             "eclQuery": "ECL Query (for intensional refsets only)",
