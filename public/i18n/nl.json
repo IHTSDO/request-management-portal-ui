@@ -94,7 +94,9 @@
             "updatedDate": "Bijgewerkt op",
             "reporter": "Melder",
             "assignee": "Toegewezen"
-        }
+        },
+        "deleteCommentTitle": "",
+        "confirmDeleteComment": ""
     },
     "request": {
         "newRequest": "Nieuw verzoek",
@@ -145,7 +147,9 @@
             "existingDescription": "Bestaande beschrijving",
             "existingRelationship": "Bestaande relatie",
             "eclQuery": "ECL Query (enkel voor intensionele refsets)",
-            "membersList": "Member Concept Ids (enkel voor extensionele refsets)"
+            "membersList": "Member Concept Ids (enkel voor extensionele refsets)",
+            "reporter": "",
+            "assignee": ""
         },
         "validation": {
             "summaryRequired": "Omschrijving is vereist",
