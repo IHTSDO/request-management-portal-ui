@@ -94,7 +94,9 @@
             "updatedDate": "Data di aggiornamento",
             "reporter": "Segnalatore",
             "assignee": "Assegnato"
-        }
+        },
+        "deleteCommentTitle": "",
+        "confirmDeleteComment": ""
     },
     "request": {
         "newRequest": "Nuova richiesta",
@@ -145,7 +147,9 @@
             "existingDescription": "Descrizione esistente",
             "existingRelationship": "Relazione esistente",
             "eclQuery": "Query ECL (solo per refset intenzionali)",
-            "membersList": "ID concetti membri (solo per refset estensionali)"
+            "membersList": "ID concetti membri (solo per refset estensionali)",
+            "reporter": "",
+            "assignee": ""
         },
         "validation": {
             "summaryRequired": "Riassunto è obbligatorio",
