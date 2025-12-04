@@ -94,7 +94,9 @@
             "updatedDate": "Aktualisiert am",
             "reporter": "Melder",
             "assignee": "Zugewiesen"
-        }
+        },
+        "deleteCommentTitle": "",
+        "confirmDeleteComment": ""
     },
     "request": {
         "newRequest": "Neue Anfrage",
@@ -145,7 +147,9 @@
             "existingDescription": "Bestehender Term",
             "existingRelationship": "Bestehende Relationship",
             "eclQuery": "ECL-Abfrage (nur für intentionale Refsets)",
-            "membersList": "Konzept-IDs der Mitglieder (nur für extensionale Refsets)"
+            "membersList": "Konzept-IDs der Mitglieder (nur für extensionale Refsets)",
+            "reporter": "",
+            "assignee": ""
         },
         "validation": {
             "summaryRequired": "Bitte Zusammenfassung eingeben",
