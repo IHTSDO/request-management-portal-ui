@@ -22,7 +22,7 @@
         }
     },
     "navbar": {
-        "selectLanguage": "언어를 선택하세요.",
+        "selectLanguage": "언어를 선택하세요",
         "languages": {
             "en": "영어",
             "de": "독일어",
@@ -143,8 +143,8 @@
             "relationshipTarget": "속성값",
             "newRelationshipType": "새 관계명(속성)",
             "newRelationshipTarget": "새 속성값",
-            "existingDescription": "수정 전 한글용어",
-            "existingRelationship": "수정 전 관계(속성)",
+            "existingDescription": "삭제 전 용어",
+            "existingRelationship": "삭제 전 관계(속성)",
             "membersList": "참조세트 구성 개념 ID(개념추가 방식: 열거형)",
             "newDescription": "신규 용어",
             "eclQuery": "참조세트 구성 개념 ECL 검색식(개념추가 방식: 검색식)",
@@ -162,8 +162,8 @@
             "newDescriptionRequired": "신규 한글 동의어 입력 필수",
             "relationshipTypeRequired": "속성 유형 입력 필수",
             "relationshipTargetRequired": "속성값 입력 필수",
-            "existingDescriptionRequired": "수정 전 한글 동의어 입력 필수",
-            "existingRelationshipRequired": "수정 전 관계(속성) 입력 필수"
+            "existingDescriptionRequired": "삭제 전 용어 입력 필수",
+            "existingRelationshipRequired": "삭제 전 관계(속성) 입력 필수"
         },
         "typeOptions": {
             "addDescription": "용어 추가",
@@ -221,12 +221,12 @@
         },
         "tooltip": {
             "summary": "요청 사항을 한 문장으로 요약",
-            "languageRefset": "언어를 선택해주세요.",
+            "languageRefset": "언어를 선택해주세요",
             "contextRefset": "콘텐츠 요청 컨텍스트",
-            "newFSN": "추가하고자 하는 개념의 영어 FSN을 작성해주세요.",
-            "newSynonyms": "추가하고자 하는 개념의 한글 동의어를 쉼표로 구분하여 작성해주세요.",
+            "newFSN": "추가하고자 하는 개념의 영어 FSN을 작성해주세요",
+            "newSynonyms": "추가하고자 하는 개념의 한글 동의어를 쉼표로 구분하여 작성해주세요",
             "parentConcept": "SCT ID를 알고 있다면 입력해 주세요",
-            "newPreferredTerm": "추가하고자 하는 개념을 대표하는 한글 동의어를 작성해주세요.",
+            "newPreferredTerm": "추가하고자 하는 개념을 대표하는 한글 동의어를 작성해주세요",
             "justification": "요청 필요성을 임상 혹은 관리 측면에서 상세하게 기술해주세요",
             "reference": "해당 개념이 설명된 출처의 링크를 하나 이상 추가해 주세요",
             "concept": "개념 검색",
