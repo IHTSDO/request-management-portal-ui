@@ -143,8 +143,8 @@
             "relationshipTarget": "속성값",
             "newRelationshipType": "새 관계명(속성)",
             "newRelationshipTarget": "새 속성값",
-            "existingDescription": "삭제 전 용어",
-            "existingRelationship": "삭제 전 관계(속성)",
+            "existingDescription": "비활성화 전 용어",
+            "existingRelationship": "비활성화 전 관계(속성)",
             "membersList": "참조세트 구성 개념 ID(개념추가 방식: 열거형)",
             "newDescription": "신규 용어",
             "eclQuery": "참조세트 구성 개념 ECL 검색식(개념추가 방식: 검색식)",
@@ -162,8 +162,8 @@
             "newDescriptionRequired": "신규 한글 동의어 입력 필수",
             "relationshipTypeRequired": "속성 유형 입력 필수",
             "relationshipTargetRequired": "속성값 입력 필수",
-            "existingDescriptionRequired": "삭제 전 용어 입력 필수",
-            "existingRelationshipRequired": "삭제 전 관계(속성) 입력 필수"
+            "existingDescriptionRequired": "비활성화 전 용어 입력 필수",
+            "existingRelationshipRequired": "비활성화 전 관계(속성) 입력 필수"
         },
         "typeOptions": {
             "addDescription": "용어 추가",
