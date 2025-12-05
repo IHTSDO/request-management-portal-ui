@@ -101,7 +101,7 @@
     "request": {
         "newRequest": "신규 요청",
         "comments": "댓글",
-        "noComments": "- 아직 댓글이 없습니다 -",
+        "noComments": "아직 댓글이 없습니다",
         "commentPlaceholder": "댓글을 입력하세요...",
         "backButton": "뒤로",
         "showMore": "더 보기",
