@@ -325,6 +325,12 @@ export class RequestComponent implements OnInit, OnDestroy {
                 requestToSave.contextRefset = '';
             }
 
+            // Clear languageRefset and contextRefset for relationship request types
+            if (requestToSave.type === 'change-relationship' || requestToSave.type === 'add-relationship' || requestToSave.type === 'inactivate-relationship') {
+                requestToSave.languageRefset = '';
+                requestToSave.contextRefset = '';
+            }
+
             this.toastr.info('Creating new request...', 'Please wait');
             this.authoringService.httpCreateRMPRequest(requestToSave).subscribe(response => {
                 if (response) {
@@ -913,6 +919,12 @@ export class RequestComponent implements OnInit, OnDestroy {
             updatedRequest.languageRefset = '';
         }
         if (updatedRequest.contextRefset === noneContextRefsetValue) {
+            updatedRequest.contextRefset = '';
+        }
+
+        // Clear languageRefset and contextRefset for relationship request types
+        if (updatedRequest.type === 'change-relationship' || updatedRequest.type === 'add-relationship' || updatedRequest.type === 'inactivate-relationship') {
+            updatedRequest.languageRefset = '';
             updatedRequest.contextRefset = '';
         }
 

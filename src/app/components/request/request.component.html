@@ -218,7 +218,7 @@
                     <div *ngIf="typeInput.invalid && typeInput.touched" class="text-red-500 text-sm">{{ 'request.validation.typeRequired' | translate }}</div>
                 </div>
             </div>
-            <div>
+            <div *ngIf="request.type !== 'change-relationship' && request.type !== 'add-relationship' && request.type !== 'inactivate-relationship'">
                 <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.languageRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -228,7 +228,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div *ngIf="request.type !== 'change-relationship' && request.type !== 'add-relationship' && request.type !== 'inactivate-relationship'">
                 <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.contextRefset' | translate }}</label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
