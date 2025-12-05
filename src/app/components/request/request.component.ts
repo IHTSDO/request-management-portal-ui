@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 import { User } from '../../models/user';
-import { BehaviorSubject, debounceTime, forkJoin, of, Subscription, switchMap, tap, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, catchError, debounceTime, forkJoin, of, Subscription, switchMap, tap, firstValueFrom } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../services/config/config.service';
@@ -62,6 +62,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     forTypeaheadProperty: string = '';
     typeaheadResults: string[] = [];
     showTypeahead: boolean = false;
+    typeaheadLoading: boolean = false;
     typeaheadSubject = new BehaviorSubject<string>('');
     typeaheadSubscription: Subscription;
 
@@ -101,8 +102,19 @@ export class RequestComponent implements OnInit, OnDestroy {
             }),
             switchMap(searchText => {
                 if (searchText && searchText.trim() !== '' && searchText.length >= 2) {
-                    return this.authoringService.getTypeahead(this.country, searchText);
+                    this.typeaheadLoading = true;
+                    return this.authoringService.getTypeahead(this.country, searchText).pipe(
+                        catchError((error) => {
+                            console.error('API error:', error);
+                            // Reset loading state on error
+                            this.typeaheadLoading = false;
+                            // Return empty array on error so the stream continues working
+                            // The subscription's next handler will process this empty array
+                            return of([]);
+                        })
+                    );
                 } else {
+                    this.typeaheadLoading = false;
                     return of([]);
                 }
             })
@@ -110,11 +122,14 @@ export class RequestComponent implements OnInit, OnDestroy {
             next: (response: string[]) => {
                 this.typeaheadResults = response;
                 this.showTypeahead = response.length > 0;
+                this.typeaheadLoading = false;
             },
             error: (error) => {
-                console.error('Typeahead error:', error);
+                // This should rarely be called now since errors are caught in switchMap
+                console.error('Typeahead subscription error:', error);
                 this.typeaheadResults = [];
                 this.showTypeahead = false;
+                this.typeaheadLoading = false;
             }
         });
 
@@ -440,6 +455,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.request[field] = result;
         this.showTypeahead = false;
         this.typeaheadResults = [];
+        this.typeaheadLoading = false;
 
         // If concept field is selected, automatically populate conceptId, conceptName, and load descriptions
         if (field === 'concept') {
