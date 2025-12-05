@@ -124,6 +124,12 @@
             ]
         },
         {
+            "translationKey": "request.languageRefsets.estonian",
+            "countries": [
+                "ee"
+            ]
+        },
+        {
             "translationKey": "request.languageRefsets.french",
             "countries": [
                 "fr"
@@ -193,66 +199,66 @@
     "contextRefsets": [
         {
             "translationKey": "request.contextRefsets.none",
-            "linkedLanguageRefsets": []
+            "countries": []
         },
         {
             "translationKey": "request.contextRefsets.beGpDutch",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.belgianDutch"
+            "countries": [
+                "be"
             ]
         },
         {
             "translationKey": "request.contextRefsets.beGpFrench",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.belgianFrench"
+            "countries": [
+                "be"
             ]
         },
         {
             "translationKey": "request.contextRefsets.nzPatientFriendly",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.nzEnglish"
+            "countries": [
+                "nz"
             ]
         },
         {
             "translationKey": "request.contextRefsets.nzCanshareLRS",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.nzEnglish"
+            "countries": [
+                "nz"
             ]
         },
         {
             "translationKey": "request.contextRefsets.seChiefComplaints",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.swedish"
+            "countries": [
+                "se"
             ]
         },
         {
             "translationKey": "request.contextRefsets.seDoseUnitAbbr",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.swedish"
+            "countries": [
+                "se"
             ]
         },
         {
             "translationKey": "request.contextRefsets.seLabMedicine",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.swedish"
+            "countries": [
+                "se"
             ]
         },
         {
             "translationKey": "request.contextRefsets.seDoseUnitPlural",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.swedish"
+            "countries": [
+                "se"
             ]
         },
         {
             "translationKey": "request.contextRefsets.seMedicationProf",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.swedish"
+            "countries": [
+                "se"
             ]
         },
         {
             "translationKey": "request.contextRefsets.seMedicationCommon",
-            "linkedLanguageRefsets": [
-                "request.languageRefsets.swedish"
+            "countries": [
+                "se"
             ]
         }
     ]

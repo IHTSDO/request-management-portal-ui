@@ -222,8 +222,6 @@ export class RequestComponent implements OnInit, OnDestroy {
                     this.normalizeRefsetsForDisplay();
                     // Store normalized request as original for change detection
                     this.originalRequest = JSON.parse(JSON.stringify(this.request));
-                    // Re-filter context refsets based on the loaded request's language refset
-                    this.filterContextRefsetsByLanguageRefset();
                     // Load descriptions and relationships if concept ID is already set
                     if (this.request.conceptId) {
                         this.loadConcept(this.request.conceptId);
@@ -803,7 +801,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     filterContextRefsetsByCountry(): void {
         if (!this.config?.contextRefsets || !this.country) {
             this.allContextRefsets = this.config?.contextRefsets || [];
-            this.filterContextRefsetsByLanguageRefset();
+            this.filteredContextRefsets = this.allContextRefsets;
             return;
         }
 
@@ -826,84 +824,8 @@ export class RequestComponent implements OnInit, OnDestroy {
             return refset.countries.includes(this.country.toLowerCase());
         });
 
-        // Now filter by language refset as well
-        this.filterContextRefsetsByLanguageRefset();
-    }
-
-    filterContextRefsetsByLanguageRefset(): void {
-        if (!this.allContextRefsets || this.allContextRefsets.length === 0) {
-            this.filteredContextRefsets = [];
-            return;
-        }
-
-        // If no language refset is selected, show None context refset only
-        if (!this.request?.languageRefset || this.request.languageRefset.trim() === '') {
-            this.filteredContextRefsets = this.allContextRefsets.filter((refset: any) => {
-                if (refset.translationKey === 'request.contextRefsets.none') {
-                    return true;
-                }
-                return false;
-            });
-            return;
-        }
-
-        // Get the translated value of the selected language refset to match against linkedLanguageRefsets
-        const selectedLanguageRefsetValue = this.request.languageRefset;
-
-        // Filter context refsets based on selected language refset
-        // If linkedLanguageRefsets is empty or not present, the context refset is available for all language refsets
-        // If linkedLanguageRefsets contains the selected language refset translation key, include it
-        // Always include "none"
-        this.filteredContextRefsets = this.allContextRefsets.filter((refset: any) => {
-            // Always include "none"
-            if (refset.translationKey === 'request.contextRefsets.none') {
-                return true;
-            }
-
-            // If no linkedLanguageRefsets array or empty array, available for all language refsets
-            if (!refset.linkedLanguageRefsets || refset.linkedLanguageRefsets.length === 0) {
-                return true;
-            }
-
-            // Check if any linked language refset matches the selected language refset
-            // We need to compare translated values
-            return refset.linkedLanguageRefsets.some((linkedTranslationKey: string) => {
-                // Translate the linked translation key and compare with selected value
-                // For now, we'll use a simpler approach - check if the translation key exists in the linked list
-                // and compare using the request's language refset value
-                // This requires translating the linkedTranslationKey to compare with selectedLanguageRefsetValue
-                return this.isLanguageRefsetMatch(linkedTranslationKey, selectedLanguageRefsetValue);
-            });
-        });
-    }
-
-    isLanguageRefsetMatch(linkedTranslationKey: string, selectedValue: string): boolean {
-        // Try to get translated value using get() which waits for translations
-        // For now, use instant with fallback - in practice this should work once translations are loaded
-        // The comparison happens after translations are loaded in the filter method
-        const translatedLinkedValue = this.translateService.instant(linkedTranslationKey);
-
-        // Compare the translated value with the selected value
-        return translatedLinkedValue === selectedValue;
-    }
-
-    onLanguageRefsetChange(): void {
-        // When language refset changes, re-filter context refsets
-        this.filterContextRefsetsByLanguageRefset();
-
-        // If the current context refset is no longer valid, clear it
-        if (this.request.contextRefset && this.request.contextRefset !== '') {
-            const currentContextRefsetTranslated = this.request.contextRefset;
-            const isValid = this.filteredContextRefsets.some((refset: any) => {
-                const refsetTranslated = this.translateService.instant(refset.translationKey);
-                return refsetTranslated === currentContextRefsetTranslated;
-            });
-
-            if (!isValid) {
-                // Use stored value if available, otherwise use instant (may be translation key if not loaded)
-                this.request.contextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
-            }
-        }
+        // Set filtered context refsets to all context refsets (no language filtering)
+        this.filteredContextRefsets = this.allContextRefsets;
     }
 
     normalizeRefsetsForDisplay(): void {
