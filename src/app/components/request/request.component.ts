@@ -1,5 +1,5 @@
 import { FormsModule, NgForm } from '@angular/forms';
-import { NgIf, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
@@ -26,7 +26,7 @@ enum Mode {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, NgIf, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]
