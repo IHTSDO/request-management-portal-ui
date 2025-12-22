@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
+import { Description } from '../../models/description';
+import { Relationship } from '../../models/relationship';
 import { AuthoringService } from '../../services/authoring/authoring.service';
 import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 import { User } from '../../models/user';
-import { BehaviorSubject, debounceTime, forkJoin, of, Subscription, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, debounceTime, forkJoin, of, Subscription, switchMap, tap, firstValueFrom } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../services/config/config.service';
 import { Extension } from '../../models/extension';
 import * as data from 'public/config/config.json';
@@ -44,14 +46,23 @@ export class RequestComponent implements OnInit, OnDestroy {
     assignees: any[] = [];
     userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
     config: any = data;
+    languageRefsets: any[] = [];
+    filteredContextRefsets: any[] = [];
+    allContextRefsets: any[] = [];
+    noneLanguageRefsetValue: string = '';
+    noneContextRefsetValue: string = '';
+    availableDescriptions: Description[] = [];
+    availableRelationships: Relationship[] = [];
     request: Request;
     originalRequest!: Request;
     requestId: string;
     country: string;
 
     // Typeahead properties
+    forTypeaheadProperty: string = '';
     typeaheadResults: string[] = [];
     showTypeahead: boolean = false;
+    typeaheadLoading: boolean = false;
     typeaheadSubject = new BehaviorSubject<string>('');
     typeaheadSubscription: Subscription;
 
@@ -77,7 +88,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         private readonly activatedRoute: ActivatedRoute,
         private readonly statusPipe: StatusTransformPipe,
         private readonly languageService: LanguageService,
-        private readonly navigationService: NavigationService) {
+        private readonly navigationService: NavigationService,
+        private readonly translateService: TranslateService) {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => this.user = data);
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => this.extension = extension);
 
@@ -90,8 +102,19 @@ export class RequestComponent implements OnInit, OnDestroy {
             }),
             switchMap(searchText => {
                 if (searchText && searchText.trim() !== '' && searchText.length >= 2) {
-                    return this.authoringService.getTypeahead(this.country, searchText);
+                    this.typeaheadLoading = true;
+                    return this.authoringService.getTypeahead(this.country, searchText).pipe(
+                        catchError((error) => {
+                            console.error('API error:', error);
+                            // Reset loading state on error
+                            this.typeaheadLoading = false;
+                            // Return empty array on error so the stream continues working
+                            // The subscription's next handler will process this empty array
+                            return of([]);
+                        })
+                    );
                 } else {
+                    this.typeaheadLoading = false;
                     return of([]);
                 }
             })
@@ -99,11 +122,14 @@ export class RequestComponent implements OnInit, OnDestroy {
             next: (response: string[]) => {
                 this.typeaheadResults = response;
                 this.showTypeahead = response.length > 0;
+                this.typeaheadLoading = false;
             },
             error: (error) => {
-                console.error('Typeahead error:', error);
+                // This should rarely be called now since errors are caught in switchMap
+                console.error('Typeahead subscription error:', error);
                 this.typeaheadResults = [];
                 this.showTypeahead = false;
+                this.typeaheadLoading = false;
             }
         });
 
@@ -173,12 +199,48 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
+
+        // Wait for translations to be loaded before proceeding
+        this.initializeTranslations().then(() => {
+            // Load and filter language refsets from config by country code
+            this.filterLanguageRefsetsByCountry();
+            // Load and filter context refsets from config by country code
+            this.filterContextRefsetsByCountry();
+            this.loadRequestData();
+        });
+    }
+
+    async initializeTranslations(): Promise<void> {
+        // Wait for translations to be loaded and store "None" values
+        try {
+            const [noneLanguageRefset, noneContextRefset] = await Promise.all([
+                firstValueFrom(this.translateService.get('request.languageRefsets.none')),
+                firstValueFrom(this.translateService.get('request.contextRefsets.none'))
+            ]);
+            this.noneLanguageRefsetValue = noneLanguageRefset;
+            this.noneContextRefsetValue = noneContextRefset;
+        } catch (error) {
+            console.error('Error loading translations:', error);
+            // Fallback to instant
+            this.noneLanguageRefsetValue = this.translateService.instant('request.languageRefsets.none');
+            this.noneContextRefsetValue = this.translateService.instant('request.contextRefsets.none');
+        }
+    }
+
+    loadRequestData(): void {
         if (this.requestId) {
             this.mode = Mode.VIEW; // Set mode to view if requestId is present
             this.authoringService.httpGetRMPRequestDetails(this.requestId).subscribe(response => {
                 if (response) {
                     this.request = response as Request;
+                    // Normalize empty refsets to "None" for display
+                    this.normalizeRefsetsForDisplay();
+                    // Store normalized request as original for change detection
                     this.originalRequest = JSON.parse(JSON.stringify(this.request));
+                    // Load descriptions and relationships if concept ID is already set
+                    if (this.request.conceptId) {
+                        this.loadConcept(this.request.conceptId);
+                    }
                 }
             });
             this.authoringService.httpGetComments(this.requestId).subscribe(response => {
@@ -187,6 +249,8 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.populateAssignees();
         } else {
             this.resetFormValues(); // Reset form values to defaults
+            // Normalize empty refsets to "None" for display
+            this.normalizeRefsetsForDisplay();
         }
     }
 
@@ -246,11 +310,34 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.request.country = this.country; // Set the country from the route parameter
             this.request.status = 'NEW'; // Default status for new requests
 
+            // Create a copy of the request for saving
+            const requestToSave: Request = JSON.parse(JSON.stringify(this.request));
+
+            // Normalize "None" values back to empty in the copy before saving
+            // Use stored values if available, otherwise use instant (may be translation key if not loaded)
+            const noneLanguageRefsetValue = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+            const noneContextRefsetValue = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+
+            if (requestToSave.languageRefset === noneLanguageRefsetValue) {
+                requestToSave.languageRefset = '';
+            }
+            if (requestToSave.contextRefset === noneContextRefsetValue) {
+                requestToSave.contextRefset = '';
+            }
+
+            // Clear languageRefset and contextRefset for relationship request types
+            if (requestToSave.type === 'change-relationship' || requestToSave.type === 'add-relationship' || requestToSave.type === 'inactivate-relationship') {
+                requestToSave.languageRefset = '';
+                requestToSave.contextRefset = '';
+            }
+
             this.toastr.info('Creating new request...', 'Please wait');
-            this.authoringService.httpCreateRMPRequest(this.request).subscribe(response => {
+            this.authoringService.httpCreateRMPRequest(requestToSave).subscribe(response => {
                 if (response) {
                     this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
                     this.request = response as Request;
+                    // Normalize empty refsets to "None" for display
+                    this.normalizeRefsetsForDisplay();
                     this.toastr.clear(); // Clear any previous toastr messages
                     this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
                 }
@@ -266,6 +353,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         // const currentFormType = this.formType; // Store current form type
         form.resetForm(); // Reset the form state
         this.resetFormValues(); // Reset form values to defaults
+        // Normalize empty refsets to "None" for display
+        this.normalizeRefsetsForDisplay();
         this.toastr.clear(); // Clear any previous toastr messages
 
         // setTimeout(() => {
@@ -362,7 +451,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         });
     }
 
-    onParentConceptInput(event: any): void {
+    onParentConceptInput(forTypeaheadProperty: string, event: any): void {
+        this.forTypeaheadProperty = forTypeaheadProperty;
         const searchText = event.target.value;
         this.typeaheadSubject.next(searchText);
     }
@@ -371,6 +461,99 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.request[field] = result;
         this.showTypeahead = false;
         this.typeaheadResults = [];
+        this.typeaheadLoading = false;
+
+        // If concept field is selected, automatically populate conceptId, conceptName, and load descriptions
+        if (field === 'concept') {
+            this.loadConceptDetails(result);
+        }
+    }
+
+    loadConceptDetails(conceptString: string): void {
+        // Parse the concept string format: "id |FSN term|"
+        const match = conceptString.match(/^(\d+)\s*\|\s*(.+?)\s*\|$/);
+        if (match) {
+            const conceptId = match[1];
+            const conceptName = match[2];
+
+            // Clear existing description and relationship when concept changes
+            this.request.existingDescription = '';
+            this.request.existingRelationship = '';
+            this.availableDescriptions = [];
+            this.availableRelationships = [];
+
+            // Update concept ID and name
+            this.request.conceptId = conceptId;
+            this.request.conceptName = conceptName;
+
+            // Load descriptions and relationships for this concept
+            this.loadConcept(conceptId);
+        }
+    }
+
+    loadConcept(conceptId: string): void {
+        if (!conceptId || !this.country) {
+            return;
+        }
+
+        this.authoringService.getConcept(this.country, conceptId).subscribe({
+            next: (response) => {
+                this.availableDescriptions = [];
+                if (response.descriptions && Array.isArray(response.descriptions)) {
+                    response.descriptions.forEach((item: any) => {
+                        if (item.term) {
+                            this.availableDescriptions.push(new Description(
+                                item.descriptionId, // descriptionId
+                                item.term, // term
+                                item.active, // active
+                                item.conceptId, // conceptId
+                                item.type // type
+                            ));
+                        }
+                    });
+                }
+
+                this.availableRelationships = [];
+                if (response.relationships && Array.isArray(response.relationships)) {
+                    response.relationships.forEach((item: any) => {
+                        if (item.typeId && item.destinationId && item.active) {
+                            this.availableRelationships.push(new Relationship(
+                                item.relationshipId, // relationshipId
+                                item.typeId, // type
+                                item.destinationId, // destinationId
+                                item.active, // active
+                                item.sourceId, // conceptId
+                                item?.type?.fsn?.term, // type FSN
+                                item?.target?.fsn?.term // destination FSN
+                            ));
+                        }
+                    });
+                }
+            },
+            error: (error) => {
+                console.error('Error loading concept details:', error);
+                this.availableDescriptions = [];
+            }
+        });
+    }
+
+    getActiveDescriptions(): Description[] {
+        // For 'inactivate-description' request type, filter only active descriptions
+        if (this.request?.type === 'inactivate-description') {
+            return this.availableDescriptions
+                .filter((item: Description) => {
+                    return item.active && item.term;
+                });
+        }
+        // For other request types, return all descriptions
+        return this.availableDescriptions;
+    }    
+
+    formatRelationshipForDisplay(relationship: Relationship): string {
+        if (relationship.typeFsn && relationship.destinationFsn) {
+            return `${relationship.typeFsn} - ${relationship.destinationFsn}`;
+        }
+        return  `${relationship.type} - ${relationship.destinationId}`;
     }
 
     onAssigneeInput(event: any): void {
@@ -534,6 +717,173 @@ export class RequestComponent implements OnInit, OnDestroy {
         return JSON.stringify(normalize(this.request)) !== JSON.stringify(normalize(this.originalRequest));
     }
 
+    areMandatoryFieldsPopulated(): boolean {
+        if (!this.request) {
+            return false;
+        }
+
+        // Common mandatory fields
+        if (!this.request.type || this.request.type.trim() === '') {
+            return false;
+        }
+
+        if (!this.request.summary || this.request.summary.trim() === '') {
+            return false;
+        }
+
+        // Type-specific mandatory fields
+        switch (this.request.type) {
+            case 'add-concept':
+                if (!this.request.newFSN || this.request.newFSN.trim() === '') return false;
+                if (!this.request.newPT || this.request.newPT.trim() === '') return false;
+                if (!this.request.parentConcept || this.request.parentConcept.trim() === '') return false;
+                break;
+
+            case 'add-description':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.newDescription || this.request.newDescription.trim() === '') return false;
+                break;
+
+            case 'add-relationship':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.relationshipType || this.request.relationshipType.trim() === '') return false;
+                if (!this.request.relationshipTarget || this.request.relationshipTarget.trim() === '') return false;
+                break;
+
+            case 'change-description':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingDescription || this.request.existingDescription.trim() === '') return false;
+                if (!this.request.newDescription || this.request.newDescription.trim() === '') return false;
+                break;
+
+            case 'change-relationship':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingRelationship || this.request.existingRelationship.trim() === '') return false;
+                if (!this.request.relationshipType || this.request.relationshipType.trim() === '') return false;
+                if (!this.request.relationshipTarget || this.request.relationshipTarget.trim() === '') return false;
+                break;
+
+            case 'inactivate-description':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingDescription || this.request.existingDescription.trim() === '') return false;
+                break;
+
+            case 'inactivate-relationship':
+                if (!this.request.conceptId || this.request.conceptId.trim() === '') return false;
+                if (!this.request.conceptName || this.request.conceptName.trim() === '') return false;
+                if (!this.request.existingRelationship || this.request.existingRelationship.trim() === '') return false;
+                break;
+
+            // For 'add-refset', 'change-refset', and 'other', only common fields are mandatory
+            case 'add-refset':
+            case 'change-refset':
+            case 'other':
+                // Only common mandatory fields (already checked above)
+                break;
+
+            default:
+                // For unknown types, only validate common fields
+                break;
+        }
+
+        return true;
+    }
+
+    filterLanguageRefsetsByCountry(): void {
+        if (!this.config?.languageRefsets || !this.country) {
+            this.languageRefsets = this.config?.languageRefsets || [];
+            return;
+        }
+
+        // Filter language refsets based on country code
+        // If countries array is empty or not present, the refset is available for all countries
+        // If countries array contains the current country code, include it
+        // Always include "none"
+        this.languageRefsets = this.config.languageRefsets.filter((refset: any) => {
+            // Always include "none"
+            if (refset.translationKey === 'request.languageRefsets.none') {
+                return true;
+            }
+
+            // If no countries array or empty array, available for all countries
+            if (!refset.countries || refset.countries.length === 0) {
+                return true;
+            }
+
+            // Check if current country is in the countries array
+            return refset.countries.includes(this.country.toLowerCase());
+        });
+    }
+
+    filterContextRefsetsByCountry(): void {
+        if (!this.config?.contextRefsets || !this.country) {
+            this.allContextRefsets = this.config?.contextRefsets || [];
+            this.filteredContextRefsets = this.allContextRefsets;
+            return;
+        }
+
+        // Filter context refsets based on country code
+        // If countries array is empty or not present, the refset is available for all countries
+        // If countries array contains the current country code, include it
+        // Always include "none"
+        this.allContextRefsets = this.config.contextRefsets.filter((refset: any) => {
+            // Always include "none"
+            if (refset.translationKey === 'request.contextRefsets.none') {
+                return true;
+            }
+
+            // If no countries array or empty array, available for all countries
+            if (!refset.countries || refset.countries.length === 0) {
+                return true;
+            }
+
+            // Check if current country is in the countries array
+            return refset.countries.includes(this.country.toLowerCase());
+        });
+
+        // Set filtered context refsets to all context refsets (no language filtering)
+        this.filteredContextRefsets = this.allContextRefsets;
+    }
+
+    normalizeRefsetsForDisplay(): void {
+        // Use stored translation values (loaded in initializeTranslations)
+        // Fallback to instant if not yet loaded (will be translation key if translations not ready)
+        const noneLanguageRefset = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+        const noneContextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+
+        // Convert empty language refset to "None" for display
+        if (!this.request.languageRefset || this.request.languageRefset.trim() === '') {
+            this.request.languageRefset = noneLanguageRefset;
+        }
+
+        // Convert empty context refset to "None" for display
+        if (!this.request.contextRefset || this.request.contextRefset.trim() === '') {
+            this.request.contextRefset = noneContextRefset;
+        }
+    }
+
+    normalizeRefsetsForSave(): void {
+        // Use stored translation values (loaded in initializeTranslations)
+        // Fallback to instant if not yet loaded
+        const noneLanguageRefset = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+        const noneContextRefset = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+
+        // Convert "None" language refset back to empty for saving
+        if (this.request.languageRefset === noneLanguageRefset) {
+            this.request.languageRefset = '';
+        }
+
+        // Convert "None" context refset back to empty for saving
+        if (this.request.contextRefset === noneContextRefset) {
+            this.request.contextRefset = '';
+        }
+    }
+
     updateRequest(form: NgForm): void {
         // Check if type is selected
         if (!this.request.type || this.request.type.trim() === '') {
@@ -557,7 +907,26 @@ export class RequestComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const updatedRequest: Request = this.request;
+        // Create a copy of the request for saving
+        const updatedRequest: Request = JSON.parse(JSON.stringify(this.request));
+
+        // Normalize "None" values back to empty in the copy before saving
+        // Use stored values if available, otherwise use instant (may be translation key if not loaded)
+        const noneLanguageRefsetValue = this.noneLanguageRefsetValue || this.translateService.instant('request.languageRefsets.none');
+        const noneContextRefsetValue = this.noneContextRefsetValue || this.translateService.instant('request.contextRefsets.none');
+
+        if (updatedRequest.languageRefset === noneLanguageRefsetValue) {
+            updatedRequest.languageRefset = '';
+        }
+        if (updatedRequest.contextRefset === noneContextRefsetValue) {
+            updatedRequest.contextRefset = '';
+        }
+
+        // Clear languageRefset and contextRefset for relationship request types
+        if (updatedRequest.type === 'change-relationship' || updatedRequest.type === 'add-relationship' || updatedRequest.type === 'inactivate-relationship') {
+            updatedRequest.languageRefset = '';
+            updatedRequest.contextRefset = '';
+        }
 
         this.authoringService.httpPutRMPRequest(updatedRequest).subscribe({
             next: () => {

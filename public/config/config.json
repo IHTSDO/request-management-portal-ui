@@ -93,5 +93,173 @@
             "languageFlag": "kr",
             "languageName": "Korean"
         }
+    ],
+    "languageRefsets": [
+        {
+            "translationKey": "request.languageRefsets.none",
+            "countries": []
+        },
+        {
+            "translationKey": "request.languageRefsets.belgianDutch",
+            "countries": [
+                "be"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.belgianGerman",
+            "countries": [
+                "be"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.belgianFrench",
+            "countries": [
+                "be"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.danish",
+            "countries": [
+                "dk"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.estonian",
+            "countries": [
+                "ee"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.french",
+            "countries": [
+                "fr"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.ieEnglish",
+            "countries": [
+                "ie"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.korean",
+            "countries": [
+                "kr"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.norwegianBokmal",
+            "countries": [
+                "no"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.norwegianNynorsk",
+            "countries": [
+                "no"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.nzEnglish",
+            "countries": [
+                "nz"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.maori",
+            "countries": [
+                "nz"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.swedish",
+            "countries": [
+                "se"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.swissGerman",
+            "countries": [
+                "ch"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.swissItalian",
+            "countries": [
+                "ch"
+            ]
+        },
+        {
+            "translationKey": "request.languageRefsets.swissFrench",
+            "countries": [
+                "ch"
+            ]
+        }
+    ],
+    "contextRefsets": [
+        {
+            "translationKey": "request.contextRefsets.none",
+            "countries": []
+        },
+        {
+            "translationKey": "request.contextRefsets.beGpDutch",
+            "countries": [
+                "be"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.beGpFrench",
+            "countries": [
+                "be"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.nzPatientFriendly",
+            "countries": [
+                "nz"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.nzCanshareLRS",
+            "countries": [
+                "nz"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.seChiefComplaints",
+            "countries": [
+                "se"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.seDoseUnitAbbr",
+            "countries": [
+                "se"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.seLabMedicine",
+            "countries": [
+                "se"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.seDoseUnitPlural",
+            "countries": [
+                "se"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.seMedicationProf",
+            "countries": [
+                "se"
+            ]
+        },
+        {
+            "translationKey": "request.contextRefsets.seMedicationCommon",
+            "countries": [
+                "se"
+            ]
+        }
     ]
 }

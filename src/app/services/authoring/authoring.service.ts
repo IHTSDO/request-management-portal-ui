@@ -93,4 +93,14 @@ export class AuthoringService {
     convertShortConceptToString(input): string {
         return input.id + ' |' + input.fsn.term + '|';
     }
+
+    getConcept(country: string, conceptId: string): Observable<any> {
+        let branchPath: string = '';
+
+        if (country) {
+            branchPath = '/SNOMEDCT-' + country.toUpperCase();
+        }
+
+        return this.http.get('/term-server/snomed-ct/browser/MAIN' + branchPath + '/concepts/' + conceptId);
+    }
 }

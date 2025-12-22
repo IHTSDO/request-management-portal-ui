@@ -94,7 +94,9 @@
             "updatedDate": "Opdateret den",
             "reporter": "Rapportør",
             "assignee": "Tildelt"
-        }
+        },
+        "deleteCommentTitle": "",
+        "confirmDeleteComment": ""
     },
     "request": {
         "newRequest": "Ny anmodning",
@@ -140,10 +142,14 @@
             "newDescription": "Forslag til ny term",
             "relationshipType": "Relationstype",
             "relationshipTarget": "Relationens målbegreb",
+            "newRelationshipType": "Ny Relationstype",
+            "newRelationshipTarget": "Nyt Målbegreb for Relation",
             "existingDescription": "Eksisterende term",
             "existingRelationship": "Eksisterende relation",
             "eclQuery": "ECL-forespørgsel (kun intensionelle refsets)",
-            "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)"
+            "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)",
+            "reporter": "",
+            "assignee": ""
         },
         "validation": {
             "summaryRequired": "Resumé er påkrævet",
