@@ -174,7 +174,7 @@
                 </tr>
             </thead>
             <tbody class="bg-white dark:bg-slate-800" data-cy="request-list">
-                <tr *ngFor="let request of requests | userRequests:user; let last = last" (click)="navigateToRequest(request.id)" class="hover:bg-sky-50 hover:cursor-pointer">
+                <tr *ngFor="let request of requests | userRequests:user:extension; let last = last" (click)="navigateToRequest(request.id)" class="hover:bg-sky-50 hover:cursor-pointer">
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">#{{request.id}}</td>
                     <td class="border-gray-300 font-normal text-sky-500 text-sm p-2" [class.border-b]="!last">{{request.summary}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
@@ -217,7 +217,7 @@
                     </svg>{{ 'requestManagement.loadMoreButton' | translate }}</button>
             </div>
             <div class="col-span-2 me-3 justify-self-end" *ngIf="totalRequests > 0">
-                <h2 class="text-base text-gray-500">{{ 'requestManagement.showing' | translate:{visible:  (requests | userRequests:user)?.length ? (requests | userRequests:user).length : 0, total: totalRequests} }}</h2>
+                <h2 class="text-base text-gray-500">{{ 'requestManagement.showing' | translate:{visible:  (requests | userRequests:user:extension)?.length ? (requests | userRequests:user:extension).length : 0, total: totalRequests} }}</h2>
             </div>
         </div>
     </ng-container>

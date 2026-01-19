@@ -661,7 +661,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     isStaff(user: User): boolean {
-        return user ? user.roles.includes('ROLE_ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")) : false;
+        return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-staff') : false;
     }
 
     isUser(user: User): boolean {
@@ -674,7 +674,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     populateAssignees(): void {
         forkJoin([
-            this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")),
+            this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-staff'),
             this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-requestor')
         ]).subscribe({
             next: ([staff, requestors]) => {
