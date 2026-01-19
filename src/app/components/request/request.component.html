@@ -2,7 +2,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
     </svg>{{ 'request.backButton' | translate }}</button>
-<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm mt-12" data-cy="request-form">
+<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form">
     <ng-container *ngIf="request">
         <div class="grid grid-cols-12 my-5">
             <div class="col-span-2 ms-5">
