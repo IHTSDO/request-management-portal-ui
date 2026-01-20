@@ -15,7 +15,7 @@ export class UserRequestsPipe implements PipeTransform {
             return results;
         }
 
-        if (user || this.isStaff(user, extension)) {
+        if (!user || this.isStaff(user, extension)) {
             return requests;
         }
 

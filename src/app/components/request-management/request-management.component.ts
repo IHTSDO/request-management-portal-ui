@@ -280,7 +280,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 sortParam,
                 statusList,
                 this.assignedRequests ? this.assignees : null,
-                this.myRequests ? this.reporters : null
+                this.myRequests ? this.reporters : (this.isStaff(this.user) ? null : [this.user.login])
             ).subscribe({
                 next: (response) => {
                     const pageRequests = response.content as Request[];
