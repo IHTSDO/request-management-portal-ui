@@ -9,6 +9,7 @@ import {provideToastr} from "ngx-toastr";
 import {provideTranslateService} from "@ngx-translate/core";
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 import {provideAnimations} from "@angular/platform-browser/animations";
+import {provideMarkdown, MARKED_OPTIONS} from 'ngx-markdown';
 
 
 export const appConfig: ApplicationConfig = {
@@ -29,6 +30,15 @@ export const appConfig: ApplicationConfig = {
             }),
             fallbackLang: 'en',
             lang: 'en'
+        }),
+        provideMarkdown({
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useValue: {
+                    gfm: true,
+                    breaks: true
+                }
+            }
         })
     ]
 };

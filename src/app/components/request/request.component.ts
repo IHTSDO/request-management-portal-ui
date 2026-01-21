@@ -18,6 +18,7 @@ import { Extension } from '../../models/extension';
 import * as data from 'public/config/config.json';
 import { LanguageService } from '../../services/language/language.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
+import { MarkdownComponent } from 'ngx-markdown';
 
 enum Mode {
     NEW,
@@ -26,7 +27,7 @@ enum Mode {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe, MarkdownComponent],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]
@@ -942,5 +943,24 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     navigateBack(): void {
         this.navigationService.navigateWithLanguage([this.country]);
+    }
+
+    /**
+     * Prepare comment body for markdown rendering.
+     * - Converts literal "\n" sequences from the backend into real newlines
+     * - Then converts runs of newlines into <br> tags so multiple blank lines are preserved
+     */
+    getMarkdownBody(comment: RequestComment): string {
+        if (!comment || !comment.body) {
+            return '';
+        }
+
+        // 1. Convert escaped newlines ("\\n") to real newline characters
+        let body = comment.body.replace(/\\n/g, '\n');
+
+        // 2. Turn one or more newlines into the same number of <br> tags
+        body = body.replace(/\n+/g, (match) => '<br>'.repeat(match.length));
+
+        return body;
     }
 }

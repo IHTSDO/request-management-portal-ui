@@ -542,14 +542,14 @@
                         <ng-container *ngIf="user && user.login === comment.user">
                             <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
                             <i class="fa-solid fa-trash float-right mt-2 mr-2 text-red-400" (click)="deleteOption = comment; $event.stopPropagation()"></i>
-                            <div class="border border-lime-300 bg-lime-100 rounded-lg">
-                                <p class="p-3">{{comment.body}}</p>
+                            <div class="border border-lime-300 bg-lime-100 rounded-lg p-3">
+                                <markdown [data]="getMarkdownBody(comment)"></markdown>
                             </div>
                         </ng-container>
                         <ng-container *ngIf="user &&user.login !== comment.user">
                             <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
-                            <div class="border border-sky-200 bg-sky-100 rounded-lg">
-                                <p class="p-3">{{comment.body}}</p>
+                            <div class="border border-sky-200 bg-sky-100 rounded-lg p3">
+                                <markdown [data]="getMarkdownBody(comment)"></markdown>
                             </div>
                         </ng-container>
                     </div>
