@@ -948,7 +948,8 @@ export class RequestComponent implements OnInit, OnDestroy {
     /**
      * Prepare comment body for markdown rendering.
      * - Converts literal "\n" sequences from the backend into real newlines
-     * - Then converts runs of newlines into <br> tags so multiple blank lines are preserved
+     * - Converts runs of newlines into <br> tags so multiple blank lines are preserved
+     * - Auto-links plain http/https URLs
      */
     getMarkdownBody(comment: RequestComment): string {
         if (!comment || !comment.body) {
@@ -960,6 +961,10 @@ export class RequestComponent implements OnInit, OnDestroy {
 
         // 2. Turn one or more newlines into the same number of <br> tags
         body = body.replace(/\n+/g, (match) => '<br>'.repeat(match.length));
+
+        // 3. Auto-link plain URLs (http/https) that are not already part of an anchor
+        const urlRegex = /(https?:\/\/[^\s<>"']+)/g;
+        body = body.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
 
         return body;
     }
