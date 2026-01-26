@@ -1,10 +1,10 @@
 <div class="background dashboard-container w-screen bg-cover" style="background-image: radial-gradient(circle, rgba(73,168,219,0.8) 0%, rgba(18,79,107,0.8) 100%), url('images/medical_bg.png')">
-    <div class="grid gap-6 h-full justify-self-center w-3/4 content-center">
+    <div class="grid gap-6 justify-self-center w-3/4 content-center">
         <div class="text-center">
-            <p class="text-center museo inline-block text-white text-6xl" data-cy="dashboard-title">{{ 'dashboard.title' | translate }}</p>
+            <p class="text-center museo inline-block text-white text-6xl mt-[72px]" data-cy="dashboard-title">{{ 'dashboard.title' | translate }}</p>
             <p class="text-center text-lg text-white m-5 mx-40">{{ 'dashboard.description' | translate }}</p>
         </div>
-        <div *ngIf="user" class="grid grid-cols-4 gap-6">
+        <div *ngIf="user" class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ng-container *ngIf="user.roles.includes('ROLE_rmp-be-requestor') || user.roles.includes('ROLE_rmp-be-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('be')">
                     <div class="m-3 w-16 flex items-center justify-center">
