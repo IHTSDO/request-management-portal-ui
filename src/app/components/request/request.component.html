@@ -534,7 +534,7 @@
         </div>
 
         <ng-container *ngIf="mode !== ModeType.NEW">
-            <div class="grid w-2/3 justify-self-center my-5">
+            <div class="grid w-2/3 justify-self-center my-5 comments-section">
                 <h2 class="text-xl text-slate-700">{{ 'request.comments' | translate }}</h2>
                 <p *ngIf="requestComments.length === 0" class="p-5 text-center text-gray-500">{{ 'request.noComments' | translate }}</p>
                 <ng-container *ngFor="let comment of requestComments">
