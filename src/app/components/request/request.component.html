@@ -2,7 +2,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
     </svg>{{ 'request.backButton' | translate }}</button>
-<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm mt-12" data-cy="request-form">
+<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form">
     <ng-container *ngIf="request">
         <div class="grid grid-cols-12 my-5">
             <div class="col-span-2 ms-5">
@@ -534,7 +534,7 @@
         </div>
 
         <ng-container *ngIf="mode !== ModeType.NEW">
-            <div class="grid w-2/3 justify-self-center my-5">
+            <div class="grid w-2/3 justify-self-center my-5 comments-section">
                 <h2 class="text-xl text-slate-700">{{ 'request.comments' | translate }}</h2>
                 <p *ngIf="requestComments.length === 0" class="p-5 text-center text-gray-500">{{ 'request.noComments' | translate }}</p>
                 <ng-container *ngFor="let comment of requestComments">
@@ -542,14 +542,14 @@
                         <ng-container *ngIf="user && user.login === comment.user">
                             <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
                             <i class="fa-solid fa-trash float-right mt-2 mr-2 text-red-400" (click)="deleteOption = comment; $event.stopPropagation()"></i>
-                            <div class="border border-lime-300 bg-lime-100 rounded-lg">
-                                <p class="p-3">{{comment.body}}</p>
+                            <div class="border border-lime-300 bg-lime-100 rounded-lg p-3">
+                                <markdown [data]="getMarkdownBody(comment)"></markdown>
                             </div>
                         </ng-container>
                         <ng-container *ngIf="user &&user.login !== comment.user">
                             <p class="ms-3 font-medium">{{ getDisplayName(comment.user) }} <span class="text-gray-500 text-sm font-normal ms-2">{{comment.created | date:'yyyy/MM/dd, h:mm a':'UTC'}}</span></p>
-                            <div class="border border-sky-200 bg-sky-100 rounded-lg">
-                                <p class="p-3">{{comment.body}}</p>
+                            <div class="border border-sky-200 bg-sky-100 rounded-lg p3">
+                                <markdown [data]="getMarkdownBody(comment)"></markdown>
                             </div>
                         </ng-container>
                     </div>

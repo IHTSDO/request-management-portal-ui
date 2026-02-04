@@ -1,5 +1,5 @@
 import { FormsModule, NgForm } from '@angular/forms';
-import { NgIf, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Request, RequestComment } from '../../models/request';
@@ -18,6 +18,7 @@ import { Extension } from '../../models/extension';
 import * as data from 'public/config/config.json';
 import { LanguageService } from '../../services/language/language.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
+import { MarkdownComponent } from 'ngx-markdown';
 
 enum Mode {
     NEW,
@@ -26,7 +27,7 @@ enum Mode {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, NgIf, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe],
+    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe, MarkdownComponent],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]
@@ -661,7 +662,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     isStaff(user: User): boolean {
-        return user ? user.roles.includes('ROLE_ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")) : false;
+        return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-staff') : false;
     }
 
     isUser(user: User): boolean {
@@ -674,7 +675,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     populateAssignees(): void {
         forkJoin([
-            this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")),
+            this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-staff'),
             this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-requestor')
         ]).subscribe({
             next: ([staff, requestors]) => {
@@ -942,5 +943,29 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     navigateBack(): void {
         this.navigationService.navigateWithLanguage([this.country]);
+    }
+
+    /**
+     * Prepare comment body for markdown rendering.
+     * - Converts literal "\n" sequences from the backend into real newlines
+     * - Converts runs of newlines into <br> tags so multiple blank lines are preserved
+     * - Auto-links plain http/https URLs
+     */
+    getMarkdownBody(comment: RequestComment): string {
+        if (!comment || !comment.body) {
+            return '';
+        }
+
+        // 1. Convert escaped newlines ("\\n") to real newline characters
+        let body = comment.body.replace(/\\n/g, '\n');
+
+        // 2. Turn one or more newlines into the same number of <br> tags
+        body = body.replace(/\n+/g, (match) => '<br>'.repeat(match.length));
+
+        // 3. Auto-link plain URLs (http/https) that are not already part of an anchor
+        const urlRegex = /(https?:\/\/[^\s<>"']+)/g;
+        body = body.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+
+        return body;
     }
 }

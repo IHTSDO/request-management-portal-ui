@@ -1,16 +1,21 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {User} from '../../models/user';
 import {Request} from '../../models/request';
+import { Extension } from '../../models/extension';
 
 @Pipe({
     name: 'userRequests'
 })
 export class UserRequestsPipe implements PipeTransform {
 
-    transform(requests: Request[], user: User): Request[] {
+    transform(requests: Request[], user: User, extension: Extension): Request[] {
         let results: Request[] = [];
+        
+        if (!requests || requests.length === 0) {
+            return results;
+        }
 
-        if (!user || this.isStaff(user)) {
+        if (!user || this.isStaff(user, extension)) {
             return requests;
         }
 
@@ -19,14 +24,7 @@ export class UserRequestsPipe implements PipeTransform {
         return results;
     }
 
-    isStaff(user: User): boolean {
-        return user.roles.includes('ROLE_ms-belgium')
-            || user.roles.includes('ROLE_ms-denmark')
-            || user.roles.includes('ROLE_ms-estonia')
-            || user.roles.includes('ROLE_ms-ireland')
-            || user.roles.includes('ROLE_ms-newzealand')
-            || user.roles.includes('ROLE_ms-france')
-            || user.roles.includes('ROLE_ms-switzerland')
-            || user.roles.includes('ROLE_ms-korea');
+    isStaff(user: User, extension: Extension): boolean { 
+        return user.roles.includes('ROLE_rmp-' + extension.shortCode + '-staff');
     }
 }

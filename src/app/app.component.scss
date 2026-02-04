@@ -1,0 +1,9 @@
+div.scrollable-view {
+    margin-top: 50px;
+    /* Height includes padding-top, so total visual height = 100vh - (navbar + footer) */
+    height: calc(100vh - 5.5rem);
+    max-height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}

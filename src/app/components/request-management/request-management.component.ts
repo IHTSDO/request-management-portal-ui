@@ -1,22 +1,22 @@
 import {CommonModule} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {Request} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
 import {ToastrService} from 'ngx-toastr';
-import {debounceTime, BehaviorSubject, Subscription, switchMap, tap} from 'rxjs';
+import {debounceTime, BehaviorSubject, Subscription, switchMap, tap, of, filter, combineLatest} from 'rxjs';
 import {StatusTransformPipe, StatusEnum} from '../../pipes/status-transform/status-transform.pipe';
 import {RequestTypeTransformPipe, RequestTypeEnum} from '../../pipes/request-type-transform/request-type-transform.pipe';
 import {FormsModule} from '@angular/forms';
 import {UserRequestsPipe} from '../../pipes/user-requests/user-requests.pipe';
 import {User} from '../../models/user';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
-import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import * as data from 'public/config/config.json';
 import {ConfigService} from '../../services/config/config.service';
 import {Extension} from '../../models/extension';
 import {LanguageService} from '../../services/language/language.service';
 import {NavigationService} from '../../services/navigation/navigation.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-request-management',
@@ -67,6 +67,15 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
             if (data) {
                 this.reporters = [data.username];
                 this.assignees = [data.username];
+                // Trigger initial search once user is loaded and country is available
+                if (this.country) {
+                    // Use setTimeout to ensure this runs after ngOnInit sets the country
+                    setTimeout(() => {
+                        if (this.user && this.country) {
+                            this.searchQuery.next('');
+                        }
+                    }, 0);
+                }
             }
         });
         this.extensionSubscription = this.configService.getExtension().subscribe(extension => {
@@ -83,11 +92,20 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 this.requests = [];
             }),
             switchMap(searchText => {
+                // Ensure user and country are available before making API call
+                if (!this.user || !this.country) {
+                    return of({content: [], totalElements: 0});
+                }
+                
                 this.searchText = searchText;
                 const sortParam = `${this.sortColumn},${this.sortDirection}`;
                 this.visibleRequests = 100; // Reset visible requests on new search
                 this.totalRequests = 0; // Reset total requests on new search
-                return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList);
+                
+                if (this.isStaff(this.user)) {
+                    return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList);
+                }
+                return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList, null, [this.user.login]);
             })
         ).subscribe((response: any) => {
             if (response?.content) {
@@ -105,6 +123,11 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.languageService.initializeLanguageFromUrl();
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
+        
+        // Trigger initial search if user is already loaded
+        if (this.user && this.country) {
+            this.searchQuery.next('');
+        }
     }
 
     navigateToNewRequest(): void {
@@ -117,6 +140,12 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        if (this.userSubscription) {
+            this.userSubscription.unsubscribe();
+        }
+        if (this.extensionSubscription) {
+            this.extensionSubscription.unsubscribe();
+        }
     }
 
     onSearchInput() {
@@ -160,13 +189,26 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     }
 
     searchRequests(): void {
+        // Ensure user and country are available before making API call
+        if (!this.user || !this.country) {
+            this.requests = [];
+            this.totalRequests = 0;
+            this.requestLoading = false;
+            return;
+        }
+
         this.requestLoading = true;
         this.requests = [];
 
         this.statusList = this.calculateStatus();
 
         const sortParam = this.sortColumn + ',' + this.sortDirection;
-        this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList, this.assignedRequests ? this.assignees : null, this.myRequests ? this.reporters : null).subscribe({
+        if (this.isStaff(this.user)) {
+            this.reporters = this.myRequests ? this.reporters : null;
+        } else {
+            this.reporters = [this.user.login];
+        }
+        this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList, this.assignedRequests ? this.assignees : null, this.reporters).subscribe({
             next: (response) => {
                 this.requests = response.content as Request[];
                 this.totalRequests = response.totalElements as number;
@@ -186,6 +228,10 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-requestor') : false;
     }
 
+    isStaff(user: User): boolean {
+        return user ? user.roles.includes('ROLE_rmp-' + this.extension.shortCode + '-staff') : false;
+    }
+
     getDisplayName(identifier: string): string {
         if (!identifier) {
             return '';
@@ -203,6 +249,12 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     }
 
     downloadRequestsAsTSV(): void {
+        // Ensure user and country are available before proceeding
+        if (!this.user || !this.country) {
+            this.toastr.warning(this.translateService.instant('requestManagement.download.waitForRequest'), this.translateService.instant('requestManagement.download.requestInProgress'));
+            return;
+        }
+
         if (this.requestLoading) {
             this.toastr.warning(this.translateService.instant('requestManagement.download.waitForRequest'), this.translateService.instant('requestManagement.download.requestInProgress'));
             return;
@@ -228,7 +280,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 sortParam,
                 statusList,
                 this.assignedRequests ? this.assignees : null,
-                this.myRequests ? this.reporters : null
+                this.myRequests ? this.reporters : (this.isStaff(this.user) ? null : [this.user.login])
             ).subscribe({
                 next: (response) => {
                     const pageRequests = response.content as Request[];
@@ -346,7 +398,7 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         if (!this.extension) {
             return;
         }
-        this.authoringService.httpGetUsersByRole('ms-' + this.extension.name.toLowerCase().replaceAll(" ", "")).subscribe({
+        this.authoringService.httpGetUsersByRole('rmp-' + this.extension.shortCode + '-staff').subscribe({
             next: (staff: any) => {
                 const staffUsers: any[] = staff?.users?.items ?? [];
                 staffUsers.forEach((u: any) => {

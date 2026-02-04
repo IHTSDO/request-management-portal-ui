@@ -1,14 +1,16 @@
 import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
-import {provideRouter} from '@angular/router';
+import { provideRouter } from '@angular/router';
 import {routes} from './app.routes';
 import {provideClientHydration} from '@angular/platform-browser';
-import {provideHttpClient, withFetch, withInterceptors, HttpClient} from "@angular/common/http";
+import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
 import {contentTypeInterceptor} from "./interceptors/content-type.interceptor";
 import {authenticationInterceptor} from './interceptors/authentication.interceptor';
-import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideToastr} from "ngx-toastr";
 import {provideTranslateService} from "@ngx-translate/core";
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
+import {provideAnimations} from "@angular/platform-browser/animations";
+import {provideMarkdown, MARKED_OPTIONS} from 'ngx-markdown';
+
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -28,6 +30,15 @@ export const appConfig: ApplicationConfig = {
             }),
             fallbackLang: 'en',
             lang: 'en'
+        }),
+        provideMarkdown({
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useValue: {
+                    gfm: true,
+                    breaks: true
+                }
+            }
         })
     ]
 };

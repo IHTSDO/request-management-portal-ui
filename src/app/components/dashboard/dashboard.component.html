@@ -1,11 +1,11 @@
-<div class="background h-screen w-screen bg-cover" style="background-image: radial-gradient(circle, rgba(73,168,219,0.8) 0%, rgba(18,79,107,0.8) 100%), url('images/medical_bg.png')">
-    <div class="grid gap-6 h-screen justify-self-center w-3/4 content-center">
+<div class="background dashboard-container w-screen bg-cover" style="background-image: radial-gradient(circle, rgba(73,168,219,0.8) 0%, rgba(18,79,107,0.8) 100%), url('images/medical_bg.png')">
+    <div class="grid gap-6 justify-self-center w-3/4 content-center">
         <div class="text-center">
-            <p class="text-center museo inline-block text-white text-6xl" data-cy="dashboard-title">{{ 'dashboard.title' | translate }}</p>
+            <p class="text-center museo inline-block text-white text-6xl mt-[72px]" data-cy="dashboard-title">{{ 'dashboard.title' | translate }}</p>
             <p class="text-center text-lg text-white m-5 mx-40">{{ 'dashboard.description' | translate }}</p>
         </div>
-        <div *ngIf="user" class="grid grid-cols-4 gap-6">
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-belgium') || user.roles.includes('ROLE_rmp-be-requestor')">
+        <div *ngIf="user" class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-be-requestor') || user.roles.includes('ROLE_rmp-be-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('be')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-be ms-3 text-5xl align-middle"></span>
@@ -16,7 +16,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-denmark') || user.roles.includes('ROLE_rmp-dk-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-dk-requestor') || user.roles.includes('ROLE_rmp-dk-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('dk')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-dk ms-3 text-5xl align-middle"></span>
@@ -27,7 +27,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-estonia') || user.roles.includes('ROLE_rmp-ee-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-ee-requestor') || user.roles.includes('ROLE_rmp-ee-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('ee')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-ee ms-3 text-5xl align-middle"></span>
@@ -38,7 +38,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-ireland') || user.roles.includes('ROLE_rmp-ie-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-ie-requestor') || user.roles.includes('ROLE_rmp-ie-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('ie')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-ie ms-3 text-5xl align-middle"></span>
@@ -49,7 +49,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-newzealand') || user.roles.includes('ROLE_rmp-nz-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-nz-requestor') || user.roles.includes('ROLE_rmp-nz-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('nz')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-nz ms-3 text-5xl align-middle"></span>
@@ -60,7 +60,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-france') || user.roles.includes('ROLE_rmp-fr-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-fr-requestor') || user.roles.includes('ROLE_rmp-fr-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('fr')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-fr ms-3 text-5xl align-middle"></span>
@@ -71,7 +71,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-switzerland') || user.roles.includes('ROLE_rmp-ch-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-ch-requestor') || user.roles.includes('ROLE_rmp-ch-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('ch')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-ch ms-3 text-5xl align-middle"></span>
@@ -82,7 +82,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf="user.roles.includes('ROLE_ms-korea') || user.roles.includes('ROLE_rmp-kr-requestor')">
+            <ng-container *ngIf="user.roles.includes('ROLE_rmp-kr-requestor') || user.roles.includes('ROLE_rmp-kr-staff')">
                 <div class="grid grid-cols-4 h-24 bg-gray-50 rounded-lg max-w-80 hover:bg-sky-100 hover:cursor-pointer" (click)="navigateToCountry('kr')">
                     <div class="m-3 w-16 flex items-center justify-center">
                         <span class="fi fi-kr ms-3 text-5xl align-middle"></span>

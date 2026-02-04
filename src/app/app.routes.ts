@@ -1,4 +1,4 @@
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {RequestComponent} from './components/request/request.component';
 import {RequestManagementComponent} from './components/request-management/request-management.component';
