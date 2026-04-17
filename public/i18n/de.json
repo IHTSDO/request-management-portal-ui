@@ -163,7 +163,8 @@
             "relationshipTypeRequired": "Bitte Relationship Type eingeben",
             "relationshipTargetRequired": "Bitte Relationship Target eingeben",
             "existingDescriptionRequired": "Bitte Term eingeben",
-            "existingRelationshipRequired": "Bitte Relationship eingeben"
+            "existingRelationshipRequired": "Bitte Relationship eingeben",
+            "referenceRequired": "Bitte Verweise eingeben"
         },
         "typeOptions": {
             "addConcept": "Konzept hinzufügen",

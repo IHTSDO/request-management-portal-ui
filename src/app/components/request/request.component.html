@@ -511,11 +511,12 @@
                 </div>
             </div>
             <div class="col-span-2">
-                <label for="reference" class="text-sm text-slate-700 font-medium">{{ 'request.labels.reference' | translate }}</label>
+                <label for="reference" class="text-sm text-slate-700 font-medium">{{ 'request.labels.reference' | translate }}<span class="text-red-500 ps-1">*</span></label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                        <textarea type="text" name="Reference" id="reference" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"></textarea>
+                        <textarea type="text" name="Reference" #referenceInput="ngModel" required id="reference" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"></textarea>
                     </div>
+                    <div *ngIf="referenceInput.invalid && referenceInput.touched" class="text-red-500 text-sm">{{ 'request.validation.referenceRequired' | translate }}</div>
                 </div>
             </div>
         </div>

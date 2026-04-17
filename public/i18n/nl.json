@@ -163,7 +163,8 @@
             "relationshipTypeRequired": "Type relatie is vereist",
             "relationshipTargetRequired": "Relatie met Doelconcept is vereist",
             "existingDescriptionRequired": "Bestaande beschrijving is vereist",
-            "existingRelationshipRequired": "Bestaande relatie is vereist"
+            "existingRelationshipRequired": "Bestaande relatie is vereist",
+            "referenceRequired": "Referentie is vereist"
         },
         "typeOptions": {
             "addConcept": "Concept Toevoegen",

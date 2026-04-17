@@ -732,6 +732,10 @@ export class RequestComponent implements OnInit, OnDestroy {
             return false;
         }
 
+        if (!this.request.reference || this.request.reference.trim() === '') {
+            return false;
+        }
+
         // Type-specific mandatory fields
         switch (this.request.type) {
             case 'add-concept':

@@ -163,7 +163,8 @@
             "relationshipTypeRequired": "속성 유형 입력 필수",
             "relationshipTargetRequired": "속성값 입력 필수",
             "existingDescriptionRequired": "비활성화 전 용어 입력 필수",
-            "existingRelationshipRequired": "비활성화 전 관계(속성) 입력 필수"
+            "existingRelationshipRequired": "비활성화 전 관계(속성) 입력 필수",
+            "referenceRequired": "참고문헌 입력 필수"
         },
         "typeOptions": {
             "addDescription": "용어 추가",

@@ -163,7 +163,8 @@
             "relationshipTypeRequired": "Relationstype er påkrævet",
             "relationshipTargetRequired": "Relationens målbegreb er påkrævet",
             "existingDescriptionRequired": "Eksisterende term er påkrævet",
-            "existingRelationshipRequired": "Eksisterende relation er påkrævet"
+            "existingRelationshipRequired": "Eksisterende relation er påkrævet",
+            "referenceRequired": "Reference er påkrævet"
         },
         "typeOptions": {
             "addConcept": "Tilføj Begreb",

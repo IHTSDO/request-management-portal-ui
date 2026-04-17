@@ -163,7 +163,8 @@
             "relationshipTypeRequired": "Relationship Type is required",
             "relationshipTargetRequired": "Relationship Target is required",
             "existingDescriptionRequired": "Existing Description is required",
-            "existingRelationshipRequired": "Existing Relationship is required"
+            "existingRelationshipRequired": "Existing Relationship is required",
+            "referenceRequired": "Reference is required"
         },
         "typeOptions": {
             "addConcept": "Add Concept",

@@ -163,7 +163,8 @@
             "relationshipTypeRequired": "Relationship Type è obbligatorio",
             "relationshipTargetRequired": "Relationship Target è obbligatorio",
             "existingDescriptionRequired": "Existing Description è obbligatorio",
-            "existingRelationshipRequired": "Existing Relationship è obbligatorio"
+            "existingRelationshipRequired": "Existing Relationship è obbligatorio",
+            "referenceRequired": "Riferimento è obbligatorio"
         },
         "typeOptions": {
             "addConcept": "Aggiungi Concetto",
