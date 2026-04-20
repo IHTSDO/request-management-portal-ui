@@ -19,6 +19,7 @@ import * as data from 'public/config/config.json';
 import { LanguageService } from '../../services/language/language.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { MarkdownComponent } from 'ngx-markdown';
+import { CrsService } from '../../services/crs/crs-service';
 
 enum Mode {
     NEW,
@@ -98,6 +99,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     mode: Mode = Mode.NEW; // Default mode is NEW
 
     constructor(private readonly authoringService: AuthoringService,
+        private readonly crsService: CrsService,
         private readonly toastr: ToastrService,
         private readonly authenticationService: AuthenticationService,
         private readonly configService: ConfigService,
@@ -1000,6 +1002,69 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     navigateBack(): void {
         this.navigationService.navigateWithLanguage([this.country]);
+    }
+
+    downloadTemplate(): void {
+        this.toastr.info(
+            this.translateService.instant('requestManagement.downloadTemplate.fetching'),
+            this.translateService.instant('requestManagement.download.pleaseWait')
+        );
+
+        this.crsService.downloadBatchRequestTemplate().subscribe({
+            next: (response) => {
+                const blob = response.body;
+                if (!blob) {
+                    this.toastr.clear();
+                    this.toastr.error(
+                        this.translateService.instant('requestManagement.downloadTemplate.error'),
+                        this.translateService.instant('requestManagement.download.downloadError')
+                    );
+                    return;
+                }
+
+                const contentDisposition = response.headers.get('content-disposition');
+                const fallbackFileName = 'batch_request_template.tsv';
+                const fileName = this.getFilenameFromContentDisposition(contentDisposition) || fallbackFileName;
+
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', fileName);
+                link.style.visibility = 'hidden';
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                this.toastr.clear();
+                this.toastr.success(
+                    this.translateService.instant('requestManagement.downloadTemplate.success'),
+                    this.translateService.instant('requestManagement.download.downloadComplete')
+                );
+            },
+            error: () => {
+                this.toastr.clear();
+                this.toastr.error(
+                    this.translateService.instant('requestManagement.downloadTemplate.error'),
+                    this.translateService.instant('requestManagement.download.downloadError')
+                );
+            }
+        });
+    }
+
+    private getFilenameFromContentDisposition(headerValue: string | null): string | null {
+        if (!headerValue) {
+            return null;
+        }
+
+        const utf8Match = headerValue.match(/filename\*=UTF-8''([^;]+)/i);
+        if (utf8Match?.[1]) {
+            return decodeURIComponent(utf8Match[1]);
+        }
+
+        const basicMatch = headerValue.match(/filename="?([^"]+)"?/i);
+        return basicMatch?.[1] ?? null;
     }
 
     /**

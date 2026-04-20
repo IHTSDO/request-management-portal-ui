@@ -1,7 +1,14 @@
-<button class="rounded-md bg-slate-400 text-white px-3 py-1.5 absolute top-18 left-6 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" (click)="navigateBack()">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-    </svg>{{ 'request.backButton' | translate }}</button>
+<div class="absolute top-18 left-6 flex flex-col items-start gap-3">
+    <button class="rounded-md bg-slate-400 text-white px-3 py-1.5 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" (click)="navigateBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>{{ 'request.backButton' | translate }}</button>
+    <button class="rounded-md bg-slate-600 text-white px-3 py-1.5 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-700" type="button" (click)="downloadTemplate()" data-cy="download-template-button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>{{ 'requestManagement.downloadTemplateButton' | translate }}
+    </button>
+</div>
 <form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form">
     <ng-container *ngIf="request">
         <div class="grid grid-cols-12 my-5">

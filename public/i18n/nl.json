@@ -51,6 +51,7 @@
         "typeToSearch": "Typ om te zoeken...",
         "newRequestButton": "NIEUW VERZOEK",
         "downloadButton": "DOWNLOADEN",
+        "downloadTemplateButton": "CRS TEMPLETE",
         "id": "ID",
         "request": "VERZOEK",
         "type": "TYPE",
@@ -84,6 +85,11 @@
             "fetchFailed": "Kon verzoeken niet ophalen voor download.",
             "downloadError": "Download-fout",
             "rmpi116Error": "Server-fout RMPI-116: Kan download-verzoek niet verwerken. Probeer met een kleinere dataset of neem contact op met ondersteuning."
+        },
+        "downloadTemplate": {
+            "fetching": "Verzoeksjabloon wordt gedownload...",
+            "success": "Sjabloon succesvol gedownload.",
+            "error": "Sjabloon downloaden is mislukt."
         },
         "tsvHeaders": {
             "id": "ID",

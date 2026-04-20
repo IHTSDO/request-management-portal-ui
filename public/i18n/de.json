@@ -51,6 +51,7 @@
         "typeToSearch": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
         "downloadButton": "HERUNTERLADEN",
+        "downloadTemplateButton": "CRS TEMPLETE",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",
@@ -84,6 +85,11 @@
             "fetchFailed": "Fehler beim Abrufen der Anfragen für den Download.",
             "downloadError": "Download-Fehler",
             "rmpi116Error": "Server-Fehler RMPI-116: Download-Anfrage kann nicht verarbeitet werden. Bitte versuchen Sie es mit einem kleineren Datensatz oder kontaktieren Sie den Support."
+        },
+        "downloadTemplate": {
+            "fetching": "Anfragevorlage wird heruntergeladen...",
+            "success": "Vorlage erfolgreich heruntergeladen.",
+            "error": "Vorlage konnte nicht heruntergeladen werden."
         },
         "tsvHeaders": {
             "id": "ID",

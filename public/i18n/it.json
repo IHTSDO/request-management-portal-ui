@@ -51,6 +51,7 @@
         "typeToSearch": "Immettere una chiave di ricerca...",
         "newRequestButton": "NUOVA RICHIESTA",
         "downloadButton": "SCARICA",
+        "downloadTemplateButton": "CRS TEMPLETE",
         "id": "ID",
         "request": "RICHIESTA",
         "type": "TIPO",
@@ -84,6 +85,11 @@
             "fetchFailed": "Impossibile recuperare le richieste per il download.",
             "downloadError": "Errore di download",
             "rmpi116Error": "Errore server RMPI-116: Impossibile elaborare la richiesta di download. Provare con un dataset più piccolo o contattare il supporto."
+        },
+        "downloadTemplate": {
+            "fetching": "Download del modello di richiesta...",
+            "success": "Modello scaricato con successo.",
+            "error": "Download del modello non riuscito."
         },
         "tsvHeaders": {
             "id": "ID",

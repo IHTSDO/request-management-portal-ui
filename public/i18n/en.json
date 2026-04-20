@@ -51,6 +51,7 @@
         "typeToSearch": "Type to search...",
         "newRequestButton": "NEW REQUEST",
         "downloadButton": "DOWNLOAD",
+        "downloadTemplateButton": "CRS TEMPLETE",
         "id": "ID",
         "request": "REQUEST",
         "type": "TYPE",
@@ -86,6 +87,11 @@
             "fetchFailed": "Failed to fetch requests for download.",
             "downloadError": "Download Error",
             "rmpi116Error": "Server error RMPI-116: Unable to process download request. Please try with a smaller dataset or contact support."
+        },
+        "downloadTemplate": {
+            "fetching": "Downloading request template...",
+            "success": "Template downloaded successfully.",
+            "error": "Failed to download template."
         },
         "tsvHeaders": {
             "id": "ID",
