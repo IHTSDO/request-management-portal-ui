@@ -51,8 +51,8 @@
         "typeToSearch": "Type to search...",
         "newRequestButton": "NEW REQUEST",
         "downloadButton": "DOWNLOAD",
-        "downloadTemplateButton": "CRS TEMPLETE",
-        "downloadAPTemplateButton": "AP TEMPLETE",
+        "downloadTemplateButton": "CRS TEMPLATE",
+        "downloadAPTemplateButton": "AP TEMPLATE",
         "id": "ID",
         "request": "REQUEST",
         "type": "TYPE",
@@ -94,7 +94,7 @@
             "error": "Failed to download CRS template."
         },
         "downloadAPTemplate": {
-            "fetching": "Downloading AP request template...",
+            "fetching": "Downloading AP template...",
             "success": "AP template downloaded successfully.",
             "error": "Failed to download AP template."
         },

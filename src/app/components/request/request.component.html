@@ -537,7 +537,7 @@
             <div class="flex flex-wrap items-center gap-3">
                 <h2 class="text-xl text-slate-700 m-0">{{ 'request.attachments.title' | translate }}</h2>
                 <div class="flex flex-wrap items-center gap-3">
-                    <input #newRequestAttachmentFileInput type="file" class="attachment-file-input" (change)="onPendingAttachmentSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="new-request-attachment-file-input" />
+                    <input #newRequestAttachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onPendingAttachmentSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="new-request-attachment-file-input" />
                     <button type="button" class="rounded-md bg-slate-600 hover:bg-slate-700 text-white px-3 py-1.5 text-sm font-medium tracking-wide cursor-pointer inline-flex items-center" (click)="triggerNewRequestAttachmentDialog()" data-cy="new-request-attachment-choose-button">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 shrink-0 me-2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
@@ -577,7 +577,7 @@
                 <h2 class="text-xl text-slate-700 m-0">{{ 'request.attachments.title' | translate }}</h2>
                 <ng-container *ngIf="!isRequestFieldsLocked()">
                     <div class="flex flex-wrap items-center gap-3">
-                        <input #attachmentFileInput type="file" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
+                        <input #attachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
                         <button type="button" class="rounded-md bg-slate-600 hover:bg-slate-700 text-white px-3 py-1.5 text-sm font-medium tracking-wide cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-400 inline-flex items-center" (click)="triggerAttachmentFileDialog()" [disabled]="attachmentUploading" data-cy="attachment-choose-button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 shrink-0 me-2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />

@@ -1149,6 +1149,11 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (!file || this.mode !== Mode.NEW) {
             return;
         }
+        if (!this.isXlsFile(file)) {
+            this.toastr.error('Only .xls files are allowed.', 'Invalid File Type');
+            this.resetNewRequestAttachmentFileInput();
+            return;
+        }
         const previewUrl = URL.createObjectURL(file);
         this.pendingAttachmentFiles = [...this.pendingAttachmentFiles, { file, previewUrl }];
         this.resetNewRequestAttachmentFileInput();
@@ -1187,6 +1192,11 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (!file || !this.request?.id) {
             return;
         }
+        if (!this.isXlsFile(file)) {
+            this.toastr.error('Only .xls files are allowed.', 'Invalid File Type');
+            this.resetAttachmentFileInput();
+            return;
+        }
 
         this.attachmentUploading = true;
         this.authoringService.httpPostRequestAttachment(this.request.id, file).subscribe({
@@ -1203,6 +1213,10 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.toastr.error(message, 'ERROR');
             }
         });
+    }
+
+    private isXlsFile(file: File): boolean {
+        return !!file?.name && file.name.toLowerCase().endsWith('.xls');
     }
 
     triggerAttachmentFileDialog(): void {

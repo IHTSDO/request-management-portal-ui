@@ -51,8 +51,8 @@
         "typeToSearch": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
         "downloadButton": "HERUNTERLADEN",
-        "downloadTemplateButton": "CRS TEMPLETE",
-        "downloadAPTemplateButton": "AP TEMPLETE",
+        "downloadTemplateButton": "CRS-VORLAGE",
+        "downloadAPTemplateButton": "AP-VORLAGE",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",
@@ -92,7 +92,7 @@
             "error": "CRS-Vorlage konnte nicht heruntergeladen werden."
         },
         "downloadAPTemplate": {
-            "fetching": "AP-Anfragevorlage wird heruntergeladen...",
+            "fetching": "AP-Vorlage wird heruntergeladen...",
             "success": "AP-Vorlage erfolgreich heruntergeladen.",
             "error": "AP-Vorlage konnte nicht heruntergeladen werden."
         },
