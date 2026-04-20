@@ -1,8 +1,26 @@
 import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
-import {map, Observable, Subject, of} from 'rxjs';
-import {Request, RequestComment} from '../../models/request';
+import {map, Observable} from 'rxjs';
+import {Request, RequestAttachment, RequestComment} from '../../models/request';
+
+function normalizeAttachment(raw: any): RequestAttachment | null {
+    if (raw == null) {
+        return null;
+    }
+    const id = raw.id ?? raw.attachmentId;
+    if (id == null) {
+        return null;
+    }
+    const fileName = raw.fileName ?? raw.filename ?? raw.name ?? 'attachment';
+    return {
+        id,
+        fileName,
+        sizeBytes: raw.sizeBytes ?? raw.size,
+        created: raw.created ?? raw.createdDate ?? raw.uploadedAt,
+        downloadUrl: raw.downloadUrl ?? raw.url ?? raw.href
+    };
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthoringService {
@@ -63,6 +81,37 @@ export class AuthoringService {
 
     httpPostComment(id: number, comment: RequestComment): Observable<RequestComment> {
         return this.http.post<RequestComment>('/authoring-services/rmp-tasks/' + id + '/comment', comment);
+    }
+
+    httpGetRequestAttachments(requestId: string | number): Observable<RequestAttachment[]> {
+        return this.http.get<any>('/authoring-services/rmp-tasks/' + requestId + '/attachments').pipe(
+            map((body) => {
+                let items: any[] = [];
+                if (Array.isArray(body)) {
+                    items = body;
+                } else if (Array.isArray(body?.content)) {
+                    items = body.content;
+                } else if (Array.isArray(body?.attachments)) {
+                    items = body.attachments;
+                }
+                return items.map(normalizeAttachment).filter((a): a is RequestAttachment => a != null);
+            })
+        );
+    }
+
+    httpPostRequestAttachment(requestId: string | number, file: File): Observable<RequestAttachment> {
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        return this.http.post<any>('/authoring-services/rmp-tasks/' + requestId + '/attachments', formData).pipe(
+            map((raw) => {
+                const normalized = normalizeAttachment(raw);
+                return normalized ?? { id: raw?.id ?? Date.now(), fileName: file.name };
+            })
+        );
+    }
+
+    httpDeleteRequestAttachment(requestId: string | number, attachmentId: string | number): Observable<unknown> {
+        return this.http.delete('/authoring-services/rmp-tasks/' + requestId + '/attachments/' + attachmentId);
     }
 
     httpGetUsersByRole(roleName: string): Observable<any> {

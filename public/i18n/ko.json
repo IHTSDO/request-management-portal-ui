@@ -110,6 +110,22 @@
         "submitButton": "제출",
         "saveButton": "저장",
         "addCommentButton": "댓글 추가",
+        "attachments": {
+            "title": "첨부파일",
+            "none": "- 이 요청에 대한 첨부파일이 아직 없습니다. -",
+            "chooseFile": "파일 선택",
+            "removePending": "제거",
+            "uploading": "업로드 중…",
+            "uploadingAfterCreate": "첨부파일 업로드 중…",
+            "someUploadsFailed": "요청은 생성되었으나 다음 파일을 업로드하지 못했습니다: {{files}}",
+            "uploadSuccess": "파일이 업로드되었습니다.",
+            "uploadError": "파일 업로드에 실패했습니다.",
+            "deleteTitle": "첨부파일 삭제",
+            "confirmDelete": "이 파일을 요청에서 제거하시겠습니까? 되돌릴 수 없습니다.",
+            "deleteSuccess": "첨부파일이 삭제되었습니다.",
+            "deleteError": "첨부파일을 삭제하지 못했습니다.",
+            "deleteAria": "첨부파일 삭제"
+        },
         "workflowButton": "워크플로우",
         "workflow": {
             "withdrawn": "철회",

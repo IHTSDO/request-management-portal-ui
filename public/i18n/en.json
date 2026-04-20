@@ -110,6 +110,22 @@
         "submitButton": "SUBMIT",
         "saveButton": "SAVE",
         "addCommentButton": "ADD COMMENT",
+        "attachments": {
+            "title": "Attachments",
+            "none": "- No attachments for this request yet -",
+            "chooseFile": "Choose file",
+            "removePending": "Remove",
+            "uploading": "Uploading…",
+            "uploadingAfterCreate": "Uploading attachments…",
+            "someUploadsFailed": "The request was created but these files could not be uploaded: {{files}}",
+            "uploadSuccess": "File uploaded successfully.",
+            "uploadError": "Failed to upload the file.",
+            "deleteTitle": "Delete attachment",
+            "confirmDelete": "Remove this file from the request? This cannot be undone.",
+            "deleteSuccess": "Attachment removed.",
+            "deleteError": "Failed to delete the attachment.",
+            "deleteAria": "Delete attachment"
+        },
         "workflowButton": "WORKFLOW",
         "workflow": {
             "withdrawn": "WITHDRAWN",

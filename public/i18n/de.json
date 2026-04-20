@@ -110,6 +110,22 @@
         "submitButton": "EINREICHEN",
         "saveButton": "SAVE",
         "addCommentButton": "ADD COMMENT",
+        "attachments": {
+            "title": "Anhänge",
+            "none": "- Für diese Anfrage liegen noch keine Anhänge vor. -",
+            "chooseFile": "Datei auswählen",
+            "removePending": "Entfernen",
+            "uploading": "Wird hochgeladen…",
+            "uploadingAfterCreate": "Anhänge werden hochgeladen…",
+            "someUploadsFailed": "Die Anfrage wurde erstellt, aber diese Dateien konnten nicht hochgeladen werden: {{files}}",
+            "uploadSuccess": "Datei wurde erfolgreich hochgeladen.",
+            "uploadError": "Datei konnte nicht hochgeladen werden.",
+            "deleteTitle": "Anhang löschen",
+            "confirmDelete": "Diese Datei von der Anfrage entfernen? Dies kann nicht rückgängig gemacht werden.",
+            "deleteSuccess": "Anhang wurde entfernt.",
+            "deleteError": "Anhang konnte nicht gelöscht werden.",
+            "deleteAria": "Anhang löschen"
+        },
         "workflowButton": "WORKFLOW",
         "workflow": {
             "withdrawn": "WITHDRAWN",

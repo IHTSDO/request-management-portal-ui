@@ -110,6 +110,22 @@
         "submitButton": "INDSEND",
         "saveButton": "SAVE",
         "addCommentButton": "ADD COMMENT",
+        "attachments": {
+            "title": "Vedhæftninger",
+            "none": "- Der er endnu ingen vedhæftninger til denne anmodning. -",
+            "chooseFile": "Vælg fil",
+            "removePending": "Fjern",
+            "uploading": "Uploader…",
+            "uploadingAfterCreate": "Uploader vedhæftninger…",
+            "someUploadsFailed": "Anmodningen blev oprettet, men disse filer kunne ikke uploades: {{files}}",
+            "uploadSuccess": "Filen blev uploadet.",
+            "uploadError": "Upload af filen mislykkedes.",
+            "deleteTitle": "Slet vedhæftning",
+            "confirmDelete": "Fjern denne fil fra anmodningen? Dette kan ikke fortrydes.",
+            "deleteSuccess": "Vedhæftningen er fjernet.",
+            "deleteError": "Vedhæftningen kunne ikke slettes.",
+            "deleteAria": "Slet vedhæftning"
+        },
         "workflowButton": "WORKFLOW",
         "workflow": {
             "withdrawn": "WITHDRAWN",

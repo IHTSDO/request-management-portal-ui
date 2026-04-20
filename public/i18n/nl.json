@@ -110,6 +110,22 @@
         "submitButton": "BEVESTIG",
         "saveButton": "SAVE",
         "addCommentButton": "ADD COMMENT",
+        "attachments": {
+            "title": "Bijlagen",
+            "none": "- Er zijn nog geen bijlagen voor dit verzoek. -",
+            "chooseFile": "Bestand kiezen",
+            "removePending": "Verwijderen",
+            "uploading": "Bezig met uploaden…",
+            "uploadingAfterCreate": "Bijlagen uploaden…",
+            "someUploadsFailed": "Het verzoek is aangemaakt maar deze bestanden konden niet worden geüpload: {{files}}",
+            "uploadSuccess": "Bestand succesvol geüpload.",
+            "uploadError": "Uploaden van het bestand is mislukt.",
+            "deleteTitle": "Bijlage verwijderen",
+            "confirmDelete": "Dit bestand uit het verzoek verwijderen? Dit kan niet ongedaan worden gemaakt.",
+            "deleteSuccess": "Bijlage verwijderd.",
+            "deleteError": "Bijlage verwijderen is mislukt.",
+            "deleteAria": "Bijlage verwijderen"
+        },
         "workflowButton": "WORKFLOW",
         "workflow": {
             "withdrawn": "WITHDRAWN",

@@ -110,6 +110,22 @@
         "submitButton": "INVIA",
         "saveButton": "SAVE",
         "addCommentButton": "ADD COMMENT",
+        "attachments": {
+            "title": "Allegati",
+            "none": "- Non ci sono ancora allegati per questa richiesta. -",
+            "chooseFile": "Scegli file",
+            "removePending": "Rimuovi",
+            "uploading": "Caricamento in corso…",
+            "uploadingAfterCreate": "Caricamento degli allegati…",
+            "someUploadsFailed": "La richiesta è stata creata ma non è stato possibile caricare questi file: {{files}}",
+            "uploadSuccess": "File caricato correttamente.",
+            "uploadError": "Caricamento del file non riuscito.",
+            "deleteTitle": "Elimina allegato",
+            "confirmDelete": "Rimuovere questo file dalla richiesta? L’operazione non può essere annullata.",
+            "deleteSuccess": "Allegato rimosso.",
+            "deleteError": "Impossibile eliminare l’allegato.",
+            "deleteAria": "Elimina allegato"
+        },
         "workflowButton": "WORKFLOW",
         "workflow": {
             "withdrawn": "WITHDRAWN",

@@ -44,3 +44,13 @@ export class RequestComment {
         public updated?: number
     ) {}
 }
+
+/** Metadata for a file linked to an RMP task (shape may vary by API). */
+export interface RequestAttachment {
+    id: number | string;
+    fileName: string;
+    sizeBytes?: number;
+    created?: number;
+    /** Absolute URL or path returned by the API, if any */
+    downloadUrl?: string;
+}

@@ -1,8 +1,8 @@
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Request, RequestComment } from '../../models/request';
+import { Request, RequestAttachment, RequestComment } from '../../models/request';
 import { Description } from '../../models/description';
 import { Relationship } from '../../models/relationship';
 import { AuthoringService } from '../../services/authoring/authoring.service';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 import { User } from '../../models/user';
-import { BehaviorSubject, catchError, debounceTime, forkJoin, of, Subscription, switchMap, tap, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, catchError, concatMap, debounceTime, firstValueFrom, forkJoin, from, of, Subscription, switchMap, tap, toArray } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../services/config/config.service';
@@ -23,6 +23,11 @@ import { MarkdownComponent } from 'ngx-markdown';
 enum Mode {
     NEW,
     VIEW
+}
+
+interface PendingAttachmentItem {
+    file: File;
+    previewUrl: string;
 }
 
 @Component({
@@ -43,6 +48,16 @@ export class RequestComponent implements OnInit, OnDestroy {
     extensionSubscription: Subscription;
     displayWorkflowDiagram: boolean = false;
     comment: string = '';
+
+    requestAttachments: RequestAttachment[] = [];
+    attachmentUploading = false;
+    attachmentDeleteOption: RequestAttachment | null = null;
+    attachmentDeleting = false;
+    /** Files to upload after the request is created (new-request flow). */
+    pendingAttachmentFiles: PendingAttachmentItem[] = [];
+
+    @ViewChild('attachmentFileInput') attachmentFileInput?: ElementRef<HTMLInputElement>;
+    @ViewChild('newRequestAttachmentFileInput') newRequestAttachmentFileInput?: ElementRef<HTMLInputElement>;
     reporters: any[] = [];
     assignees: any[] = [];
     userDisplayNameByUsername: Map<string, string> = new Map<string, string>();
@@ -247,6 +262,7 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.authoringService.httpGetComments(this.requestId).subscribe(response => {
                 this.requestComments = response;
             });
+            this.loadAttachments();
             this.populateAssignees();
         } else {
             this.resetFormValues(); // Reset form values to defaults
@@ -256,6 +272,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.clearPendingAttachments();
         if (this.userSubscription) {
             this.userSubscription.unsubscribe();
         }
@@ -334,14 +351,48 @@ export class RequestComponent implements OnInit, OnDestroy {
 
             this.toastr.info('Creating new request...', 'Please wait');
             this.authoringService.httpCreateRMPRequest(requestToSave).subscribe(response => {
-                if (response) {
-                    this.navigationService.navigateWithLanguage([this.country]); // Navigate to the country page after creation
-                    this.request = response as Request;
-                    // Normalize empty refsets to "None" for display
-                    this.normalizeRefsetsForDisplay();
-                    this.toastr.clear(); // Clear any previous toastr messages
-                    this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
+                if (!response) {
+                    return;
                 }
+                this.request = response as Request;
+                this.normalizeRefsetsForDisplay();
+                this.toastr.clear();
+
+                const newId = this.request.id;
+                const filesToUpload = this.pendingAttachmentFiles.map((item) => item.file);
+
+                if (filesToUpload.length === 0) {
+                    this.navigationService.navigateWithLanguage([this.country]);
+                    this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
+                    return;
+                }
+
+                this.toastr.info(this.translateService.instant('request.attachments.uploadingAfterCreate'), 'Please wait');
+                const failedNames: string[] = [];
+                from(filesToUpload).pipe(
+                    concatMap((file) =>
+                        this.authoringService.httpPostRequestAttachment(newId, file).pipe(
+                            catchError(() => {
+                                failedNames.push(file.name);
+                                return of(null);
+                            })
+                        )
+                    ),
+                    toArray()
+                ).subscribe({
+                    complete: () => {
+                        this.clearPendingAttachments();
+                        this.resetNewRequestAttachmentFileInput();
+                        this.navigationService.navigateWithLanguage([this.country]);
+                        if (failedNames.length > 0) {
+                            this.toastr.warning(
+                                this.translateService.instant('request.attachments.someUploadsFailed', { files: failedNames.join(', ') }),
+                                'Attachments'
+                            );
+                        }
+                        this.toastr.success('Request with ID: ' + this.request.id + ' has been created successfully.', 'Request Created');
+                    }
+                });
             }, error => {
                 this.toastr.clear(); // Clear any previous toastr messages
                 this.toastr.error('Failed to create request: ' + error.message, 'Error');
@@ -353,7 +404,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     resetForm(form: NgForm): void {
         // const currentFormType = this.formType; // Store current form type
         form.resetForm(); // Reset the form state
-        this.resetFormValues(); // Reset form values to defaults
+        this.resetFormValues(); // Reset form values to defaults (includes pending attachments)
         // Normalize empty refsets to "None" for display
         this.normalizeRefsetsForDisplay();
         this.toastr.clear(); // Clear any previous toastr messages
@@ -366,6 +417,8 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     private resetFormValues(): void {
+        this.clearPendingAttachments();
+        this.resetNewRequestAttachmentFileInput();
         this.request = new Request(
             null, // id
             'add-concept', // type
@@ -955,6 +1008,128 @@ export class RequestComponent implements OnInit, OnDestroy {
      * - Converts runs of newlines into <br> tags so multiple blank lines are preserved
      * - Auto-links plain http/https URLs
      */
+    loadAttachments(): void {
+        if (!this.requestId) {
+            return;
+        }
+        this.authoringService.httpGetRequestAttachments(this.requestId).subscribe({
+            next: (attachments) => {
+                this.requestAttachments = attachments;
+            },
+            error: () => {
+                this.requestAttachments = [];
+            }
+        });
+    }
+
+    isRequestFieldsLocked(): boolean {
+        return this.mode === Mode.VIEW && !this.isStaff(this.user) &&
+            (!this.isRequestOwner() || (this.isRequestOwner() && this.request?.status !== 'NEW'));
+    }
+
+    onPendingAttachmentSelected(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        const file = input.files?.[0];
+        if (!file || this.mode !== Mode.NEW) {
+            return;
+        }
+        const previewUrl = URL.createObjectURL(file);
+        this.pendingAttachmentFiles = [...this.pendingAttachmentFiles, { file, previewUrl }];
+        this.resetNewRequestAttachmentFileInput();
+    }
+
+    removePendingAttachment(index: number): void {
+        const toRemove = this.pendingAttachmentFiles[index];
+        if (toRemove?.previewUrl) {
+            URL.revokeObjectURL(toRemove.previewUrl);
+        }
+        this.pendingAttachmentFiles = this.pendingAttachmentFiles.filter((_, i) => i !== index);
+    }
+
+    triggerNewRequestAttachmentDialog(): void {
+        this.newRequestAttachmentFileInput?.nativeElement?.click();
+    }
+
+    private resetNewRequestAttachmentFileInput(): void {
+        if (this.newRequestAttachmentFileInput?.nativeElement) {
+            this.newRequestAttachmentFileInput.nativeElement.value = '';
+        }
+    }
+
+    private clearPendingAttachments(): void {
+        this.pendingAttachmentFiles.forEach((item) => {
+            if (item.previewUrl) {
+                URL.revokeObjectURL(item.previewUrl);
+            }
+        });
+        this.pendingAttachmentFiles = [];
+    }
+
+    onAttachmentFileSelected(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        const file = input.files?.[0];
+        if (!file || !this.request?.id) {
+            return;
+        }
+
+        this.attachmentUploading = true;
+        this.authoringService.httpPostRequestAttachment(this.request.id, file).subscribe({
+            next: () => {
+                this.attachmentUploading = false;
+                this.resetAttachmentFileInput();
+                this.toastr.success(this.translateService.instant('request.attachments.uploadSuccess'), 'SUCCESS');
+                this.loadAttachments();
+            },
+            error: (err) => {
+                this.attachmentUploading = false;
+                this.resetAttachmentFileInput();
+                const message = err?.error?.message || err?.message || this.translateService.instant('request.attachments.uploadError');
+                this.toastr.error(message, 'ERROR');
+            }
+        });
+    }
+
+    triggerAttachmentFileDialog(): void {
+        this.attachmentFileInput?.nativeElement?.click();
+    }
+
+    private resetAttachmentFileInput(): void {
+        if (this.attachmentFileInput?.nativeElement) {
+            this.attachmentFileInput.nativeElement.value = '';
+        }
+    }
+
+    getAttachmentDownloadHref(attachment: RequestAttachment): string {
+        if (attachment.downloadUrl) {
+            const u = attachment.downloadUrl;
+            if (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('/')) {
+                return u;
+            }
+        }
+        return '/authoring-services/rmp-tasks/' + this.request.id + '/attachments/' + attachment.id + '/download';
+    }
+
+    deleteAttachmentConfirmed(): void {
+        const opt = this.attachmentDeleteOption;
+        if (!opt || !this.request?.id || this.attachmentDeleting) {
+            return;
+        }
+        this.attachmentDeleting = true;
+        this.authoringService.httpDeleteRequestAttachment(this.request.id, opt.id).subscribe({
+            next: () => {
+                this.attachmentDeleting = false;
+                this.attachmentDeleteOption = null;
+                this.toastr.success(this.translateService.instant('request.attachments.deleteSuccess'), 'SUCCESS');
+                this.loadAttachments();
+            },
+            error: () => {
+                this.attachmentDeleting = false;
+                this.attachmentDeleteOption = null;
+                this.toastr.error(this.translateService.instant('request.attachments.deleteError'), 'ERROR');
+            }
+        });
+    }
+
     getMarkdownBody(comment: RequestComment): string {
         if (!comment || !comment.body) {
             return '';

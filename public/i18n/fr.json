@@ -110,6 +110,22 @@
         "submitButton": "SOUMETTRE",
         "saveButton": "SAVE",
         "addCommentButton": "ADD COMMENT",
+        "attachments": {
+            "title": "Pièces jointes",
+            "none": "- Aucune pièce jointe pour cette demande pour le moment. -",
+            "chooseFile": "Choisir un fichier",
+            "removePending": "Retirer",
+            "uploading": "Téléversement…",
+            "uploadingAfterCreate": "Téléversement des pièces jointes…",
+            "someUploadsFailed": "La demande a été créée mais ces fichiers n’ont pas pu être téléversés : {{files}}",
+            "uploadSuccess": "Fichier téléversé avec succès.",
+            "uploadError": "Échec du téléversement du fichier.",
+            "deleteTitle": "Supprimer la pièce jointe",
+            "confirmDelete": "Retirer ce fichier de la demande ? Cette action est irréversible.",
+            "deleteSuccess": "Pièce jointe supprimée.",
+            "deleteError": "Impossible de supprimer la pièce jointe.",
+            "deleteAria": "Supprimer la pièce jointe"
+        },
         "workflowButton": "WORKFLOW",
         "workflow": {
             "withdrawn": "WITHDRAWN",
