@@ -52,6 +52,7 @@
         "newRequestButton": "NUOVA RICHIESTA",
         "downloadButton": "SCARICA",
         "downloadTemplateButton": "CRS TEMPLETE",
+        "downloadAPTemplateButton": "AP TEMPLETE",
         "id": "ID",
         "request": "RICHIESTA",
         "type": "TIPO",
@@ -83,13 +84,17 @@
             "downloadedSuccessfully": "{{count}} richieste scaricate con successo.",
             "downloadComplete": "Download completato",
             "fetchFailed": "Impossibile recuperare le richieste per il download.",
-            "downloadError": "Errore di download",
-            "rmpi116Error": "Errore server RMPI-116: Impossibile elaborare la richiesta di download. Provare con un dataset più piccolo o contattare il supporto."
+            "downloadError": "Errore di download"
         },
         "downloadTemplate": {
-            "fetching": "Download del modello di richiesta...",
-            "success": "Modello scaricato con successo.",
-            "error": "Download del modello non riuscito."
+            "fetching": "Download del modello CRS...",
+            "success": "Modello CRS scaricato con successo.",
+            "error": "Download del modello CRS non riuscito."
+        },
+        "downloadAPTemplate": {
+            "fetching": "Download del modello AP...",
+            "success": "Modello AP scaricato con successo.",
+            "error": "Download del modello AP non riuscito."
         },
         "tsvHeaders": {
             "id": "ID",

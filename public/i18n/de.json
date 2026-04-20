@@ -52,6 +52,7 @@
         "newRequestButton": "NEUE ANFRAGE",
         "downloadButton": "HERUNTERLADEN",
         "downloadTemplateButton": "CRS TEMPLETE",
+        "downloadAPTemplateButton": "AP TEMPLETE",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",
@@ -83,13 +84,17 @@
             "downloadedSuccessfully": "{{count}} Anfragen erfolgreich heruntergeladen.",
             "downloadComplete": "Download abgeschlossen",
             "fetchFailed": "Fehler beim Abrufen der Anfragen für den Download.",
-            "downloadError": "Download-Fehler",
-            "rmpi116Error": "Server-Fehler RMPI-116: Download-Anfrage kann nicht verarbeitet werden. Bitte versuchen Sie es mit einem kleineren Datensatz oder kontaktieren Sie den Support."
+            "downloadError": "Download-Fehler"
         },
         "downloadTemplate": {
-            "fetching": "Anfragevorlage wird heruntergeladen...",
-            "success": "Vorlage erfolgreich heruntergeladen.",
-            "error": "Vorlage konnte nicht heruntergeladen werden."
+            "fetching": "CRS-Vorlage wird heruntergeladen...",
+            "success": "CRS-Vorlage erfolgreich heruntergeladen.",
+            "error": "CRS-Vorlage konnte nicht heruntergeladen werden."
+        },
+        "downloadAPTemplate": {
+            "fetching": "AP-Anfragevorlage wird heruntergeladen...",
+            "success": "AP-Vorlage erfolgreich heruntergeladen.",
+            "error": "AP-Vorlage konnte nicht heruntergeladen werden."
         },
         "tsvHeaders": {
             "id": "ID",

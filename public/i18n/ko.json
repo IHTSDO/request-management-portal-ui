@@ -52,6 +52,7 @@
         "newRequestButton": "신규 요청",
         "downloadButton": "다운로드",
         "downloadTemplateButton": "CRS TEMPLETE",
+        "downloadAPTemplateButton": "AP TEMPLETE",
         "id": "ID",
         "request": "요청",
         "type": "유형",
@@ -83,13 +84,17 @@
             "downloadedSuccessfully": "{{count}}개의 요청이 성공적으로 다운로드되었습니다.",
             "downloadComplete": "다운로드 완료",
             "fetchFailed": "다운로드를 위한 요청을 가져오는데 실패했습니다.",
-            "downloadError": "다운로드 오류",
-            "rmpi116Error": "서버 오류 RMPI-116: 다운로드 요청을 처리할 수 없습니다. 더 작은 데이터 세트로 시도하거나 지원팀에 문의하세요."
+            "downloadError": "다운로드 오류"
         },
         "downloadTemplate": {
-            "fetching": "요청 템플릿 다운로드 중...",
-            "success": "템플릿이 다운로드되었습니다.",
-            "error": "템플릿 다운로드에 실패했습니다."
+            "fetching": "CRS 템플릿 다운로드 중...",
+            "success": "CRS 템플릿이 다운로드되었습니다.",
+            "error": "CRS 템플릿 다운로드에 실패했습니다."
+        },
+        "downloadAPTemplate": {
+            "fetching": "AP 템플릿 다운로드 중...",
+            "success": "AP 템플릿이 다운로드되었습니다.",
+            "error": "AP 템플릿 다운로드에 실패했습니다."
         },
         "tsvHeaders": {
             "id": "ID",

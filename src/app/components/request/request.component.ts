@@ -19,6 +19,7 @@ import * as data from 'public/config/config.json';
 import { LanguageService } from '../../services/language/language.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { MarkdownComponent } from 'ngx-markdown';
+import { TemplateService } from '../../services/template/template-service';
 import { CrsService } from '../../services/crs/crs-service';
 
 enum Mode {
@@ -100,6 +101,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     constructor(private readonly authoringService: AuthoringService,
         private readonly crsService: CrsService,
+        private readonly templateService: TemplateService,
         private readonly toastr: ToastrService,
         private readonly authenticationService: AuthenticationService,
         private readonly configService: ConfigService,
@@ -1047,6 +1049,55 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.toastr.clear();
                 this.toastr.error(
                     this.translateService.instant('requestManagement.downloadTemplate.error'),
+                    this.translateService.instant('requestManagement.download.downloadError')
+                );
+            }
+        });
+    }
+
+    downloadAPTemplate(): void {
+        this.toastr.info(
+            this.translateService.instant('requestManagement.downloadAPTemplate.fetching'),
+            this.translateService.instant('requestManagement.download.pleaseWait')
+        );
+
+        this.templateService.downloadAPBatchRequestTemplate().subscribe({
+            next: (response) => {
+                const blob = response.body;
+                if (!blob) {
+                    this.toastr.clear();
+                    this.toastr.error(
+                        this.translateService.instant('requestManagement.downloadAPTemplate.error'),
+                        this.translateService.instant('requestManagement.download.downloadError')
+                    );
+                    return;
+                }
+
+                const contentDisposition = response.headers.get('content-disposition');
+                const fallbackFileName = 'ap_batch_request_template.tsv';
+                const fileName = this.getFilenameFromContentDisposition(contentDisposition) || fallbackFileName;
+
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', fileName);
+                link.style.visibility = 'hidden';
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                this.toastr.clear();
+                this.toastr.success(
+                    this.translateService.instant('requestManagement.downloadAPTemplate.success'),
+                    this.translateService.instant('requestManagement.download.downloadComplete')
+                );
+            },
+            error: () => {
+                this.toastr.clear();
+                this.toastr.error(
+                    this.translateService.instant('requestManagement.downloadAPTemplate.error'),
                     this.translateService.instant('requestManagement.download.downloadError')
                 );
             }

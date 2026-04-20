@@ -52,6 +52,7 @@
         "newRequestButton": "NIEUW VERZOEK",
         "downloadButton": "DOWNLOADEN",
         "downloadTemplateButton": "CRS TEMPLETE",
+        "downloadAPTemplateButton": "AP TEMPLETE",
         "id": "ID",
         "request": "VERZOEK",
         "type": "TYPE",
@@ -83,13 +84,17 @@
             "downloadedSuccessfully": "{{count}} verzoeken succesvol gedownload.",
             "downloadComplete": "Download voltooid",
             "fetchFailed": "Kon verzoeken niet ophalen voor download.",
-            "downloadError": "Download-fout",
-            "rmpi116Error": "Server-fout RMPI-116: Kan download-verzoek niet verwerken. Probeer met een kleinere dataset of neem contact op met ondersteuning."
+            "downloadError": "Download-fout"
         },
         "downloadTemplate": {
-            "fetching": "Verzoeksjabloon wordt gedownload...",
-            "success": "Sjabloon succesvol gedownload.",
-            "error": "Sjabloon downloaden is mislukt."
+            "fetching": "CRS-sjabloon wordt gedownload...",
+            "success": "CRS-sjabloon succesvol gedownload.",
+            "error": "Downloaden van CRS-sjabloon is mislukt."
+        },
+        "downloadAPTemplate": {
+            "fetching": "AP-sjabloon wordt gedownload...",
+            "success": "AP-sjabloon succesvol gedownload.",
+            "error": "Downloaden van AP-sjabloon is mislukt."
         },
         "tsvHeaders": {
             "id": "ID",

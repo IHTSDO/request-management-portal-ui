@@ -52,6 +52,7 @@
         "newRequestButton": "NY ANMODNING",
         "downloadButton": "DOWNLOAD",
         "downloadTemplateButton": "CRS TEMPLETE",
+        "downloadAPTemplateButton": "AP TEMPLETE",
         "id": "ID",
         "request": "ANMODNING",
         "type": "TYPE",
@@ -83,13 +84,17 @@
             "downloadedSuccessfully": "{{count}} anmodninger hentet succesfuldt.",
             "downloadComplete": "Download færdig",
             "fetchFailed": "Kunne ikke hente anmodninger til download.",
-            "downloadError": "Download-fejl",
-            "rmpi116Error": "Server-fejl RMPI-116: Kan ikke behandle download-anmodning. Prøv med et mindre datasæt eller kontakt support."
+            "downloadError": "Download-fejl"
         },
         "downloadTemplate": {
-            "fetching": "Downloader anmodningsskabelon...",
-            "success": "Skabelonen er downloadet.",
-            "error": "Kunne ikke downloade skabelonen."
+            "fetching": "Downloader CRS-skabelon...",
+            "success": "CRS-skabelonen er downloadet.",
+            "error": "Kunne ikke downloade CRS-skabelonen."
+        },
+        "downloadAPTemplate": {
+            "fetching": "Downloader AP-skabelon...",
+            "success": "AP-skabelonen er downloadet.",
+            "error": "Kunne ikke downloade AP-skabelonen."
         },
         "tsvHeaders": {
             "id": "ID",
