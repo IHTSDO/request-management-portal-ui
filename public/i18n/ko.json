@@ -51,8 +51,7 @@
         "typeToSearch": "검색어를 입력하세요...",
         "newRequestButton": "신규 요청",
         "downloadButton": "다운로드",
-        "downloadTemplateButton": "CRS 템플릿",
-        "downloadAPTemplateButton": "AP 템플릿",
+        "downloadAPTemplateButton": "템플릿",
         "id": "ID",
         "request": "요청",
         "type": "유형",
@@ -86,15 +85,10 @@
             "fetchFailed": "다운로드를 위한 요청을 가져오는데 실패했습니다.",
             "downloadError": "다운로드 오류"
         },
-        "downloadTemplate": {
-            "fetching": "CRS 템플릿 다운로드 중...",
-            "success": "CRS 템플릿이 다운로드되었습니다.",
-            "error": "CRS 템플릿 다운로드에 실패했습니다."
-        },
         "downloadAPTemplate": {
-            "fetching": "AP 템플릿 다운로드 중...",
-            "success": "AP 템플릿이 다운로드되었습니다.",
-            "error": "AP 템플릿 다운로드에 실패했습니다."
+            "fetching": "템플릿 다운로드 중...",
+            "success": "템플릿이 다운로드되었습니다.",
+            "error": "템플릿 다운로드에 실패했습니다."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "첨부파일",
             "none": "- 이 요청에 대한 첨부파일이 아직 없습니다. -",
-            "chooseFile": "파일 선택",
+            "chooseFile": "업로드",
             "removePending": "제거",
             "uploading": "업로드 중…",
             "uploadingAfterCreate": "첨부파일 업로드 중…",

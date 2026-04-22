@@ -51,8 +51,7 @@
         "typeToSearch": "Immettere una chiave di ricerca...",
         "newRequestButton": "NUOVA RICHIESTA",
         "downloadButton": "SCARICA",
-        "downloadTemplateButton": "MODELLO CRS",
-        "downloadAPTemplateButton": "MODELLO AP",
+        "downloadAPTemplateButton": "MODELLO",
         "id": "ID",
         "request": "RICHIESTA",
         "type": "TIPO",
@@ -86,15 +85,10 @@
             "fetchFailed": "Impossibile recuperare le richieste per il download.",
             "downloadError": "Errore di download"
         },
-        "downloadTemplate": {
-            "fetching": "Download del modello CRS...",
-            "success": "Modello CRS scaricato con successo.",
-            "error": "Download del modello CRS non riuscito."
-        },
         "downloadAPTemplate": {
-            "fetching": "Download del modello AP...",
-            "success": "Modello AP scaricato con successo.",
-            "error": "Download del modello AP non riuscito."
+            "fetching": "Download del modello...",
+            "success": "Modello scaricato con successo.",
+            "error": "Download del modello non riuscito."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "Allegati",
             "none": "- Non ci sono ancora allegati per questa richiesta. -",
-            "chooseFile": "Scegli file",
+            "chooseFile": "Carica",
             "removePending": "Rimuovi",
             "uploading": "Caricamento in corso…",
             "uploadingAfterCreate": "Caricamento degli allegati…",

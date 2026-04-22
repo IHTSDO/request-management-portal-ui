@@ -1,20 +1,54 @@
-<div class="absolute top-18 left-6 flex flex-col items-start gap-3">
+<div class="absolute top-18 left-6">
     <button class="rounded-md bg-slate-400 text-white px-3 py-1.5 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-500" (click)="navigateBack()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
         </svg>{{ 'request.backButton' | translate }}</button>
-    <button class="rounded-md bg-slate-600 text-white px-3 py-1.5 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-700" type="button" (click)="downloadTemplate()" data-cy="download-template-button">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-        </svg>{{ 'requestManagement.downloadTemplateButton' | translate }}
-    </button>
-    <button class="rounded-md bg-slate-600 text-white px-3 py-1.5 text-sm font-medium content-end tracking-widest cursor-pointer hover:bg-slate-700" type="button" (click)="downloadAPTemplate()" data-cy="download-ap-template-button">
+</div>
+
+<div class="absolute right-6 w-56 overflow-x-hidden flex flex-col items-start gap-3" [style.top.rem]="request?.id ? 4.5 : 8">
+    <button class="w-36 rounded-md bg-purple-600 text-white px-3 py-1.5 text-sm font-medium tracking-widest cursor-pointer hover:bg-purple-700 inline-flex items-center justify-start text-left" type="button" (click)="downloadAPTemplate()" data-cy="download-ap-template-button">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>{{ 'requestManagement.downloadAPTemplateButton' | translate }}
     </button>
+    <button *ngIf="canShowNavAttachmentUpload()" class="w-36 rounded-md bg-slate-600 text-white px-3 py-1.5 text-sm font-medium tracking-widest cursor-pointer hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400 inline-flex items-center justify-start text-left" type="button" (click)="triggerAttachmentUploadFromNav()" [disabled]="attachmentUploading" data-cy="nav-attachment-upload-button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+        </svg>{{ 'request.attachments.chooseFile' | translate }}
+    </button>
+
+    <ng-container *ngIf="request && mode === ModeType.NEW">
+        <input #newRequestAttachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onPendingAttachmentSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="new-request-attachment-file-input" />
+        <div *ngIf="pendingAttachmentFiles.length > 0" class="w-full pt-1 border-t border-slate-200 attachments-section" data-cy="nav-attachments-new">
+            <h3 class="text-sm font-semibold text-slate-700 m-0 mb-2">{{ 'request.attachments.title' | translate }}</h3>
+            <ul class="attachment-list w-full space-y-2 m-0 p-0 list-none">
+                <li *ngFor="let item of pendingAttachmentFiles; let i = index" class="w-full min-w-0 flex flex-nowrap items-center justify-between gap-2 rounded-md border border-gray-200 bg-white px-2 py-1.5 text-slate-700 text-xs">
+                    <a class="block font-medium text-blue-600 hover:text-blue-800 underline min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap" [href]="item.previewUrl" target="_blank" rel="noopener noreferrer" [attr.title]="item.file.name">{{ item.file.name }}</a>
+                    <button *ngIf="canRemovePendingAttachment()" type="button" class="shrink-0 p-1 rounded hover:bg-gray-100 cursor-pointer" [attr.aria-label]="'request.attachments.removePending' | translate" (click)="removePendingAttachment(i)" data-cy="pending-attachment-remove">
+                        <span class="text-red-500 text-sm font-bold leading-none" aria-hidden="true">X</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="request?.id && mode !== ModeType.NEW">
+        <input *ngIf="canShowNavAttachmentUpload()" #attachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
+        <div *ngIf="(!isRequestFieldsLocked() && attachmentUploading) || requestAttachments.length > 0" class="w-full pt-1 border-t border-slate-200 attachments-section" data-cy="nav-attachments-existing">
+            <h3 *ngIf="requestAttachments.length > 0" class="text-sm font-semibold text-slate-700 m-0 mb-2">{{ 'request.attachments.title' | translate }}</h3>
+            <p *ngIf="!isRequestFieldsLocked() && attachmentUploading" class="text-xs text-gray-600 m-0 mb-2">{{ 'request.attachments.uploading' | translate }}</p>
+            <ul *ngIf="requestAttachments.length > 0" class="attachment-list w-full space-y-2 m-0 p-0 list-none">
+                <li *ngFor="let attachment of requestAttachments" class="w-full min-w-0 flex flex-nowrap items-center gap-2 rounded-md border border-gray-200 bg-white px-2 py-1.5 text-slate-700 text-xs">
+                    <a class="attachment-link block min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-medium text-blue-600 hover:text-blue-800 underline" [href]="getAttachmentDownloadHref(attachment)" target="_blank" rel="noopener noreferrer" [attr.title]="attachment.fileName">{{ attachment.fileName }}</a>
+                    <button *ngIf="canDeleteExistingAttachment()" type="button" class="shrink-0 ms-auto p-1 rounded hover:bg-gray-100 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" [disabled]="attachmentDeleting" [attr.aria-label]="'request.attachments.deleteAria' | translate" (click)="attachmentDeleteOption = attachment; $event.stopPropagation()" data-cy="attachment-delete-button">
+                        <span class="text-red-500 text-sm font-bold leading-none" aria-hidden="true">X</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
 </div>
-<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form">
+<form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form" autocomplete="off">
     <ng-container *ngIf="request">
         <div class="grid grid-cols-12 my-5">
             <div class="col-span-2 ms-5">
@@ -42,7 +76,7 @@
                                 <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
                                 <label *ngIf="isStaff(user)" for="reporter" class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}&nbsp;</label>
                                 <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300 inline-block">
-                                    <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
+                                    <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
                                 </div>
                                 <div *ngIf="showReporterTypeahead && reporterTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 -right-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                                     <div *ngFor="let reporter of reporterTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectReporterResult(reporter)">
@@ -54,7 +88,7 @@
                                 <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}:</label>&nbsp;<span>{{ getAssigneeDisplayValue() != '' ? getAssigneeDisplayValue() : 'Unassigned' }}</span></div>
                                 <label *ngIf="isStaff(user)" for="assignee" class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}&nbsp;</label>
                                 <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300 inline-block">
-                                    <input type="text" name="Assignee" id="assignee" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
+                                    <input type="text" name="Assignee" id="assignee" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
                                 </div>
                                 <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 -right-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
                                     <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
@@ -533,32 +567,6 @@
             </div>
         </div>
 
-        <div class="grid w-2/3 justify-self-center my-5 attachments-section" *ngIf="mode === ModeType.NEW && request">
-            <div class="flex flex-wrap items-center gap-3">
-                <h2 class="text-xl text-slate-700 m-0">{{ 'request.attachments.title' | translate }}</h2>
-                <div class="flex flex-wrap items-center gap-3">
-                    <input #newRequestAttachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onPendingAttachmentSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="new-request-attachment-file-input" />
-                    <button type="button" class="rounded-md bg-slate-600 hover:bg-slate-700 text-white px-3 py-1.5 text-sm font-medium tracking-wide cursor-pointer inline-flex items-center" (click)="triggerNewRequestAttachmentDialog()" data-cy="new-request-attachment-choose-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 shrink-0 me-2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-                        </svg>
-                        {{ 'request.attachments.chooseFile' | translate }}
-                    </button>
-                </div>
-            </div>
-            <div class="pt-4">
-                <p *ngIf="pendingAttachmentFiles.length === 0" class="p-3 text-center text-gray-500">{{ 'request.attachments.none' | translate }}</p>
-                <ul *ngIf="pendingAttachmentFiles.length > 0" class="attachment-list space-y-2">
-                    <li *ngFor="let item of pendingAttachmentFiles; let i = index" class="flex flex-wrap items-center justify-between gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-slate-700">
-                        <a class="font-medium text-slate-800 hover:underline break-all" [href]="item.previewUrl" target="_blank" rel="noopener noreferrer">{{ item.file.name }}</a>
-                        <button type="button" class="shrink-0 p-1 rounded hover:bg-gray-100 cursor-pointer" [attr.aria-label]="'request.attachments.removePending' | translate" (click)="removePendingAttachment(i)" data-cy="pending-attachment-remove">
-                            <i class="fa-solid fa-trash text-red-400"></i>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode === ModeType.NEW">
             <div class="justify-self-end">
                 <button class="rounded-md bg-red-400 hover:bg-red-500 text-white px-3 py-1.5 font-medium content-end tracking-widest me-5 cursor-pointer" (click)="resetForm(requestForm)" type="button">{{ 'request.resetButton' | translate }}</button>
@@ -569,36 +577,6 @@
         <div class="grid w-2/3 justify-self-center my-5" *ngIf="mode !== ModeType.NEW && (isStaff(user) || (isUser(user) && request.status === 'NEW'))">
             <div class="justify-self-end">
                 <button class="rounded-md bg-lime-600 hover:bg-lime-700 text-white px-3 py-1.5 font-medium content-end tracking-widest cursor-pointer" [disabled]="!hasRequestChanged() || !areMandatoryFieldsPopulated()" [class.disabled:bg-slate-300]="!hasRequestChanged() || !areMandatoryFieldsPopulated()" (click)="updateRequest(requestForm)" data-cy="save-button">{{ 'request.saveButton' | translate }}</button>
-            </div>
-        </div>
-
-        <div class="grid w-2/3 justify-self-center my-5 attachments-section" *ngIf="mode !== ModeType.NEW && request?.id">
-            <div class="flex flex-wrap items-center gap-3">
-                <h2 class="text-xl text-slate-700 m-0">{{ 'request.attachments.title' | translate }}</h2>
-                <ng-container *ngIf="!isRequestFieldsLocked()">
-                    <div class="flex flex-wrap items-center gap-3">
-                        <input #attachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
-                        <button type="button" class="rounded-md bg-slate-600 hover:bg-slate-700 text-white px-3 py-1.5 text-sm font-medium tracking-wide cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-400 inline-flex items-center" (click)="triggerAttachmentFileDialog()" [disabled]="attachmentUploading" data-cy="attachment-choose-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 shrink-0 me-2" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-                            </svg>
-                            {{ 'request.attachments.chooseFile' | translate }}
-                        </button>
-                        <span *ngIf="attachmentUploading" class="text-sm text-gray-600">{{ 'request.attachments.uploading' | translate }}</span>
-                    </div>
-                </ng-container>
-            </div>
-            <div class="pt-4">
-                <p *ngIf="requestAttachments.length === 0" class="p-3 text-center text-gray-500">{{ 'request.attachments.none' | translate }}</p>
-                <ul *ngIf="requestAttachments.length > 0" class="attachment-list space-y-2">
-                    <li *ngFor="let attachment of requestAttachments" class="flex flex-wrap items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-slate-700">
-                        <a class="attachment-link min-w-0 grow font-medium text-slate-800 hover:underline break-all" [href]="getAttachmentDownloadHref(attachment)" target="_blank" rel="noopener noreferrer">{{ attachment.fileName }}</a>
-                        <span *ngIf="attachment.created" class="shrink-0 text-sm text-gray-500">{{ attachment.created | date:'yyyy/MM/dd':'UTC' }}</span>
-                        <button *ngIf="!isRequestFieldsLocked()" type="button" class="shrink-0 ms-auto p-1 rounded hover:bg-gray-100 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" [disabled]="attachmentDeleting" [attr.aria-label]="'request.attachments.deleteAria' | translate" (click)="attachmentDeleteOption = attachment; $event.stopPropagation()" data-cy="attachment-delete-button">
-                            <i class="fa-solid fa-trash text-red-400"></i>
-                        </button>
-                    </li>
-                </ul>
             </div>
         </div>
 

@@ -51,8 +51,7 @@
         "typeToSearch": "Tapez pour rechercher...",
         "newRequestButton": "NOUVELLE DEMANDE",
         "downloadButton": "TÉLÉCHARGER",
-        "downloadTemplateButton": "MODÈLE CRS",
-        "downloadAPTemplateButton": "MODÈLE AP",
+        "downloadAPTemplateButton": "MODÈLE",
         "id": "ID",
         "request": "DEMANDE",
         "type": "TYPE",
@@ -86,15 +85,10 @@
             "fetchFailed": "Échec de la récupération des demandes pour téléchargement.",
             "downloadError": "Erreur de téléchargement"
         },
-        "downloadTemplate": {
-            "fetching": "Téléchargement du modèle CRS...",
-            "success": "Modèle CRS téléchargé avec succès.",
-            "error": "Échec du téléchargement du modèle CRS."
-        },
         "downloadAPTemplate": {
-            "fetching": "Téléchargement du modèle AP...",
-            "success": "Modèle AP téléchargé avec succès.",
-            "error": "Échec du téléchargement du modèle AP."
+            "fetching": "Téléchargement du modèle...",
+            "success": "Modèle téléchargé avec succès.",
+            "error": "Échec du téléchargement du modèle."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "Pièces jointes",
             "none": "- Aucune pièce jointe pour cette demande pour le moment. -",
-            "chooseFile": "Choisir un fichier",
+            "chooseFile": "Téléverser",
             "removePending": "Retirer",
             "uploading": "Téléversement…",
             "uploadingAfterCreate": "Téléversement des pièces jointes…",

@@ -1,20 +1,20 @@
-.attachments-section {
-    /* Fixed + no negative margins: avoids expanding overflow-auto ancestors (e.g. the form). */
-    .attachment-file-input {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        width: 1px;
-        height: 1px;
-        margin: 0;
-        padding: 0;
-        opacity: 0;
-        overflow: hidden;
-        clip-path: inset(50%);
-        white-space: nowrap;
-        border: 0;
-    }
+/* Inputs may live outside .attachments-section (e.g. nav column); keep them visually hidden. */
+.attachment-file-input {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
 
+.attachments-section {
     .attachment-list {
         list-style: none;
         margin: 0;

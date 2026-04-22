@@ -51,8 +51,7 @@
         "typeToSearch": "Tast for at søge...",
         "newRequestButton": "NY ANMODNING",
         "downloadButton": "DOWNLOAD",
-        "downloadTemplateButton": "CRS-SKABELON",
-        "downloadAPTemplateButton": "AP-SKABELON",
+        "downloadAPTemplateButton": "SKABELON",
         "id": "ID",
         "request": "ANMODNING",
         "type": "TYPE",
@@ -86,15 +85,10 @@
             "fetchFailed": "Kunne ikke hente anmodninger til download.",
             "downloadError": "Download-fejl"
         },
-        "downloadTemplate": {
-            "fetching": "Downloader CRS-skabelon...",
-            "success": "CRS-skabelonen er downloadet.",
-            "error": "Kunne ikke downloade CRS-skabelonen."
-        },
         "downloadAPTemplate": {
-            "fetching": "Downloader AP-skabelon...",
-            "success": "AP-skabelonen er downloadet.",
-            "error": "Kunne ikke downloade AP-skabelonen."
+            "fetching": "Downloader skabelon...",
+            "success": "Skabelonen er downloadet.",
+            "error": "Kunne ikke downloade skabelonen."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "Vedhæftninger",
             "none": "- Der er endnu ingen vedhæftninger til denne anmodning. -",
-            "chooseFile": "Vælg fil",
+            "chooseFile": "UPLOAD",
             "removePending": "Fjern",
             "uploading": "Uploader…",
             "uploadingAfterCreate": "Uploader vedhæftninger…",

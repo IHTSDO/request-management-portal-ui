@@ -51,8 +51,7 @@
         "typeToSearch": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
         "downloadButton": "HERUNTERLADEN",
-        "downloadTemplateButton": "CRS-VORLAGE",
-        "downloadAPTemplateButton": "AP-VORLAGE",
+        "downloadAPTemplateButton": "VORLAGE",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",
@@ -86,15 +85,10 @@
             "fetchFailed": "Fehler beim Abrufen der Anfragen für den Download.",
             "downloadError": "Download-Fehler"
         },
-        "downloadTemplate": {
-            "fetching": "CRS-Vorlage wird heruntergeladen...",
-            "success": "CRS-Vorlage erfolgreich heruntergeladen.",
-            "error": "CRS-Vorlage konnte nicht heruntergeladen werden."
-        },
         "downloadAPTemplate": {
-            "fetching": "AP-Vorlage wird heruntergeladen...",
-            "success": "AP-Vorlage erfolgreich heruntergeladen.",
-            "error": "AP-Vorlage konnte nicht heruntergeladen werden."
+            "fetching": "Vorlage wird heruntergeladen...",
+            "success": "Vorlage erfolgreich heruntergeladen.",
+            "error": "Vorlage konnte nicht heruntergeladen werden."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "Anhänge",
             "none": "- Für diese Anfrage liegen noch keine Anhänge vor. -",
-            "chooseFile": "Datei auswählen",
+            "chooseFile": "Hochladen",
             "removePending": "Entfernen",
             "uploading": "Wird hochgeladen…",
             "uploadingAfterCreate": "Anhänge werden hochgeladen…",

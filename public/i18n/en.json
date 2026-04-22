@@ -51,8 +51,7 @@
         "typeToSearch": "Type to search...",
         "newRequestButton": "NEW REQUEST",
         "downloadButton": "DOWNLOAD",
-        "downloadTemplateButton": "CRS TEMPLATE",
-        "downloadAPTemplateButton": "AP TEMPLATE",
+        "downloadAPTemplateButton": "TEMPLATE",
         "id": "ID",
         "request": "REQUEST",
         "type": "TYPE",
@@ -88,15 +87,10 @@
             "fetchFailed": "Failed to fetch requests for download.",
             "downloadError": "Download Error"
         },
-        "downloadTemplate": {
-            "fetching": "Downloading CRS template...",
-            "success": "CRS template downloaded successfully.",
-            "error": "Failed to download CRS template."
-        },
         "downloadAPTemplate": {
-            "fetching": "Downloading AP template...",
-            "success": "AP template downloaded successfully.",
-            "error": "Failed to download AP template."
+            "fetching": "Downloading template...",
+            "success": "Template downloaded successfully.",
+            "error": "Failed to download template."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "Attachments",
             "none": "- No attachments for this request yet -",
-            "chooseFile": "Choose file",
+            "chooseFile": "UPLOAD",
             "removePending": "Remove",
             "uploading": "Uploading…",
             "uploadingAfterCreate": "Uploading attachments…",

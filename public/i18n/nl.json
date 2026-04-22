@@ -51,8 +51,7 @@
         "typeToSearch": "Typ om te zoeken...",
         "newRequestButton": "NIEUW VERZOEK",
         "downloadButton": "DOWNLOADEN",
-        "downloadTemplateButton": "CRS-SJABLOON",
-        "downloadAPTemplateButton": "AP-SJABLOON",
+        "downloadAPTemplateButton": "SJABLOON",
         "id": "ID",
         "request": "VERZOEK",
         "type": "TYPE",
@@ -86,15 +85,10 @@
             "fetchFailed": "Kon verzoeken niet ophalen voor download.",
             "downloadError": "Download-fout"
         },
-        "downloadTemplate": {
-            "fetching": "CRS-sjabloon wordt gedownload...",
-            "success": "CRS-sjabloon succesvol gedownload.",
-            "error": "Downloaden van CRS-sjabloon is mislukt."
-        },
         "downloadAPTemplate": {
-            "fetching": "AP-sjabloon wordt gedownload...",
-            "success": "AP-sjabloon succesvol gedownload.",
-            "error": "Downloaden van AP-sjabloon is mislukt."
+            "fetching": "Sjabloon wordt gedownload...",
+            "success": "Sjabloon succesvol gedownload.",
+            "error": "Downloaden van sjabloon is mislukt."
         },
         "tsvHeaders": {
             "id": "ID",
@@ -124,7 +118,7 @@
         "attachments": {
             "title": "Bijlagen",
             "none": "- Er zijn nog geen bijlagen voor dit verzoek. -",
-            "chooseFile": "Bestand kiezen",
+            "chooseFile": "Uploaden",
             "removePending": "Verwijderen",
             "uploading": "Bezig met uploaden…",
             "uploadingAfterCreate": "Bijlagen uploaden…",
