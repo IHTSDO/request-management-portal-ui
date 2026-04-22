@@ -733,7 +733,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     isRequestOwner(): boolean {
-        return this.request.reporter === this.user.username;
+        return this.request && this.user && this.request.reporter === this.user.username;
     }
 
     populateAssignees(): void {
