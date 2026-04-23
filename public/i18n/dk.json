@@ -51,9 +51,6 @@
         "typeToSearch": "Tast for at søge...",
         "newRequestButton": "NY ANMODNING",
         "downloadButton": "DOWNLOAD",
-        "downloadAPTemplateButton": "SKABELON",
-        "downloadAPTemplateTooltip": "Download skabelon til masseanmodninger",
-        "uploadForBulkRequestsTooltip": "Brug dette til masseanmodninger",
         "id": "ID",
         "request": "ANMODNING",
         "type": "TYPE",
@@ -120,7 +117,6 @@
         "attachments": {
             "title": "Vedhæftninger",
             "none": "- Der er endnu ingen vedhæftninger til denne anmodning. -",
-            "chooseFile": "UPLOAD",
             "removePending": "Fjern",
             "uploading": "Uploader…",
             "uploadingAfterCreate": "Uploader vedhæftninger…",

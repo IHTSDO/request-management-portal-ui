@@ -51,9 +51,6 @@
         "typeToSearch": "Tapez pour rechercher...",
         "newRequestButton": "NOUVELLE DEMANDE",
         "downloadButton": "TÉLÉCHARGER",
-        "downloadAPTemplateButton": "MODÈLE",
-        "downloadAPTemplateTooltip": "Telecharger le modele pour les demandes en lot",
-        "uploadForBulkRequestsTooltip": "Utiliser ceci pour les demandes en lot",
         "id": "ID",
         "request": "DEMANDE",
         "type": "TYPE",
@@ -120,7 +117,6 @@
         "attachments": {
             "title": "Pièces jointes",
             "none": "- Aucune pièce jointe pour cette demande pour le moment. -",
-            "chooseFile": "Téléverser",
             "removePending": "Retirer",
             "uploading": "Téléversement…",
             "uploadingAfterCreate": "Téléversement des pièces jointes…",

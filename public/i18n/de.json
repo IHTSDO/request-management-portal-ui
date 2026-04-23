@@ -51,9 +51,6 @@
         "typeToSearch": "Suche...",
         "newRequestButton": "NEUE ANFRAGE",
         "downloadButton": "HERUNTERLADEN",
-        "downloadAPTemplateButton": "VORLAGE",
-        "downloadAPTemplateTooltip": "Vorlage fur Sammelanfragen herunterladen",
-        "uploadForBulkRequestsTooltip": "Fur Sammelanfragen verwenden",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",
@@ -120,7 +117,6 @@
         "attachments": {
             "title": "Anhänge",
             "none": "- Für diese Anfrage liegen noch keine Anhänge vor. -",
-            "chooseFile": "Hochladen",
             "removePending": "Entfernen",
             "uploading": "Wird hochgeladen…",
             "uploadingAfterCreate": "Anhänge werden hochgeladen…",

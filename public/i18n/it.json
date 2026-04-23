@@ -51,9 +51,6 @@
         "typeToSearch": "Immettere una chiave di ricerca...",
         "newRequestButton": "NUOVA RICHIESTA",
         "downloadButton": "SCARICA",
-        "downloadAPTemplateButton": "MODELLO",
-        "downloadAPTemplateTooltip": "Scarica il modello per richieste in blocco",
-        "uploadForBulkRequestsTooltip": "Usalo per richieste in blocco",
         "id": "ID",
         "request": "RICHIESTA",
         "type": "TIPO",
@@ -120,7 +117,6 @@
         "attachments": {
             "title": "Allegati",
             "none": "- Non ci sono ancora allegati per questa richiesta. -",
-            "chooseFile": "Carica",
             "removePending": "Rimuovi",
             "uploading": "Caricamento in corso…",
             "uploadingAfterCreate": "Caricamento degli allegati…",

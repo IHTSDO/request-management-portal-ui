@@ -51,9 +51,6 @@
         "typeToSearch": "Typ om te zoeken...",
         "newRequestButton": "NIEUW VERZOEK",
         "downloadButton": "DOWNLOADEN",
-        "downloadAPTemplateButton": "SJABLOON",
-        "downloadAPTemplateTooltip": "Sjabloon downloaden voor bulkverzoeken",
-        "uploadForBulkRequestsTooltip": "Gebruik dit voor bulkverzoeken",
         "id": "ID",
         "request": "VERZOEK",
         "type": "TYPE",
@@ -120,7 +117,6 @@
         "attachments": {
             "title": "Bijlagen",
             "none": "- Er zijn nog geen bijlagen voor dit verzoek. -",
-            "chooseFile": "Uploaden",
             "removePending": "Verwijderen",
             "uploading": "Bezig met uploaden…",
             "uploadingAfterCreate": "Bijlagen uploaden…",
