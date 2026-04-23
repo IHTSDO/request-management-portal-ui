@@ -52,6 +52,8 @@
         "newRequestButton": "NIEUW VERZOEK",
         "downloadButton": "DOWNLOADEN",
         "downloadAPTemplateButton": "SJABLOON",
+        "downloadAPTemplateTooltip": "Sjabloon downloaden voor bulkverzoeken",
+        "uploadForBulkRequestsTooltip": "Gebruik dit voor bulkverzoeken",
         "id": "ID",
         "request": "VERZOEK",
         "type": "TYPE",

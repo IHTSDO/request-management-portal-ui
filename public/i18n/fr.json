@@ -52,6 +52,8 @@
         "newRequestButton": "NOUVELLE DEMANDE",
         "downloadButton": "TÉLÉCHARGER",
         "downloadAPTemplateButton": "MODÈLE",
+        "downloadAPTemplateTooltip": "Telecharger le modele pour les demandes en lot",
+        "uploadForBulkRequestsTooltip": "Utiliser ceci pour les demandes en lot",
         "id": "ID",
         "request": "DEMANDE",
         "type": "TYPE",

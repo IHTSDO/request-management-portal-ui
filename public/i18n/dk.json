@@ -52,6 +52,8 @@
         "newRequestButton": "NY ANMODNING",
         "downloadButton": "DOWNLOAD",
         "downloadAPTemplateButton": "SKABELON",
+        "downloadAPTemplateTooltip": "Download skabelon til masseanmodninger",
+        "uploadForBulkRequestsTooltip": "Brug dette til masseanmodninger",
         "id": "ID",
         "request": "ANMODNING",
         "type": "TYPE",

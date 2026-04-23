@@ -52,6 +52,8 @@
         "newRequestButton": "NUOVA RICHIESTA",
         "downloadButton": "SCARICA",
         "downloadAPTemplateButton": "MODELLO",
+        "downloadAPTemplateTooltip": "Scarica il modello per richieste in blocco",
+        "uploadForBulkRequestsTooltip": "Usalo per richieste in blocco",
         "id": "ID",
         "request": "RICHIESTA",
         "type": "TIPO",

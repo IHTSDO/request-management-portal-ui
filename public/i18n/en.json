@@ -52,6 +52,8 @@
         "newRequestButton": "NEW REQUEST",
         "downloadButton": "DOWNLOAD",
         "downloadAPTemplateButton": "TEMPLATE",
+        "downloadAPTemplateTooltip": "Download template for bulk requests",
+        "uploadForBulkRequestsTooltip": "Use this for bulk requests",
         "id": "ID",
         "request": "REQUEST",
         "type": "TYPE",

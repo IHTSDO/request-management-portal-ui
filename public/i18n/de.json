@@ -52,6 +52,8 @@
         "newRequestButton": "NEUE ANFRAGE",
         "downloadButton": "HERUNTERLADEN",
         "downloadAPTemplateButton": "VORLAGE",
+        "downloadAPTemplateTooltip": "Vorlage fur Sammelanfragen herunterladen",
+        "uploadForBulkRequestsTooltip": "Fur Sammelanfragen verwenden",
         "id": "ID",
         "request": "ANFRAGE",
         "type": "TYP",

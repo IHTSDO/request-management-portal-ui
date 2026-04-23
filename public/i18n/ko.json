@@ -52,6 +52,8 @@
         "newRequestButton": "신규 요청",
         "downloadButton": "다운로드",
         "downloadAPTemplateButton": "템플릿",
+        "downloadAPTemplateTooltip": "대량 요청용 템플릿 다운로드",
+        "uploadForBulkRequestsTooltip": "대량 요청에 사용",
         "id": "ID",
         "request": "요청",
         "type": "유형",
