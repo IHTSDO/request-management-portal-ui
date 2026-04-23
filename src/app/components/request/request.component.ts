@@ -603,7 +603,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
         // For other request types, return all descriptions
         return this.availableDescriptions;
-    }    
+    }
 
     formatRelationshipForDisplay(relationship: Relationship): string {
         if (relationship.typeFsn && relationship.destinationFsn) {
@@ -1095,11 +1095,6 @@ export class RequestComponent implements OnInit, OnDestroy {
         });
     }
 
-    isRequestFieldsLocked(): boolean {
-        return this.mode === Mode.VIEW && !this.isStaff(this.user) &&
-            (!this.isRequestOwner() || (this.isRequestOwner() && this.request?.status !== 'NEW'));
-    }
-
     onPendingAttachmentSelected(event: Event): void {
         const input = event.target as HTMLInputElement;
         const file = input.files?.[0];
@@ -1134,14 +1129,14 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     /** Server-stored attachments: only the reporter may delete. */
     canDeleteExistingAttachment(): boolean {
-        return !!this.user && !this.isRequestFieldsLocked() && this.isRequestOwner();
+        return this.isRequestOwner();
     }
 
     canShowNavAttachmentUpload(): boolean {
         if (this.mode === Mode.NEW && this.request) {
             return !!this.user;
         }
-        if (!this.user || this.mode === Mode.NEW || !this.request?.id || this.isRequestFieldsLocked()) {
+        if (!this.user || this.mode === Mode.NEW || !this.request?.id || this.request?.status === 'CLOSED') {
             return false;
         }
         return this.isRequestOwner();
@@ -1153,7 +1148,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
         if (this.mode === Mode.NEW && this.request) {
             this.triggerNewRequestAttachmentDialog();
-        } else if (this.mode !== Mode.NEW && this.request?.id && !this.isRequestFieldsLocked()) {
+        } else if (this.mode !== Mode.NEW && this.request?.id && this.request.status !== 'CLOSED') {
             this.triggerAttachmentFileDialog();
         }
     }

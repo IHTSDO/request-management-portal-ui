@@ -34,9 +34,9 @@
 
     <ng-container *ngIf="request?.id && mode !== ModeType.NEW">
         <input *ngIf="canShowNavAttachmentUpload()" #attachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
-        <div *ngIf="(!isRequestFieldsLocked() && attachmentUploading) || requestAttachments.length > 0" class="w-full pt-1 border-t border-slate-200 attachments-section" data-cy="nav-attachments-existing">
+        <div *ngIf="attachmentUploading || requestAttachments.length > 0" class="w-full pt-1 border-t border-slate-200 attachments-section" data-cy="nav-attachments-existing">
             <h3 *ngIf="requestAttachments.length > 0" class="text-sm font-semibold text-slate-700 m-0 mb-2">{{ 'request.attachments.title' | translate }}</h3>
-            <p *ngIf="!isRequestFieldsLocked() && attachmentUploading" class="text-xs text-gray-600 m-0 mb-2">{{ 'request.attachments.uploading' | translate }}</p>
+            <p *ngIf="attachmentUploading" class="text-xs text-gray-600 m-0 mb-2">{{ 'request.attachments.uploading' | translate }}</p>
             <ul *ngIf="requestAttachments.length > 0" class="attachment-list w-full space-y-2 m-0 p-0 list-none">
                 <li *ngFor="let attachment of requestAttachments" class="w-full min-w-0 flex flex-nowrap items-center gap-2 rounded-md border border-gray-200 bg-white px-2 py-1.5 text-slate-700 text-xs">
                     <a class="attachment-link block min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-medium text-blue-600 hover:text-blue-800 underline" [href]="getAttachmentDownloadHref(attachment)" target="_blank" rel="noopener noreferrer" [attr.title]="attachment.fileName">{{ attachment.fileName }}</a>
