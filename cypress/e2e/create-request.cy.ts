@@ -4,17 +4,15 @@ const utils = new Utils();
 
 describe('Create Request', () => {
 
+    const requestSummary = `Cypress Test Request - ${new Date().getTime()}`;
+
     it('should be able to login', () => {
         utils.login();
     });
 
     it('should create a new request and see it in the list', () => {
-        const requestSummary = `Cypress Test Request - ${new Date().getTime()}`;
-
         cy.contains('Belgium').click();
-
         cy.dataCy('new-request-button').click();
-
         cy.url().should('include', '/be/new-request');
 
         cy.dataCy('summary-input').type(requestSummary);
@@ -28,6 +26,18 @@ describe('Create Request', () => {
 
         cy.url().should('not.include', 'new-request');
         cy.dataCy('request-list').should('contain', requestSummary);
+    });
+
+    it('should be able to delete a request', () => {
+        cy.intercept('DELETE', '/authoring-services/rmp-tasks/*').as('deleteRequest');
+        cy.intercept('GET', '/authoring-services/rmp-tasks/search*').as('loadRequests');
+
+        cy.dataCy('request-list').contains(requestSummary).siblings().find('[data-cy="delete-request"]').click();
+        cy.dataCy('delete-button').click();
+
+        cy.wait('@deleteRequest');
+        cy.wait('@loadRequests');
+        cy.dataCy('request-list').should('not.contain', requestSummary);
     });
 
     it('should be able to log out', () => {
