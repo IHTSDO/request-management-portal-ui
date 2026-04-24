@@ -42,7 +42,9 @@
     "sonarqube-scanner": "^4.3.2",
     "tailwindcss": "^4.1.16",
     "tslib": "^2.8.1",
-    "zone.js": "^0.15.1"
+    "zone.js": "^0.15.1",
+    "cypress": "^13.17.0",
+    "cypress-mochawesome-reporter": "^3.8.1"
   },
   "devDependencies": {
     "@angular/build": "^20.2.0",
@@ -50,7 +52,6 @@
     "@angular/compiler-cli": "^20.2.0",
     "@types/express": "^4.17.17",
     "@types/node": "^18.18.0",
-    "cypress": "^14.5.2",
     "postcss": "^8.5.3",
     "typescript": "~5.9.3"
   }

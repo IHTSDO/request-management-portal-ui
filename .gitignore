@@ -49,3 +49,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Cypress
+/cypress/videos/
+/cypress/reports/
+/cypress/screenshots/
+/cypress.env.json
+
