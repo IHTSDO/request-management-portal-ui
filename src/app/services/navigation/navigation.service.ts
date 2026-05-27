@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { LanguageService } from '../language/language.service';
 
 @Injectable({
@@ -40,5 +40,19 @@ export class NavigationService {
    */
   getCurrentLanguage(): string {
     return this.languageService.getCurrentLanguage();
+  }
+
+  getRequestHref(country: string, requestId: number | string): string {
+    return this.router.serializeUrl(this.createRequestUrlTree(country, requestId));
+  }
+
+  navigateToRequest(country: string, requestId: number | string): void {
+    this.navigateWithLanguage(['/', country, requestId]);
+  }
+
+  private createRequestUrlTree(country: string, requestId: number | string): UrlTree {
+    const urlTree = this.router.createUrlTree(['/', country, String(requestId)]);
+    urlTree.queryParams['lang'] = this.getCurrentLanguage();
+    return urlTree;
   }
 }

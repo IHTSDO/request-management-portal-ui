@@ -131,11 +131,38 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
     }
 
     navigateToNewRequest(): void {
-        this.navigationService.navigateWithLanguage([this.country, 'new-request']);
+        this.navigationService.navigateWithLanguage(['/', this.country, 'new-request']);
     }
 
-    navigateToRequest(requestId: number): void {
-        this.navigationService.navigateWithLanguage([this.country, requestId]);
+    onRowClick(event: MouseEvent, requestId: number): void {
+        if (event.button !== 0 || (event.target as HTMLElement).closest('[data-cy="delete-request"], [data-cy="open-request-new-tab"]')) {
+            return;
+        }
+        if (event.ctrlKey || event.metaKey) {
+            event.preventDefault();
+            event.stopPropagation();
+            window.open(this.navigationService.getRequestHref(this.country, requestId), '_blank');
+            return;
+        }
+        this.navigationService.navigateToRequest(this.country, requestId);
+    }
+
+    onRowMouseDown(event: MouseEvent, requestId: number): void {
+        if (event.button !== 1 || (event.target as HTMLElement).closest('[data-cy="delete-request"], [data-cy="open-request-new-tab"]')) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(this.navigationService.getRequestHref(this.country, requestId), '_blank');
+    }
+
+    onRowAuxClick(event: MouseEvent, requestId: number): void {
+        if (event.button !== 1 || (event.target as HTMLElement).closest('[data-cy="delete-request"], [data-cy="open-request-new-tab"]')) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(this.navigationService.getRequestHref(this.country, requestId), '_blank');
     }
 
     ngOnDestroy() {

@@ -174,7 +174,11 @@
                 </tr>
             </thead>
             <tbody class="bg-white" data-cy="request-list">
-                <tr *ngFor="let request of requests | userRequests:user:extension; let last = last" (click)="navigateToRequest(request.id)" class="hover:bg-sky-50 hover:cursor-pointer">
+                <tr *ngFor="let request of requests | userRequests:user:extension; let last = last"
+                    (click)="onRowClick($event, request.id)"
+                    (mousedown)="onRowMouseDown($event, request.id)"
+                    (auxclick)="onRowAuxClick($event, request.id)"
+                    class="hover:bg-sky-50 hover:cursor-pointer">
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">#{{request.id}}</td>
                     <td class="border-gray-300 font-normal text-sky-500 text-sm p-2" [class.border-b]="!last">{{request.summary}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.type | requestTypeTransform}}</td>
