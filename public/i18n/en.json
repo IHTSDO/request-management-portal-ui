@@ -58,6 +58,7 @@
         "request": "REQUEST",
         "type": "TYPE",
         "status": "STATUS",
+        "created": "CREATED",
         "updated": "UPDATED",
         "reporter": "REPORTER",
         "assignee": "ASSIGNEE",
@@ -150,6 +151,8 @@
         },
         "labels": {
             "summary": "Summary",
+            "createdDate": "Created",
+            "updatedDate": "Updated",
             "reporter": "Reporter",
             "assignee": "Assignee",
             "type": "Type",

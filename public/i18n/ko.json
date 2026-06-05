@@ -58,6 +58,7 @@
         "request": "요청",
         "type": "유형",
         "status": "상태",
+        "created": "생성일",
         "updated": "업데이트일",
         "reporter": "요청자",
         "assignee": "담당자",
@@ -149,6 +150,8 @@
             "appealClarification": "이의 제기 보완 요청"
         },
         "labels": {
+            "createdDate": "생성일",
+            "updatedDate": "업데이트일",
             "languageRefset": "언어 선택",
             "type": "유형",
             "summary": "요청 제목",

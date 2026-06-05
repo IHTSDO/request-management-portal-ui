@@ -60,18 +60,26 @@
                             <div class="font-normal text-slate-700 text-sm p-2 pr-0 pl-0 ms-2">#{{request.id}}</div>
                             <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.type | requestTypeTransform}}</div>
                             <div class="font-normal text-slate-700 text-sm p-2 pr-0">
-                                <span
-                                    class="rounded-full text-white text-sm px-3 py-1 font-normal tracking-widest whitespace-nowrap"
+                                <div
+                                    class="rounded-full text-white text-sm px-3 py-1 font-normal tracking-widest text-center"
                                     [class.bg-teal-500]="request.status === 'NEW'"
                                     [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
                                     [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
                                     [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
                                     [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
                                     [class.bg-slate-400]="request.status === 'ON_HOLD'"
-                                    [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status
-                                    | statusTransform}}</span>
+                                    [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">
+                                    {{request.status | statusTransform}}
+                                </div>
                             </div>
-                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">
+                                <div class="-mt-4 font-semibold text-xs">{{ 'request.labels.createdDate' | translate }}:</div>
+                                <div>{{request.created | date:'yyyy/MM/dd':'UTC'}}</div>
+                            </div>
+                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">
+                                <div class="-mt-4 font-semibold text-xs">{{ 'request.labels.updatedDate' | translate }}:</div>
+                                <div>{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
+                            </div>
                             <div class="font-normal text-slate-700 text-sm p-2 relative inline-block">
                                 <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
                                 <label *ngIf="isStaff(user)" for="reporter" class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}&nbsp;</label>

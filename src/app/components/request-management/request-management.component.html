@@ -85,6 +85,21 @@
                             </ng-container>
                         </span>
                     </th>
+                    <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer min-w-27" (click)="sortRequests('createdDate')">
+                        {{ 'requestManagement.created' | translate }}
+                        <span *ngIf="sortColumn === 'createdDate'">
+                            <ng-container *ngIf="sortDirection === 'asc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="sortDirection === 'desc'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </ng-container>
+                        </span>
+                    </th>
                     <th class="bg-gray-100 border-b border-gray-300 font-normal text-sm p-2 text-start cursor-pointer min-w-27" (click)="sortRequests('updatedDate')">
                         {{ 'requestManagement.updated' | translate }}
                         <span *ngIf="sortColumn === 'updatedDate'">
@@ -192,6 +207,7 @@
                               [class.bg-slate-400]="request.status === 'ON_HOLD'"
                               [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">{{request.status | statusTransform}}</span>
                     </td>
+                    <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.created | date:'yyyy/MM/dd':'UTC'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">{{ getDisplayName(request.reporter) }}</td>
                     <td class="border-gray-300 font-normal text-slate-700 text-sm p-2" [class.border-b]="!last">
@@ -203,10 +219,10 @@
                     </td>
                 </tr>
                 <tr *ngIf="!requests?.length && !requestLoading">
-                    <td colspan="8" class="text-center text-gray-500 py-4">{{ 'requestManagement.noRequests' | translate }}</td>
+                    <td colspan="9" class="text-center text-gray-500 py-4">{{ 'requestManagement.noRequests' | translate }}</td>
                 </tr>
                 <tr *ngIf="requestLoading">
-                    <td colspan="8" class="text-center text-gray-500 py-4">{{ 'requestManagement.retrieving' | translate }}</td>
+                    <td colspan="9" class="text-center text-gray-500 py-4">{{ 'requestManagement.retrieving' | translate }}</td>
                 </tr>
             </tbody>
         </table>
