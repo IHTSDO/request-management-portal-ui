@@ -56,51 +56,55 @@
             <div class="col-span-8">
                 <ng-container *ngIf="request?.id">
                     <div class="w-full justify-self-center">
-                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex justify-between items-center">
-                            <div class="font-normal text-slate-700 text-sm p-2 pr-0 pl-0 ms-2">#{{request.id}}</div>
-                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">{{request.type | requestTypeTransform}}</div>
-                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">
-                                <div
-                                    class="rounded-full text-white text-sm px-3 py-1 font-normal tracking-widest text-center"
-                                    [class.bg-teal-500]="request.status === 'NEW'"
-                                    [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
-                                    [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
-                                    [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
-                                    [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
-                                    [class.bg-slate-400]="request.status === 'ON_HOLD'"
-                                    [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">
-                                    {{request.status | statusTransform}}
+                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex flex-col gap-2 p-2">
+                            <div class="flex w-full items-center justify-between gap-x-3 px-1">
+                                <div class="font-normal text-slate-700 text-sm shrink-0">#{{request.id}}</div>
+                                <div class="font-normal text-slate-700 text-sm min-w-0 truncate px-2">{{request.type | requestTypeTransform}}</div>
+                                <div class="font-normal text-slate-700 text-sm shrink-0">
+                                    <span
+                                        class="rounded-full text-white text-sm px-3 py-1 font-normal tracking-widest text-center whitespace-nowrap inline-block"
+                                        [class.bg-teal-500]="request.status === 'NEW'"
+                                        [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
+                                        [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
+                                        [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
+                                        [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
+                                        [class.bg-slate-400]="request.status === 'ON_HOLD'"
+                                        [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">
+                                        {{request.status | statusTransform}}
+                                    </span>
+                                </div>
+                                <div class="font-normal text-slate-700 text-sm shrink-0 flex items-center gap-1 whitespace-nowrap">
+                                    <span class="text-base text-slate-700 font-medium">{{ 'request.labels.createdDate' | translate }}:</span>
+                                    <span>{{request.created | date:'yyyy/MM/dd':'UTC'}}</span>
+                                </div>
+                                <div class="font-normal text-slate-700 text-sm shrink-0 flex items-center gap-1 whitespace-nowrap">
+                                    <span class="text-base text-slate-700 font-medium">{{ 'request.labels.updatedDate' | translate }}:</span>
+                                    <span>{{request.updated | date:'yyyy/MM/dd':'UTC'}}</span>
                                 </div>
                             </div>
-                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">
-                                <div class="-mt-4 font-semibold text-xs">{{ 'request.labels.createdDate' | translate }}:</div>
-                                <div>{{request.created | date:'yyyy/MM/dd':'UTC'}}</div>
-                            </div>
-                            <div class="font-normal text-slate-700 text-sm p-2 pr-0">
-                                <div class="-mt-4 font-semibold text-xs">{{ 'request.labels.updatedDate' | translate }}:</div>
-                                <div>{{request.updated | date:'yyyy/MM/dd':'UTC'}}</div>
-                            </div>
-                            <div class="font-normal text-slate-700 text-sm p-2 relative inline-block">
-                                <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
-                                <label *ngIf="isStaff(user)" for="reporter" class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}&nbsp;</label>
-                                <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300 inline-block">
-                                    <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
-                                </div>
-                                <div *ngIf="showReporterTypeahead && reporterTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 -right-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                                    <div *ngFor="let reporter of reporterTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectReporterResult(reporter)">
-                                        {{ getDisplayFromUserObject(reporter) }}
+                            <div class="flex flex-wrap items-center gap-x-14">
+                                <div class="font-normal text-slate-700 text-sm relative flex items-center gap-1">
+                                    <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
+                                    <label *ngIf="isStaff(user)" for="reporter" class="text-base text-slate-700 font-medium shrink-0">{{ 'request.labels.reporter' | translate }}&nbsp;</label>
+                                    <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300">
+                                        <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
+                                    </div>
+                                    <div *ngIf="showReporterTypeahead && reporterTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                        <div *ngFor="let reporter of reporterTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectReporterResult(reporter)">
+                                            {{ getDisplayFromUserObject(reporter) }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="font-normal text-slate-700 text-sm py-1 me-1 relative inline-block">
-                                <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}:</label>&nbsp;<span>{{ getAssigneeDisplayValue() != '' ? getAssigneeDisplayValue() : 'Unassigned' }}</span></div>
-                                <label *ngIf="isStaff(user)" for="assignee" class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}&nbsp;</label>
-                                <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300 inline-block">
-                                    <input type="text" name="Assignee" id="assignee" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
-                                </div>
-                                <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 -right-2 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                                    <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
-                                        {{ getDisplayFromUserObject(assignee) }}
+                                <div class="font-normal text-slate-700 text-sm relative flex items-center gap-1">
+                                    <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}:</label>&nbsp;<span>{{ getAssigneeDisplayValue() != '' ? getAssigneeDisplayValue() : 'Unassigned' }}</span></div>
+                                    <label *ngIf="isStaff(user)" for="assignee" class="text-base text-slate-700 font-medium shrink-0">{{ 'request.labels.assignee' | translate }}&nbsp;</label>
+                                    <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300">
+                                        <input type="text" name="Assignee" id="assignee" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
+                                    </div>
+                                    <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                        <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
+                                            {{ getDisplayFromUserObject(assignee) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
