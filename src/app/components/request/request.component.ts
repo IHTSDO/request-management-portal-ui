@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 import { User } from '../../models/user';
-import { BehaviorSubject, catchError, concatMap, debounceTime, firstValueFrom, forkJoin, from, of, Subscription, switchMap, tap, toArray } from 'rxjs';
+import { BehaviorSubject, catchError, concatMap, debounceTime, firstValueFrom, forkJoin, from, of, Subject, Subscription, switchMap, tap, toArray } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../services/config/config.service';
@@ -86,13 +86,13 @@ export class RequestComponent implements OnInit, OnDestroy {
     // Assignee typeahead properties
     assigneeTypeaheadResults: any[] = [];
     showAssigneeTypeahead: boolean = false;
-    assigneeTypeaheadSubject = new BehaviorSubject<string>('');
+    assigneeTypeaheadSubject = new Subject<string>();
     assigneeTypeaheadSubscription: Subscription;
 
     // Reporter typeahead properties
     reporterTypeaheadResults: any[] = [];
     showReporterTypeahead: boolean = false;
-    reporterTypeaheadSubject = new BehaviorSubject<string>('');
+    reporterTypeaheadSubject = new Subject<string>();
     reporterTypeaheadSubscription: Subscription;
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
