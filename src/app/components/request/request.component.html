@@ -50,86 +50,67 @@
 </div>
 <form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form" autocomplete="off">
     <ng-container *ngIf="request">
-        <div class="grid grid-cols-12 my-5">
-            <div class="col-span-2 ms-5">
-            </div>
-            <div class="col-span-8">
-                <ng-container *ngIf="request?.id">
-                    <h2 class="text-xl text-slate-700 text-center mb-5">{{ request.summary }}</h2>
-                </ng-container>
-                <ng-container *ngIf="request?.id">
-                    <div class="w-full justify-self-center">
-                        <div class="border border-gray-300 rounded-lg bg-sky-50 flex flex-col gap-2 p-2">
-                            <div class="grid grid-cols-12 gap-2">
-                                <div class="col-span-4">
-                                    <div class="grid grid-cols-1">
-                                        <div class="p-2 font-normal text-sky-600 text-base min-w-0 truncate px-2 mb-2">
-                                            #{{request.id}}
-                                        </div>
-                                        <div class="font-normal text-slate-700 text-sm shrink-0 mt-1">
-                                            <span class="rounded text-white text-sm px-3 py-1.5 font-medium tracking-widest text-center whitespace-nowrap inline-block"
-                                                  [class.bg-teal-500]="request.status === 'NEW'"
-                                                  [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
-                                                  [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
-                                                  [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
-                                                  [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
-                                                  [class.bg-slate-400]="request.status === 'ON_HOLD'"
-                                                  [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">
-                                                {{request.status | statusTransform | uppercase}}
-                                            </span>
-                                        </div>
+        <div class="grid w-2/3 justify-self-center my-5">
+            <ng-container *ngIf="request?.id">
+                <div class="border border-gray-300 rounded-lg bg-sky-50 px-4 py-3" data-cy="request-header">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="text-slate-700 text-sm font-normal shrink-0 self-center">#{{request.id}}</span>
+                        <h2 class="text-sm text-slate-700 font-normal min-w-0 flex-1 m-0">{{ request.summary }}</h2>
+                        <span class="rounded-full text-white px-3 py-1 font-normal whitespace-nowrap shrink-0 self-center"
+                              [class.bg-teal-500]="request.status === 'NEW'"
+                              [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
+                              [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
+                              [class.bg-amber-400]="request.status === 'CLARIFICATION_REQUESTED' || request.status === 'UNDER_APPEAL' || request.status === 'APPEAL_CLARIFICATION_REQUESTED'"
+                              [class.bg-blue-400]="request.status === 'IN_PROGRESS'"
+                              [class.bg-slate-400]="request.status === 'ON_HOLD'"
+                              [class.bg-rose-400]="request.status === 'CLOSED' || request.status === 'WITHDRAWN'">
+                            {{request.status | statusTransform}}
+                        </span>
+                    </div>
+                    <div class="border-t border-gray-300 my-2.5"></div>
+                    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1.3fr)] gap-x-5 gap-y-2 items-center w-full text-sm text-slate-700">
+                        <div class="flex items-center gap-1 min-w-0">
+                            <span class="text-sky-600 shrink-0">{{ 'request.labels.createdDate' | translate }}:</span>
+                            <span class="font-medium truncate">{{request.created | date:'yyyy/MM/dd':'UTC'}}</span>
+                        </div>
+                        <div class="flex items-center gap-1 min-w-0">
+                            <span class="text-sky-600 shrink-0">{{ 'request.labels.updatedDate' | translate }}:</span>
+                            <span class="font-medium truncate">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</span>
+                        </div>
+                        <div class="flex items-center gap-1 min-w-0">
+                            <span class="text-sky-600 shrink-0 whitespace-nowrap">{{ 'request.labels.reporter' | translate }}:</span>
+                            <span *ngIf="!isStaff(user)" class="font-medium truncate">{{ getDisplayName(request.reporter) }}</span>
+                            <div *ngIf="isStaff(user)" class="relative min-w-0 flex-1">
+                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300">
+                                    <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium min-w-0 w-full" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
+                                </div>
+                                <div *ngIf="showReporterTypeahead && reporterTypeaheadResults.length > 0" class="absolute z-50 w-full mt-1 top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                    <div *ngFor="let reporter of reporterTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectReporterResult(reporter)">
+                                        {{ getDisplayFromUserObject(reporter) }}
                                     </div>
                                 </div>
-                                <div class="col-span-4">
-                                    <div class="grid grid-cols-1 justify-items-center">
-                                        <div class="m-2 font-normal text-base text-slate-700 shrink-0 flex items-center gap-1 whitespace-nowrap mb-3">
-                                            <span class="text-sky-600">{{ 'request.labels.createdDate' | translate }}:</span>
-                                            <span class="font-medium">{{request.created | date:'yyyy/MM/dd':'UTC'}}</span>
-                                        </div>
-                                        <div class="m-2 font-normal text-base text-slate-700 shrink-0 flex items-center gap-1 whitespace-nowrap">
-                                            <span class="text-sky-600">{{ 'request.labels.updatedDate' | translate }}:</span>
-                                            <span class="font-medium">{{request.updated | date:'yyyy/MM/dd':'UTC'}}</span>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 min-w-0">
+                            <span class="text-sky-600 shrink-0 whitespace-nowrap">{{ 'request.labels.assignee' | translate }}:</span>
+                            <span *ngIf="!isStaff(user)" class="font-medium truncate">{{ getAssigneeDisplayValue() != '' ? getAssigneeDisplayValue() : 'Unassigned' }}</span>
+                            <div *ngIf="isStaff(user)" class="relative min-w-0 flex-1">
+                                <div class="flex items-center rounded-md px-3 border bg-white border-gray-300">
+                                    <input type="text" name="Assignee" id="assignee" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium min-w-0 w-full" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
                                 </div>
-                                <div class="col-span-4">
-                                    <div class="grid grid-cols-1">
-                                        <div class="font-normal text-slate-700 text-sm relative flex items-center gap-1 justify-self-end mb-2">
-                                            <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.reporter' | translate }}:</label>&nbsp;<span>{{ getDisplayName(request.reporter) }}</span></div>
-                                            <label *ngIf="isStaff(user)" for="reporter" class="text-base text-slate-700 font-medium shrink-0">{{ 'request.labels.reporter' | translate }}&nbsp;</label>
-                                            <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300">
-                                                <input type="text" name="Reporter" id="reporter" [value]="getReporterDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" (input)="onReporterInput($event)" (focus)="onReporterFocus($event)" (blur)="onReporterBlur($event)">
-                                            </div>
-                                            <div *ngIf="showReporterTypeahead && reporterTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                                                <div *ngFor="let reporter of reporterTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectReporterResult(reporter)">
-                                                    {{ getDisplayFromUserObject(reporter) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="font-normal text-slate-700 text-sm relative flex items-center gap-1 justify-self-end">
-                                            <div *ngIf="!isStaff(user)" class="pr-1"><label class="text-base text-slate-700 font-medium">{{ 'request.labels.assignee' | translate }}:</label>&nbsp;<span>{{ getAssigneeDisplayValue() != '' ? getAssigneeDisplayValue() : 'Unassigned' }}</span></div>
-                                            <label *ngIf="isStaff(user)" for="assignee" class="text-base text-slate-700 font-medium shrink-0">{{ 'request.labels.assignee' | translate }}&nbsp;</label>
-                                            <div *ngIf="isStaff(user)" class="flex items-center rounded-md px-3 border bg-white border-gray-300">
-                                                <input type="text" name="Assignee" id="assignee" [value]="getAssigneeDisplayValue()" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [placeholder]="'requestManagement.typeToSearch' | translate" autocomplete="off" autocapitalize="off" spellcheck="false" [class.disabled:text-gray-400]="!isStaff(user)" (input)="onAssigneeInput($event)" (focus)="onAssigneeFocus($event)" (blur)="onAssigneeBlur($event)">
-                                            </div>
-                                            <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-3/4 mt-1 top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                                                <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
-                                                    {{ getDisplayFromUserObject(assignee) }}
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div *ngIf="showAssigneeTypeahead && assigneeTypeaheadResults.length > 0" class="absolute z-50 w-full mt-1 top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                    <div *ngFor="let assignee of assigneeTypeaheadResults" class="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm text-slate-700 border-b border-gray-100 last:border-b-0" (click)="selectAssigneeResult(assignee)">
+                                        {{ getDisplayFromUserObject(assignee) }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </ng-container>
-                <ng-container *ngIf="!request?.id">
-                    <h2 class="text-xl text-slate-700 text-center">{{ 'request.newRequest' | translate }}</h2>
-                </ng-container>
-            </div>
-            <div class="col-span-2 justify-self-end">
-            </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!request?.id">
+                <h2 class="text-xl text-slate-700 text-center">{{ 'request.newRequest' | translate }}</h2>
+            </ng-container>
         </div>
 
         <div *ngIf="request.id" class="grid w-2/3 justify-self-center my-5">
