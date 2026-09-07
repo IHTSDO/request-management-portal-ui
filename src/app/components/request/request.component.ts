@@ -56,6 +56,9 @@ export class RequestComponent implements OnInit, OnDestroy {
     attachmentDeleting = false;
     /** Files to upload after the request is created (new-request flow). */
     pendingAttachmentFiles: PendingAttachmentItem[] = [];
+    /** Extensions from backend config (without dots), e.g. ['xls','xlsx','tsv']. */
+    allowedAttachmentExtensions: string[] = [];
+    allowedAttachmentAccept = '';
 
     @ViewChild('attachmentFileInput') attachmentFileInput?: ElementRef<HTMLInputElement>;
     @ViewChild('newRequestAttachmentFileInput') newRequestAttachmentFileInput?: ElementRef<HTMLInputElement>;
@@ -217,6 +220,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.country = this.activatedRoute.snapshot.paramMap.get('country');
         this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
         this.configService.setExtension(this.config.extensions.find(extension => extension.shortCode === this.activatedRoute.snapshot.paramMap.get('country')));
+        this.loadAllowedAttachmentExtensions();
 
         // Wait for translations to be loaded before proceeding
         this.initializeTranslations().then(() => {
@@ -1101,8 +1105,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (!file || this.mode !== Mode.NEW) {
             return;
         }
-        if (!this.isXlsFile(file)) {
-            this.toastr.error('Only .xls files are allowed.', 'Invalid File Type');
+        if (!this.isAllowedAttachmentFile(file)) {
+            this.toastr.error(this.getAllowedAttachmentExtensionsErrorMessage(), 'Invalid File Type');
             this.resetNewRequestAttachmentFileInput();
             return;
         }
@@ -1178,8 +1182,8 @@ export class RequestComponent implements OnInit, OnDestroy {
         if (!file || !this.request?.id) {
             return;
         }
-        if (!this.isXlsFile(file)) {
-            this.toastr.error('Only .xls files are allowed.', 'Invalid File Type');
+        if (!this.isAllowedAttachmentFile(file)) {
+            this.toastr.error(this.getAllowedAttachmentExtensionsErrorMessage(), 'Invalid File Type');
             this.resetAttachmentFileInput();
             return;
         }
@@ -1201,8 +1205,44 @@ export class RequestComponent implements OnInit, OnDestroy {
         });
     }
 
-    private isXlsFile(file: File): boolean {
-        return !!file?.name && file.name.toLowerCase().endsWith('.xls');
+    private loadAllowedAttachmentExtensions(): void {
+        this.authoringService.httpGetAllowedAttachmentExtensions().subscribe({
+            next: (extensions) => {
+                this.allowedAttachmentExtensions = extensions;
+                this.allowedAttachmentAccept = extensions.map((ext) => `.${ext}`).join(',');
+            },
+            error: () => {
+                this.allowedAttachmentExtensions = [];
+                this.allowedAttachmentAccept = '';
+            }
+        });
+    }
+
+    private isAllowedAttachmentFile(file: File): boolean {
+        if (!file?.name || this.allowedAttachmentExtensions.length === 0) {
+            return false;
+        }
+        const lowerName = file.name.toLowerCase();
+        const extensionStart = lowerName.lastIndexOf('.');
+        if (extensionStart < 0 || extensionStart === lowerName.length - 1) {
+            return false;
+        }
+        const extension = lowerName.substring(extensionStart + 1);
+        return this.allowedAttachmentExtensions.includes(extension);
+    }
+
+    private getAllowedAttachmentExtensionsErrorMessage(): string {
+        if (this.allowedAttachmentExtensions.length === 0) {
+            return 'No allowed file extensions are configured.';
+        }
+        const labeled = this.allowedAttachmentExtensions.map((ext) => `.${ext}`);
+        if (labeled.length === 1) {
+            return `Only ${labeled[0]} files are allowed.`;
+        }
+        if (labeled.length === 2) {
+            return `Only ${labeled[0]} and ${labeled[1]} files are allowed.`;
+        }
+        return `Only ${labeled.slice(0, -1).join(', ')}, and ${labeled[labeled.length - 1]} files are allowed.`;
     }
 
     triggerAttachmentFileDialog(): void {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UIConfiguration } from '../../models/uiConfiguration';
 import { HttpClient } from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {map, Observable, shareReplay} from 'rxjs';
 import {Request, RequestAttachment, RequestComment} from '../../models/request';
 
 function normalizeAttachment(raw: any): RequestAttachment | null {
@@ -26,12 +26,29 @@ function normalizeAttachment(raw: any): RequestAttachment | null {
 export class AuthoringService {
 
     uiConfig: UIConfiguration;
+    private allowedAttachmentExtensions$?: Observable<string[]>;
 
     constructor(private http: HttpClient) {
     }
 
     httpGetUIConfiguration(): Observable<UIConfiguration> {
         return this.http.get<UIConfiguration>('/authoring-services/ui-configuration');
+    }
+
+    httpGetAllowedAttachmentExtensions(): Observable<string[]> {
+        if (!this.allowedAttachmentExtensions$) {
+            this.allowedAttachmentExtensions$ = this.http
+                .get<string[]>('/authoring-services/rmp-tasks/attachments/allowed-extensions')
+                .pipe(
+                    map((extensions) =>
+                        (extensions ?? [])
+                            .map((ext) => (ext || '').trim().toLowerCase().replace(/^\./, ''))
+                            .filter((ext) => !!ext)
+                    ),
+                    shareReplay(1)
+                );
+        }
+        return this.allowedAttachmentExtensions$;
     }
 
     httpGetRMPRequests(country, pageSize = 100,  pageIndex = 0, sort: string = 'updatedDate,desc', status?: string[]): Observable<any> {

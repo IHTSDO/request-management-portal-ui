@@ -18,7 +18,7 @@
     </button>
 
     <ng-container *ngIf="request && mode === ModeType.NEW">
-        <input #newRequestAttachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onPendingAttachmentSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="new-request-attachment-file-input" />
+        <input #newRequestAttachmentFileInput type="file" [accept]="allowedAttachmentAccept" class="attachment-file-input" (change)="onPendingAttachmentSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="new-request-attachment-file-input" />
         <div *ngIf="pendingAttachmentFiles.length > 0" class="w-full pt-1 border-t border-slate-200 attachments-section" data-cy="nav-attachments-new">
             <h3 class="text-sm font-semibold text-slate-700 m-0 mb-2">{{ 'request.attachments.title' | translate }}</h3>
             <ul class="attachment-list w-full space-y-2 m-0 p-0 list-none">
@@ -33,7 +33,7 @@
     </ng-container>
 
     <ng-container *ngIf="request?.id && mode !== ModeType.NEW">
-        <input *ngIf="canShowNavAttachmentUpload()" #attachmentFileInput type="file" accept=".xls" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
+        <input *ngIf="canShowNavAttachmentUpload()" #attachmentFileInput type="file" [accept]="allowedAttachmentAccept" class="attachment-file-input" (change)="onAttachmentFileSelected($event)" [attr.aria-label]="'request.attachments.chooseFile' | translate" data-cy="attachment-file-input" />
         <div *ngIf="attachmentUploading || requestAttachments.length > 0" class="w-full pt-1 border-t border-slate-200 attachments-section" data-cy="nav-attachments-existing">
             <h3 *ngIf="requestAttachments.length > 0" class="text-sm font-semibold text-slate-700 m-0 mb-2">{{ 'request.attachments.title' | translate }}</h3>
             <p *ngIf="attachmentUploading" class="text-xs text-gray-600 m-0 mb-2">{{ 'request.attachments.uploading' | translate }}</p>
