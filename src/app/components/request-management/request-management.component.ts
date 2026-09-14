@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Request} from '../../models/request';
 import {AuthoringService} from '../../services/authoring/authoring.service';
@@ -25,6 +25,8 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
     styleUrl: './request-management.component.scss'
 })
 export class RequestManagementComponent implements OnInit, OnDestroy {
+
+    @ViewChild('filterMenuContainer') filterMenuContainer: ElementRef<HTMLElement>;
 
     deleteOption: Request | null;
     filterMenu: boolean = false;
@@ -65,8 +67,9 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.userSubscription = this.authenticationService.getUser().subscribe(data => {
             this.user = data;
             if (data) {
-                this.reporters = [data.username];
-                this.assignees = [data.username];
+                const userId = data.login || data.username;
+                this.reporters = [userId];
+                this.assignees = [userId];
                 // Trigger initial search once user is loaded and country is available
                 if (this.country) {
                     // Use setTimeout to ensure this runs after ngOnInit sets the country
@@ -101,11 +104,18 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 const sortParam = `${this.sortColumn},${this.sortDirection}`;
                 this.visibleRequests = 100; // Reset visible requests on new search
                 this.totalRequests = 0; // Reset total requests on new search
-                
-                if (this.isStaff(this.user)) {
-                    return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList);
-                }
-                return this.authoringService.searchRMPTask(this.country, searchText, this.visibleRequests, 0, sortParam, this.statusList, null, [this.user.login]);
+                this.statusList = this.calculateStatus();
+
+                return this.authoringService.searchRMPTask(
+                    this.country,
+                    searchText,
+                    this.visibleRequests,
+                    0,
+                    sortParam,
+                    this.statusList,
+                    this.getFilterAssignees(),
+                    this.getFilterReporters()
+                );
             })
         ).subscribe((response: any) => {
             if (response?.content) {
@@ -179,6 +189,18 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.searchQuery.next(this.searchText);
     }
 
+    toggleFilterMenu(event: MouseEvent): void {
+        event.stopPropagation();
+        this.filterMenu = !this.filterMenu;
+    }
+
+    @HostListener('document:click', ['$event'])
+    onDocumentClick(event: MouseEvent): void {
+        if (this.filterMenu && this.filterMenuContainer && !this.filterMenuContainer.nativeElement.contains(event.target as Node)) {
+            this.filterMenu = false;
+        }
+    }
+
     loadMore(): void {
         this.visibleRequests += 100;
         this.searchRequests();
@@ -230,18 +252,33 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
         this.statusList = this.calculateStatus();
 
         const sortParam = this.sortColumn + ',' + this.sortDirection;
-        if (this.isStaff(this.user)) {
-            this.reporters = this.myRequests ? this.reporters : null;
-        } else {
-            this.reporters = [this.user.login];
-        }
-        this.authoringService.searchRMPTask(this.country, this.searchText.trim(), this.visibleRequests, 0, sortParam, this.statusList, this.assignedRequests ? this.assignees : null, this.reporters).subscribe({
+        this.authoringService.searchRMPTask(
+            this.country,
+            this.searchText.trim(),
+            this.visibleRequests,
+            0,
+            sortParam,
+            this.statusList,
+            this.getFilterAssignees(),
+            this.getFilterReporters()
+        ).subscribe({
             next: (response) => {
                 this.requests = response.content as Request[];
                 this.totalRequests = response.totalElements as number;
                 this.requestLoading = false;
             }
         });
+    }
+
+    private getFilterAssignees(): string[] | null {
+        return this.assignedRequests ? this.assignees : null;
+    }
+
+    private getFilterReporters(): string[] | null {
+        if (!this.isStaff(this.user)) {
+            return [this.user.login || this.user.username];
+        }
+        return this.myRequests ? this.reporters : null;
     }
 
     calculateStatus(): string[] {
@@ -306,8 +343,8 @@ export class RequestManagementComponent implements OnInit, OnDestroy {
                 currentPage,
                 sortParam,
                 statusList,
-                this.assignedRequests ? this.assignees : null,
-                this.myRequests ? this.reporters : (this.isStaff(this.user) ? null : [this.user.login])
+                this.getFilterAssignees(),
+                this.getFilterReporters()
             ).subscribe({
                 next: (response) => {
                     const pageRequests = response.content as Request[];
