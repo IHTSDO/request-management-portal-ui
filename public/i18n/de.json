@@ -238,27 +238,6 @@
             "procedureSite": "Procedure Site",
             "unknown": "Unbekannt",
             "other": "Andere"
-        },
-        "tooltip": {
-            "summary": "Inhalt der Anfrage in einem Satz beschreiben",
-            "languageRefset": "Sprache auswählen",
-            "contextRefset": "Kontext auswählen",
-            "newFSN": "Der FSN muss auf Englisch angegeben werden",
-            "newPreferredTerm": "Vorzugsterm in der Übersetzungssprache",
-            "newSynonyms": "Mehrere Synonyme bitte durch Komma getrennt eingeben",
-            "parentConcept": "Bitte SCT ID eingeben (falls bekannt)",
-            "justification": "Genaue Beschreibung des Zwecks der Anfrage (z.B. klinisch, administrativ)",
-            "reference": "Quellenverweise zur Erläuterung angeben",
-            "concept": "Suchbegriff eingeben",
-            "conceptID": "Wird automatisch in der Suche vervollständigt",
-            "conceptName": "Wird automatisch in der Suche vervollständigt",
-            "newDescription": "Neue Übersetzung",
-            "relationshipType": "Falls ‘Andere' gewählt wurde, bitte unter Begründung hinzufügen",
-            "relationshipTarget": "Suchbegriff eingeben",
-            "existingDescription": "Bestehende Übersetzung, die geändert werden soll",
-            "existingRelationship": "Relationship, die geändert werden soll",
-            "eclQuery": "Paste an ECL Query here for an Intensional Refset",
-            "membersList": "Enter a list of concept IDs here, separated by commas"
         }
     }
 }

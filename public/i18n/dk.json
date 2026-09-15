@@ -238,27 +238,6 @@
             "procedureSite": "anatomisk lokalisation for procedure",
             "unknown": "ukendt",
             "other": "anden"
-        },
-        "tooltip": {
-            "summary": "Forespørgslens indhold i en enkelt sætning",
-            "languageRefset": "Vælg det sprog forespørgslen vedrører",
-            "contextRefset": "Vælg den kontekst forespørgslen vedrører",
-            "newFSN": "Den fuldt specificerede term (FSN) skal være på engelsk",
-            "newPreferredTerm": "Dette skal være den foretrukne term på dansk",
-            "newSynonyms": "Skriv venligst synonymer adskilt af komma",
-            "parentConcept": "Tilføj venligst SCT ID, hvis du kender det",
-            "justification": "Detaljeret beskrivelse af den kliniske- eller administrative situation ønsket vedrører",
-            "reference": "Tilføj en eller flere kilder hvor begrebet er beskrevet",
-            "concept": "Søg begreb...",
-            "conceptID": "Auto-udfyldes ved søgningen",
-            "conceptName": "Auto-udfyldes ved søgningen",
-            "newDescription": "Den nye term skal være på dansk",
-            "relationshipType": "Hvis ’anden’, så skriv venligst hvilken i begrundelse neden for",
-            "relationshipTarget": "Søg begreb...",
-            "existingDescription": "Den term der skal ændres",
-            "existingRelationship": "Den relation der skal ændres",
-            "eclQuery": "Paste an ECL Query here for an Intensional Refset",
-            "membersList": "Enter a list of concept IDs here, separated by commas"
         }
     }
 }

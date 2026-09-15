@@ -20,6 +20,7 @@ import { LanguageService } from '../../services/language/language.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { MarkdownComponent } from 'ngx-markdown';
 import { TemplateService } from '../../services/template/template-service';
+import { FieldLabelComponent } from '../field-label/field-label.component';
 
 enum Mode {
     NEW,
@@ -33,7 +34,7 @@ interface PendingAttachmentItem {
 
 @Component({
     selector: 'app-request',
-    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe, MarkdownComponent],
+    imports: [CommonModule, FormsModule, StatusTransformPipe, RequestTypeTransformPipe, TranslatePipe, MarkdownComponent, FieldLabelComponent],
     templateUrl: './request.component.html',
     styleUrl: './request.component.scss',
     providers: [StatusTransformPipe]

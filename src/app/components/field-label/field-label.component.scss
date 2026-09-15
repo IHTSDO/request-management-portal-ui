@@ -1,0 +1,15 @@
+:host {
+    display: inline-flex;
+    max-width: 100%;
+}
+
+.field-help-button {
+    width: 1.15rem;
+    height: 1.15rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    cursor: help;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}

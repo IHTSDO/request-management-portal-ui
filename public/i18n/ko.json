@@ -245,27 +245,6 @@
             "procedureSite": "Procedure Site",
             "unknown": "Unknown",
             "other": "Other"
-        },
-        "tooltip": {
-            "summary": "요청 사항을 한 문장으로 요약",
-            "languageRefset": "언어를 선택해주세요",
-            "contextRefset": "콘텐츠 요청 컨텍스트",
-            "newFSN": "추가하고자 하는 개념의 영어 FSN을 작성해주세요",
-            "newSynonyms": "추가하고자 하는 개념의 한글 동의어를 쉼표로 구분하여 작성해주세요",
-            "parentConcept": "SCT ID를 알고 있다면 입력해 주세요",
-            "newPreferredTerm": "추가하고자 하는 개념을 대표하는 한글 동의어를 작성해주세요",
-            "justification": "요청 필요성을 임상 혹은 관리 측면에서 상세하게 기술해주세요",
-            "reference": "해당 개념이 설명된 출처의 링크를 하나 이상 추가해 주세요",
-            "concept": "개념 검색",
-            "conceptID": "검색하면 자동으로 입력됩니다",
-            "conceptName": "검색하면 자동으로 입력됩니다",
-            "relationshipType": "'Other'를 선택한 경우 부연 설명을 기술해주세요",
-            "existingDescription": "수정할 용어",
-            "existingRelationship": "수정할 관계(속성)",
-            "eclQuery": "참조세트에 들어갈 개념을 찾는데 사용할 쿼리를 ECL로 표현해주세요",
-            "newDescription": "신규 한글 동의어를 입력해주세요",
-            "relationshipTarget": "개념 검색",
-            "membersList": "참조세트에 포함하고자 하는 SNOMED CT 개념 ID를 쉼표로 구분해서 나열해주세요"
         }
     }
 }

@@ -236,7 +236,7 @@
 
         <div class="border border-gray-300 grid grid-cols-2 gap-6 w-2/3 justify-self-center mt-5 mb-3 bg-sky-50 rounded-lg p-3">
             <div>
-                <label for="summary" class="text-sm text-slate-700 font-medium">{{ 'request.labels.summary' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                <app-field-label htmlFor="summary" labelKey="request.labels.summary" tooltipKey="request.tooltip.summary" [required]="true"></app-field-label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <input type="text" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.summary" name="Summary" id="summary" #summaryInput="ngModel" required class="grow py-1.5 placeholder:text-gray-400 text-slate-700 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="summary-input" />
@@ -245,7 +245,7 @@
                 </div>
             </div>
             <div>
-                <label for="type" class="text-sm text-slate-700 font-medium">{{ 'request.labels.type' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                <app-field-label htmlFor="type" labelKey="request.labels.type" tooltipKey="request.tooltip.type" [required]="true"></app-field-label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border border-gray-300 bg-lime-50" [class.disabled:bg-lime-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <select name="Type" id="type" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.type" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" #typeInput="ngModel" required data-cy="type-select">
@@ -265,7 +265,7 @@
                 </div>
             </div>
             <div *ngIf="request.type !== 'change-relationship' && request.type !== 'add-relationship' && request.type !== 'inactivate-relationship'">
-                <label for="languageRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.languageRefset' | translate }}</label>
+                <app-field-label htmlFor="languageRefset" labelKey="request.labels.languageRefset" tooltipKey="request.tooltip.languageRefset"></app-field-label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <select name="Language Refset" id="languageRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.languageRefset" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="language-refset-select">
@@ -275,7 +275,7 @@
                 </div>
             </div>
             <div *ngIf="request.type !== 'change-relationship' && request.type !== 'add-relationship' && request.type !== 'inactivate-relationship'">
-                <label for="contextRefset" class="text-sm text-slate-700 font-medium">{{ 'request.labels.contextRefset' | translate }}</label>
+                <app-field-label htmlFor="contextRefset" labelKey="request.labels.contextRefset" tooltipKey="request.tooltip.contextRefset"></app-field-label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <select name="Context Refset" id="contextRefset" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.contextRefset" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="context-refset-select">
@@ -288,7 +288,7 @@
 
             <ng-container *ngIf="request.type === 'add-concept'">
                 <div>
-                    <label for="newFSN" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newFsn' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                    <app-field-label htmlFor="newFSN" labelKey="request.labels.newFsn" tooltipKey="request.tooltip.newFSN" [required]="true"></app-field-label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <input type="text" name="New FSN" id="newFSN" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.newFSN" #newFSNInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="new-fsn-input">
@@ -297,7 +297,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="newPT" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newPreferredTerm' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                    <app-field-label htmlFor="newPT" labelKey="request.labels.newPreferredTerm" tooltipKey="request.tooltip.newPreferredTerm" [required]="true"></app-field-label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <input type="text" name="New Preferred Term" id="newPT" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.newPT" #newPTInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="new-pt-input">
@@ -306,7 +306,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="newSynonyms" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newSynonyms' | translate }}</label>
+                    <app-field-label htmlFor="newSynonyms" labelKey="request.labels.newSynonyms" tooltipKey="request.tooltip.newSynonyms"></app-field-label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <input type="text" name="New Synonyms" id="newSynonyms" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.newSynonyms" class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="new-synonyms-textarea"/>
@@ -314,7 +314,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="parentConcept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.parentConcept' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                    <app-field-label htmlFor="parentConcept" labelKey="request.labels.parentConcept" tooltipKey="request.tooltip.parentConcept" [required]="true"></app-field-label>
                     <div class="mt-2 relative">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
@@ -342,7 +342,7 @@
             <ng-container
                 *ngIf="request.type === 'add-description' || request.type === 'add-relationship' || request.type === 'change-description' || request.type === 'change-relationship' || request.type === 'inactivate-description' || request.type === 'inactivate-relationship'">
                 <div class="col-span-2">
-                    <label for="concept" class="text-sm text-slate-700 font-medium">{{ 'request.labels.concept' | translate }}</label>
+                    <app-field-label htmlFor="concept" labelKey="request.labels.concept" tooltipKey="request.tooltip.concept"></app-field-label>
                     <div class="mt-2 relative">
                         <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
@@ -362,26 +362,26 @@
                     </div>
                 </div>
                 <div>
-                    <label for="conceptId" class="text-sm text-slate-700 font-medium">{{ 'request.labels.conceptId' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                    <app-field-label htmlFor="conceptId" labelKey="request.labels.conceptId" tooltipKey="request.tooltip.conceptID" [required]="true"></app-field-label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                            <input type="text" name="Concept ID" id="conceptId" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="concept-id-input">
+                        <div class="flex items-center rounded-md px-3 border bg-gray-50 border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                            <input type="text" name="Concept ID" id="conceptId" [readOnly]="true" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.conceptId" #conceptIdInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium cursor-default" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="concept-id-input">
                         </div>
                         <div *ngIf="conceptIdInput.invalid && conceptIdInput.touched" class="text-red-500 text-sm">{{ 'request.validation.conceptIdRequired' | translate }}</div>
                     </div>
                 </div>
                 <div>
-                    <label for="conceptName" class="text-sm text-slate-700 font-medium">{{ 'request.labels.conceptName' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                    <app-field-label htmlFor="conceptName" labelKey="request.labels.conceptName" tooltipKey="request.tooltip.conceptName" [required]="true"></app-field-label>
                     <div class="mt-2">
-                        <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
-                            <input type="text" name="Concept Name" id="conceptName" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.conceptName" #conceptNameInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                        <div class="flex items-center rounded-md px-3 border bg-gray-50 border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
+                            <input type="text" name="Concept Name" id="conceptName" [readOnly]="true" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.conceptName" #conceptNameInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium cursor-default" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         </div>
                         <div *ngIf="conceptNameInput.invalid && conceptNameInput.touched" class="text-red-500 text-sm">{{ 'request.validation.conceptNameRequired' | translate }}</div>
                     </div>
                 </div>
                 <ng-container *ngIf="request.type === 'add-description'">
                     <div class="col-span-2">
-                        <label for="newDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="newDescription" labelKey="request.labels.newDescription" tooltipKey="request.tooltip.newDescription" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <input type="text" name="New Description" id="newDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="new-description-input">
@@ -393,7 +393,7 @@
 
                 <ng-container *ngIf="request.type === 'add-relationship'">
                     <div>
-                        <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="relationshipType" labelKey="request.labels.relationshipType" tooltipKey="request.tooltip.relationshipType" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <select name="Relationship Type" id="relationshipType" #relationshipTypeInput="ngModel" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipType" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="context-refset-select">
@@ -409,7 +409,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.relationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="relationshipTarget" labelKey="request.labels.relationshipTarget" tooltipKey="request.tooltip.relationshipTarget" [required]="true"></app-field-label>
                         <div class="mt-2 relative">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
@@ -433,7 +433,7 @@
 
                 <ng-container *ngIf="request.type === 'change-description'">
                     <div>
-                        <label for="existingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="existingDescription" labelKey="request.labels.existingDescription" tooltipKey="request.tooltip.existingDescription" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <select name="Existing Description" id="existingDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -444,7 +444,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="newChangeDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="newChangeDescription" labelKey="request.labels.newDescription" tooltipKey="request.tooltip.newDescription" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <input type="text" name="New Description" id="newChangeDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.newDescription" #newDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -456,7 +456,7 @@
 
                 <ng-container *ngIf="request.type === 'change-relationship'">
                     <div class="col-span-2">
-                        <label for="existingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="existingRelationship" labelKey="request.labels.existingRelationship" tooltipKey="request.tooltip.existingRelationship" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <select name="Existing Relationship" id="existingRelationship" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -467,7 +467,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipType" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newRelationshipType' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="relationshipType" labelKey="request.labels.newRelationshipType" tooltipKey="request.tooltip.newRelationshipType" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <input type="text" name="Relationship Type" id="relationshipType" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.relationshipType" #relationshipTypeInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -476,7 +476,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="relationshipTarget" class="text-sm text-slate-700 font-medium">{{ 'request.labels.newRelationshipTarget' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="relationshipTarget" labelKey="request.labels.newRelationshipTarget" tooltipKey="request.tooltip.newRelationshipTarget" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 me-2">
@@ -500,7 +500,7 @@
 
                 <ng-container *ngIf="request.type === 'inactivate-description'">
                     <div class="col-span-2">
-                        <label for="inactivateExistingDescription" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingDescription' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="inactivateExistingDescription" labelKey="request.labels.existingDescription" tooltipKey="request.tooltip.existingDescription" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <select name="Existing Description" id="inactivateExistingDescription" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingDescription" #existingDescriptionInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -514,7 +514,7 @@
 
                 <ng-container *ngIf="request.type === 'inactivate-relationship'">
                     <div class="col-span-2">
-                        <label for="inactivateExistingRelationship" class="text-sm text-slate-700 font-medium">{{ 'request.labels.existingRelationship' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                        <app-field-label htmlFor="inactivateExistingRelationship" labelKey="request.labels.existingRelationship" tooltipKey="request.tooltip.existingRelationship" [required]="true"></app-field-label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md px-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                                 <select name="Existing Relationship" id="inactivateExistingRelationship" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.existingRelationship" #existingRelationshipInput="ngModel" required class="grow py-1.5 text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-9 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
@@ -531,7 +531,7 @@
 
             <ng-container *ngIf="request.type === 'add-refset' || request.type === 'change-refset'">
                 <div class="col-span-2">
-                    <label for="memberConceptIds" class="text-sm text-slate-700 font-medium">{{ 'request.labels.membersList' | translate }}</label>
+                    <app-field-label htmlFor="memberConceptIds" labelKey="request.labels.membersList" tooltipKey="request.tooltip.membersList"></app-field-label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <textarea type="text" name="Member Concept Ids" id="memberConceptIds" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.memberConceptIds" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"></textarea>
@@ -539,7 +539,7 @@
                     </div>
                 </div>
                 <div class="col-span-2">
-                    <label for="eclQuery" class="text-sm text-slate-700 font-medium">{{ 'request.labels.eclQuery' | translate }}</label>
+                    <app-field-label htmlFor="eclQuery" labelKey="request.labels.eclQuery" tooltipKey="request.tooltip.eclQuery"></app-field-label>
                     <div class="mt-2">
                         <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                             <textarea type="text" name="ECL Query" id="eclQuery" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.eclQuery" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"></textarea>
@@ -549,7 +549,7 @@
             </ng-container>
 
             <div class="col-span-2">
-                <label for="justification" class="text-sm text-slate-700 font-medium">{{ 'request.labels.justification' | translate }}</label>
+                <app-field-label htmlFor="justification" labelKey="request.labels.justification" tooltipKey="request.tooltip.justification"></app-field-label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <textarea type="text" name="Justification" id="justification" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.justification" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))"></textarea>
@@ -557,7 +557,7 @@
                 </div>
             </div>
             <div class="col-span-2">
-                <label for="reference" class="text-sm text-slate-700 font-medium">{{ 'request.labels.reference' | translate }}<span class="text-red-500 ps-1">*</span></label>
+                <app-field-label htmlFor="reference" labelKey="request.labels.reference" tooltipKey="request.tooltip.reference" [required]="true"></app-field-label>
                 <div class="mt-2">
                     <div class="flex items-center rounded-md p-3 border bg-white border-gray-300" [class.disabled:bg-gray-100]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))">
                         <textarea type="text" name="Reference" #referenceInput="ngModel" required id="reference" [disabled]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" [(ngModel)]="request.reference" class="grow text-slate-700 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 h-32 font-medium" [class.disabled:text-gray-400]="mode === ModeType.VIEW && !isStaff(user) && (!isRequestOwner() || (isRequestOwner() && request.status !== 'NEW'))" data-cy="reference-input"></textarea>

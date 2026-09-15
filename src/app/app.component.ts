@@ -2,6 +2,7 @@ import {Component, Inject, OnInit, DOCUMENT} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {SnomedNavbarComponent} from "./components/snomed-navbar/snomed-navbar.component";
 import {SnomedFooterComponent} from "./components/snomed-footer/snomed-footer.component";
+import {FieldHelpOverlayComponent} from "./components/field-help-overlay/field-help-overlay.component";
 import {AuthenticationService} from "./services/authentication/authentication.service";
 
 import {AuthoringService} from './services/authoring/authoring.service';
@@ -9,7 +10,7 @@ import {ConfigService} from './services/config/config.service';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, SnomedNavbarComponent, SnomedFooterComponent],
+    imports: [RouterOutlet, SnomedNavbarComponent, SnomedFooterComponent, FieldHelpOverlayComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

@@ -1,0 +1,18 @@
+<label [attr.for]="htmlFor" class="text-sm text-slate-700 font-medium inline-flex items-center gap-1 max-w-full">
+    <span>{{ labelText }}</span>
+    <span *ngIf="required" class="text-red-500">*</span>
+    <button *ngIf="tooltipText"
+            type="button"
+            class="field-help-button inline-flex items-center justify-center shrink-0 rounded-full text-sky-600 hover:text-sky-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+            [attr.aria-label]="tooltipText"
+            [attr.aria-describedby]="open ? tooltipId : null"
+            [attr.aria-expanded]="open"
+            [attr.data-cy]="'field-tooltip-' + htmlFor"
+            (click)="toggle($event)"
+            (mouseenter)="show()"
+            (mouseleave)="scheduleHide()"
+            (focus)="show()"
+            (blur)="scheduleHide()">
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+    </button>
+</label>
