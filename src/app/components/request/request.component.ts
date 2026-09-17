@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StatusTransformPipe } from '../../pipes/status-transform/status-transform.pipe';
 import { RequestTypeTransformPipe } from '../../pipes/request-type-transform/request-type-transform.pipe';
 import { User } from '../../models/user';
-import { BehaviorSubject, catchError, concatMap, debounceTime, firstValueFrom, forkJoin, from, of, Subject, Subscription, switchMap, tap, toArray } from 'rxjs';
+import { BehaviorSubject, catchError, concatMap, debounceTime, distinctUntilChanged, firstValueFrom, forkJoin, from, of, Subject, Subscription, switchMap, tap, toArray } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../services/config/config.service';
@@ -98,6 +98,10 @@ export class RequestComponent implements OnInit, OnDestroy {
     showReporterTypeahead: boolean = false;
     reporterTypeaheadSubject = new Subject<string>();
     reporterTypeaheadSubscription: Subscription;
+
+    conceptIdLookupSubject = new Subject<string>();
+    conceptIdLookupSubscription: Subscription;
+    private lastLookedUpConceptId = '';
 
     ModeType = Mode; // Expose the Mode enum to the template for use in conditionals
     mode: Mode = Mode.NEW; // Default mode is NEW
@@ -214,6 +218,31 @@ export class RequestComponent implements OnInit, OnDestroy {
                 this.showReporterTypeahead = false;
             }
         });
+
+        this.conceptIdLookupSubscription = this.conceptIdLookupSubject.pipe(
+            debounceTime(400),
+            distinctUntilChanged(),
+            switchMap(conceptId => {
+                if (!this.isSctId(conceptId) || !this.country) {
+                    return of(null);
+                }
+                return this.authoringService.getConcept(this.country, conceptId).pipe(
+                    catchError(() => of(null))
+                );
+            })
+        ).subscribe({
+            next: (response) => {
+                if (!response) {
+                    if (this.isSctId(this.request?.conceptId) && this.request.conceptId !== this.lastLookedUpConceptId) {
+                        this.request.conceptName = '';
+                        this.availableDescriptions = [];
+                        this.availableRelationships = [];
+                    }
+                    return;
+                }
+                this.applyLookedUpConcept(response);
+            }
+        });
     }
 
     ngOnInit(): void {
@@ -294,6 +323,9 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
         if (this.reporterTypeaheadSubscription) {
             this.reporterTypeaheadSubscription.unsubscribe();
+        }
+        if (this.conceptIdLookupSubscription) {
+            this.conceptIdLookupSubscription.unsubscribe();
         }
     }
 
@@ -442,6 +474,10 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.availableRelationships = [];
         this.showTypeahead = false;
         this.typeaheadResults = [];
+        this.typeaheadLoading = false;
+        this.lastLookedUpConceptId = '';
+        this.conceptIdLookupSubject.next('');
+        this.typeaheadSubject.next('');
         this.request = new Request(
             null, // id
             type, // type
@@ -544,6 +580,7 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.request.existingRelationship = '';
         this.availableDescriptions = [];
         this.availableRelationships = [];
+        this.lastLookedUpConceptId = '';
     }
 
     selectTypeaheadResult(result: string, field: string): void {
@@ -572,12 +609,47 @@ export class RequestComponent implements OnInit, OnDestroy {
             this.availableRelationships = [];
 
             // Update concept ID and name
+            this.lastLookedUpConceptId = conceptId;
             this.request.conceptId = conceptId;
             this.request.conceptName = conceptName;
 
             // Load descriptions and relationships for this concept
             this.loadConcept(conceptId);
         }
+    }
+
+    onConceptIdChange(conceptId: string): void {
+        const trimmed = (conceptId || '').trim();
+        if (!trimmed) {
+            this.request.conceptName = '';
+            this.request.existingDescription = '';
+            this.request.existingRelationship = '';
+            this.availableDescriptions = [];
+            this.availableRelationships = [];
+            this.lastLookedUpConceptId = '';
+            return;
+        }
+        if (trimmed === this.lastLookedUpConceptId) {
+            return;
+        }
+        this.request.conceptName = '';
+        this.conceptIdLookupSubject.next(trimmed);
+    }
+
+    private isSctId(value: string): boolean {
+        return /^\d{6,18}$/.test((value || '').trim());
+    }
+
+    private applyLookedUpConcept(response: any): void {
+        const conceptId = String(response?.conceptId || response?.id || '').trim();
+        const fsn = response?.fsn?.term || '';
+        if (!conceptId || this.request?.conceptId?.trim() !== conceptId) {
+            return;
+        }
+        this.request.conceptId = conceptId;
+        this.request.conceptName = fsn;
+        this.lastLookedUpConceptId = conceptId;
+        this.populateConceptCollections(response);
     }
 
     loadConcept(conceptId: string): void {
@@ -587,43 +659,47 @@ export class RequestComponent implements OnInit, OnDestroy {
 
         this.authoringService.getConcept(this.country, conceptId).subscribe({
             next: (response) => {
-                this.availableDescriptions = [];
-                if (response.descriptions && Array.isArray(response.descriptions)) {
-                    response.descriptions.forEach((item: any) => {
-                        if (item.term) {
-                            this.availableDescriptions.push(new Description(
-                                item.descriptionId, // descriptionId
-                                item.term, // term
-                                item.active, // active
-                                item.conceptId, // conceptId
-                                item.type // type
-                            ));
-                        }
-                    });
-                }
-
-                this.availableRelationships = [];
-                if (response.relationships && Array.isArray(response.relationships)) {
-                    response.relationships.forEach((item: any) => {
-                        if (item.typeId && item.destinationId && item.active) {
-                            this.availableRelationships.push(new Relationship(
-                                item.relationshipId, // relationshipId
-                                item.typeId, // type
-                                item.destinationId, // destinationId
-                                item.active, // active
-                                item.sourceId, // conceptId
-                                item?.type?.fsn?.term, // type FSN
-                                item?.target?.fsn?.term // destination FSN
-                            ));
-                        }
-                    });
-                }
+                this.populateConceptCollections(response);
             },
             error: (error) => {
                 console.error('Error loading concept details:', error);
                 this.availableDescriptions = [];
             }
         });
+    }
+
+    private populateConceptCollections(response: any): void {
+        this.availableDescriptions = [];
+        if (response?.descriptions && Array.isArray(response.descriptions)) {
+            response.descriptions.forEach((item: any) => {
+                if (item.term) {
+                    this.availableDescriptions.push(new Description(
+                        item.descriptionId, // descriptionId
+                        item.term, // term
+                        item.active, // active
+                        item.conceptId, // conceptId
+                        item.type // type
+                    ));
+                }
+            });
+        }
+
+        this.availableRelationships = [];
+        if (response?.relationships && Array.isArray(response.relationships)) {
+            response.relationships.forEach((item: any) => {
+                if (item.typeId && item.destinationId && item.active) {
+                    this.availableRelationships.push(new Relationship(
+                        item.relationshipId, // relationshipId
+                        item.typeId, // type
+                        item.destinationId, // destinationId
+                        item.active, // active
+                        item.sourceId, // conceptId
+                        item?.type?.fsn?.term, // type FSN
+                        item?.target?.fsn?.term // destination FSN
+                    ));
+                }
+            });
+        }
     }
 
     getActiveDescriptions(): Description[] {
