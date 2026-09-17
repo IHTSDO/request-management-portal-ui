@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+export interface FieldHelpAnchor {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+}
+
 export interface FieldHelpOverlayState {
     visible: boolean;
     text: string;
     tooltipId: string;
     sourceId: string;
-    top: string;
-    left: string;
+    anchor: FieldHelpAnchor | null;
     pinned: boolean;
 }
 
@@ -16,8 +22,7 @@ const HIDDEN_STATE: FieldHelpOverlayState = {
     text: '',
     tooltipId: '',
     sourceId: '',
-    top: '0px',
-    left: '0px',
+    anchor: null,
     pinned: false
 };
 
@@ -29,15 +34,14 @@ export class FieldHelpOverlayService {
     readonly state$ = this.stateSubject.asObservable();
     private hideTimer: ReturnType<typeof setTimeout> | null = null;
 
-    show(sourceId: string, text: string, tooltipId: string, top: string, left: string, pinned = false): void {
+    show(sourceId: string, text: string, tooltipId: string, anchor: FieldHelpAnchor, pinned = false): void {
         this.clearHideTimer();
         this.stateSubject.next({
             visible: true,
             text,
             tooltipId,
             sourceId,
-            top,
-            left,
+            anchor,
             pinned
         });
     }
@@ -69,6 +73,10 @@ export class FieldHelpOverlayService {
         }
         this.clearHideTimer();
         this.stateSubject.next(HIDDEN_STATE);
+    }
+
+    get current(): FieldHelpOverlayState {
+        return this.stateSubject.value;
     }
 
     isActive(sourceId: string): boolean {

@@ -70,13 +70,15 @@ export class FieldLabelComponent implements OnInit, OnDestroy {
         if (!this.tooltipText) {
             return;
         }
-        const position = this.getPosition();
+        const anchor = this.getAnchor();
+        if (!anchor) {
+            return;
+        }
         this.fieldHelpOverlayService.show(
             this.sourceId,
             this.tooltipText,
             this.tooltipId,
-            position.top,
-            position.left,
+            anchor,
             this.fieldHelpOverlayService.isPinned(this.sourceId)
         );
     }
@@ -95,13 +97,15 @@ export class FieldLabelComponent implements OnInit, OnDestroy {
             this.fieldHelpOverlayService.hide(this.sourceId);
             return;
         }
-        const position = this.getPosition();
+        const anchor = this.getAnchor();
+        if (!anchor) {
+            return;
+        }
         this.fieldHelpOverlayService.show(
             this.sourceId,
             this.tooltipText,
             this.tooltipId,
-            position.top,
-            position.left,
+            anchor,
             true
         );
     }
@@ -135,32 +139,17 @@ export class FieldLabelComponent implements OnInit, OnDestroy {
         this.tooltipText = this.tooltipKey ? this.fieldTooltipService.resolve(this.tooltipKey) : '';
     }
 
-    private getPosition(): { top: string; left: string } {
+    private getAnchor() {
         const button = this.elementRef.nativeElement.querySelector('.field-help-button') as HTMLElement | null;
         if (!button) {
-            return { top: '0px', left: '0px' };
+            return null;
         }
-
         const rect = button.getBoundingClientRect();
-        const tooltipWidth = 320;
-        const margin = 8;
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        let left = rect.left;
-        if (left + tooltipWidth > viewportWidth - margin) {
-            left = Math.max(margin, viewportWidth - tooltipWidth - margin);
-        }
-
-        const estimatedHeight = 120;
-        const spaceBelow = viewportHeight - rect.bottom;
-        const top = spaceBelow < estimatedHeight && rect.top > estimatedHeight
-            ? rect.top - estimatedHeight - margin
-            : rect.bottom + margin;
-
         return {
-            top: `${Math.max(margin, top)}px`,
-            left: `${left}px`
+            top: rect.top,
+            bottom: rect.bottom,
+            left: rect.left,
+            right: rect.right
         };
     }
 }
