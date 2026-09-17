@@ -409,26 +409,34 @@ export class RequestComponent implements OnInit, OnDestroy {
     }
 
     resetForm(form: NgForm): void {
-        // const currentFormType = this.formType; // Store current form type
-        form.resetForm(); // Reset the form state
-        this.resetFormValues(); // Reset form values to defaults (includes pending attachments)
-        // Normalize empty refsets to "None" for display
+        const currentType = this.request?.type || 'add-concept';
+        this.resetFormValues(currentType);
         this.normalizeRefsetsForDisplay();
-        this.toastr.clear(); // Clear any previous toastr messages
+        this.toastr.clear();
 
-        // setTimeout(() => {
-        //     this.formType = currentFormType;
-        //     this.formLangageRefset = ''; // Reset language refset
-        //     this.formContextRefset = ''; // Reset context refset
-        // }, 0);
+        setTimeout(() => {
+            if (this.request) {
+                this.request.type = currentType;
+            }
+            form.form.markAsPristine();
+            form.form.markAsUntouched();
+            Object.values(form.controls).forEach(control => {
+                control.markAsPristine();
+                control.markAsUntouched();
+            });
+        });
     }
 
-    private resetFormValues(): void {
+    private resetFormValues(type: string = 'add-concept'): void {
         this.clearPendingAttachments();
         this.resetNewRequestAttachmentFileInput();
+        this.availableDescriptions = [];
+        this.availableRelationships = [];
+        this.showTypeahead = false;
+        this.typeaheadResults = [];
         this.request = new Request(
             null, // id
-            'add-concept', // type
+            type, // type
             'NEW', // status
             this.country, // country
             '', // reporter
@@ -515,7 +523,19 @@ export class RequestComponent implements OnInit, OnDestroy {
     onParentConceptInput(forTypeaheadProperty: string, event: any): void {
         this.forTypeaheadProperty = forTypeaheadProperty;
         const searchText = event.target.value;
+        if (forTypeaheadProperty === 'concept') {
+            this.clearConceptDerivedFields();
+        }
         this.typeaheadSubject.next(searchText);
+    }
+
+    private clearConceptDerivedFields(): void {
+        this.request.conceptId = '';
+        this.request.conceptName = '';
+        this.request.existingDescription = '';
+        this.request.existingRelationship = '';
+        this.availableDescriptions = [];
+        this.availableRelationships = [];
     }
 
     selectTypeaheadResult(result: string, field: string): void {
