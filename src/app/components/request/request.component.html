@@ -5,7 +5,7 @@
         </svg>{{ 'request.backButton' | translate }}</button>
 </div>
 
-<div class="absolute top-18 right-6 w-56 overflow-x-hidden flex flex-col items-end gap-3">
+<div class="absolute right-6 w-56 overflow-x-hidden flex flex-col items-start gap-3" [style.top.rem]="request?.id ? 4.5 : 8">
     <button class="w-36 rounded-md bg-purple-600 text-white px-3 py-1.5 text-sm font-medium tracking-widest cursor-pointer hover:bg-purple-700 inline-flex items-center justify-start text-left" type="button" (click)="downloadAPTemplate()" data-cy="download-ap-template-button" [title]="'requestManagement.downloadAPTemplateTooltip' | translate">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 inline text-slate-200 me-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -48,15 +48,16 @@
         </div>
     </ng-container>
 </div>
+
 <form #requestForm="ngForm" (ngSubmit)="saveRequest(requestForm)" class="overflow-auto text-sm" data-cy="request-form" autocomplete="off">
     <ng-container *ngIf="request">
         <div class="grid w-2/3 justify-self-center my-5">
             <ng-container *ngIf="request?.id">
                 <div class="border border-gray-300 rounded-lg bg-sky-50 px-4 py-3" data-cy="request-header">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <span class="text-slate-700 text-sm font-normal shrink-0 self-center">#{{request.id}}</span>
-                        <h2 class="text-sm text-slate-700 font-normal min-w-0 flex-1 m-0">{{ request.summary }}</h2>
-                        <span class="rounded-full text-white px-3 py-1 font-normal whitespace-nowrap shrink-0 self-center"
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 min-w-0">
+                        <span class="text-sky-600 text-sm font-medium shrink-0 self-center">#{{request.id}}</span>
+                        <h2 class="text-sm text-slate-700 font-medium min-w-0 flex-1 m-0" data-cy="request-header-type">{{ getRequestTypeLabelKey(request.type) | translate }}</h2>
+                        <span class="rounded-full text-white px-3 py-1 font-normal whitespace-nowrap shrink-0 self-center max-sm:basis-full max-sm:w-fit"
                               [class.bg-teal-500]="request.status === 'NEW'"
                               [class.bg-lime-600]="request.status === 'ACCEPTED' || request.status === 'READY_FOR_RELEASE' || request.status === 'PUBLISHED'"
                               [class.bg-red-400]="request.status === 'REJECTED' || request.status === 'APPEAL_REJECTED'"
@@ -68,7 +69,7 @@
                         </span>
                     </div>
                     <div class="border-t border-gray-300 my-2.5"></div>
-                    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1.3fr)] gap-x-5 gap-y-2 items-center w-full text-sm text-slate-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-5 gap-y-2 items-center w-full text-sm text-slate-700">
                         <div class="flex items-center gap-1 min-w-0">
                             <span class="text-sky-600 shrink-0">{{ 'request.labels.createdDate' | translate }}:</span>
                             <span class="font-medium truncate">{{request.created | date:'yyyy/MM/dd':'UTC'}}</span>
@@ -105,6 +106,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="border-t border-gray-300 mt-2.5 pt-2.5 text-sm text-slate-700" data-cy="request-header-summary">
+                        <span class="font-semibold block md:inline">{{ 'request.labels.summary' | translate }}:</span>
+                        <span class="block md:inline md:ms-1 break-words whitespace-pre-wrap">{{ request.summary }}</span>
                     </div>
                 </div>
             </ng-container>

@@ -297,6 +297,14 @@ export class RequestComponent implements OnInit, OnDestroy {
         }
     }
 
+    getRequestTypeLabelKey(type: string): string {
+        if (!type) {
+            return '';
+        }
+        const camelCaseType = type.replace(/-([a-z])/g, (_match, letter: string) => letter.toUpperCase());
+        return `request.typeOptions.${camelCaseType}`;
+    }
+
     getDisplayName(identifier: string): string {
         if (!identifier) {
             return '';
