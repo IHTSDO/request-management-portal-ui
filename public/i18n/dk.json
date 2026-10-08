@@ -238,6 +238,30 @@
             "procedureSite": "anatomisk lokalisation for procedure",
             "unknown": "ukendt",
             "other": "anden"
+        },
+        "tooltip": {
+            "summary": "Tilføj en kort beskrivelse af anmodningen",
+            "type": "Vælg anmodningstype",
+            "languageRefset": "Vælg sproget for denne anmodning",
+            "contextRefset": "Hvis anmodningen vedrører et specifikt kontekst-refset, skal du vælge det på listen, hvis det er tilgængeligt",
+            "newFSN": "Tilføj det nye Fully Specified Name (skal være på engelsk)",
+            "newPreferredTerm": "Tilføj den nye foretrukne term på målsproget",
+            "newSynonyms": "Tilføj acceptable synonymer, adskilt med komma",
+            "parentConcept": "Tilføj SNOMED CT-id for overbegrebet, hvis det kendes",
+            "justification": "Tilføj en detaljeret beskrivelse af det kliniske eller administrative behov for anmodningen",
+            "reference": "Tilføj en eller flere gratis, åbne og opdaterede kilder, hvor begrebet er beskrevet (wikier eller patientrettede kilder er ikke tilladt)",
+            "concept": "Søg efter SNOMED CT-begreber",
+            "conceptID": "Dette felt udfyldes automatisk ud fra søgeresultaterne ovenfor",
+            "conceptName": "Dette felt udfyldes automatisk ud fra søgeresultaterne ovenfor",
+            "newDescription": "Den nye beskrivelse på målsproget",
+            "relationshipType": "Hvis 'anden' er valgt, skal du forklare det i feltet Begrundelse nedenfor",
+            "relationshipTarget": "Søg efter SNOMED CT-begreber",
+            "existingDescription": "Den nuværende beskrivelse, der skal ændres",
+            "existingRelationship": "Den nuværende relation, der skal ændres",
+            "eclQuery": "For et intensionelt refset skal du tilføje en ECL-forespørgsel her",
+            "membersList": "For et ekstensionelt refset skal du tilføje en liste over begrebs-id'er, adskilt med komma",
+            "newRelationshipType": "Vælg typen af den nye relation",
+            "newRelationshipTarget": "Søg efter SNOMED CT-målbegrebet for den nye relation"
         }
     }
 }

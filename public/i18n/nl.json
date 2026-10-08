@@ -238,6 +238,30 @@
             "procedureSite": "Locatie van procedure",
             "unknown": "Onbekend",
             "other": "Overige"
+        },
+        "tooltip": {
+            "summary": "Voeg een korte beschrijving van het verzoek toe",
+            "type": "Selecteer het type verzoek",
+            "languageRefset": "Selecteer de taal voor dit verzoek",
+            "contextRefset": "Als het verzoek betrekking heeft op een specifieke Context Reference Set, selecteer deze dan in de lijst indien beschikbaar",
+            "newFSN": "Voeg de nieuwe Fully Specified Name toe (moet in het Engels zijn)",
+            "newPreferredTerm": "Voeg de nieuwe Preferred Term in de doeltaal toe",
+            "newSynonyms": "Voeg aanvaardbare synoniemen toe, gescheiden door komma's",
+            "parentConcept": "Voeg de SNOMED CT-ID van het ouderconcept toe, indien bekend",
+            "justification": "Voeg een gedetailleerde beschrijving toe van de klinische of administratieve behoefte voor het verzoek",
+            "reference": "Voeg een of meer gratis, open en actuele bronnen toe waarin het concept wordt beschreven (wiki's of patiëntgerichte bronnen zijn niet toegestaan)",
+            "concept": "Zoek naar SNOMED CT-concepten",
+            "conceptID": "Dit veld wordt automatisch ingevuld op basis van de zoekresultaten hierboven",
+            "conceptName": "Dit veld wordt automatisch ingevuld op basis van de zoekresultaten hierboven",
+            "newDescription": "De nieuwe beschrijving in de doeltaal",
+            "relationshipType": "Bij 'Overige' graag toelichten in het veld Motivering hieronder",
+            "relationshipTarget": "Zoek naar SNOMED CT-concepten",
+            "existingDescription": "De huidige beschrijving die gewijzigd moet worden",
+            "existingRelationship": "De huidige relatie die gewijzigd moet worden",
+            "eclQuery": "Voeg hier voor een intensionele Reference Set een ECL-query toe",
+            "membersList": "Voeg voor een extensionele Reference Set een lijst met concept-ID's toe, gescheiden door komma's",
+            "newRelationshipType": "Selecteer het type van de nieuwe relatie",
+            "newRelationshipTarget": "Zoek naar het SNOMED CT-doelconcept van de nieuwe relatie"
         }
     }
 }

@@ -238,6 +238,30 @@
             "procedureSite": "Site de la procédure",
             "unknown": "Inconnu",
             "other": "Autre"
+        },
+        "tooltip": {
+            "summary": "Ajoutez une brève description de la demande",
+            "type": "Sélectionnez le type de demande",
+            "languageRefset": "Sélectionnez la langue de cette demande",
+            "contextRefset": "Si la demande concerne un Context Reference Set spécifique, veuillez le sélectionner dans la liste s'il est disponible",
+            "newFSN": "Ajoutez le nouveau Fully Specified Name (obligatoirement en anglais)",
+            "newPreferredTerm": "Ajoutez le nouveau Preferred Term dans la langue cible",
+            "newSynonyms": "Ajoutez les synonymes acceptables, séparés par des virgules",
+            "parentConcept": "Ajoutez l'identifiant SNOMED CT du concept parent, s'il est connu",
+            "justification": "Ajoutez une description détaillée du besoin clinique ou administratif à l'origine de la demande",
+            "reference": "Ajoutez une ou plusieurs sources gratuites, ouvertes et à jour décrivant le concept (les wikis et les sources destinées aux patients ne sont pas acceptés)",
+            "concept": "Recherchez des concepts SNOMED CT",
+            "conceptID": "Ce champ est rempli automatiquement à partir des résultats de recherche ci-dessus",
+            "conceptName": "Ce champ est rempli automatiquement à partir des résultats de recherche ci-dessus",
+            "newDescription": "La nouvelle description dans la langue cible",
+            "relationshipType": "Si « Autre » est sélectionné, veuillez préciser dans le champ Justification ci-dessous",
+            "relationshipTarget": "Recherchez des concepts SNOMED CT",
+            "existingDescription": "La description actuelle à modifier",
+            "existingRelationship": "La relation actuelle à modifier",
+            "eclQuery": "Pour un Reference Set intensionnel, saisissez ici une requête ECL",
+            "membersList": "Pour un Reference Set extensionnel, saisissez une liste d'identifiants de concepts, séparés par des virgules",
+            "newRelationshipType": "Sélectionnez le type de la nouvelle relation",
+            "newRelationshipTarget": "Recherchez le concept SNOMED CT cible de la nouvelle relation"
         }
     }
 }

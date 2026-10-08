@@ -238,6 +238,30 @@
             "procedureSite": "Procedure Site",
             "unknown": "Sconosciuta",
             "other": "Altro"
+        },
+        "tooltip": {
+            "summary": "Aggiungi una breve descrizione della richiesta",
+            "type": "Seleziona il tipo di richiesta",
+            "languageRefset": "Seleziona la lingua di questa richiesta",
+            "contextRefset": "Se la richiesta riguarda un Context Reference Set specifico, selezionalo dall'elenco, se disponibile",
+            "newFSN": "Aggiungi il nuovo Fully Specified Name (deve essere in inglese)",
+            "newPreferredTerm": "Aggiungi il nuovo Preferred Term nella lingua di destinazione",
+            "newSynonyms": "Aggiungi i sinonimi accettabili, separati da virgole",
+            "parentConcept": "Aggiungi l'ID SNOMED CT del concetto padre, se noto",
+            "justification": "Aggiungi una descrizione dettagliata dell'esigenza clinica o amministrativa alla base della richiesta",
+            "reference": "Aggiungi una o più fonti gratuite, aperte e aggiornate in cui è descritto il concetto (non sono ammesse fonti wiki o destinate ai pazienti)",
+            "concept": "Cerca concetti SNOMED CT",
+            "conceptID": "Questo campo viene compilato automaticamente dai risultati della ricerca sopra",
+            "conceptName": "Questo campo viene compilato automaticamente dai risultati della ricerca sopra",
+            "newDescription": "La nuova descrizione nella lingua di destinazione",
+            "relationshipType": "Se selezioni \"Altro\", specificalo nel campo Giustificazione qui sotto",
+            "relationshipTarget": "Cerca concetti SNOMED CT",
+            "existingDescription": "La descrizione attuale da modificare",
+            "existingRelationship": "La relazione attuale da modificare",
+            "eclQuery": "Per un Reference Set intensionale, inserisci qui una query ECL",
+            "membersList": "Per un Reference Set estensionale, inserisci un elenco di ID di concetti, separati da virgole",
+            "newRelationshipType": "Seleziona il tipo della nuova relazione",
+            "newRelationshipTarget": "Cerca il concetto SNOMED CT di destinazione della nuova relazione"
         }
     }
 }
