@@ -166,9 +166,7 @@
             "existingDescription": "Description existante",
             "existingRelationship": "Relation existante",
             "eclQuery": "ECL Query (uniquement pour les Refsets intensionnels)",
-            "membersList": "Member Concept Ids (uniquement pour les refsets extensionnels)",
-            "reporter": "",
-            "assignee": ""
+            "membersList": "Member Concept Ids (uniquement pour les refsets extensionnels)"
         },
         "validation": {
             "summaryRequired": "Résumé est requise",

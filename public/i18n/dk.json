@@ -166,9 +166,7 @@
             "existingDescription": "Eksisterende term",
             "existingRelationship": "Eksisterende relation",
             "eclQuery": "ECL-forespørgsel (kun intensionelle refsets)",
-            "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)",
-            "reporter": "",
-            "assignee": ""
+            "membersList": "Begrebs-id’er på medlemmer (kun ekstensionelle refsets)"
         },
         "validation": {
             "summaryRequired": "Resumé er påkrævet",

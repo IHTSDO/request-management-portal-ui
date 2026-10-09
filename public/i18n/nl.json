@@ -166,9 +166,7 @@
             "existingDescription": "Bestaande beschrijving",
             "existingRelationship": "Bestaande relatie",
             "eclQuery": "ECL Query (enkel voor intensionele refsets)",
-            "membersList": "Member Concept Ids (enkel voor extensionele refsets)",
-            "reporter": "",
-            "assignee": ""
+            "membersList": "Member Concept Ids (enkel voor extensionele refsets)"
         },
         "validation": {
             "summaryRequired": "Omschrijving is vereist",

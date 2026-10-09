@@ -166,9 +166,7 @@
             "existingDescription": "Descrizione esistente",
             "existingRelationship": "Relazione esistente",
             "eclQuery": "Query ECL (solo per refset intenzionali)",
-            "membersList": "ID concetti membri (solo per refset estensionali)",
-            "reporter": "",
-            "assignee": ""
+            "membersList": "ID concetti membri (solo per refset estensionali)"
         },
         "validation": {
             "summaryRequired": "Riassunto è obbligatorio",

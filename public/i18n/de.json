@@ -166,9 +166,7 @@
             "existingDescription": "Bestehender Term",
             "existingRelationship": "Bestehende Relationship",
             "eclQuery": "ECL-Abfrage (nur für intentionale Refsets)",
-            "membersList": "Konzept-IDs der Mitglieder (nur für extensionale Refsets)",
-            "reporter": "",
-            "assignee": ""
+            "membersList": "Konzept-IDs der Mitglieder (nur für extensionale Refsets)"
         },
         "validation": {
             "summaryRequired": "Bitte Zusammenfassung eingeben",
