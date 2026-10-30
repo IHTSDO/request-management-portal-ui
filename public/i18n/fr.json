@@ -160,7 +160,7 @@
             "conceptName": "Nom du concept",
             "newDescription": "Nouvelle description",
             "relationshipType": "Type de relation",
-            "relationshipTarget": "(concept) cible de la relation",
+            "relationshipTarget": "Cible de la Relation",
             "newRelationshipType": "Nouveau Type de Relation",
             "newRelationshipTarget": "Nouvelle Cible de Relation",
             "existingDescription": "Description existante",
